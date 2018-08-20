@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<Configuration>
+    <configName><!--Configuration Name-->basicpoco</configName>
+    <exportTimeISO>2018-08-20T13:29:33.79</exportTimeISO>
+    <exportTenant>NA</exportTenant>
+    <exportNotes></exportNotes>
+    <entityTypes><!--Entity Types-->
+        <entityType><!--POCO-->
+            <entityTypeName>POCO</entityTypeName>
+            <prefix>PC</prefix>
+            <seq>38</seq>
+            <superTypeName>TESTPOCO</superTypeName>
+            <nameTemplate></nameTemplate>
+            <defaultLocationName>No Location</defaultLocationName>
+            <trackVersion>0</trackVersion>
+            <requireSignature>0</requireSignature>
+            <enforceProjectSecurity>0</enforceProjectSecurity>
+            <enforceAttributeSecurity>0</enforceAttributeSecurity>
+            <promptLocation>0</promptLocation>
+            <trackLocation>0</trackLocation>
+            <userBarcode>0</userBarcode>
+            <reportable>0</reportable>
+            <queryPageSize>1000</queryPageSize>
+            <trackConc>0</trackConc>
+            <trackTime>0</trackTime>
+            <trackDesign>0</trackDesign>
+            <navigable>0</navigable>
+            <testable>0</testable>
+            <enforceAttributeLevelSecurity>0</enforceAttributeLevelSecurity>
+            <entityTypeAttributes></entityTypeAttributes>
+            <entityTypeAssociations></entityTypeAssociations>
+            <conditionalFormats></conditionalFormats>
+            <entityTypeTriggers></entityTypeTriggers>
+            <entityTypeMenuItems></entityTypeMenuItems>
+            <entityTypeFunctions></entityTypeFunctions>
+            <entityTypeListFunctions></entityTypeListFunctions>
+            <entityTypeApplications></entityTypeApplications>
+        </entityType>
+    </entityTypes>
+    <entities><!--Entities--></entities>
+    <entityTypes><!--Entity Types--></entityTypes>
+    <entities><!--Entities--></entities>
+    <attributes><!--Attributes--></attributes>
+    <uiMappings><!--UI Mappings--></uiMappings>
+</Configuration>
