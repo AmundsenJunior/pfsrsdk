@@ -1,6 +1,7 @@
 
 context("Tests for authentication")
 
+#Completed regression for 5.3.8 and 6.0.0
 
 cat(paste0("\n environments:\n",environments,"\n"))
 

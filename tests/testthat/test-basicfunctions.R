@@ -1,6 +1,6 @@
 context("test-basicfunctions")
 
-
+#Completed regression for 5.3.8 and 6.0.0
 
 lapply(environments, function(x){
   con <- Connect(x)
