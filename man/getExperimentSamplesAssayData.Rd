@@ -20,7 +20,7 @@ getExperimentSamplesAssayData(coreApi, assayType, experimentSamplebarcode,
 returns a list $entity contains entity information, $response contains the entire http response
 }
 \description{
-\code{ getExperimentSamplesAssayData }  Gets experiment samples from experiment identified by experiment barcode. 
+\code{ getExperimentSamplesAssayData }  Gets experiment samples from experiment identified by experiment barcode.
 Does not retieve files attached as data. Use getExperimentSampleAssayFileData to retrieve assay data that is a file.
 }
 \details{

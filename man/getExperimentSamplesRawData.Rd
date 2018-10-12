@@ -21,7 +21,7 @@ getExperimentSamplesRawData(coreApi, experimentContainerBarcode,
 \item{dataName}{assay data name to retrive as configured in the assay.}
 }
 \value{
-returns a list $entity contains data frame with derived experiment sample barcodes concentration, 
+returns a list $entity contains data frame with derived experiment sample barcodes concentration,
         and assay raw data. $response contains the entire http response
 }
 \description{

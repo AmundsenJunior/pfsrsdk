@@ -4,9 +4,9 @@
 \alias{updateCellContents}
 \title{updateCellContents -  Updates amount and concentrations of cell content}
 \usage{
-updateCellContents(coreApi, containerType, containerBarcode, containerCellNum,
-  sampleLotBarcode, amount, amountUnit, concentration, concentrationUnit,
-  useVerbose = FALSE)
+updateCellContents(coreApi, containerType, containerBarcode,
+  containerCellNum, sampleLotBarcode, amount, amountUnit, concentration,
+  concentrationUnit, useVerbose = FALSE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
