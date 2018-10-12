@@ -19,6 +19,7 @@ Imports:
 Suggests:
     knitr,
     lintr,
+    pkgdown,
     rmarkdown,
     styler,
     testthat
