@@ -4,7 +4,8 @@
 \alias{getExperimentContainers}
 \title{getExperimentContainers - Gets experiment containers from experiment identified by barcode.}
 \usage{
-getExperimentContainers(coreApi, experimentType, barcode, useVerbose = FALSE)
+getExperimentContainers(coreApi, experimentType, barcode,
+  useVerbose = FALSE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}

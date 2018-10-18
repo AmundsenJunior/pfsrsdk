@@ -1,0 +1,76 @@
+/* Docker Configuration */
+buildscript {
+    apply from: "$rootProject.projectDir/gradle/buildscript.gradle", to: buildscript
+}
+
+import com.coreinformatics.GitUtil
+import com.coreinformatics.common.property.PropertyUtil
+
+apply plugin: 'com.coreinformatics.docker-plugin'
+
+String getGitBranchName() {
+    return project.hasProperty('branchName') ? branchName : grgit.branch.getCurrent().getName()
+}
+
+ext {
+    // Variant of version string since Docker tags may not contain '+' characters
+    String tag = project.version.toString().replaceAll('\\+', '-')
+
+    imageTag = tag
+    versionTag = tag
+    isMaster = GitUtil.isMasterBranch(release.grgit)
+    tagsList = [versionTag, 'latest']
+    pushable = project.hasProperty('pushable') ? pushable.toBoolean() : GitUtil.isAcceptableBranch(release.grgit, pushableBranches.tokenize(','))
+    branchName = getGitBranchName().toLowerCase().replace('/', '-').replace('_', '-')
+}
+
+docker {
+    url = (project.hasProperty('dockerRestUrl') ? project.property('dockerRestUrl') : PropertyUtil.getPropertyOrEnvironmentValue('dockerRestUrl', 'DOCKER_HOST', ''))
+    certPath = new File(project.hasProperty('dockerCertPath') ? project.property('dockerCertPath') : PropertyUtil.getPropertyOrEnvironmentValue('dockerCertPath', 'DOCKER_CERT_PATH', ''))
+    logger.info 'docker.url: ' + url
+    logger.info 'docker.certPath: ' + certPath
+
+    registryCredentials {
+        url = dockerRepository
+        username = project.hasProperty('dockerRepositoryUsername') ? project.property('dockerRepositoryUsername') : null
+        password = project.hasProperty('dockerRepositoryPassword') ? project.property('dockerRepositoryPassword') : null
+        email = project.hasProperty('dockerRepositoryEmail') ? project.property('dockerRepositoryEmail') : null
+    }
+}
+
+images {
+    searchIndexer {
+        isMaster = project.ext.isMaster
+        dstImageName = dockerImageName
+        tags = project.ext.tagsList
+        isPushable = project.ext.pushable
+        branchName = project.ext.branchName.toLowerCase().replace('/', '-').replace('_', '-')
+        fromImage = "${dockerRepository}/${dockerSrcImage}"
+    }
+}
+
+task copyJar(type: Copy, group: 'docker') {
+    //dependsOn bootJar
+
+    from 'build/libs'
+    into 'build/docker'
+    //include bootJar.getArchiveName()
+}
+
+createSearchIndexerConfigfile {
+    dependsOn copyJar
+
+    def labels = [:]
+    labels.put('maintainer', projectVendor)
+    labels.put('description', projectDescription)
+    label labels
+
+    //environmentVariable 'JAVA_APP_JAR', bootJar.getArchiveName()
+    environmentVariable 'LOGGING_CONFIG', 'log4j2.xml'
+
+    addFile 'log4j2.xml', '/deployments/log4j2.xml'
+    //addFile bootJar.getArchiveName(), '/deployments/' + bootJar.getArchiveName()
+
+    exposePort 8080
+}
+

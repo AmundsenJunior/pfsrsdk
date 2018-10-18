@@ -1,13 +1,25 @@
+# R files
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
-/tests/testthat/testfiles/*
+
+tests/testthat/testfiles/*
 inst/doc
-/dev/*
-/beer/*
+dev/*
+beer/*
 Test%205.2.postman_environment.json
-/old_testthat/*
+old_testthat/*
 tests/testthat/test_environments/*
 !tests/testthat/test_environments/Template.json
+
+# Packrat files
 packrat/lib*/
+
+# Gradle output
+.gradle/*
+build/
+
+# Mac files
+.DS_Store
+packrat/packrat.lock

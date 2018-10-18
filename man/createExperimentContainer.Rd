@@ -24,7 +24,7 @@ createExperimentContainer(coreApi, experimentType, experimentBarcode,
 RETURN returns a list $entity contains entity information, $response contains the entire http response
 }
 \description{
-\code{createExperimentContainer}Creates a new experiment container by adding an exiting container 
+\code{createExperimentContainer}Creates a new experiment container by adding an exiting container
 to an experiment.
 }
 \details{

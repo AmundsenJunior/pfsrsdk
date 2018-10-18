@@ -21,7 +21,7 @@ getExperimentSamplesIntermediateData(coreApi, experimentType, assayType,
 \item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http call}
 }
 \value{
-returns a list $entity contains data frame with derived experiment sample barcodes concentration, 
+returns a list $entity contains data frame with derived experiment sample barcodes concentration,
         and assay raw data. $response contains the entire http response
 }
 \description{

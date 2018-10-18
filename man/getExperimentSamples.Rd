@@ -4,7 +4,8 @@
 \alias{getExperimentSamples}
 \title{getExperimentSamples - Gets experiment sample barcodes from experiment identified by barcode.}
 \usage{
-getExperimentSamples(coreApi, experimentType, barcode, useVerbose = FALSE)
+getExperimentSamples(coreApi, experimentType, barcode,
+  useVerbose = FALSE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}

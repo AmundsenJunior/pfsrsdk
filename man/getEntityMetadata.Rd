@@ -14,7 +14,7 @@ getEntityMetadata(coreApi, entityType, useVerbose = FALSE)
 \item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http POST}
 }
 \value{
-returns a list containing $attributes for attribute properties, 
+returns a list containing $attributes for attribute properties,
 and $association for association properties; $template contains a list that can be converted to JSON for object creation.
 }
 \description{

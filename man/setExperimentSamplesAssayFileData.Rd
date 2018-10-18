@@ -4,8 +4,8 @@
 \alias{setExperimentSamplesAssayFileData}
 \title{setExperimentSamplesAssayFileData - puts file attached as assay data in an experiment.}
 \usage{
-setExperimentSamplesAssayFileData(coreApi, assayType, experimentSamplebarcode,
-  attributeName, filepath, useVerbose = FALSE)
+setExperimentSamplesAssayFileData(coreApi, assayType,
+  experimentSamplebarcode, attributeName, filepath, useVerbose = FALSE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
