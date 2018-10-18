@@ -1,4 +1,4 @@
-#'experimentPublish Publishes an experiment.
+#' experimentPublish Publishes an experiment.
 #'
 #' \code{experimentPublish} Publishes an experiment.
 #' @param coreApi coreApi object with valid jsessionid
@@ -8,43 +8,41 @@
 #' @export
 #' @return RETURN returns a list $entity contains updated experiment information, $response contains the entire http response
 #' @examples
-#'\dontrun{
+#' \dontrun{
 #' api<-CoreAPIV2("PATH TO JSON FILE")
 #' login<- CoreAPIV2::authBasic(api)
 #' update<- CoreAPIV2::experimentPublish(login$coreApi,experimentType, exptbarcode,useVerbose = TRUE)
 #' CoreAPIV2::logOut(login$coreApi )
 #' }
-#'@author Craig Parman ngsAnalytics, ngsanalytics.com
-#'@description \code{experimentPublish} - Publishes an experiment.
+#' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @description \code{experimentPublish} - Publishes an experiment.
 
 
 
 experimentPublish <-
   function(coreApi,
-           experimentType,
-           experimentBarcode,
-           useVerbose = FALSE)
-    
-  {
-    #build request
-    
+             experimentType,
+             experimentBarcode,
+             useVerbose = FALSE) {
+    # build request
+
     sdkCmd <- jsonlite::unbox("experiment-publish")
-    
+
     data <- list()
-    
-    
-    
+
+
+
     data[["entityRef"]] <-
       list(barcode = jsonlite::unbox(experimentBarcode))
-    
-    
-    
+
+
+
     responseOptions <- c("CONTEXT_GET", "MESSAGE_LEVEL_WARN")
     logicOptions <- c("EXECUTE_TRIGGERS")
     typeParam <- jsonlite::unbox(experimentType)
-    
-    
-    
+
+
+
     request <-
       list(
         request = list(
@@ -55,15 +53,15 @@ experimentPublish <-
           logicOptions = logicOptions
         )
       )
-    
-    
+
+
     headers <- c(
-      'Content-Type' = "application/json",
+      "Content-Type" = "application/json",
       Accept = "*/*",
       Cookie = paste0("AWSELB=", coreApi$awselb)
     )
-    
-    
+
+
     response <-
       CoreAPIV2::apiPOST(
         coreApi,
@@ -74,9 +72,10 @@ experimentPublish <-
         special = "json",
         useVerbose = useVerbose
       )
-    
-    
-    list(entity = httr::content(response)$response$data,
-         response = response)
-    
+
+
+    list(
+      entity = httr::content(response)$response$data,
+      response = response
+    )
   }

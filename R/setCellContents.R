@@ -16,7 +16,7 @@
 #' @return RETURN returns a list $entity contains updated container
 #'         information, $response contains the entire http response
 #' @examples
-#'\dontrun{
+#' \dontrun{
 #' api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
 #' login<- CoreAPIV2::authBasic(api)
 #' cell<- updateCellContents<-(coreApi, containerType,containerBarcode, containerCellId,
@@ -24,8 +24,8 @@
 #'                            concentrationUnit,useVerbose = FALSE)
 #' CoreAPIV2::logOut(login$coreApi )
 #' }
-#'@author Craig Parman ngsAnalytics, ngsanalytics.com
-#'@description \code{setCellContents} - Puts a cell lot in a container cell.
+#' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @description \code{setCellContents} - Puts a cell lot in a container cell.
 
 
 
@@ -33,50 +33,49 @@
 
 
 setCellContents <-
-  function (coreApi,
-            containerType,
-            containerBarcode,
-            containerCellId,
-            sampleLotType,
-            sampleLotBarcode,
-            amount,
-            amountUnit,
-            concentration,
-            concentrationUnit,
-            useVerbose = FALSE)
-  {
-    #clean the name for ODATA
-    
+  function(coreApi,
+             containerType,
+             containerBarcode,
+             containerCellId,
+             sampleLotType,
+             sampleLotBarcode,
+             amount,
+             amountUnit,
+             concentration,
+             concentrationUnit,
+             useVerbose = FALSE) {
+    # clean the name for ODATA
+
     containerType <- CoreAPIV2::ODATAcleanName(containerType)
-    
-    
+
+
     containerCellId <- as.numeric(containerCellId)
-    
-    
-    
-    #get ID for lot number
+
+
+
+    # get ID for lot number
     lotID <-
       CoreAPIV2::getEntityByBarcode(
         coreApi,
         entityType = sampleLotType,
         barcode = sampleLotBarcode,
-        
+
         fullMetadata = FALSE,
         useVerbose = useVerbose
       )$entity$Id
-    
+
     body <- list()
-    
-    
+
+
     cells <-
       list(c(
         list(
           cellId = jsonlite::unbox(containerCellId),
           amount = jsonlite::unbox(amount),
           amountUnit = jsonlite::unbox(amountUnit),
-          
-          
-          
+
+
+
           contents = list(c(
             list(
               lotId = jsonlite::unbox(lotID),
@@ -86,19 +85,21 @@ setCellContents <-
           ))
         )
       ))
-    
-    
+
+
     body[["cells"]] <- cells
-    
+
     query <-
-      paste0("CONTAINER('",
-             containerBarcode,
-             "')/pfs.Container.SetCellContents")
-    
-    
+      paste0(
+        "CONTAINER('",
+        containerBarcode,
+        "')/pfs.Container.SetCellContents"
+      )
+
+
     header <-
       c("Content-Type" = "application/json;metadata=minimal", Accept = "application/json")
-    
+
     response <-
       CoreAPIV2::apiPOST(
         coreApi,
@@ -108,9 +109,8 @@ setCellContents <-
         headers = header,
         useVerbose = useVerbose
       )
-    
-    
-    
+
+
+
     list(entity = httr::content(response), response = response)
-    
   }

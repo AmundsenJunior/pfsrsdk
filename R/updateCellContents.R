@@ -1,6 +1,6 @@
-#' updateCellContents -  Updates amount and concentrations of cell content 
+#' updateCellContents -  Updates amount and concentrations of cell content
 #'
-#' \code{updateCellContents} Updates amount and concentrations of cell content 
+#' \code{updateCellContents} Updates amount and concentrations of cell content
 #' @param coreApi coreApi object with valid jsessionid
 #' @param containerType container entity type
 #' @param containerBarcode container barcode
@@ -15,73 +15,73 @@
 #' @return RETURN returns a list $entity contains updated container
 #'         information, $response contains the entire http response
 #' @examples
-#'\dontrun{
+#' \dontrun{
 #' api<-CoreAPIV2("PATH TO JSON FILE")
 #' login<- CoreAPIV2::authBasic(api)
 #' cell<-
 #' CoreAPIV2::logOut(login$coreApi )
 #' }
-#'@author Craig Parman ngsAnalytics, ngsanalytics.com
-#'@description \code{updateCellContents} - Updates amount and concentrations of cell content Uses JSON API. 
+#' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @description \code{updateCellContents} - Updates amount and concentrations of cell content Uses JSON API.
 
 
 
 
 
 updateCellContents <-
-  function (coreApi,
-            containerType,
-            containerBarcode,
-            containerCellNum,
-            sampleLotBarcode,
-            amount,
-            amountUnit,
-            concentration,
-            concentrationUnit,
-            useVerbose = FALSE)
-    
-  {
+  function(coreApi,
+             containerType,
+             containerBarcode,
+             containerCellNum,
+             sampleLotBarcode,
+             amount,
+             amountUnit,
+             concentration,
+             concentrationUnit,
+             useVerbose = FALSE) {
     sdkCmd <- jsonlite::unbox("update-cell")
-    
+
     data <- list()
-    
-    
+
+
     data[["amount"]] <- jsonlite::unbox(amount)
-    
+
     data[["amountUnit"]] <- jsonlite::unbox(amountUnit)
-    
+
     data[["concentration"]] <- jsonlite::unbox(concentration)
-    
+
     data[["concentrationUnit"]] <- jsonlite::unbox(concentrationUnit)
-    
-    
-    
-    
+
+
+
+
     data[["cellRefs"]] <-
       list(c(list(
         cellNum = jsonlite::unbox(containerCellNum),
         containerRef = list(barcode = jsonlite::unbox(containerBarcode))
       )))
-    
-    
+
+
     data[["lotRef"]] <-
       list(barcode = jsonlite::unbox(sampleLotBarcode))
-    
-    
-    
-    
+
+
+
+
     responseOptions <-
-      c("CONTEXT_GET",
+      c(
+        "CONTEXT_GET",
         "MESSAGE_LEVEL_WARN",
-        "INCLUDE_CONTAINER_CELL_CONTENTS")
+        "INCLUDE_CONTAINER_CELL_CONTENTS"
+      )
     logicOptions <- list()
     typeParam <- jsonlite::unbox(containerType)
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
     request <-
       list(
         request = list(
@@ -92,14 +92,14 @@ updateCellContents <-
           logicOptions = logicOptions
         )
       )
-    
+
     headers <- c(
-      'Content-Type' = "application/json",
+      "Content-Type" = "application/json",
       Accept = "*/*",
       Cookie = paste0("AWSELB=", coreApi$awselb)
     )
-    
-    
+
+
     response <-
       CoreAPIV2::apiPOST(
         coreApi,
@@ -110,11 +110,12 @@ updateCellContents <-
         special = "json",
         useVerbose = useVerbose
       )
-    
-    
-    
-    
-    list(entity = httr::content(response)$response$data,
-         response = response)
-    
+
+
+
+
+    list(
+      entity = httr::content(response)$response$data,
+      response = response
+    )
   }

@@ -9,47 +9,45 @@
 #' @export
 #' @return RETURN returns a list $entity contains cell information, $response contains the entire http response
 #' @examples
-#'\dontrun{
+#' \dontrun{
 #' api<-CoreAPI("PATH TO JSON FILE")
 #' login<- CoreAPIV2::authBasic(api)
 #' cell<-CoreAPIV2::getContainerContents(login$coreApi,"VIA9","1")
 #' CoreAPIV2::logOut(login$coreApi )
 #' }
-#'@author Craig Parman ngsAnalytics, ngsanalytics.com
-#'@description \code{getContainerContents} - Gets information about container cell contents. 
+#' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @description \code{getContainerContents} - Gets information about container cell contents.
 
 getContainerContents <-
   function(coreApi,
-           containerBarcode,
-           containerType = "EXPERIMENT_CONTAINER",
-           fullMetadata = TRUE,
-           useVerbose = FALSE)
-  {
-    #clean the name for ODATA
-    
+             containerBarcode,
+             containerType = "EXPERIMENT_CONTAINER",
+             fullMetadata = TRUE,
+             useVerbose = FALSE) {
+    # clean the name for ODATA
+
     resource <- CoreAPIV2::ODATAcleanName(containerType)
-    
-    
-    
+
+
+
     # query   <-
     #   paste0(
     #     "('",
     #     containerBarcode,
     #     "')?$expand=REV_IMPL_CONTAINER_CELL($expand=CELL_CONTENTS($expand=SAMPLE_LOT))"
     #   )
-    
-    
-    query   <-  paste0("('", containerBarcode, "')/CONTAINER?$expand=REV_IMPL_CONTAINER_CELL($expand=CONTENT($expand=IMPL_SAMPLE_LOT))")
-    
-    
+
+
+    query <- paste0("('", containerBarcode, "')/CONTAINER?$expand=REV_IMPL_CONTAINER_CELL($expand=CONTENT($expand=IMPL_SAMPLE_LOT))")
+
+
     if (fullMetadata) {
       header <- c(Accept = "application/json;odata.metadata=full")
     } else {
       header <- c(Accept = "application/json;odata.metadata=minimal")
-      
     }
-    
-    
+
+
     out <-
       CoreAPIV2::apiGET(
         coreApi,
@@ -58,9 +56,8 @@ getContainerContents <-
         headers = header,
         useVerbose = useVerbose
       )
-    
-    
-    
+
+
+
     list(entity = out$content, response = out$response)
-    
   }

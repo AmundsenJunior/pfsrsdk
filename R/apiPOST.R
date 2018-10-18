@@ -11,7 +11,7 @@
 #' @export
 #' @return Returns the entire http response
 #' @examples
-#'\dontrun{
+#' \dontrun{
 #' api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
 #' login<- CoreAPIV2::authBasic(api)
 #' response <-CoreAPIV2::apiPOST(login$coreApi,"SAMPLE",body,"json",special=NULL,useVerbose=FALSE)
@@ -19,39 +19,38 @@
 #' error <- httr::http_error(response)
 #' CoreAPIV2::logOut(login$coreApi )
 #' }
-#'@author Craig Parman ngsAnalytics, ngsanalytics.com
-#'@description \code{apiPOST} - Base call to Core ODATA REST API.
+#' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @description \code{apiPOST} - Base call to Core ODATA REST API.
 
 
 
 
 apiPOST <-
   function(coreApi,
-           resource = NULL,
-           body = NULL,
-           encode,
-           headers = NULL,
-           special = NULL,
-           useVerbose = FALSE)
-  {
-    #clean the resource name for ODATA
-    
+             resource = NULL,
+             body = NULL,
+             encode,
+             headers = NULL,
+             special = NULL,
+             useVerbose = FALSE) {
+    # clean the resource name for ODATA
+
     resource <- CoreAPIV2::ODATAcleanName(resource)
-    
-    
-    #Check that encode parameter is proper
-    
+
+
+    # Check that encode parameter is proper
+
     if (!(encode %in% c("multipart", "form", "json", "raw"))) {
       stop({
         print("encode parameter not recognized")
         print(httr::http_status(response))
       },
-      call. = FALSE)
-      
+      call. = FALSE
+      )
     }
-    
-    
-    
+
+
+
     sdk_url <-
       CoreAPIV2::buildUrl(
         coreApi,
@@ -59,11 +58,13 @@ apiPOST <-
         special = special,
         useVerbose = useVerbose
       )
-    
+
     cookie <-
-      c(JSESSIONID = coreApi$jsessionId,
-        AWSELB = coreApi$awselb)
-    
+      c(
+        JSESSIONID = coreApi$jsessionId,
+        AWSELB = coreApi$awselb
+      )
+
     response <-
       invisible(
         httr::POST(
@@ -81,23 +82,22 @@ apiPOST <-
           )
         )
       )
-    
-    
-    
-    
-    
-    
-    #check for general HTTP error in response
-    
+
+
+
+
+
+
+    # check for general HTTP error in response
+
     if (httr::http_error(response)) {
       stop({
         print("API call failed")
         print(httr::http_status(response))
       },
-      call. = FALSE)
-      
-      
+      call. = FALSE
+      )
     }
-    
+
     return(response)
   }

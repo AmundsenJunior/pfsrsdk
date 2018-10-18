@@ -11,7 +11,7 @@
 #' @return RETURN returns a list $entity contains entity information,
 #'        $response contains the entire http response
 #' @examples
-#'\dontrun{
+#' \dontrun{
 #' api<-CoreAPI("PATH TO JSON FILE")
 #' login<- CoreAPIV2::authBasic(api)
 #' response<-CoreAPIV2::updateExperimentSampleData(login$coreApi,assayType,
@@ -19,43 +19,40 @@
 #' updatedEntity <- response$entity
 #' CoreAPIV2::logOut(login$coreApi ) response<- CoreAPI::authBasic(coreApi)
 #' }
-#'@author Craig Parman ngsAnalytics, ngsanalytics.com
-#'@description \code{updateExperimentSampleData} Update experiment sample assay data.
+#' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @description \code{updateExperimentSampleData} Update experiment sample assay data.
 
 
 
 updateExperimentSampleData <-
-  function (coreApi,
-            assayType,
-            experimentSamplebarcode,
-            assayAttributeValues,
-            useVerbose = FALSE)
-    
-  {
-    #Clean Names of assay
-    
+  function(coreApi,
+             assayType,
+             experimentSamplebarcode,
+             assayAttributeValues,
+             useVerbose = FALSE) {
+    # Clean Names of assay
+
     assayType <- CoreAPIV2::ODATAcleanName(assayType)
-    
-    
-    #Clean Names of attributes
-    
-    
+
+
+    # Clean Names of attributes
+
+
     for (i in 1:length(names(assayAttributeValues)))
     {
       names(assayAttributeValues)[i] <-
         CoreAPIV2::attributeCleanName(names(assayAttributeValues)[i])
-      
     }
-    
-    
-    
-    body <- assayAttributeValues   #needs to be unboxed
-    
+
+
+
+    body <- assayAttributeValues # needs to be unboxed
+
     resource <- paste0(assayType, "_DATA")
     query <- paste0("('", experimentSamplebarcode, "')")
-    
+
     header <- c("Content-Type" = "application/json", "If-Match" = "*")
-    
+
     response <-
       CoreAPIV2::apiPUT(
         coreApi,
@@ -66,8 +63,7 @@ updateExperimentSampleData <-
         headers = header,
         useVerbose = useVerbose
       )
-    
-    
+
+
     list(entity = httr::content(response), response = response)
-    
   }

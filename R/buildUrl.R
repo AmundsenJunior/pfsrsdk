@@ -9,14 +9,14 @@
 #' @export
 #' @return RETURN Core REST URL
 #' @examples
-#'\dontrun{
+#' \dontrun{
 #' api<-CoreAPIV2("PATH TO JSON FILE")
 #' login<- CoreAPIV2::authBasic(api)
 #' response <-CoreAPIV2::buildUrl(coeApi,"Sample","('PS1')")
 #' logOut(login$coreApi )
 #' }
-#'@author Craig Parman ngsAnalytics, ngsanalytics.com
-#'@description \code{buildUrl} build URL for call to Core REST API.
+#' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @description \code{buildUrl} build URL for call to Core REST API.
 
 
 
@@ -24,22 +24,21 @@
 
 buildUrl <-
   function(coreApi,
-           resource = NULL,
-           query = NULL,
-           special = NULL,
-           useVerbose = FALSE)
-  {
-    
-    #Concat account and odata
-    if (!is.null(coreApi$account) && is.null(coreApi$TenantShortName)){
+             resource = NULL,
+             query = NULL,
+             special = NULL,
+             useVerbose = FALSE) {
+
+    # Concat account and odata
+    if (!is.null(coreApi$account) && is.null(coreApi$TenantShortName)) {
       odat <- paste0("/", ODATAcleanName(coreApi$account), "/odata/")
-    }else if (!is.null(coreApi$TenantShortName)){
+    } else if (!is.null(coreApi$TenantShortName)) {
       odat <- paste0("/", ODATAcleanName(coreApi$TenantShortName), "/odata/")
-      }else{ 
-      odat <- "/odata/" 
+    } else {
+      odat <- "/odata/"
     }
-    
-    
+
+
     if (is.null(special)) {
       sdk_url <-
         paste(
@@ -53,7 +52,6 @@ buildUrl <-
           query,
           sep = ""
         )
-      
     } else {
       switch(
         special,
@@ -85,11 +83,8 @@ buildUrl <-
             coreApi$port,
             "/sdk"
           )
-        
-        
       )
     }
-    
+
     return(sdk_url)
-    
   }

@@ -1,19 +1,19 @@
-#'coreAPI Creates a object of class coreAPI that contains user and connection information.
-#'@param CoreAccountInfo file with account information in json format.
-#'@return Object of class coreAPI
-#'@export
-#'@examples
-#'\dontrun{
-#'api<-CoreAPIV2::coreAPI("/home/environment.json")
-#'}
-#'@details{ Creates a object of class coreAPI that contains user name,
+#' coreAPI Creates a object of class coreAPI that contains user and connection information.
+#' @param CoreAccountInfo file with account information in json format.
+#' @return Object of class coreAPI
+#' @export
+#' @examples
+#' \dontrun{
+#' api<-CoreAPIV2::coreAPI("/home/environment.json")
+#' }
+#' @details{ Creates a object of class coreAPI that contains user name,
 #'          password base url, account, port.
 #'          It has slots for account, jsessionId, AWSELB, and base URL.
-#'          Requires a json file that is a POSTMAN environment file. 
+#'          Requires a json file that is a POSTMAN environment file.
 #'         \code{#'Creates a object of class coreAPI that contains account information}
 #'         \code{coreAPI("path to json")}.
 #' }
-#'The json must include the fields shown below. 
+#' The json must include the fields shown below.
 #'     \code{
 #'      {
 #'    "values": [
@@ -49,16 +49,15 @@
 #'  }
 #'  ]
 #'
-#'}
+#' }
 #'
 #'
 #'     }
-#'     
-#'  The account value may be set to "" if the user only has access to one tenant. 
+#'
+#'  The account value may be set to "" if the user only has access to one tenant.
 #' As an alternative the environment json object from Postman can be used directly.
-#'@author Craig Parman ngsAnalytics, ngsanalytics.com
-coreAPI <- function(CoreAccountInfo)
-{
+#' @author Craig Parman ngsAnalytics, ngsanalytics.com
+coreAPI <- function(CoreAccountInfo) {
   accountinfo <- jsonlite::fromJSON(CoreAccountInfo)$values
   # if  (accountinfo$account == "") accountinfo$account <- NULL
   structure(
@@ -74,10 +73,8 @@ coreAPI <- function(CoreAccountInfo)
       awselb = NULL,
       employeeId = NULL
     )
-    
+
     ,
     class = "coreAPI"
   )
-  
-  
 }

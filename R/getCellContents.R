@@ -7,40 +7,41 @@
 #' @export
 #' @return RETURN returns a list $entity contains cell information, $response contains the entire http response
 #' @examples
-#'\dontrun{
+#' \dontrun{
 #' api<-CoreAPI("PATH TO JSON FILE")
 #' login<- CoreAPIV2::authBasic(api)
 #' cell<-CoreAPIV2::getCellContents(login$coreApi,"1234233",fullMetadata = TRUE)
 #' CoreAPIV2::logOut(login$coreApi )
 #' }
-#'@author Craig Parman ngsAnalytics, ngsanalytics.com
-#'@description \code{getCellContents} -  Gets information about a single container cell contents.
+#' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @description \code{getCellContents} -  Gets information about a single container cell contents.
 
 
 
 
 
 getCellContents <-
-  function (coreApi, containerCellId, useVerbose = FALSE)
-  {
-    #make sure containerCellNum is numeric
-    
+  function(coreApi, containerCellId, useVerbose = FALSE) {
+    # make sure containerCellNum is numeric
+
     containerCellId <- as.numeric(containerCellId)
-    
-    
+
+
     resource <- "CELL"
-    
-    query   <-
-      paste0("(",
-             containerCellId,
-             ")?$expand=CELL_CONTENTS($expand=SAMPLE_LOT)")
-    
-    
+
+    query <-
+      paste0(
+        "(",
+        containerCellId,
+        ")?$expand=CELL_CONTENTS($expand=SAMPLE_LOT)"
+      )
+
+
     header <-
-      c('Content-Type' = "application/json;odata.metadata=full", Accept = "application/json")
-    
-    
-    
+      c("Content-Type" = "application/json;odata.metadata=full", Accept = "application/json")
+
+
+
     response <-
       CoreAPIV2::apiGET(
         coreApi,
@@ -49,9 +50,9 @@ getCellContents <-
         headers = header,
         useVerbose = useVerbose
       )
-    
-    
-    
+
+
+
     response <-
       list(entity = response$content, response = response$response)
   }
