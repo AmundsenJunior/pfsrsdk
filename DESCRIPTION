@@ -1,10 +1,10 @@
 Package: CoreAPIV2
 Type: Package
 Title: Functions for interacting with the Platform for Science OData API
-Version: 2.0.0.9001
+Version: 1.0.0.9000
 Authors@R: c(
-    person("Parman", "Craig", role = "aut"),
-    person("Wheeler", "Adam", role = "aut"),
+    person("Craig", "Parman", role = "aut"),
+    person("Adam", "Wheeler", role = "aut"),
     person(family = "Thermo Fisher Scientific Platform for Science Analytics team", email = "core_developeers@coreinformatics.com", role = c("ctb", "cre", "cph"))
     )
 Description: The package provides functions for interacting with the Thermo Fisher Scientific Platform for Science OData API.
@@ -24,6 +24,6 @@ Suggests:
     styler,
     testthat,
     testthis
-RoxygenNote: 6.1.0.9000
+RoxygenNote: 6.1.0
 VignetteBuilder: knitr
 Encoding: UTF-8
