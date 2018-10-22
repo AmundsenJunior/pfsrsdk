@@ -8,7 +8,7 @@ Authors@R: c(
     person(family = "Thermo Fisher Scientific Platform for Science Analytics team", email = "core_developeers@coreinformatics.com", role = c("ctb", "cre", "cph"))
     )
 Description: The package provides functions for interacting with the Thermo Fisher Scientific Platform for Science OData API.
-License: GPL (>=2)
+License: AGPL (>=2)
 URL: https://bitbucket.org/corelims/coreapiv2
 LazyData: TRUE
 Imports:
@@ -22,7 +22,8 @@ Suggests:
     pkgdown,
     rmarkdown,
     styler,
-    testthat
+    testthat,
+    testthis
 RoxygenNote: 6.1.0.9000
 VignetteBuilder: knitr
 Encoding: UTF-8

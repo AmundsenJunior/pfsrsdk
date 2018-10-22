@@ -24,8 +24,7 @@ lapply(environments, function(x) {
 
     body[["TST_FILE"]] <- NULL
 
-    body[["TESTING@odata.bind"]] <- "/TESTPOCO('TP1')"
-
+    body[["TESTING@odata.bind"]] <- "TESTPOCO('TP1')"
 
 
     return <- CoreAPIV2::createEntity(coreApi = con$coreApi, entityType = POCO, body = body, useVerbose = TRUE)
