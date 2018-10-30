@@ -2,7 +2,7 @@
 % Please edit documentation in R/getEntityMetadata.R
 \name{getEntityMetadata}
 \alias{getEntityMetadata}
-\title{getEntitMetadata - Get entity metadata.}
+\title{getEntityMetadata - Get entity metadata.}
 \usage{
 getEntityMetadata(coreApi, entityType, useVerbose = FALSE)
 }

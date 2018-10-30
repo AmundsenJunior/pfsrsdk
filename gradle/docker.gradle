@@ -1,4 +1,3 @@
-/* Docker Configuration */
 buildscript {
     apply from: "$rootProject.projectDir/gradle/buildscript.gradle", to: buildscript
 }
@@ -17,7 +16,7 @@ ext {
     String tag = project.version.toString().replaceAll('\\+', '-')
 
     imageTag = tag
-    versionTag = tag
+    versionTag = project.ext.packageVersion
     isMaster = GitUtil.isMasterBranch(release.grgit)
     tagsList = [versionTag, 'latest']
     pushable = project.hasProperty('pushable') ? pushable.toBoolean() : GitUtil.isAcceptableBranch(release.grgit, pushableBranches.tokenize(','))
@@ -39,38 +38,60 @@ docker {
 }
 
 images {
-    searchIndexer {
+    rOdataSdkDocs {
+        containerDirectory = 'docs'
         isMaster = project.ext.isMaster
-        dstImageName = dockerImageName
+        dstImageName = dockerDocsImageName
         tags = project.ext.tagsList
         isPushable = project.ext.pushable
         branchName = project.ext.branchName.toLowerCase().replace('/', '-').replace('_', '-')
-        fromImage = "${dockerRepository}/${dockerSrcImage}"
+        fromImage = "${dockerDocsSrcImage}"
+    }
+    rOdataSdkPackage {
+        containerDirectory = 'pkg'
+        isMaster = project.ext.isMaster
+        dstImageName = dockerPkgImageName
+        tags = project.ext.tagsList
+        isPushable = project.ext.pushable
+        branchName = project.ext.branchName.toLowerCase().replace('/', '-').replace('_', '-')
+        fromImage = "${dockerPkgSrcImage}"
     }
 }
 
-task copyJar(type: Copy, group: 'docker') {
-    //dependsOn bootJar
-
-    from 'build/libs'
-    into 'build/docker'
-    //include bootJar.getArchiveName()
+task copyPackage(type: Copy, group: 'docker') {
+    dependsOn 'buildPackage'
+    
+    from 'build'
+    into 'build/pkg'
+    include "${project.ext.packageName}_${project.ext.packageVersion}.tar.gz"
 }
 
-createSearchIndexerConfigfile {
-    dependsOn copyJar
-
+createROdataSdkDocsConfigfile {
+    dependsOn 'pkgdownSite'
+    
+    destFile = project.file('build/docs/Dockerfile')
+   
     def labels = [:]
     labels.put('maintainer', projectVendor)
     labels.put('description', projectDescription)
     label labels
+    
+    addFile '.', '/usr/share/nginx/html/'
+}
 
-    //environmentVariable 'JAVA_APP_JAR', bootJar.getArchiveName()
-    environmentVariable 'LOGGING_CONFIG', 'log4j2.xml'
-
-    addFile 'log4j2.xml', '/deployments/log4j2.xml'
-    //addFile bootJar.getArchiveName(), '/deployments/' + bootJar.getArchiveName()
-
-    exposePort 8080
+createROdataSdkPackageConfigfile {
+    dependsOn 'copyPackage'
+    
+    destFile = project.file('build/pkg/Dockerfile')
+   
+    def labels = [:]
+    labels.put('maintainer', projectVendor)
+    labels.put('description', projectDescription)
+    label labels
+    
+    addFile '.', '/R'
+    workingDir '/R'
+    
+    runCommand "R CMD INSTALL ${project.ext.packageName}_${project.ext.packageVersion}.tar.gz"
 }
 

@@ -1,4 +1,4 @@
-#' getEntitMetadata - Get entity metadata.
+#' getEntityMetadata - Get entity metadata.
 #'
 #' \code{getEntityMetadata}  Get entity metadata.
 #'

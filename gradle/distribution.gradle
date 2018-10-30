@@ -1,44 +1,38 @@
-/* Distribution Configuration */
-
 apply plugin: 'distribution'
 apply plugin: 'maven-publish'
 apply plugin: 'com.jfrog.artifactory'
 
-// Remove distZip from assemble task dependency
-build.dependsOn.add('distTar')
-check.dependsOn.add('distZip')
-
-/*
-task dist(dependsOn: assemble, group: 'distribution') {
-    description = 'Builds XD binary and reference docs distribution archives.'
-    artifacts {
-        archives distZip
-    }
+ext {
+    packageDocsName = "${project.ext.packageName}-${project.ext.packageVersion}-docs"
 }
 
 distributions {
-    main {
-        baseName = rootProject.name
+    docs {
+        baseName project.ext.packageDocsName
         contents {
-            into ('lib/') {
-                from {['build/libs/', configurations.runtime]}
+            from {
+                new File(project.ext.docsDir)
             }
+            into '/'
         }
     }
 }
-publishing.publications {
-    archives(MavenPublication) {
-        from project.components.java
-        artifactId jar.baseName
-        def base = jar.getArchiveName().substring(0,jar.getArchiveName().indexOf('.jar'))
-        artifacts = ["build/libs/${jar.getArchiveName()}", "build/distributions/${base}.zip"]
+
+publishing {
+    publications {
+        docs(MavenPublication) {
+            groupId projectGroup
+            artifactId project.ext.packageDocsName
+            artifact docsDistZip
+        }
     }
 }
 
 artifactoryPublish {
-    dependsOn build
-    publications('archives')
+    dependsOn 'docsDistZip'
+    publications('docs')
     publishArtifacts = true
     publishPom = false
 }
-*/
+
+tasks.docsDistZip.dependsOn 'pkgdownSite'
