@@ -58,6 +58,14 @@ images {
     }
 }
 
+task copyPackage(type: Copy, group: 'docker') {
+    dependsOn 'buildPackage'
+    
+    from 'build'
+    into 'build/pkg'
+    include "${project.ext.packageName}_${project.ext.packageVersion}.tar.gz"
+}
+
 createROdataSdkDocsConfigfile {
     dependsOn 'pkgdownSite'
     
@@ -87,10 +95,3 @@ createROdataSdkPackageConfigfile {
     runCommand "R CMD INSTALL ${project.ext.packageName}_${project.ext.packageVersion}.tar.gz"
 }
 
-task copyPackage(type: Copy, group: 'docker') {
-    dependsOn 'buildPackage'
-    
-    from 'build'
-    into 'build/pkg'
-    include '*.tar.gz'
-}
