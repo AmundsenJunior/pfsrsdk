@@ -6,6 +6,30 @@ ext {
     packageDocsName = "${project.ext.packageName}-${project.ext.packageVersion}-docs"
 }
 
+artifactory {
+    contextUrl = "${artifactoryContextUrl}"
+    publish {
+        repository {
+            repoKey = 'Data-Science'
+            username = "${artifactoryUser}"
+            password = "${artifactoryPassword}"
+            maven = true
+        }
+        defaults {
+            publishBuildInfo = true
+            publishArtifacts = true
+        }
+    }
+    resolve {
+        repository {
+            repoKey = 'repo'
+            username = "${artifactoryUser}"
+            password = "${artifactoryPassword}"
+            maven = true
+        }
+    }
+}
+
 distributions {
     docs {
         baseName project.ext.packageDocsName

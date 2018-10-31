@@ -163,6 +163,25 @@ process. As part of the integration with other software products, we extend upon
 those common tools used elsewhere to enable R package creation and validation
 as easily as possible.
 
+### Jenkins
+
+#### System Dependencies
+
+The CI process runs on Jenkins _agent_ Docker containers. These containers are
+Debian-based, and have a specific version of R installed (see the
+[`jenkins-agent`](https://bitbucket.org/corelims/jenkins-agent) repo for more
+details).
+
+Included in that Docker image are a number of system dependencies specifically
+needed to build and publish this package.
+
+R Package|Debian Dependency
+---|---
+`XML`|`libxml2-dev`
+`curl`|`libcurl4-gnutls-dev`
+`git2r`|`libgit2-dev`<br>`libssl-dev`
+`pkgdown`|`pandoc`
+
 ### Gradle
 
 #### `gradle-plugin-r`
