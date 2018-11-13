@@ -1,4 +1,4 @@
-# coreapiv2
+# CoreAPIV2 
 *R package to interact with the Thermo Fisher Scientific Platform for Science OData API* 
 
 ## Installation

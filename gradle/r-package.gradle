@@ -1,1 +1,51 @@
+buildscript {
+    apply from: "$rootProject.projectDir/gradle/buildscript.gradle", to: buildscript
+}
+
 apply plugin: 'com.umayrh.rplugin'
+import com.umayrh.gradle.RScriptTask
+import org.gradle.api.tasks.Input
+
+project.ext {
+    docsDir = "${project.buildDir}/docs"
+}
+
+class RScriptBuildPackageTask extends com.umayrh.gradle.RScriptTask {
+    @Input
+    String description = "Build the package, via devtools"
+    String expression = "devtools::build(path = '${project.buildDir}')"
+}
+
+class RScriptInstallPackageTask extends com.umayrh.gradle.RScriptTask {
+    @Input
+    String description = "Install the package to local, via devtools"
+    String expression = "devtools::install(pkg = '${project.buildDir}')"
+}
+
+class RScriptPkgdownSiteTask extends com.umayrh.gradle.RScriptTask {
+    @Input
+    String description = "Build the static documentation website, via pkgdown"
+    String expression = "pkgdown::build_site(override = list(destination = '${project.ext.docsDir}'))"
+}
+
+project.task ('buildPackage', type: RScriptBuildPackageTask) {
+    group = "R packaging"
+    dependsOn 'packratRestore'
+    doFirst {
+        mkdir project.buildDir
+    }
+}
+
+project.task ('installPackage', type: RScriptInstallPackageTask) {
+    group = "R packaging"
+    dependsOn 'buildPackage'
+}
+
+project.task ('pkgdownSite', type: RScriptPkgdownSiteTask) {
+    group = "R packaging"
+    dependsOn 'installPackage'
+    doFirst {
+        mkdir project.buildDir
+    }
+}
+

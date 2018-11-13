@@ -27,7 +27,6 @@ ext {
 }
 
 repositories {
-
     maven {
         url "${artifactoryContextUrl}/repo"
         credentials {
