@@ -36,4 +36,5 @@ dependencies {
     classpath 'org.jfrog.buildinfo:build-info-extractor-gradle:4.1.1'
     classpath 'com.thermofisher:versioning-plugin:0.1.3'
     classpath 'gradle.plugin.com.umayrh:gradle-plugin-r:0.2.1'
+    classpath 'org.yaml:snakeyaml:1.20'
 }

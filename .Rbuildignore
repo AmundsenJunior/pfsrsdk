@@ -3,3 +3,7 @@
 ^tests/testthat/test_environments$
 ^packrat/
 ^\.Rprofile$
+^.*\\.gradle$
+^.*gradle
+^gradle/
+^build/

@@ -10,6 +10,7 @@ Authors@R: c(
 Description: The package provides functions for interacting with the Thermo Fisher Scientific Platform for Science OData API.
 License: AGPL (>=2)
 URL: https://bitbucket.org/corelims/coreapiv2
+BugReports: https://corelims.atlassian.net/secure/RapidBoard.jspa?rapidView=395&projectKey=RSDK&view=planning
 LazyData: TRUE
 Imports:
     base64enc,
@@ -24,6 +25,6 @@ Suggests:
     styler,
     testthat,
     testthis
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.0.9000
 VignetteBuilder: knitr
 Encoding: UTF-8
