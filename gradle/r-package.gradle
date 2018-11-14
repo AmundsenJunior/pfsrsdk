@@ -39,6 +39,7 @@ project.ext {
     docsDir = "${project.buildDir}/docs"
     packageVersion = description.getVersion()
     packageName = description.getPackageName()
+    packageDocsName = "${project.ext.packageName}-${project.ext.packageVersion}-docs"
 }
 
 class RScriptBuildPackageTask extends com.umayrh.gradle.RScriptTask {

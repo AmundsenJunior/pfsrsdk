@@ -2,10 +2,6 @@ apply plugin: 'distribution'
 apply plugin: 'maven-publish'
 apply plugin: 'com.jfrog.artifactory'
 
-ext {
-    packageDocsName = "${project.ext.packageName}-${project.ext.packageVersion}-docs"
-}
-
 artifactory {
     contextUrl = "${artifactoryContextUrl}"
     publish {
@@ -18,14 +14,6 @@ artifactory {
         defaults {
             publishBuildInfo = true
             publishArtifacts = true
-        }
-    }
-    resolve {
-        repository {
-            repoKey = 'repo'
-            username = "${artifactoryUser}"
-            password = "${artifactoryPassword}"
-            maven = true
         }
     }
 }
