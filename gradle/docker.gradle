@@ -47,14 +47,14 @@ images {
         branchName = project.ext.branchName.toLowerCase().replace('/', '-').replace('_', '-')
         fromImage = "${dockerDocsSrcImage}"
     }
-    rOdataSdkPackage {
-        containerDirectory = 'pkg'
+    rOdataSdkShiny {
+        containerDirectory = 'shiny'
         isMaster = project.ext.isMaster
-        dstImageName = dockerPkgImageName
+        dstImageName = dockerShinyImageName
         tags = project.ext.tagsList
         isPushable = project.ext.pushable
         branchName = project.ext.branchName.toLowerCase().replace('/', '-').replace('_', '-')
-        fromImage = "${dockerPkgSrcImage}"
+        fromImage = "${dockerShinySrcImage}"
     }
 }
 
@@ -62,8 +62,13 @@ task copyPackage(type: Copy, group: 'docker') {
     dependsOn 'buildPackage'
     
     from 'build'
-    into 'build/pkg'
+    into 'build/shiny'
     include "${project.ext.packageName}_${project.ext.packageVersion}.tar.gz"
+}
+
+task copyShinyApp(type: Copy, group: 'docker') {
+    from 'inst/shiny'
+    into 'build/shiny'
 }
 
 createROdataSdkDocsConfigfile {
@@ -79,19 +84,26 @@ createROdataSdkDocsConfigfile {
     addFile '.', '/usr/share/nginx/html/'
 }
 
-createROdataSdkPackageConfigfile {
+createROdataSdkShinyConfigfile {
     dependsOn 'copyPackage'
+    dependsOn 'copyShinyApp'
     
-    destFile = project.file('build/pkg/Dockerfile')
-   
+    destFile = project.file('build/shiny/Dockerfile')
+    
     def labels = [:]
     labels.put('maintainer', projectVendor)
     labels.put('description', projectDescription)
     label labels
     
-    addFile '.', '/R'
-    workingDir '/R'
+    runCommand 'mkdir -p /R/app'
+    addFile '.', '/R/app'
     
+    workingDir '/R/app'
     runCommand "R CMD INSTALL ${project.ext.packageName}_${project.ext.packageVersion}.tar.gz"
+    
+    runCommand 'Rscript -e \"install.packages(\'shiny\')\"'
+    
+    exposePort 3838
+    
+    entryPoint 'R', '-e', 'shiny::runApp(appDir=\'/R/app\',port=3838,host=\'0.0.0.0\')'
 }
-
