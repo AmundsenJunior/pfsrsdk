@@ -4,17 +4,16 @@ context("Tests for create")
 # Completed regression for 5.3.8 and 6.0.0
 
 lapply(environments, function(x) {
+
   con <- Connect(x)
 
   test_that(paste("test entity creation on: ", x), {
     # Get the metadata document
-    md <- CoreAPIV2::updateMetadata(con$coreApi, useVerbose = verbose)
-
+  #  md <- CoreAPIV2::updateMetadata(con$coreApi, useVerbose = verbose)
+   
     out <- CoreAPIV2::getEntityMetadata(con$coreApi, POCO, useVerbose = FALSE)
 
-
     body <- out$template
-
 
     body[["TST_STRING"]] <- "ACME"
 
@@ -25,7 +24,6 @@ lapply(environments, function(x) {
     body[["TST_FILE"]] <- NULL
 
     body[["TESTING@odata.bind"]] <- "TESTPOCO('TP1')"
-
 
     return <- CoreAPIV2::createEntity(coreApi = con$coreApi, entityType = POCO, body = body, useVerbose = TRUE)
 
@@ -75,5 +73,6 @@ lapply(environments, function(x) {
 
     expect_match(as$entity[[1]]$Barcode, "TP1")
   })
+
   CoreAPIV2::logOut(con$coreApi)
 })
