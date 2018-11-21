@@ -46,9 +46,7 @@ apiPUT <-
       call. = FALSE
       )
     }
-
-
-
+    
     sdk_url <-
       CoreAPIV2::buildUrl(
         coreApi,
@@ -64,9 +62,6 @@ apiPUT <-
         AWSELB = coreApi$awselb
       )
 
-
-
-
     response <-
       httr::PUT(
         url = sdk_url,
@@ -81,10 +76,6 @@ apiPUT <-
           ssl = useVerbose
         )
       )
-
-
-
-
 
 
     # check for general HTTP error in response

@@ -1,15 +1,62 @@
 <?xml version="1.0"?>
 <Configuration><!--Configuration Name-->
-    <configName>basicpocoupdate</configName><!--Version-->
+    <configName>xmlExport</configName><!--Version-->
     <version>1.0</version>
-    <exportTimeISO>2018-11-19T21:14:09.249</exportTimeISO>
+    <exportTimeISO>2018-11-21T18:50:39.033</exportTimeISO>
     <exportTenant>Shiny Genomics_Combined NGS Solution Dev</exportTenant>
     <exportNotes></exportNotes>
     <entityTypes><!--Entity Types-->
-        <entityType><!--POCO-->
-            <entityTypeName>POCO</entityTypeName>
-            <prefix>PC</prefix>
-            <seq>61</seq>
+        <entityType><!--TESTASSOC-->
+            <entityTypeName>TESTASSOC</entityTypeName>
+            <prefix>TA</prefix>
+            <seq>3</seq>
+            <superTypeName>POCOASSOC</superTypeName>
+            <nameTemplate></nameTemplate>
+            <defaultLocationName>No Location</defaultLocationName>
+            <trackVersion>0</trackVersion>
+            <requireSignature>0</requireSignature>
+            <enforceProjectSecurity>0</enforceProjectSecurity>
+            <enforceAttributeSecurity>0</enforceAttributeSecurity>
+            <promptLocation>0</promptLocation>
+            <trackLocation>0</trackLocation>
+            <userBarcode>0</userBarcode>
+            <reportable>0</reportable>
+            <queryPageSize>1000</queryPageSize>
+            <trackConc>0</trackConc>
+            <trackTime>0</trackTime>
+            <trackDesign>0</trackDesign>
+            <navigable>0</navigable>
+            <testable>0</testable>
+            <entityTypeAttributes>
+                <entityTypeAttribute>
+                    <attributeName>file</attributeName>
+                    <columnHeader>file</columnHeader>
+                    <defaultValue></defaultValue>
+                    <seqNum>1</seqNum>
+                    <editable>1</editable>
+                    <mandatory>0</mandatory>
+                    <multiSelect>0</multiSelect>
+                    <visualize>0</visualize>
+                    <tab></tab>
+                    <design>0</design>
+                    <config>1</config>
+                    <controlVocab></controlVocab>
+                    <callSequence>1</callSequence>
+                </entityTypeAttribute>
+            </entityTypeAttributes>
+            <entityTypeAssociations></entityTypeAssociations>
+            <conditionalFormats></conditionalFormats>
+            <entityTypeTriggers></entityTypeTriggers>
+            <entityTypeMenuItems></entityTypeMenuItems>
+            <entityTypeFunctions></entityTypeFunctions>
+            <entityTypeFunctions></entityTypeFunctions>
+            <entityTypeApplications></entityTypeApplications>
+            <entityTypeTraits></entityTypeTraits>
+        </entityType>
+        <entityType><!--TESTENTITY-->
+            <entityTypeName>TESTENTITY</entityTypeName>
+            <prefix>TE</prefix>
+            <seq>6</seq>
             <superTypeName>TESTPOCO</superTypeName>
             <nameTemplate></nameTemplate>
             <defaultLocationName>No Location</defaultLocationName>
@@ -91,11 +138,11 @@
             </entityTypeAttributes>
             <entityTypeAssociations>
                 <entityTypeAssociation>
-                    <entityTypeName1>POCO</entityTypeName1>
-                    <entityTypeName2>TESTPOCO</entityTypeName2>
-                    <predicate>TESTING</predicate>
+                    <entityTypeName1>TESTENTITY</entityTypeName1>
+                    <entityTypeName2>TESTASSOC</entityTypeName2>
+                    <predicate>TEST</predicate>
                     <associationInterface>barcode</associationInterface>
-                    <header>testing</header>
+                    <header>TEST</header>
                     <seqNum>1</seqNum>
                     <mandatory>0</mandatory>
                     <editable>1</editable>
@@ -103,7 +150,7 @@
                     <showOnCreate>1</showOnCreate>
                     <showOnQuery>1</showOnQuery>
                     <onDetails>1</onDetails>
-                    <reversePredicate>testing</reversePredicate>
+                    <reversePredicate>TEST</reversePredicate>
                 </entityTypeAssociation>
             </entityTypeAssociations>
             <conditionalFormats></conditionalFormats>
@@ -114,58 +161,11 @@
             <entityTypeApplications></entityTypeApplications>
             <entityTypeTraits></entityTypeTraits>
         </entityType>
-        <entityType><!--TESTPOCO-->
-            <entityTypeName>TESTPOCO</entityTypeName>
-            <prefix>TP</prefix>
-            <seq>3</seq>
-            <superTypeName>POCO</superTypeName>
-            <nameTemplate></nameTemplate>
-            <defaultLocationName>No Location</defaultLocationName>
-            <trackVersion>0</trackVersion>
-            <requireSignature>0</requireSignature>
-            <enforceProjectSecurity>0</enforceProjectSecurity>
-            <enforceAttributeSecurity>0</enforceAttributeSecurity>
-            <promptLocation>0</promptLocation>
-            <trackLocation>0</trackLocation>
-            <userBarcode>0</userBarcode>
-            <reportable>0</reportable>
-            <queryPageSize>1000</queryPageSize>
-            <trackConc>0</trackConc>
-            <trackTime>0</trackTime>
-            <trackDesign>0</trackDesign>
-            <navigable>0</navigable>
-            <testable>0</testable>
-            <entityTypeAttributes>
-                <entityTypeAttribute>
-                    <attributeName>file</attributeName>
-                    <columnHeader>file</columnHeader>
-                    <defaultValue></defaultValue>
-                    <seqNum>1</seqNum>
-                    <editable>1</editable>
-                    <mandatory>0</mandatory>
-                    <multiSelect>0</multiSelect>
-                    <visualize>0</visualize>
-                    <tab></tab>
-                    <design>0</design>
-                    <config>1</config>
-                    <controlVocab></controlVocab>
-                    <callSequence>1</callSequence>
-                </entityTypeAttribute>
-            </entityTypeAttributes>
-            <entityTypeAssociations></entityTypeAssociations>
-            <conditionalFormats></conditionalFormats>
-            <entityTypeTriggers></entityTypeTriggers>
-            <entityTypeMenuItems></entityTypeMenuItems>
-            <entityTypeFunctions></entityTypeFunctions>
-            <entityTypeFunctions></entityTypeFunctions>
-            <entityTypeApplications></entityTypeApplications>
-            <entityTypeTraits></entityTypeTraits>
-        </entityType>
     </entityTypes>
     <entities><!--entities-->
-        <entity><!--TP1-->
-            <name>TP1</name>
-            <entityTypeName>TESTPOCO</entityTypeName>
+        <entity><!--TA1-->
+            <name>TA1</name>
+            <entityTypeName>TESTASSOC</entityTypeName>
             <active>1</active>
             <locationName>No Location</locationName>
             <hasComments>0</hasComments>
@@ -181,9 +181,9 @@
             <entityTypeEntityAssociations></entityTypeEntityAssociations>
             <associations></associations>
         </entity>
-        <entity><!--TP2-->
-            <name>TP2</name>
-            <entityTypeName>TESTPOCO</entityTypeName>
+        <entity><!--TA2-->
+            <name>TA2</name>
+            <entityTypeName>TESTASSOC</entityTypeName>
             <active>1</active>
             <locationName>No Location</locationName>
             <hasComments>0</hasComments>
@@ -199,9 +199,9 @@
             <entityTypeEntityAssociations></entityTypeEntityAssociations>
             <associations></associations>
         </entity>
-        <entity><!--PC60-->
-            <name>PC60</name>
-            <entityTypeName>POCO</entityTypeName>
+        <entity><!--TE1-->
+            <name>TE1</name>
+            <entityTypeName>TESTENTITY</entityTypeName>
             <active>1</active>
             <locationName>No Location</locationName>
             <hasComments>0</hasComments>
@@ -211,15 +211,15 @@
             <values>
                 <value>
                     <attributeName>tst_string</attributeName>
-                    <data>My Lab</data>
+                    <data>TEST</data>
                 </value>
                 <value>
                     <attributeName>tst_integer</attributeName>
-                    <data>3</data>
+                    <data>1</data>
                 </value>
                 <value>
                     <attributeName>tst_bool</attributeName>
-                    <data>0</data>
+                    <data>1</data>
                 </value>
                 <value>
                     <attributeName>tst_file</attributeName>
@@ -229,12 +229,90 @@
             <entityTypeEntityAssociations></entityTypeEntityAssociations>
             <associations>
                 <association>
-                    <entityName>TP1</entityName>
-                    <predicate>TESTING</predicate>
+                    <entityName>TA1</entityName>
+                    <predicate>TEST</predicate>
                     <quantity></quantity>
                     <jsonString></jsonString>
                 </association>
             </associations>
+        </entity>
+        <entity><!--File - Generic-->
+            <name>File - Generic</name>
+            <entityTypeName>FILE DATATYPE</entityTypeName>
+            <active>1</active>
+            <locationName>Main Office</locationName>
+            <hasComments>0</hasComments>
+            <hasFiles>0</hasFiles>
+            <hasELN>0</hasELN>
+            <projectNames>General</projectNames>
+            <values>
+                <value>
+                    <attributeName>Implementation Class</attributeName>
+                    <data>com.coreinformatics.core.dataType.DefaultFileImpl</data>
+                </value>
+            </values>
+            <entityTypeEntityAssociations></entityTypeEntityAssociations>
+            <associations></associations>
+        </entity>
+        <entity><!--Boolean - Generic-->
+            <name>Boolean - Generic</name>
+            <entityTypeName>BOOLEAN</entityTypeName>
+            <active>1</active>
+            <locationName>Main Office</locationName>
+            <hasComments>0</hasComments>
+            <hasFiles>0</hasFiles>
+            <hasELN>0</hasELN>
+            <projectNames>General</projectNames>
+            <values>
+                <value>
+                    <attributeName>Implementation Class</attributeName>
+                    <data>com.coreinformatics.core.dataType.DefaultBooleanImpl</data>
+                </value>
+                <value>
+                    <attributeName>True Display Value</attributeName>
+                    <data>true</data>
+                </value>
+                <value>
+                    <attributeName>False Display Value</attributeName>
+                    <data>false</data>
+                </value>
+                <value>
+                    <attributeName>Boolean UI Widget</attributeName>
+                    <data>Radio</data>
+                </value>
+                <value>
+                    <attributeName>Boolean Trues</attributeName>
+                    <data>yes,y,true,t,1</data>
+                </value>
+                <value>
+                    <attributeName>Boolean Falses</attributeName>
+                    <data>no,n,false,f,0</data>
+                </value>
+                <value>
+                    <attributeName>ci_readonly</attributeName>
+                    <data>0</data>
+                </value>
+            </values>
+            <entityTypeEntityAssociations></entityTypeEntityAssociations>
+            <associations></associations>
+        </entity>
+        <entity><!--Integer - Generic-->
+            <name>Integer - Generic</name>
+            <entityTypeName>INTEGER</entityTypeName>
+            <active>1</active>
+            <locationName>Main Office</locationName>
+            <hasComments>0</hasComments>
+            <hasFiles>0</hasFiles>
+            <hasELN>0</hasELN>
+            <projectNames>General</projectNames>
+            <values>
+                <value>
+                    <attributeName>Implementation Class</attributeName>
+                    <data>com.coreinformatics.core.dataType.DefaultIntegerImpl</data>
+                </value>
+            </values>
+            <entityTypeEntityAssociations></entityTypeEntityAssociations>
+            <associations></associations>
         </entity>
         <entity><!--String - Generic-->
             <name>String - Generic</name>
@@ -466,88 +544,16 @@
             <entityTypeEntityAssociations></entityTypeEntityAssociations>
             <associations></associations>
         </entity>
-        <entity><!--File - Generic-->
-            <name>File - Generic</name>
-            <entityTypeName>FILE DATATYPE</entityTypeName>
-            <active>1</active>
-            <locationName>Main Office</locationName>
-            <hasComments>0</hasComments>
-            <hasFiles>0</hasFiles>
-            <hasELN>0</hasELN>
-            <projectNames>General</projectNames>
-            <values>
-                <value>
-                    <attributeName>Implementation Class</attributeName>
-                    <data>com.coreinformatics.core.dataType.DefaultFileImpl</data>
-                </value>
-            </values>
-            <entityTypeEntityAssociations></entityTypeEntityAssociations>
-            <associations></associations>
-        </entity>
-        <entity><!--Integer - Generic-->
-            <name>Integer - Generic</name>
-            <entityTypeName>INTEGER</entityTypeName>
-            <active>1</active>
-            <locationName>Main Office</locationName>
-            <hasComments>0</hasComments>
-            <hasFiles>0</hasFiles>
-            <hasELN>0</hasELN>
-            <projectNames>General</projectNames>
-            <values>
-                <value>
-                    <attributeName>Implementation Class</attributeName>
-                    <data>com.coreinformatics.core.dataType.DefaultIntegerImpl</data>
-                </value>
-            </values>
-            <entityTypeEntityAssociations></entityTypeEntityAssociations>
-            <associations></associations>
-        </entity>
-        <entity><!--Boolean - Generic-->
-            <name>Boolean - Generic</name>
-            <entityTypeName>BOOLEAN</entityTypeName>
-            <active>1</active>
-            <locationName>Main Office</locationName>
-            <hasComments>0</hasComments>
-            <hasFiles>0</hasFiles>
-            <hasELN>0</hasELN>
-            <projectNames>General</projectNames>
-            <values>
-                <value>
-                    <attributeName>Implementation Class</attributeName>
-                    <data>com.coreinformatics.core.dataType.DefaultBooleanImpl</data>
-                </value>
-                <value>
-                    <attributeName>True Display Value</attributeName>
-                    <data>true</data>
-                </value>
-                <value>
-                    <attributeName>False Display Value</attributeName>
-                    <data>false</data>
-                </value>
-                <value>
-                    <attributeName>Boolean UI Widget</attributeName>
-                    <data>Radio</data>
-                </value>
-                <value>
-                    <attributeName>Boolean Trues</attributeName>
-                    <data>yes,y,true,t,1</data>
-                </value>
-                <value>
-                    <attributeName>Boolean Falses</attributeName>
-                    <data>no,n,false,f,0</data>
-                </value>
-                <value>
-                    <attributeName>ci_readonly</attributeName>
-                    <data>0</data>
-                </value>
-            </values>
-            <entityTypeEntityAssociations></entityTypeEntityAssociations>
-            <associations></associations>
-        </entity>
     </entities>
     <entityTypes><!--Entity Types--></entityTypes>
     <entities><!--Entities--></entities>
     <attributes><!--attributes-->
+        <attribute><!--file-->
+            <attributeName>file</attributeName>
+            <dataUnit></dataUnit>
+            <dataType>4</dataType>
+            <dataTypeName>File - Generic</dataTypeName>
+        </attribute>
         <attribute><!--tst_string-->
             <attributeName>tst_string</attributeName>
             <dataUnit></dataUnit>
@@ -572,65 +578,11 @@
             <dataType>4</dataType>
             <dataTypeName>File - Generic</dataTypeName>
         </attribute>
-        <attribute><!--file-->
-            <attributeName>file</attributeName>
-            <dataUnit></dataUnit>
-            <dataType>4</dataType>
-            <dataTypeName>File - Generic</dataTypeName>
-        </attribute>
         <attribute><!--Implementation Class-->
             <attributeName>Implementation Class</attributeName>
             <dataUnit></dataUnit>
             <dataType>1</dataType>
             <dataTypeName>String - Generic</dataTypeName>
-        </attribute>
-        <attribute><!--Width-->
-            <attributeName>Width</attributeName>
-            <dataUnit></dataUnit>
-            <dataType>0</dataType>
-            <dataTypeName>Integer - Generic</dataTypeName>
-        </attribute>
-        <attribute><!--ci_case_sensitive_search-->
-            <attributeName>ci_case_sensitive_search</attributeName>
-            <dataUnit></dataUnit>
-            <dataType>8</dataType>
-            <dataTypeName>Boolean - Generic</dataTypeName>
-        </attribute>
-        <attribute><!--validate-->
-            <attributeName>validate</attributeName>
-            <dataUnit></dataUnit>
-            <dataType>8</dataType>
-            <dataTypeName>Boolean - Generic</dataTypeName>
-        </attribute>
-        <attribute><!--ci_superTypeName-->
-            <attributeName>ci_superTypeName</attributeName>
-            <dataUnit></dataUnit>
-            <dataType>1</dataType>
-            <dataTypeName>String - Generic</dataTypeName>
-        </attribute>
-        <attribute><!--Format String-->
-            <attributeName>Format String</attributeName>
-            <dataUnit></dataUnit>
-            <dataType>1</dataType>
-            <dataTypeName>String - Generic</dataTypeName>
-        </attribute>
-        <attribute><!--Show Vocab Add Button-->
-            <attributeName>Show Vocab Add Button</attributeName>
-            <dataUnit></dataUnit>
-            <dataType>8</dataType>
-            <dataTypeName>Boolean - Generic</dataTypeName>
-        </attribute>
-        <attribute><!--DisplayVocabButtonAdd-->
-            <attributeName>DisplayVocabButtonAdd</attributeName>
-            <dataUnit></dataUnit>
-            <dataType>8</dataType>
-            <dataTypeName>Boolean - Generic</dataTypeName>
-        </attribute>
-        <attribute><!--ci_string_max_length-->
-            <attributeName>ci_string_max_length</attributeName>
-            <dataUnit></dataUnit>
-            <dataType>0</dataType>
-            <dataTypeName>Integer - Generic</dataTypeName>
         </attribute>
         <attribute><!--True Display Value-->
             <attributeName>True Display Value</attributeName>
@@ -667,6 +619,54 @@
             <dataUnit></dataUnit>
             <dataType>8</dataType>
             <dataTypeName>Boolean - Generic</dataTypeName>
+        </attribute>
+        <attribute><!--ci_case_sensitive_search-->
+            <attributeName>ci_case_sensitive_search</attributeName>
+            <dataUnit></dataUnit>
+            <dataType>8</dataType>
+            <dataTypeName>Boolean - Generic</dataTypeName>
+        </attribute>
+        <attribute><!--ci_superTypeName-->
+            <attributeName>ci_superTypeName</attributeName>
+            <dataUnit></dataUnit>
+            <dataType>1</dataType>
+            <dataTypeName>String - Generic</dataTypeName>
+        </attribute>
+        <attribute><!--validate-->
+            <attributeName>validate</attributeName>
+            <dataUnit></dataUnit>
+            <dataType>8</dataType>
+            <dataTypeName>Boolean - Generic</dataTypeName>
+        </attribute>
+        <attribute><!--Width-->
+            <attributeName>Width</attributeName>
+            <dataUnit></dataUnit>
+            <dataType>0</dataType>
+            <dataTypeName>Integer - Generic</dataTypeName>
+        </attribute>
+        <attribute><!--Format String-->
+            <attributeName>Format String</attributeName>
+            <dataUnit></dataUnit>
+            <dataType>1</dataType>
+            <dataTypeName>String - Generic</dataTypeName>
+        </attribute>
+        <attribute><!--Show Vocab Add Button-->
+            <attributeName>Show Vocab Add Button</attributeName>
+            <dataUnit></dataUnit>
+            <dataType>8</dataType>
+            <dataTypeName>Boolean - Generic</dataTypeName>
+        </attribute>
+        <attribute><!--DisplayVocabButtonAdd-->
+            <attributeName>DisplayVocabButtonAdd</attributeName>
+            <dataUnit></dataUnit>
+            <dataType>8</dataType>
+            <dataTypeName>Boolean - Generic</dataTypeName>
+        </attribute>
+        <attribute><!--ci_string_max_length-->
+            <attributeName>ci_string_max_length</attributeName>
+            <dataUnit></dataUnit>
+            <dataType>0</dataType>
+            <dataTypeName>Integer - Generic</dataTypeName>
         </attribute>
     </attributes>
     <uiMappings><!--UI Mappings--></uiMappings>
