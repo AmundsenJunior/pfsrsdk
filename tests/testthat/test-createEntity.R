@@ -1,5 +1,5 @@
 
-context("Tests for create")
+context("Tests for createEntity")
 
 # Completed regression for 5.3.8 and 6.0.1
 
