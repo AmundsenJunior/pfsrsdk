@@ -34,17 +34,3 @@ Connect <- function(envString) {
   con <- CoreAPIV2::authBasic(api, useVerbose = verbose)
 }
 
-
-
-
-# })
-#
-# testthat::teardown({
-#
-#   POCO <- NULL
-#   EnvSelection <- NULL
-#   selection <-NULL
-#   environments <-NULL
-#   verbose <-NULL
-#   rm(list=ls())
-# })
