@@ -110,7 +110,7 @@ apiGET <-
 
       content <- httr::content(response)$value
 
-      # parrallel this to get all the content at once.
+      # parallel this to get all the content at once.
       while (more_content) {
         # build url for next chunk
         sdk_url <- paste0(base_sdk_url, "?$skiptoken=", skiptoken)
