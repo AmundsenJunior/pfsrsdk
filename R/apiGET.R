@@ -40,7 +40,7 @@ apiGET <-
         coreApi,
         resource = resource,
         query = query,
-        special = NULL,
+        special = special,
         useVerbose = useVerbose
       )
     base_sdk_url <-

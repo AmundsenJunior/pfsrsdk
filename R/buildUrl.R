@@ -12,7 +12,7 @@
 #' \dontrun{
 #' api<-CoreAPIV2("PATH TO JSON FILE")
 #' login<- CoreAPIV2::authBasic(api)
-#' response <-CoreAPIV2::buildUrl(coeApi,"Sample","('PS1')")
+#' URL <-CoreAPIV2::buildUrl(coeApi,"Sample","('PS1')")
 #' logOut(login$coreApi )
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
@@ -41,7 +41,7 @@ buildUrl <-
 
     if (is.null(special)) {
       sdk_url <-
-        paste(
+        paste0(
           coreApi$scheme,
           "://",
           coreApi$coreUrl,
@@ -49,21 +49,19 @@ buildUrl <-
           coreApi$port,
           odat,
           resource,
-          query,
-          sep = ""
+          query
         )
     } else {
       switch(
         special,
         login = sdk_url <-
-          paste(
+          paste0(
             coreApi$scheme,
             "://",
             coreApi$coreUrl,
             ":",
             coreApi$port,
-            "/odatalogin",
-            sep = ""
+            "/odatalogin"
           ),
         file = sdk_url <-
           paste0(
