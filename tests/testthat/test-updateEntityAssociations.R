@@ -1,4 +1,7 @@
 
+#' @author Adam Wheeler ajwtech@gmail.com
+#' @description Tests for entity associations.
+
 context("Tests for updateEntityAssociations")
 
 # Completed regression for 5.3.8 and 6.0.1

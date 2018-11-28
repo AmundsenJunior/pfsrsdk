@@ -1,4 +1,8 @@
 
+#' @author Adam Wheeler ajwtech@gmail.com
+#' @description \code{updateEntityAttributes} Tests for updateEntityAttributes.
+
+
 context("Tests for updateEntityAttributes")
 
 # Completed regression for 5.3.8 and 6.0.1

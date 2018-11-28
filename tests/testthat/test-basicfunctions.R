@@ -1,3 +1,7 @@
+
+#' @author Adam Wheeler ajwtech@gmail.com
+#' @description test all the basic api functions.
+
 context("test-basicfunctions")
 
 # Completed regression for 5.3.8 and 6.0.0

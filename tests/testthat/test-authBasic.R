@@ -1,4 +1,7 @@
 
+#' @author Adam Wheeler ajwtech@gmail.com
+#' @description \code Test for basic authentication.
+#' 
 context("Tests for authentication")
 
 # Completed regression for 5.3.8 and 6.0.0

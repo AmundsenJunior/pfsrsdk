@@ -1,4 +1,8 @@
 
+#' @author Adam Wheeler ajwtech@gmail.com
+#' @description \code{buildUrl} testing buildURL.
+
+
 context("Tests for buildURL")
 
 # Completed regression for 5.3.8 and 6.0.1

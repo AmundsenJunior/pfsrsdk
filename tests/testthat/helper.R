@@ -1,5 +1,7 @@
-## Description
-# This file is run before any tests are executed. It sets up the environment to run against specific PFS versions. 
+
+#' @author Adam Wheeler ajwtech@gmail.com
+#' @description  This file is run before any tests are executed. 
+#' It sets up the environment to run against specific PFS versions. 
 
 
 verbose <- TRUE
