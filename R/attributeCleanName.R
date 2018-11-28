@@ -1,5 +1,6 @@
-#' attributeCleanName - converts names to uppercase and replaces spaces with underscores to
-#' reference attribute names.
+#' attributeCleanName - converts names to uppercase and replaces spaces 
+#' amoersands and percent symbols with underscores to reference attribute 
+#' names.
 #' \code{attributeCleanName} clean attribute name.
 #' @param name  string to clean
 #' @export
@@ -11,14 +12,12 @@
 #' MY_COMMENTS
 #'  }
 #' @author Craig Parman, ngsAnalytics, ngsanalytics.com
+#' @author Adam Wheeler ajwtech@gmail.com
 #' @description \code{attriureCleanName} - onverts names to uppercase and replaces spaces with underscores to
 #' reference attribute names.
 
 attributeCleanName <- function(name) {
   name <- toupper(name)
-
   name <- gsub("[ ,&,%]", "_", name)
-
-
   name
 }
