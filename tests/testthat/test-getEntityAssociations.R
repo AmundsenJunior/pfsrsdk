@@ -1,6 +1,6 @@
 
 #' @author Adam Wheeler adam.j.wheeler@accenture.com
-#' @description \code Test for basic authentication.
+#' @description \code Tests for getEntityAssociations.
 
 context("Tests for getEntityAssociations")
 
