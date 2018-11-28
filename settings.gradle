@@ -1,0 +1,6 @@
+rootProject.name = projectName
+
+rootProject.children.each {
+    it.buildFileName = it.name + '.gradle'
+    logger.info( "Included gradle subproject : " + it.buildFileName )
+}

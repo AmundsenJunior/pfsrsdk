@@ -28,6 +28,8 @@ getContainerContents <-
 
     resource <- CoreAPIV2::ODATAcleanName(containerType)
 
+
+
     # query   <-
     #   paste0(
     #     "('",
@@ -37,6 +39,7 @@ getContainerContents <-
 
 
     query <- paste0("('", containerBarcode, "')/CONTAINER?$expand=REV_IMPL_CONTAINER_CELL($expand=CONTENT($expand=IMPL_SAMPLE_LOT))")
+
 
     if (fullMetadata) {
       header <- c(Accept = "application/json;odata.metadata=full")

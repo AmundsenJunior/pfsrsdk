@@ -24,9 +24,11 @@ getWellContents <-
              containerBarcode,
              useVerbose = FALSE) {
     # clean the name for ODATA
+
     resource <- CoreAPIV2::ODATAcleanName(containerType)
 
     # make sure containerWellNum is numeric
+
     containerWellNum <- as.numeric(containerWellNum)
 
     # first get the cellID for the well
@@ -38,6 +40,7 @@ getWellContents <-
 
     query <-
       paste0("EXPERIMENT_CONTAINER(", containerBarcode, ")/CONTAINER?$expand=REV_IMPL_CONTAINER_CELL($expand=CONTENT($expand=IMPL_SAMPLE_LOT))")
+
 
     header <-
       c("Content-Type" = "application/json;odata.metadata=full", Accept = "application/json")

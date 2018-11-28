@@ -1,0 +1,86 @@
+@Library('common-jenkins-declarative@2.x.x') _
+
+pipeline {
+    agent {
+        node {
+            label 'agent-debian'
+        }
+    }
+
+    environment {
+        noOp = defaultEnv()
+    }
+
+    options {
+        timeout(time: 1, unit: 'HOURS')
+        buildDiscarder(logRotator(numToKeepStr: '5', artifactNumToKeepStr: '5'))
+    }
+
+    stages {
+        stage('packrat') {
+            steps {
+                gradleTask('packratRestore')
+            }
+        }
+        
+        stage('build-package') {
+            steps {
+                gradleTask('buildPackage')
+            }
+        }
+
+        stage('install-package') {
+            steps {
+                gradleTask('installPackage')
+            }
+        }
+
+        stage('build-docs') { //TODO: move stage to post-test execution, to include test results in site docs
+            steps {
+                gradleTask('pkgdownSite')
+            }
+        }
+
+        stage('artifactory-publish') {
+            steps {
+                gradleTask('artifactoryPublish')
+            }
+        }
+
+        stage('docker-publish') {
+            steps {
+                gradleTask('publishImages', false, DOCKER_REGISTRY_GRADLE_PARAMS)
+            }
+        }
+
+       //TODO: create Helm chart for docs image
+       // stage('chart-publish') {
+       //     steps {
+       //         helmPublish('')
+       //     }
+       // }
+
+       // stage('helm-install-test') {
+       //     steps {
+       //         createK8sNamespace()
+       //         helmInstall('', [ timeout: 600 ])
+       //         helmTest('')
+       //     }
+       // }
+
+       // stage('beta-promotion') {
+       //     steps {
+       //         helmAssignChannel('', BETA_CHANNEL)
+       //     }
+       // }
+    }
+
+    post {
+        always {
+            //helmUninstall('')
+            //deleteK8sNamespace()
+            sendNotification('4547897') // the RStudio-PFS Hipchat room
+            cleanWs deleteDirs: true, notFailBuild: true
+        }
+    }
+}

@@ -1,0 +1,31 @@
+/**
+ * Thermo Fisher Scientific, Platform for Science, Build for R OData SDK package.
+ */
+
+buildscript {
+    apply from: "$rootProject.projectDir/gradle/buildscript.gradle", to: buildscript
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.6'
+}
+
+apply plugin: 'org.ajoberstar.grgit'
+apply plugin: 'com.thermofisher.versioning-plugin'
+
+apply from: "$rootProject.projectDir/gradle/r-package.gradle"
+apply from: "$rootProject.projectDir/gradle/distribution.gradle"
+apply from: "$rootProject.projectDir/gradle/docker.gradle"
+
+repositories {
+    maven {
+        url "${artifactoryContextUrl}/repo"
+        credentials {
+            username = "${artifactoryUser}"
+            password = "${artifactoryPassword}"
+        }
+    }
+    jcenter()
+    mavenCentral()
+}
+

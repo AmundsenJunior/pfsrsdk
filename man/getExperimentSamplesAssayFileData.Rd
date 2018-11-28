@@ -4,8 +4,8 @@
 \alias{getExperimentSamplesAssayFileData}
 \title{getExperimentSamplesAssayFileData - Gets file attached as assay data.}
 \usage{
-getExperimentSamplesAssayFileData(coreApi, assayType, experimentSamplebarcode,
-  attributeName, useVerbose = FALSE)
+getExperimentSamplesAssayFileData(coreApi, assayType,
+  experimentSamplebarcode, attributeName, useVerbose = FALSE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -22,7 +22,7 @@ getExperimentSamplesAssayFileData(coreApi, assayType, experimentSamplebarcode,
 returns a list $entity containsbinary object that in the file, $response contains the entire http response
 }
 \description{
-\code{ getExperimentSamplesAssayFileData }  Gets file attached as assay data. 
+\code{ getExperimentSamplesAssayFileData }  Gets file attached as assay data.
 Use getExperimentSamplesAssayData for non-file data.
 }
 \details{

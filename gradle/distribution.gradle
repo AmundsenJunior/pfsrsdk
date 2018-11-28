@@ -1,0 +1,50 @@
+apply plugin: 'distribution'
+apply plugin: 'maven-publish'
+apply plugin: 'com.jfrog.artifactory'
+
+artifactory {
+    contextUrl = "${artifactoryContextUrl}"
+    publish {
+        repository {
+            repoKey = 'Data-Science'
+            username = "${artifactoryUser}"
+            password = "${artifactoryPassword}"
+            maven = true
+        }
+        defaults {
+            publishBuildInfo = true
+            publishArtifacts = true
+        }
+    }
+}
+
+distributions {
+    docs {
+        baseName project.ext.packageDocsName
+        contents {
+            from {
+                new File(project.ext.docsDir)
+            }
+            into '/'
+        }
+    }
+}
+
+publishing {
+    publications {
+        docs(MavenPublication) {
+            groupId projectGroup
+            artifactId project.ext.packageDocsName
+            artifact docsDistZip
+        }
+    }
+}
+
+artifactoryPublish {
+    dependsOn 'docsDistZip'
+    publications('docs')
+    publishArtifacts = true
+    publishPom = false
+}
+
+tasks.docsDistZip.dependsOn 'pkgdownSite'

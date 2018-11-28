@@ -4,7 +4,8 @@
 \alias{getAttachedFile}
 \title{getAttachedFile - Gets file attached to an attribute on a entity}
 \usage{
-getAttachedFile(coreApi, entityType, barcode, attribute, useVerbose = FALSE)
+getAttachedFile(coreApi, entityType, barcode, attribute,
+  useVerbose = FALSE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -21,7 +22,7 @@ getAttachedFile(coreApi, entityType, barcode, attribute, useVerbose = FALSE)
 returns a list $entity contains file data, $response contains the entire http response
 }
 \description{
-\code{ getAttachedFile }  Gets file attached to an attribute on a entity. 
+\code{ getAttachedFile }  Gets file attached to an attribute on a entity.
 The $entity slot contains the binary file data.
 }
 \details{
@@ -39,4 +40,3 @@ CoreAPIV2:logOut(login$coreApi)
 \author{
 Craig Parman ngsAnalytics, ngsanalytics.com
 }
-

@@ -4,8 +4,8 @@
 \alias{createExperiment}
 \title{createExperiment - Create a new instance of an experiment.}
 \usage{
-createExperiment(coreApi, experimentType, assayType, assayBarcode, protocolType,
-  protocolBarcode, body = NULL, useVerbose = FALSE)
+createExperiment(coreApi, experimentType, assayType, assayBarcode,
+  protocolType, protocolBarcode, body = NULL, useVerbose = FALSE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}

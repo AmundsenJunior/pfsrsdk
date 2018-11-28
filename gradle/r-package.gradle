@@ -1,0 +1,76 @@
+buildscript {
+    apply from: "$rootProject.projectDir/gradle/buildscript.gradle", to: buildscript
+}
+
+apply plugin: 'com.umayrh.rplugin'
+import com.umayrh.gradle.RScriptTask
+import org.gradle.api.tasks.Input
+import org.yaml.snakeyaml.Yaml
+
+class DescriptionYaml {
+    private final File descriptionFile
+    private Yaml parser = new Yaml()
+    private Map<String, Object> descriptionYaml
+    private String packageVersion
+    private String packageName
+    
+    DescriptionYaml(File descriptionFile) {
+        this.descriptionYaml = parser.load(descriptionFile.text)
+        this.packageVersion = this.readDescriptionValue('Version')
+        this.packageName = this.readDescriptionValue('Package')
+    }
+    
+    private String readDescriptionValue(String key) {
+        return descriptionYaml.get(key)
+    }
+    
+    public String getVersion() {
+        return packageVersion
+    }
+    
+    public String getPackageName() {
+        return packageName
+    }
+}
+
+DescriptionYaml description = new DescriptionYaml(file("${rootProject.projectDir}/DESCRIPTION"))
+
+project.ext {
+    docsDir = "${project.buildDir}/docs"
+    packageVersion = description.getVersion()
+    packageName = description.getPackageName()
+    packageDocsName = "${project.ext.packageName}-${project.ext.packageVersion}-docs"
+}
+
+class RScriptBuildPackageTask extends com.umayrh.gradle.RScriptTask {
+    @Input
+    String description = "Build the package, via devtools"
+    String expression = "devtools::build(path = '${project.buildDir}')"
+}
+
+class RScriptInstallPackageTask extends com.umayrh.gradle.RScriptTask {
+    @Input
+    String description = "Install the package to local, via devtools"
+    String expression = "devtools::install(pkg = '${project.buildDir}')"
+}
+
+class RScriptPkgdownSiteTask extends com.umayrh.gradle.RScriptTask {
+    @Input
+    String description = "Build the static documentation website, via pkgdown"
+    String expression = "pkgdown::build_site(override = list(destination = '${project.ext.docsDir}'))"
+}
+
+task buildPackage(type: RScriptBuildPackageTask, group: "R packaging") {
+    //dependsOn 'packratRestore' //TODO: evaluate if this is a safe task to execute with every build call.
+    doFirst {
+        mkdir project.buildDir
+    }
+}
+
+task installPackage(type: RScriptInstallPackageTask, group: "R packaging") {
+    dependsOn 'buildPackage'
+}
+
+task pkgdownSite(type: RScriptPkgdownSiteTask, group: "R packaging") {
+    dependsOn 'installPackage'
+}

@@ -2,8 +2,8 @@
 % Please edit documentation in R/attributecleanName.R
 \name{attributeCleanName}
 \alias{attributeCleanName}
-\title{attributeCleanName - converts names to uppercase and replaces spaces with underscores to 
-reference attribute names. 
+\title{attributeCleanName - converts names to uppercase and replaces spaces with underscores to
+reference attribute names.
 \code{attributeCleanName} clean attribute name.}
 \usage{
 attributeCleanName(name)
@@ -15,7 +15,7 @@ attributeCleanName(name)
 Returns attribute name as the API will use.
 }
 \description{
-\code{attriureCleanName} - onverts names to uppercase and replaces spaces with underscores to 
+\code{attriureCleanName} - onverts names to uppercase and replaces spaces with underscores to
 reference attribute names.
 }
 \examples{

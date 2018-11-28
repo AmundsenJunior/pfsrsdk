@@ -12,7 +12,7 @@ instance <- "test_environments/5-3-8.json"
 
 
 
-test_that(paste("test log in and get an single well container", instance), {
+test_that(paste("test GET of a single well container", instance), {
   verbose <- FALSE
   api <- CoreAPIV2::coreAPI(instance)
 
@@ -24,7 +24,6 @@ test_that(paste("test log in and get an single well container", instance), {
 
   containers <- getExperimentContainers(con$coreApi, "BIOCHEMICAL DOSE RESPONSE EXPERIMENT", "BDR25", TRUE)
 
-  browser()
 
   cc <- CoreAPIV2::getContainerContents(con$coreApi, "EXPERIMENT_CONTAINERS", containers$entity[2])
 
