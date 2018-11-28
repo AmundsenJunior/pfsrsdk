@@ -11,16 +11,16 @@ lapply(environments, function(x) {
 
   test_that(paste0("apiGET will return a poco on: ", x), {
     header <- c("Accept" = "application/json")
-    print(paste0("poco to get is: ", POCO))
+    print(paste0("poco to get is: ", TESTPOCO))
 
-    res <- apiGET(con$coreApi, resource = POCO, query = "", headers = header, useVerbose = verbose)
+    res <- apiGET(con$coreApi, resource = TESTPOCO, query = "", headers = header, useVerbose = verbose)
     expect_equal(res$response$status_code, 200)
   })
 
   test_that(paste0("apiPOST will create a poco on: ", x), {
     header <- c("Content-Type" = "application/json", "If-Match" = "*")
-    print(paste0("poco to create is: ", POCO))
-    res <<- apiPOST(con$coreApi, resource = POCO, body = "{}", encode = "raw", headers = header, useVerbose = verbose)
+    print(paste0("poco to create is: ", TESTPOCO))
+    res <<- apiPOST(con$coreApi, resource = TESTPOCO, body = "{}", encode = "raw", headers = header, useVerbose = verbose)
     expect_equal(res$all_headers[[1]]$status, 201)
     options(res = res)
   })
@@ -31,7 +31,7 @@ lapply(environments, function(x) {
     content <- httr::content(res, as = "parsed")
     content["Name"] <- paste0("TEST from Odata: ", content$Barcode)
     body <- content[-1]
-    res <- CoreAPIV2::apiPUT(con$coreApi, resource = POCO, query = paste0("('", content$Barcode, "')"), body, encode = "raw", headers = header, useVerbose = FALSE, unbox = TRUE)
+    res <- CoreAPIV2::apiPUT(con$coreApi, resource = TESTPOCO, query = paste0("('", content$Barcode, "')"), body, encode = "raw", headers = header, useVerbose = FALSE, unbox = TRUE)
     expect_equal(res$all_headers[[1]]$status, 200)
   })
 
