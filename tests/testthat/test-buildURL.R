@@ -1,5 +1,5 @@
 
-#' @author Adam Wheeler ajwtech@gmail.com
+#' @author Adam Wheeler adam.j.wheeler@accenture.com
 #' @description \code{buildUrl} testing buildURL.
 
 
@@ -31,7 +31,7 @@ lapply(environments, function(x) {
   } )
   
   test_that(paste0("Test that the build url handles the file special url on: ",x),{
-    ## not tested here until the remediation of the file upload has been completed
+    ##TODO not tested here until the remediation of the file upload has been completed
   } )
   
   test_that(paste0("Test that the build url handles the json special url on: ",x),{

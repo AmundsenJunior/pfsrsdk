@@ -1,5 +1,5 @@
 
-#' @author Adam Wheeler ajwtech@gmail.com
+#' @author Adam Wheeler adam.j.wheeler@accenture.com
 #' @description test all the basic api functions.
 
 context("test-basicfunctions")

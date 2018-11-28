@@ -1,5 +1,5 @@
 
-#' @author Adam Wheeler ajwtech@gmail.com
+#' @author Adam Wheeler adam.j.wheeler@accenture.com
 #' @description \code Test for basic authentication.
 #' 
 context("Tests for authentication")

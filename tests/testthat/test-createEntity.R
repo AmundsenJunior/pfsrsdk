@@ -1,5 +1,5 @@
 
-#' @author Adam Wheeler ajwtech@gmail.com
+#' @author Adam Wheeler adam.j.wheeler@accenture.com
 #' @description Tests for entity creation.
 #' 
 context("Tests for createEntity")
