@@ -1,5 +1,5 @@
 #' attributeCleanName - converts names to uppercase and replaces spaces 
-#' amoersands and percent symbols with underscores to reference attribute 
+#' ampersands and percent symbols with underscores to reference attribute 
 #' names.
 #' \code{attributeCleanName} clean attribute name.
 #' @param name  string to clean
