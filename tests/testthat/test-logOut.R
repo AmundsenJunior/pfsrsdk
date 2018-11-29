@@ -9,7 +9,7 @@ lapply(environments, function(x) {
   
   con <- Connect(x)
   test_that(paste("test logOut() on: ", x), {
-    expect_true(CoreAPIV2::logOut(con$coreApi)$success)
+    expect_equivalent(CoreAPIV2::logOut(con$coreApi)$success,"Success")
   })
   
 })
