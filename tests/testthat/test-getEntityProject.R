@@ -10,9 +10,9 @@ lapply(environments, function(x) {
   con <- Connect(x)
   test_that(paste("test getEntityProject for: ", x), {
     barcode <- CoreAPIV2::getEntityByName(con$coreApi, TESTPOCO,POCO60NAME, useVerbose = verbose)$entity[[1]]$Barcode
-    Pro <- CoreAPIV2::getEntityProject(con$coreApi, TESTPOCO, barcode, useVerbose = FALSE)
+    pro <- CoreAPIV2::getEntityProject(con$coreApi, TESTPOCO, barcode, useVerbose = FALSE)
     
-    expect_equivalent(httr::status_code(Pro$response),200)
+    expect_equivalent(httr::status_code(pro$response),200)
   })
   CoreAPIV2::logOut(con$coreApi)
 })
