@@ -1,4 +1,5 @@
-
+#' @author Adam Wheeler adam.j.wheeler@accenture.com
+#' @description \code Tests for getEntityMetadata().
 context("Tests for getEntityMetadata")
 
 # Completed regression for 5.3.8 and 6.0.1
