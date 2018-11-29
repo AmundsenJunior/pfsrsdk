@@ -4,7 +4,7 @@
 #'
 #' @param coreApi coreApi object returned during log in
 #' @param useVerbose use verbose option for debuggin in http POST
-#' @return returns list with $success = Success when sucessful, $response contains the entire http response
+#' @return returns list with $success = "Success" when sucessful, $response contains the entire http response
 #' @export
 #' @examples
 #' \dontrun{
