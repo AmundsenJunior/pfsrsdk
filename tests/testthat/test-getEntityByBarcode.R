@@ -1,6 +1,6 @@
 
 #' @author Adam Wheeler adam.j.wheeler@accenture.com
-#' @description \code Tests for getEntityAssociations.
+#' @description \code Tests for getEntityBarcode.
   
 context("Tests for getEntityByBarcode")
 
