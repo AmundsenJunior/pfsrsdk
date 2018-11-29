@@ -2,7 +2,7 @@
 #' @description \code Tests for getEntityLocation
 context("Tests for getEntityLocation")
 
-# Completed regression for 5.3.8 and 6.0.0
+# Completed regression for 5.3.8 and 6.0.1
 
 cat(paste0("\n environments:\n", environments, "\n"))
 
