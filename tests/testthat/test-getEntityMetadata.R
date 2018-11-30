@@ -10,7 +10,7 @@ lapply(environments, function(x) {
   test_that(paste("test getEntityMetadata() on: ", x), {
     out <- CoreAPIV2::getEntityMetadata(con$coreApi, TESTPOCO, useVerbose = FALSE)
    
-    #Check to verify that the function returned a list. dependending on tenent this list may be empty
+    #Check to verify that the function returned a list. dependending on tenant this list may be empty
     expect_equivalent(class(out$template), "list", all = verbose)
     
   })
