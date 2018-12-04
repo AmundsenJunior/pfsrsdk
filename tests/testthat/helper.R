@@ -4,7 +4,7 @@
 #' It sets up the environment to run against specific PFS versions. 
 
 
-verbose <- TRUE
+verbose <- FALSE
 # setup to test against multiple environments
 # name files Auth-[pfsversion].json example Auth-5.3.8 for this to pick them up.
 
