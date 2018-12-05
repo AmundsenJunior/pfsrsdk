@@ -19,34 +19,33 @@
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Adam Wheeler, adam.j.wheeler@accenture.com
-#' @description \code{attachFile} Attaches a file to entity identified by barcode.  
-#' Note: This function uses the JSON API to post a file to an entity and 
+#' @description \code{attachFile} Attaches a file to entity identified by barcode.
+#' Note: This function uses the JSON API to post a file to an entity and
 #' Odata to post to an attribute.
 
 
 attachFile <-
-  function(coreApi,entityType,
+  function(coreApi, entityType,
              barcode,
              filePath,
              targetAttributeName = "",
              useVerbose = FALSE) {
-
-        if (!file.exists(filePath)) {
+    if (!file.exists(filePath)) {
       stop({
         print("Unable to find file on local OS")
         print(filePath)
       },
       call. = FALSE
       )
-        }
-    
-    if (targetAttributeName != ""){
-    #Check if the metadata reports this as a stream
+    }
+
+    if (targetAttributeName != "") {
+      # Check if the metadata reports this as a stream
 
       met <- getEntityMetadata(coreApi, entityType)
-      noStream <- ifelse(match("Edm.Stream",met$attributes$types[match(TESTPOCOFILEATTRNAME,met$attributes$names)]) == 1, FALSE, TRUE)
+      valueFlag <- ifelse(match("Edm.Stream", met$attributes$types[match(targetAttributeName, met$attributes$names)]) == 1, TRUE, FALSE)
       body <- httr::upload_file(filePath)
-      query <- paste0("('", barcode, "')/",targetAttributeName)
+      query <- paste0("('", barcode, "')/", targetAttributeName)
       header <- c("If-Match" = "*")
       response <-
         CoreAPIV2::apiPUT(
@@ -58,12 +57,11 @@ attachFile <-
           headers = header,
           special = NULL,
           useVerbose = useVerbose,
-          noStream = TRUE
+          valueFlag = valueFlag
         )
-      
-    }else{ #Use the JSON SDK to post a file to an entity. 
-      #TODO replace this section of code to use the ODATA functionality when available. 
-      
+    } else { # Use the JSON SDK to post a file to an entity.
+      # TODO replace this section of code to use the ODATA functionality when available.
+
       sdkCmd <- jsonlite::unbox("file-attach")
       fileName <- basename(filePath)
       data <- list(
@@ -72,11 +70,11 @@ attachFile <-
         name = jsonlite::unbox(fileName),
         fileContentTypeOverride = jsonlite::unbox("")
       )
-      
+
       responseOptions <- c("CONTEXT_GET", "MESSAGE_LEVEL_WARN")
       logicOptions <- "EXECUTE_TRIGGERS"
       typeParam <- jsonlite::unbox("FILE")
-      
+
       request <-
         list(
           request = list(
@@ -92,31 +90,31 @@ attachFile <-
 
       form <- list(
         json = jsonlite::toJSON(request),
-        fileData = httr::upload_file(filePath, type = "image/png")
+        fileData = httr::upload_file(filePath)
       )
-      
+
       body <- list(
         json = jsonlite::toJSON(request),
         fileData = httr::upload_file(filePath)
       )
-      
+
       cookie <-
         c(
           JSESSIONID = coreApi$jsessionId,
           AWSELB = coreApi$awselb
         )
-      
+
       response <-
         httr::POST(
-          paste0(coreApi$scheme, "://", coreApi$coreUrl, "/sdk"),
+          url = buildUrl(coreApi, special = "json"),
           body = body,
           httr::verbose(data_out = FALSE),
           httr::add_headers("Content-Type" = "multipart/form-data"),
           httr::set_cookies(cookie)
         )
-      
+
       # check for general HTTP error in response
-      
+
       if (httr::http_error(response)) {
         stop({
           print("json API file-attach call failed")

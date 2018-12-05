@@ -1,10 +1,10 @@
 
 #' @author Adam Wheeler adam.j.wheeler@accenture.com
-#' @description  This file is run before any tests are executed. 
-#' It sets up the environment to run against specific PFS versions. 
+#' @description  This file is run before any tests are executed.
+#' It sets up the environment to run against specific PFS versions.
 
-##TODO Add this editable section to a list with an association to 
-##an environment file so that this becomes flexible in the future...
+## TODO Add this editable section to a list with an association to
+## an environment file so that this becomes flexible in the future...
 
 
 ### Edit this section to match your tenants you will be testing
@@ -17,24 +17,27 @@ POCO60NAME <- "TE1"
 TESTPOCO <- "TESTENTITY"
 # The File attribute on the test poco
 TESTPOCOFILEATTRNAME <- "TST_FILE"
+# The string attribute on the test poco
 TESTPOCOSTRINGATTRNAME <- "TST_STRING"
-TESTPOCOINTEGERATTRNAME <-"TST_INTEGER"
+# The integer attribute on the test poco
+TESTPOCOINTEGERATTRNAME <- "TST_INTEGER"
+# The bool attribute on the test poco
 TESTPOCOBOOLATTRNAME <- "TST_BOOL"
-###TODO Add a decimal type test. We found that this 
-###was once broken so it is worth specifically testing
+### TODO Add a decimal type test. We found that this
+### was once broken so it is worth specifically testing
 
-#The name of the association on the poco
+# The name of the association on the poco
 POCOASSOC <- "TESTASSOC"
-#Two entitys on the pocoassoc type
+# Two entitys on the pocoassoc type
 POCOASSOC1NAME <- "TA1"
 POCOASSOC2NAME <- "TA2"
-#context set on the assocication 
+# context set on the assocication
 ASSOCIATIONCONTEXT <- "TEST"
 ASSOCIATIONCONTEXTLISTNAME <- "TEST"
 
-###Stop editing this section now... or else...
+### Stop editing this section now... or else...
 
-#a singe persistant barcode and entity that will always exist in Every PFS instance
+# a singe persistant barcode and entity that will always exist in Every PFS instance
 PERSISTENTBARCODE <- "ALC1"
 PERSISTENTBARCODEENTITY <- "ACCESS_LEVEL"
 
@@ -58,4 +61,3 @@ Connect <- function(envString) {
   api <- CoreAPIV2::coreAPI(envString)
   con <- CoreAPIV2::authBasic(api, useVerbose = verbose)
 }
-

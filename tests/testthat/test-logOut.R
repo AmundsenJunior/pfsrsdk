@@ -6,11 +6,8 @@ context("Tests for logOut")
 # Completed regression for 5.3.8 and 6.0.1
 
 lapply(environments, function(x) {
-  
   con <- Connect(x)
   test_that(paste("test logOut() on: ", x), {
-    expect_equivalent(CoreAPIV2::logOut(con$coreApi)$success,"Success")
+    expect_equivalent(CoreAPIV2::logOut(con$coreApi)$success, "Success")
   })
-  
 })
-

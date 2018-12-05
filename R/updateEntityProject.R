@@ -54,7 +54,7 @@ updateEntityProject <-
           jsonlite::unbox(x)
         } else {
           x
-        } )
+        })
 
 
 

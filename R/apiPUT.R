@@ -10,7 +10,7 @@
 #' @param special  passed to buildUrl for special sdk endpoints
 #' @param useVerbose  Use verbose communication for debugging
 #' @param unbox use autounbox when doing lait yo json conversion
-#' @param noStream Leave as false for now will be used when fully odata compliant. see https://developer.platformforscience.com/display/COR/Media+Types
+#' @param valuFlag Tells the PUT if there needs to be a /$value added to the end.
 #' @export
 #' @return Returns the entire http response
 #' @examples
@@ -35,7 +35,7 @@ apiPUT <-
              special = NULL,
              useVerbose = FALSE,
              unbox = TRUE,
-             noStream = FALSE) {
+             valueFlag = FALSE) {
     # clean the resource name for ODATA
     resource <- CoreAPIV2::ODATAcleanName(resource)
 
@@ -49,7 +49,7 @@ apiPUT <-
       call. = FALSE
       )
     }
-    
+
     sdk_url <- paste0(
       CoreAPIV2::buildUrl(
         coreApi,
@@ -57,7 +57,8 @@ apiPUT <-
         query = query,
         special = special,
         useVerbose = useVerbose
-      ),ifelse(noStream,"/$value",""))
+      ), ifelse(valueFlag, "/$value", "")
+    )
 
     cookie <-
       c(
@@ -65,11 +66,8 @@ apiPUT <-
         AWSELB = coreApi$awselb
       )
 
-    #check to see if the put request is for a file
-    if (class(body) == "form_file"){
-      
-      
-    }else{
+    # check to see if the put request is for a file
+    if (class(body) != "form_file") {
       body <- jsonlite::toJSON(body, auto_unbox = unbox, null = "null")
     }
 
@@ -86,7 +84,6 @@ apiPUT <-
           info = useVerbose,
           ssl = useVerbose
         )
-        
       )
 
 

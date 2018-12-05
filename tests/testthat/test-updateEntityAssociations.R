@@ -7,12 +7,11 @@ context("Tests for updateEntityAssociations")
 # Completed regression for 5.3.8 and 6.0.1
 
 lapply(environments, function(x) {
-
   con <- Connect(x)
   test_that(paste("test updateEntityAssociations() on: ", x), {
-    ta1 <- CoreAPIV2::getEntityByName(con$coreApi,POCOASSOC,POCOASSOC1NAME,FALSE,FALSE)
-    ta2 <- CoreAPIV2::getEntityByName(con$coreApi,POCOASSOC,POCOASSOC2NAME,FALSE,FALSE)
-    PC60 <- CoreAPIV2::getEntityByName(con$coreApi,TESTPOCO,POCO60NAME,FALSE,FALSE)
+    ta1 <- CoreAPIV2::getEntityByName(con$coreApi, POCOASSOC, POCOASSOC1NAME, FALSE, FALSE)
+    ta2 <- CoreAPIV2::getEntityByName(con$coreApi, POCOASSOC, POCOASSOC2NAME, FALSE, FALSE)
+    PC60 <- CoreAPIV2::getEntityByName(con$coreApi, TESTPOCO, POCO60NAME, FALSE, FALSE)
 
     # test update associations
 
