@@ -9,7 +9,7 @@
 
 ### Edit this section to match your tenants you will be testing
 
-verbose <- TRUE
+verbose <- FALSE
 
 # name of a poco in the system
 POCO60NAME <- "TE1"
@@ -37,6 +37,7 @@ ASSOCIATIONCONTEXTLISTNAME <- "TEST"
 #a singe persistant barcode and entity that will always exist in Every PFS instance
 PERSISTENTBARCODE <- "ALC1"
 PERSISTENTBARCODEENTITY <- "ACCESS_LEVEL"
+
 # setup to test against multiple environments
 # name files Auth-[pfsversion].json example Auth-5.3.8 for this to pick them up.
 
