@@ -15,13 +15,13 @@ lapply(environments, function(x) {
 
     body <- out$template
 
-    body[["TST_STRING"]] <- "ACME"
+    body[[TESTPOCOSTRINGATTRNAME]] <- "ACME"
 
-    body[["TST_INTEGER"]] <- 3
+    body[[TESTPOCOINTEGERATTRNAME]] <- 3
 
-    body[["TST_BOOL"]] <- T
+    body[[TESTPOCOBOOLATTRNAME]] <- T
 
-    body[["TST_FILE"]] <- NULL
+    body[[TESTPOCOFILEATTRNAME]] <- NULL
     
     body[[paste0(ASSOCIATIONCONTEXTLISTNAME,"@odata.bind")]] <- paste0(POCOASSOC, "('", ta1$entity[[1]]$Barcode,"')")
 

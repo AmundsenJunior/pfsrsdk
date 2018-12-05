@@ -10,6 +10,7 @@
 #' @param special  passed to buildUrl for special sdk endpoints
 #' @param useVerbose  Use verbose communication for debugging
 #' @param unbox use autounbox when doing lait yo json conversion
+#' @param noStream Leave as false for now will be used when fully odata compliant. see https://developer.platformforscience.com/display/COR/Media+Types
 #' @export
 #' @return Returns the entire http response
 #' @examples
@@ -21,6 +22,7 @@
 #' CoreAPIV2::logOut(login$coreApi )
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Adam Wheeler, adam.j.wheeler@accenture.com
 #' @description \code{apiPUT} - Base PUT call to Core ODATA REST API.
 
 apiPUT <-
@@ -32,7 +34,8 @@ apiPUT <-
              headers = NULL,
              special = NULL,
              useVerbose = FALSE,
-             unbox = TRUE) {
+             unbox = TRUE,
+             noStream = FALSE) {
     # clean the resource name for ODATA
     resource <- CoreAPIV2::ODATAcleanName(resource)
 
@@ -47,14 +50,14 @@ apiPUT <-
       )
     }
     
-    sdk_url <-
+    sdk_url <- paste0(
       CoreAPIV2::buildUrl(
         coreApi,
         resource = resource,
         query = query,
         special = special,
         useVerbose = useVerbose
-      )
+      ),ifelse(noStream,"/$value",""))
 
     cookie <-
       c(
@@ -62,12 +65,20 @@ apiPUT <-
         AWSELB = coreApi$awselb
       )
 
+    #check to see if the put request is for a file
+    if (class(body) == "form_file"){
+      
+      
+    }else{
+      body <- jsonlite::toJSON(body, auto_unbox = unbox, null = "null")
+    }
+
     response <-
       httr::PUT(
         url = sdk_url,
-        body = jsonlite::toJSON(body, auto_unbox = unbox, null = "null"),
+        body = body,
         httr::set_cookies(cookie),
-        encode = "raw",
+        encode = encode,
         httr::add_headers(headers),
         httr::verbose(
           data_out = useVerbose,
@@ -75,6 +86,7 @@ apiPUT <-
           info = useVerbose,
           ssl = useVerbose
         )
+        
       )
 
 
@@ -84,6 +96,7 @@ apiPUT <-
       stop({
         print("API call failed")
         print(httr::http_status(response))
+        print(httr::content(response, as = "text"))
       },
       call. = FALSE
       )
