@@ -14,7 +14,7 @@ lapply(environments, function(x) {
     expect_that(is.null(con$coreApi$jsessionId), equals(FALSE))
   })
 
-  test_that(paste("test Updating MetaData of: ", x), {
+  test_that(paste("test Updating Metadata of: ", x), {
     metadata <- CoreAPIV2::updateMetadata(con$coreApi, useVerbose = TRUE)
     print(httr::http_status(metadata$response))
     expect_match(httr::http_status(metadata$response)$category, "Success")

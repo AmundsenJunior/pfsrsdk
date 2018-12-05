@@ -29,6 +29,12 @@
       "hovered": false
     },
     {
+      "key": "port",
+      "value": "443",
+      "type": "text",
+      "enabled": true
+    },
+    {
       "key": "context",
       "value": "",
       "type": "text",
@@ -49,13 +55,6 @@
       "name": "passwordadmin",
       "enabled": true,
       "hovered": false
-    },
-    {
-      "key": "port",
-      "value": "443",
-      "type": "text",
-      "enabled": true
     }
   ]
-  
 }

@@ -46,6 +46,10 @@ The json must include the fields shown below.
    "value": "lims.ccc.cloud"
  },
  {
+   "key": "context",
+   "value": ""
+ },
+ {
    "key": "username",
   "value": "yyyy"
  },
@@ -74,4 +78,6 @@ api<-CoreAPIV2::coreAPI("/home/environment.json")
 }
 \author{
 Craig Parman ngsAnalytics, ngsanalytics.com
+
+Scott Russell scott.russell@thermofisher.com
 }

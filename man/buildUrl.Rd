@@ -31,10 +31,12 @@ RETURN Core REST URL
 \dontrun{
 api<-CoreAPIV2("PATH TO JSON FILE")
 login<- CoreAPIV2::authBasic(api)
-URL <-CoreAPIV2::buildUrl(coeApi,"Sample","('PS1')")
+URL <-CoreAPIV2::buildUrl(api,"Sample","('PS1')")
 logOut(login$coreApi )
 }
 }
 \author{
 Craig Parman ngsAnalytics, ngsanalytics.com
+
+Scott Russell scott.russell@thermofisher.com
 }
