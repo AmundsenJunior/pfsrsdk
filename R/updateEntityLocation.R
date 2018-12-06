@@ -18,6 +18,7 @@
 #' CoreAPIV2::logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Adam Wheeler adam.j.wheeler@accenture.com
 #' @description \code{updateEntityLocation} - Update entity location
 
 updateEntityLocation <-
@@ -26,8 +27,6 @@ updateEntityLocation <-
              barcode,
              locationBarcode,
              useVerbose = FALSE) {
-
-
     query <- paste0("('", barcode, "')")
 
     # Get entityType

@@ -18,6 +18,7 @@
 #' CoreAPIV2::logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Adam Wheeler adam.j.wheeler@accenture.com
 #' @description \code{getEntityAssociations}  Get assoication for a entity
 
 
@@ -31,9 +32,9 @@ getEntityAssociations <-
              fullMetadata = TRUE,
              useVerbose = FALSE) {
 
-    #this is the context for the association not the URL context
+    # this is the context for the association not the URL context
     context <- CoreAPIV2::odataCleanName(context)
-    query <- paste0("('", barcode, "')/",context)
+    query <- paste0("('", barcode, "')/", context)
 
 
 

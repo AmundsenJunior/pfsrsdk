@@ -18,6 +18,7 @@
 #' CoreAPIV2::logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Adam Wheeler adam.j.wheeler@accenture.com
 #' @description \code{updateEntityProject} - Update entity project associations.  Does not perserve current associations.
 
 
@@ -29,8 +30,6 @@ updateEntityProject <-
              barcode,
              projectBarcodes,
              useVerbose = FALSE) {
-
-
     query <- paste0("('", barcode, "')")
 
     # Get entityType

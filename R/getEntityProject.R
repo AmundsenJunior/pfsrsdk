@@ -16,6 +16,7 @@
 #' CoreAPIV2::logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Adam Wheeler adam.j.wheeler@accenture.com
 #' @description \code{getEntityProject}  Get project(s) for an entity by barcode from the Core LIMS using the ODATA API.
 
 
@@ -23,7 +24,6 @@
 
 getEntityProject <-
   function(coreApi, entityType, barcode, useVerbose = FALSE) {
-
     query <- paste0("('", barcode, "')/PROJECT")
 
     header <- c(Accept = "application/json;odata.metadata=minimal")

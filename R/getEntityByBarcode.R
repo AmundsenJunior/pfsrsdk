@@ -17,6 +17,7 @@
 #' CoreAPIV2::logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Adam Wheeler adam.j.wheeler@accenture.com
 #' @description \code{getEntityByBarcode}  Get an entity by barcode from the Core LIMS using the ODATA API.
 
 
@@ -27,8 +28,6 @@ getEntityByBarcode <-
              barcode,
              fullMetadata = TRUE,
              useVerbose = FALSE) {
-
-
     query <- paste0("('", barcode, "')")
 
 
