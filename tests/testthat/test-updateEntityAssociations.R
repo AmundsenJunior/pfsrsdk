@@ -19,7 +19,7 @@ lapply(environments, function(x) {
     updateValues[[ASSOCIATIONCONTEXTLISTNAME]] <- c(POCOASSOC, ta2$entity[[1]]$Barcode)
 
     us <- CoreAPIV2::updateEntityAssociations(con$coreApi, TESTPOCO, PC60$entity[[1]]$Barcode, updateValues, useVerbose = FALSE)
-    as <- CoreAPIV2::getEntityAssociations(con$coreApi, TESTPOCO, PC60$entity[[1]]$Barcode, context = ASSOCIATIONCONTEXTLISTNAME, fullMetadata = TRUE, useVerbose = FALSE)
+    as <- CoreAPIV2::getEntityAssociations(con$coreApi, TESTPOCO, PC60$entity[[1]]$Barcode, associationContext = ASSOCIATIONCONTEXTLISTNAME, fullMetadata = TRUE, useVerbose = FALSE)
 
     expect_match(as$entity[[1]]$Barcode, ta2$entity[[1]]$Barcode)
 
@@ -28,7 +28,7 @@ lapply(environments, function(x) {
     updateValues[[ASSOCIATIONCONTEXTLISTNAME]] <- c(POCOASSOC, ta1$entity[[1]]$Barcode)
 
     us <- CoreAPIV2::updateEntityAssociations(con$coreApi, TESTPOCO, PC60$entity[[1]]$Barcode, updateValues, useVerbose = FALSE)
-    as <- CoreAPIV2::getEntityAssociations(con$coreApi, TESTPOCO, PC60$entity[[1]]$Barcode, context = ASSOCIATIONCONTEXTLISTNAME, fullMetadata = TRUE, useVerbose = FALSE)
+    as <- CoreAPIV2::getEntityAssociations(con$coreApi, TESTPOCO, PC60$entity[[1]]$Barcode, associationContext = ASSOCIATIONCONTEXTLISTNAME, fullMetadata = TRUE, useVerbose = FALSE)
 
     expect_match(as$entity[[1]]$Barcode, ta1$entity[[1]]$Barcode)
   })
