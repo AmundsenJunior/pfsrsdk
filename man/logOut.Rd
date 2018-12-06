@@ -12,7 +12,7 @@ logOut(coreApi, useVerbose = FALSE)
 \item{useVerbose}{use verbose option for debuggin in http POST}
 }
 \value{
-returns list with $success = TRUE when sucessful, $response contains the entire http response
+returns list with $success = "Success" when sucessful, $response contains the entire http response
 }
 \description{
 \code{logOut} logs out of the current session.

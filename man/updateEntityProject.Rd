@@ -35,4 +35,6 @@ CoreAPIV2::logOut(login$coreApi)
 }
 \author{
 Craig Parman ngsAnalytics, ngsanalytics.com
+
+Adam Wheeler adam.j.wheeler@accenture.com
 }

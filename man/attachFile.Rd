@@ -4,7 +4,7 @@
 \alias{attachFile}
 \title{attachFile - Attaches a file to an entity or file attribute.}
 \usage{
-attachFile(coreApi, barcode, filename, filepath,
+attachFile(coreApi, entityType, barcode, filePath,
   targetAttributeName = "", useVerbose = FALSE)
 }
 \arguments{
@@ -12,19 +12,21 @@ attachFile(coreApi, barcode, filename, filepath,
 
 \item{barcode}{User provided barcode as a character string}
 
-\item{filename}{name to use for the attached file}
-
-\item{filepath}{path to the file to attach}
-
 \item{targetAttributeName}{- if included the name if the attribute to attach the file to.  Must be in all caps.}
 
 \item{useVerbose}{Use verbose communication for debugging}
+
+\item{filename}{name to use for the attached file}
+
+\item{filepath}{path to the file to attach}
 }
 \value{
 RETURN returns a list $entity contains entity information, $response contains the entire http response
 }
 \description{
-\code{attachFile} Attaches a file to entity identified by barcode.  Note: This function uses the JSON API.
+\code{attachFile} Attaches a file to entity identified by barcode.
+Note: This function uses the JSON API to post a file to an entity and
+Odata to post to an attribute.
 }
 \details{
 \code{attachFile}  Attaches a file to an entity or file attribute.
@@ -40,4 +42,6 @@ CoreAPIV2::logOut(login$coreApi )
 }
 \author{
 Craig Parman ngsAnalytics, ngsanalytics.com
+
+Adam Wheeler, adam.j.wheeler@accenture.com
 }

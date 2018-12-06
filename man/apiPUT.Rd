@@ -5,7 +5,8 @@
 \title{apiPUT - Do a PUT to the Core ODATA REST API.}
 \usage{
 apiPUT(coreApi, resource = NULL, query = NULL, body = NULL, encode,
-  headers = NULL, special = NULL, useVerbose = FALSE, unbox = TRUE)
+  headers = NULL, special = NULL, useVerbose = FALSE, unbox = TRUE,
+  valueFlag = FALSE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -25,6 +26,8 @@ apiPUT(coreApi, resource = NULL, query = NULL, body = NULL, encode,
 \item{useVerbose}{Use verbose communication for debugging}
 
 \item{unbox}{use autounbox when doing lait yo json conversion}
+
+\item{valuFlag}{Tells the PUT if there needs to be a /$value added to the end.}
 }
 \value{
 Returns the entire http response
@@ -46,4 +49,6 @@ CoreAPIV2::logOut(login$coreApi )
 }
 \author{
 Craig Parman ngsAnalytics, ngsanalytics.com
+
+Adam Wheeler, adam.j.wheeler@accenture.com
 }
