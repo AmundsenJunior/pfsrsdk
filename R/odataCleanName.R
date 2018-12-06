@@ -29,8 +29,8 @@ odataCleanName <- function(name) {
 #' ODATAcleanName - converts names to ODATA compliant version. Used to clean names in ODATA calls.
 #'
 #' \code{ODATAcleanName} Clean a name for ODATA.
+#' @title ODATA clean Name
 #' @param name  string to clean
-#' @export
 #' @return Returns name in ODATA compliant form
 #' @examples
 #' \dontrun{
@@ -38,21 +38,20 @@ odataCleanName <- function(name) {
 #' new_name
 #' _384_WELL_PLATE
 #'  }
-#' @name ODATAcleanName-deprecated
-#' @seealso \code{\link{CoreAPIV2-deprecated}}
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Adam Wheeler adam.j.wheeler@accenture.com
 #' @description \code{ODATAcleanName} - converts names to ODATA compliant version. Used to clean names in ODATA calls.
+#' 
+#' @name ODATAcleanName-deprecated
+#' @seealso \code{\link{CoreAPIV2-deprecated}}
 #' @keywords internal
 NULL
 
-#' @rdname ODATAcleanName-deprecated
+#' @rdname CoreAPIV2-deprecated
 #' @section \code{ODATAcleanName}:
 #' For \code{ODATAcleanName}, use \code{\link{odataCleanName}}.
 #'
 #' @export
-
-
 ODATAcleanName <- function(name) {
   .Deprecated(new = "odataCleanName")
 

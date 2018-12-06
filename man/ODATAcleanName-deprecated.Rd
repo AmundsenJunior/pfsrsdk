@@ -2,11 +2,7 @@
 % Please edit documentation in R/odataCleanName.R
 \name{ODATAcleanName-deprecated}
 \alias{ODATAcleanName-deprecated}
-\alias{ODATAcleanName}
-\title{ODATAcleanName - converts names to ODATA compliant version. Used to clean names in ODATA calls.}
-\usage{
-ODATAcleanName(name)
-}
+\title{ODATA clean Name}
 \arguments{
 \item{name}{string to clean}
 }
@@ -17,13 +13,10 @@ Returns name in ODATA compliant form
 \code{ODATAcleanName} - converts names to ODATA compliant version. Used to clean names in ODATA calls.
 }
 \details{
+ODATAcleanName - converts names to ODATA compliant version. Used to clean names in ODATA calls.
+
 \code{ODATAcleanName} Clean a name for ODATA.
 }
-\section{\code{ODATAcleanName}}{
-
-For \code{ODATAcleanName}, use \code{\link{odataCleanName}}.
-}
-
 \examples{
 \dontrun{
 new_name <-CoreAPIV2::ODATAcleanName("384 Well Plate")
