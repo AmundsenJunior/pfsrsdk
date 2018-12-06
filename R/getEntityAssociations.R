@@ -5,7 +5,7 @@
 #' @param coreApi coreApi object with valid jsessionid
 #' @param entityType entity type to get
 #' @param barcode barcode of entity to get
-#' @param context association context
+#' @param associationContext association context
 #' @param fullMetadata - get full metadata
 #' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http POST
 #' @return returns a list $entity contains entity associations, $response contains the entire http response
@@ -18,6 +18,7 @@
 #' CoreAPIV2::logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Adam Wheeler adam.j.wheeler@accenture.com
 #' @description \code{getEntityAssociations}  Get assoication for a entity
 
 
@@ -27,17 +28,13 @@ getEntityAssociations <-
   function(coreApi,
              entityType,
              barcode,
-             context,
+             associationContext,
              fullMetadata = TRUE,
              useVerbose = FALSE) {
-    # clean the name for ODATA
 
-    entityType <- CoreAPIV2::ODATAcleanName(entityType)
-    context <- CoreAPIV2::ODATAcleanName(context)
-
-    resource <- entityType
-
-    query <- paste0("('", barcode, "')/", context)
+    # this is the context for the association not the URL context
+    associationContext <- CoreAPIV2::odataCleanName(associationContext)
+    query <- paste0("('", barcode, "')/", associationContext)
 
 
 
@@ -51,7 +48,7 @@ getEntityAssociations <-
     out <-
       CoreAPIV2::apiGET(
         coreApi,
-        resource = resource,
+        resource = entityType,
         query = query,
         headers = header,
         useVerbose = useVerbose

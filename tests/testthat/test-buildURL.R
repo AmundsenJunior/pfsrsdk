@@ -10,9 +10,9 @@ context("Tests for buildURL")
 lapply(environments, function(x) {
   con <- Connect(x)
   if (!is.null(con$coreApi$account) && is.null(con$coreApi$TenantShortName)) {
-    odat <- paste0("/", ODATAcleanName(con$coreApi$account), "/odata/")
+    odat <- paste0("/", odataCleanName(con$coreApi$account), "/odata/")
   } else if (!is.null(con$coreApi$TenantShortName)) {
-    odat <- paste0("/", ODATAcleanName(con$coreApi$TenantShortName), "/odata/")
+    odat <- paste0("/", odataCleanName(con$coreApi$TenantShortName), "/odata/")
   } else {
     odat <- "/odata/"
   }

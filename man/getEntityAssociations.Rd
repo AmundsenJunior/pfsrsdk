@@ -4,7 +4,7 @@
 \alias{getEntityAssociations}
 \title{\code{getEntityAssociations} Get assoication for a context}
 \usage{
-getEntityAssociations(coreApi, entityType, barcode, context,
+getEntityAssociations(coreApi, entityType, barcode, associationContext,
   fullMetadata = TRUE, useVerbose = FALSE)
 }
 \arguments{
@@ -14,7 +14,7 @@ getEntityAssociations(coreApi, entityType, barcode, context,
 
 \item{barcode}{barcode of entity to get}
 
-\item{context}{association context}
+\item{associationContext}{association context}
 
 \item{fullMetadata}{- get full metadata}
 
@@ -36,4 +36,6 @@ CoreAPIV2::logOut(login$coreApi)
 }
 \author{
 Craig Parman ngsAnalytics, ngsanalytics.com
+
+Adam Wheeler adam.j.wheeler@accenture.com
 }

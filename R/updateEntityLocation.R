@@ -18,6 +18,7 @@
 #' CoreAPIV2::logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Adam Wheeler adam.j.wheeler@accenture.com
 #' @description \code{updateEntityLocation} - Update entity location
 
 updateEntityLocation <-
@@ -26,12 +27,6 @@ updateEntityLocation <-
              barcode,
              locationBarcode,
              useVerbose = FALSE) {
-    # clean the name for ODATA
-
-    entityType <- CoreAPIV2::ODATAcleanName(entityType)
-
-    resource <- entityType
-
     query <- paste0("('", barcode, "')")
 
     # Get entityType
@@ -56,7 +51,6 @@ updateEntityLocation <-
 
     body <- old_values
 
-    resource <- paste0(entityType)
     query <- paste0("('", barcode, "')")
 
     header <- c("Content-Type" = "application/json", "If-Match" = "*")
@@ -67,7 +61,7 @@ updateEntityLocation <-
     response <-
       CoreAPIV2::apiPUT(
         coreApi,
-        resource = resource,
+        resource = entityType,
         query = query,
         body = body,
         encode = "raw",

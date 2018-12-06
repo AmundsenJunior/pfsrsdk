@@ -19,6 +19,7 @@
 #' CoreAPIV2::logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Adam Wheeler adam.j.wheeler@accenture.com
 #' @description \code{updateEntityAssociations}  Update entity associations.
 
 
@@ -30,12 +31,6 @@ updateEntityAssociations <-
              barcode,
              updateValues,
              useVerbose = FALSE) {
-    # clean the name for ODATA
-
-    entityType <- CoreAPIV2::ODATAcleanName(entityType)
-
-    resource <- entityType
-
     query <- paste0("('", barcode, "')")
 
     # Get entityType
@@ -78,7 +73,6 @@ updateEntityAssociations <-
 
     body <- old_values
 
-    resource <- paste0(entityType)
     query <- paste0("('", barcode, "')")
 
     header <- c("Content-Type" = "application/json", "If-Match" = "*")
@@ -89,7 +83,7 @@ updateEntityAssociations <-
     response <-
       CoreAPIV2::apiPUT(
         coreApi,
-        resource = resource,
+        resource = entityType,
         query = query,
         body = body,
         encode = "raw",
