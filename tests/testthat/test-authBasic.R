@@ -1,15 +1,13 @@
 
 #' @author Adam Wheeler adam.j.wheeler@accenture.com
-#' @description \code Test for basic authentication.
+#' @description Tests for basic authentication.
 #'
 context("Tests for authentication")
 
-# Completed regression for 5.3.8 and 6.0.0
-
-cat(paste0("\n environments:\n", environments, "\n"))
-
+# Completed regression for 5.3.8 and 6.0.1
 lapply(environments, function(x) {
   con <- Connect(x)
+
   test_that(paste("test login parameters for environment and updating metadata", x), {
     expect_that(is.null(con$coreApi$jsessionId), equals(FALSE))
   })

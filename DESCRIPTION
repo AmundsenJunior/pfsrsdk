@@ -15,6 +15,7 @@ LazyData: TRUE
 Imports:
     base64enc,
     httr,
+    stringi,
     jsonlite,
     XML
 Suggests:
