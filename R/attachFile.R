@@ -18,103 +18,111 @@
 #' CoreAPIV2::logOut(login$coreApi )
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
-#' @description \code{attachFile} Attaches a file to entity identified by barcode.  Note: This function uses the JSON API.
+#' @author Adam Wheeler, adam.j.wheeler@accenture.com
+#' @description \code{attachFile} Attaches a file to entity identified by barcode.
+#' Note: This function uses the JSON API to post a file to an entity and
+#' Odata to post to an attribute.
 
 
 attachFile <-
-  function(coreApi,
+  function(coreApi, entityType,
              barcode,
-             filename,
-             filepath,
+             filePath,
              targetAttributeName = "",
              useVerbose = FALSE) {
-    if (!file.exists(filepath)) {
+    if (!file.exists(filePath)) {
       stop({
         print("Unable to find file on local OS")
-        print(filepath)
+        print(filePath)
       },
       call. = FALSE
       )
     }
 
+    if (targetAttributeName != "") {
+      # Check if the metadata reports this as a stream
 
-    sdkCmd <- jsonlite::unbox("file-attach")
-
-    data <- list(
-      targetEntityBarcode = jsonlite::unbox(barcode),
-      targetEntityId = jsonlite::unbox(""),
-      name = jsonlite::unbox(filename),
-      targetAttributeName = jsonlite::unbox(targetAttributeName),
-      fileContentTypeOverride = jsonlite::unbox("")
-    )
-
-
-    responseOptions <- c("CONTEXT_GET", "MESSAGE_LEVEL_WARN")
-    logicOptions <- "EXECUTE_TRIGGERS"
-    typeParam <- jsonlite::unbox("FILE")
-
-
-    request <-
-      list(
-        request = list(
-          sdkCmd = sdkCmd,
-          data = data,
-          typeParam = typeParam,
-          responseOptions = responseOptions,
-          logicOptions = logicOptions
+      met <- getEntityMetadata(coreApi, entityType)
+      valueFlag <- ifelse(match("Edm.Stream", met$attributes$types[match(targetAttributeName, met$attributes$names)]) == 1, TRUE, FALSE)
+      body <- httr::upload_file(filePath)
+      query <- paste0("('", barcode, "')/", targetAttributeName)
+      header <- c("If-Match" = "*")
+      response <-
+        CoreAPIV2::apiPUT(
+          coreApi,
+          resource = entityType,
+          query = query,
+          body = body,
+          encode = "raw",
+          headers = header,
+          special = NULL,
+          useVerbose = useVerbose,
+          valueFlag = valueFlag
         )
+    } else { # Use the JSON SDK to post a file to an entity.
+      # TODO replace this section of code to use the ODATA functionality when available.
+
+      sdkCmd <- jsonlite::unbox("file-attach")
+      fileName <- basename(filePath)
+      data <- list(
+        targetEntityBarcode = jsonlite::unbox(barcode),
+        targetEntityId = jsonlite::unbox(""),
+        name = jsonlite::unbox(fileName),
+        fileContentTypeOverride = jsonlite::unbox("")
       )
 
+      responseOptions <- c("CONTEXT_GET", "MESSAGE_LEVEL_WARN")
+      logicOptions <- "EXECUTE_TRIGGERS"
+      typeParam <- jsonlite::unbox("FILE")
 
+      request <-
+        list(
+          request = list(
+            sdkCmd = sdkCmd,
+            data = data,
+            typeParam = typeParam,
+            responseOptions = responseOptions,
+            logicOptions = logicOptions
+          )
+        )
 
-    headers <- c("Content-Type" = "multipart/related")
+      headers <- c("Content-Type" = "multipart/related")
 
-
-
-
-
-    form <- list(
-      json = jsonlite::toJSON(request),
-      fileData = httr::upload_file(filepath, type = "image/png")
-    )
-
-
-
-    body <- list(
-      json = jsonlite::toJSON(request),
-      fileData = httr::upload_file(filepath)
-    )
-
-
-    cookie <-
-      c(
-        JSESSIONID = coreApi$jsessionId,
-        AWSELB = coreApi$awselb
+      form <- list(
+        json = jsonlite::toJSON(request),
+        fileData = httr::upload_file(filePath)
       )
 
-
-
-    response <-
-      httr::POST(
-        paste0(coreApi$scheme, "://", coreApi$coreUrl, "/sdk"),
-        body = body,
-        httr::verbose(data_out = FALSE),
-        httr::add_headers("Content-Type" = "multipart/form-data"),
-        httr::set_cookies(cookie)
+      body <- list(
+        json = jsonlite::toJSON(request),
+        fileData = httr::upload_file(filePath)
       )
 
+      cookie <-
+        c(
+          JSESSIONID = coreApi$jsessionId,
+          AWSELB = coreApi$awselb
+        )
 
+      response <-
+        httr::POST(
+          url = buildUrl(coreApi, special = "json"),
+          body = body,
+          httr::verbose(data_out = FALSE),
+          httr::add_headers("Content-Type" = "multipart/form-data"),
+          httr::set_cookies(cookie)
+        )
 
+      # check for general HTTP error in response
 
-    # check for general HTTP error in response
-
-    if (httr::http_error(response)) {
-      stop({
-        print("json API file-attach call failed")
-        print(httr::http_status(response))
-      },
-      call. = FALSE
-      )
+      if (httr::http_error(response)) {
+        stop({
+          print("json API file-attach call failed")
+          print(httr::http_status(response))
+        },
+        call. = FALSE
+        )
+      }
     }
 
     list(

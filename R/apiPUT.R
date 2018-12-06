@@ -10,6 +10,7 @@
 #' @param special  passed to buildUrl for special sdk endpoints
 #' @param useVerbose  Use verbose communication for debugging
 #' @param unbox use autounbox when doing lait yo json conversion
+#' @param valuFlag Tells the PUT if there needs to be a /$value added to the end.
 #' @export
 #' @return Returns the entire http response
 #' @examples
@@ -21,6 +22,7 @@
 #' CoreAPIV2::logOut(login$coreApi )
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Adam Wheeler, adam.j.wheeler@accenture.com
 #' @description \code{apiPUT} - Base PUT call to Core ODATA REST API.
 
 apiPUT <-
@@ -32,7 +34,8 @@ apiPUT <-
              headers = NULL,
              special = NULL,
              useVerbose = FALSE,
-             unbox = TRUE) {
+             unbox = TRUE,
+             valueFlag = FALSE) {
     # clean the resource name for ODATA
     resource <- CoreAPIV2::ODATAcleanName(resource)
 
@@ -46,15 +49,16 @@ apiPUT <-
       call. = FALSE
       )
     }
-    
-    sdk_url <-
+
+    sdk_url <- paste0(
       CoreAPIV2::buildUrl(
         coreApi,
         resource = resource,
         query = query,
         special = special,
         useVerbose = useVerbose
-      )
+      ), ifelse(valueFlag, "/$value", "")
+    )
 
     cookie <-
       c(
@@ -62,12 +66,17 @@ apiPUT <-
         AWSELB = coreApi$awselb
       )
 
+    # check to see if the put request is for a file
+    if (class(body) != "form_file") {
+      body <- jsonlite::toJSON(body, auto_unbox = unbox, null = "null")
+    }
+
     response <-
       httr::PUT(
         url = sdk_url,
-        body = jsonlite::toJSON(body, auto_unbox = unbox, null = "null"),
+        body = body,
         httr::set_cookies(cookie),
-        encode = "raw",
+        encode = encode,
         httr::add_headers(headers),
         httr::verbose(
           data_out = useVerbose,
@@ -84,6 +93,7 @@ apiPUT <-
       stop({
         print("API call failed")
         print(httr::http_status(response))
+        print(httr::content(response, as = "text"))
       },
       call. = FALSE
       )

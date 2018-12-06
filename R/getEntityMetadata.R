@@ -52,7 +52,7 @@ getEntityMetadata <- function(coreApi, entityType, useVerbose = FALSE) {
   schemachildren <-
     XML::xmlChildren(topchildren$DataServices)[["Schema"]]
 
-#FIXME: When entity type does not exist in the schema, this fails. 
+  # FIXME: When entity type does not exist in the schema, this fails.
   entity <-
     schemachildren[[which(lapply(XML::xmlSApply(schemachildren, XML::xmlAttrs), function(x)
       x[["Name"]]) == entityType)]]

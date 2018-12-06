@@ -1,7 +1,7 @@
 
 #' @author Adam Wheeler adam.j.wheeler@accenture.com
 #' @description \code Test for basic authentication.
-#' 
+#'
 context("Tests for authentication")
 
 # Completed regression for 5.3.8 and 6.0.0
