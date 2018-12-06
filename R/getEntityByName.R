@@ -27,11 +27,7 @@ getEntityByName <-
              name,
              fullMetadata = TRUE,
              useVerbose = FALSE) {
-    # clean the name for ODATA
 
-    entityType <- CoreAPIV2::ODATAcleanName(entityType)
-
-    resource <- entityType
 
     query <- URLencode(paste0("?$filter=Name eq '", name, "'"))
 
@@ -48,7 +44,7 @@ getEntityByName <-
     out <-
       CoreAPIV2::apiGET(
         coreApi,
-        resource = resource,
+        resource = entityType,
         query = query,
         headers = header,
         useVerbose = useVerbose

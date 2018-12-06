@@ -29,9 +29,6 @@ createEntity <- function(coreApi,
                          projectIds = NULL,
                          barcode = NULL,
                          useVerbose = FALSE) {
-  # clean the name for ODATA
-
-  entityType <- CoreAPIV2::ODATAcleanName(entityType)
 
   # scrub unused fields from the body
   body <- body[!body %in% ""]

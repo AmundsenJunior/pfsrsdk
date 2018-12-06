@@ -35,7 +35,7 @@ apiPOST <-
              useVerbose = FALSE) {
     # clean the resource name for ODATA
 
-    resource <- CoreAPIV2::ODATAcleanName(resource)
+    resource <- CoreAPIV2::odataCleanName(resource)
 
 
     # Check that encode parameter is proper

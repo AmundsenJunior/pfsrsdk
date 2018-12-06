@@ -23,30 +23,19 @@
 
 getEntityLocation <-
   function(coreApi, entityType, barcode, useVerbose = FALSE) {
-    # clean the name for ODATA
-
-    entityType <- CoreAPIV2::ODATAcleanName(entityType)
-
-    resource <- entityType
 
     query <- paste0("('", barcode, "')/LOCATION")
 
-
-
-
     header <- c(Accept = "application/json;odata.metadata=minimal")
-
 
     out <-
       CoreAPIV2::apiGET(
         coreApi,
-        resource = resource,
+        resource = entityType,
         query = query,
         headers = header,
         useVerbose = useVerbose
       )
-
-
 
     list(entity = out$content, response = out$response)
   }

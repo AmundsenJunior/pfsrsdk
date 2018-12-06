@@ -30,14 +30,10 @@ getEntityAssociations <-
              context,
              fullMetadata = TRUE,
              useVerbose = FALSE) {
-    # clean the name for ODATA
 
-    entityType <- CoreAPIV2::ODATAcleanName(entityType)
-    context <- CoreAPIV2::ODATAcleanName(context)
-
-    resource <- entityType
-
-    query <- paste0("('", barcode, "')/", context)
+    #this is the context for the association not the URL context
+    context <- CoreAPIV2::odataCleanName(context)
+    query <- paste0("('", barcode, "')/",context)
 
 
 
@@ -51,7 +47,7 @@ getEntityAssociations <-
     out <-
       CoreAPIV2::apiGET(
         coreApi,
-        resource = resource,
+        resource = entityType,
         query = query,
         headers = header,
         useVerbose = useVerbose

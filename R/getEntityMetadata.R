@@ -25,7 +25,7 @@
 getEntityMetadata <- function(coreApi, entityType, useVerbose = FALSE) {
   # clean the name for ODATA
 
-  entityType <- CoreAPIV2::ODATAcleanName(entityType)
+  entityType <- CoreAPIV2::odataCleanName(entityType)
 
   ## get all metadata
 

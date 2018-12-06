@@ -56,11 +56,9 @@ NULL
 ODATAcleanName <- function(name) {
   
   .Deprecated(new = "odataCleanName")
-  
+
   name <- gsub("(^[1-9])", "_\\1", name)
-  
   name <- gsub(" ", "_", name)
-  
-  
+
   name
 }

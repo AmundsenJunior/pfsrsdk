@@ -27,11 +27,7 @@ getEntityByBarcode <-
              barcode,
              fullMetadata = TRUE,
              useVerbose = FALSE) {
-    # clean the name for ODATA
 
-    entityType <- CoreAPIV2::ODATAcleanName(entityType)
-
-    resource <- entityType
 
     query <- paste0("('", barcode, "')")
 
@@ -48,7 +44,7 @@ getEntityByBarcode <-
     out <-
       CoreAPIV2::apiGET(
         coreApi,
-        resource = resource,
+        resource = entityType,
         query = query,
         headers = header,
         useVerbose = useVerbose
