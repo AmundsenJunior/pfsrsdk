@@ -12,10 +12,11 @@
 #' \dontrun{
 #' api<-CoreAPIV2("PATH TO JSON FILE")
 #' login<- CoreAPIV2::authBasic(api)
-#' URL <-CoreAPIV2::buildUrl(coeApi,"Sample","('PS1')")
+#' URL <-CoreAPIV2::buildUrl(api,"Sample","('PS1')")
 #' logOut(login$coreApi )
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Scott Russell scott.russell@thermofisher.com
 #' @description \code{buildUrl} build URL for call to Core REST API.
 
 
@@ -38,6 +39,13 @@ buildUrl <-
       odat <- "/odata/"
     }
 
+    # Add URL context to path
+    if (!is.null(coreApi$context)) {
+      ctx <- paste0("/", coreApi$context)
+    } else {
+      ctx <- ""
+    }
+
 
     if (is.null(special)) {
       sdk_url <-
@@ -47,6 +55,7 @@ buildUrl <-
           coreApi$coreUrl,
           ":",
           coreApi$port,
+          ctx,
           odat,
           resource,
           query
@@ -61,6 +70,7 @@ buildUrl <-
             coreApi$coreUrl,
             ":",
             coreApi$port,
+            ctx,
             "/odatalogin"
           ),
         file = sdk_url <-
@@ -70,6 +80,7 @@ buildUrl <-
             coreApi$coreUrl,
             ":",
             coreApi$port,
+            ctx,
             "/sdk"
           ),
         json = sdk_url <-
@@ -79,6 +90,7 @@ buildUrl <-
             coreApi$coreUrl,
             ":",
             coreApi$port,
+            ctx,
             "/sdk"
           )
       )

@@ -36,6 +36,10 @@
 #'    "value": "lims.ccc.cloud"
 #'  },
 #'  {
+#'    "key": "context",
+#'    "value": ""
+#'  },
+#'  {
 #'    "key": "username",
 #'   "value": "yyyy"
 #'  },
@@ -57,18 +61,19 @@
 #'  The account value may be set to "" if the user only has access to one tenant.
 #' As an alternative the environment json object from Postman can be used directly.
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Scott Russell scott.russell@thermofisher.com
 coreAPI <- function(CoreAccountInfo) {
   accountinfo <- jsonlite::fromJSON(CoreAccountInfo)$values
-  # if  (accountinfo$account == "") accountinfo$account <- NULL
   structure(
     list(
-      user = accountinfo$value[accountinfo$key == "username"],
-      pwd = accountinfo$value[accountinfo$key == "password"],
-      account = accountinfo$value[accountinfo$key == "tenant"],
-      TenantShortName = accountinfo$value[accountinfo$key == "TenantShortName"],
-      coreUrl = accountinfo$value[accountinfo$key == "host"],
-      port = accountinfo$value[accountinfo$key == "port"],
-      scheme = accountinfo$value[accountinfo$key == "scheme"],
+      user = getAccountInfoValue(accountinfo, "username"),
+      pwd = getAccountInfoValue(accountinfo, "password"),
+      account = getAccountInfoValue(accountinfo, "tenant"),
+      TenantShortName = getAccountInfoValue(accountinfo, "TenantShortName"),
+      context = getAccountInfoValue(accountinfo, "context"),
+      coreUrl = getAccountInfoValue(accountinfo, "host"),
+      port = getAccountInfoValue(accountinfo, "port"),
+      scheme = getAccountInfoValue(accountinfo, "scheme"),
       jsessionId = NULL,
       awselb = NULL,
       employeeId = NULL
@@ -77,4 +82,9 @@ coreAPI <- function(CoreAccountInfo) {
     ,
     class = "coreAPI"
   )
+}
+
+getAccountInfoValue <- function(accountinfo, key) {
+  value <- accountinfo$value[accountinfo$key == key]
+  ifelse(value == "", NULL, value)
 }
