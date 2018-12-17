@@ -1,3 +1,5 @@
+library(stringi)
+
 #' coreAPI Creates a object of class coreAPI that contains user and connection information.
 #' @param CoreAccountInfo file with account information in json format.
 #' @return Object of class coreAPI
@@ -86,5 +88,10 @@ coreAPI <- function(CoreAccountInfo) {
 
 getAccountInfoValue <- function(accountinfo, key) {
   value <- accountinfo$value[accountinfo$key == key]
-  ifelse(value == "", NULL, value)
+  
+  if(stri_isempty(value)) {
+    value <- NULL
+  }
+  
+  return(value)
 }

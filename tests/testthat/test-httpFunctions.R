@@ -6,7 +6,6 @@
 context("test-httpFunctions")
 
 # Completed regression for 5.3.8 and 6.0.1
-
 lapply(environments, function(x) {
   con <- Connect(x)
 

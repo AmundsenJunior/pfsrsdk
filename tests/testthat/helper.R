@@ -28,7 +28,7 @@ TESTPOCOBOOLATTRNAME <- "TST_BOOL"
 
 # The name of the association on the poco
 POCOASSOC <- "TESTASSOC"
-# Two entitys on the pocoassoc type
+# Two entities on the pocoassoc type
 POCOASSOC1NAME <- "TA1"
 POCOASSOC2NAME <- "TA2"
 # context set on the assocication
@@ -43,15 +43,13 @@ PERSISTENTBARCODEENTITY <- "ACCESS_LEVEL"
 
 # setup to test against multiple environments
 # name files Auth-[pfsversion].json example Auth-5.3.8 for this to pick them up.
-
-
 environments <- list.files("test_environment", "^(Auth-)[0-9]+\\.[0-9]+\\.[0-9]+\\.json$", full.names = TRUE)
 
 ## Set environments to be tested.
 if (length(environments) > 1) {
 
   # Offer the user the option to select the environments that they would like to test.
-  cat("Choose the environments that you want to test from the list below. separate each number with a space. hit return to test all\n")
+  cat("Choose the environments that you want to test from the list below. Separate each number with a space. Hit return to test all:\n")
   print.simple.list(environments)
   selection <- readline()
   if (nchar(selection) > 0) environments <- environments[lapply(strsplit(selection, " "), as.numeric)[[1]]]
