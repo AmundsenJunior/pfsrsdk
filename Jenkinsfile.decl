@@ -79,7 +79,7 @@ pipeline {
         always {
             //helmUninstall('')
             //deleteK8sNamespace()
-            sendNotification('4547897') // the RStudio-PFS Hipchat room
+            sendNotification(PFSAN)
             cleanWs deleteDirs: true, notFailBuild: true
         }
     }

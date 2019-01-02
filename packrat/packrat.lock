@@ -58,8 +58,8 @@ Hash: e8805df54c65ac96d50235c44a82615c
 
 Package: backports
 Source: CRAN
-Version: 1.1.2
-Hash: 5ae7b3466e529e4400951ca18c137e40
+Version: 1.1.3
+Hash: a0b8191e6bd2fe71aadd4678bb8f3c98
 
 Package: base64enc
 Source: CRAN
@@ -84,9 +84,9 @@ Requires: bitops
 
 Package: callr
 Source: CRAN
-Version: 3.0.0
-Hash: 15276cfa2f9ee6de0af04a4b0692f296
-Requires: R6, base64enc, processx
+Version: 3.1.1
+Hash: 461cdebafe2c1cfc23ddc37527633185
+Requires: R6, processx
 
 Package: cli
 Source: CRAN
@@ -111,8 +111,8 @@ Hash: a4268e48f71dc70ac2203aced7cdd8ea
 
 Package: commonmark
 Source: CRAN
-Version: 1.6
-Hash: c0870944e53f9570e1a84bab56f18b85
+Version: 1.7
+Hash: 77f4ba718e2bad1877ef26e48cf8fa43
 
 Package: crayon
 Source: CRAN
@@ -132,9 +132,10 @@ Requires: R6, assertthat, crayon, rprojroot
 
 Package: devtools
 Source: CRAN
-Version: 1.13.6
-Hash: 9a137acbaeb61f440b1c1dedc1fbcaec
-Requires: digest, git2r, httr, jsonlite, memoise, rstudioapi, whisker,
+Version: 2.0.1
+Hash: 4da83470ae57bd2db0ac06e91b1d3a08
+Requires: callr, cli, digest, git2r, httr, jsonlite, memoise, pkgbuild,
+    pkgload, rcmdcheck, remotes, rstudioapi, sessioninfo, usethis,
     withr
 
 Package: digest
@@ -155,8 +156,8 @@ Requires: stringr
 
 Package: fansi
 Source: CRAN
-Version: 0.3.0
-Hash: 8d0a24d8245abbfa2b030460734495ab
+Version: 0.4.0
+Hash: f147621f72b561485bfffcae78c4f5d5
 
 Package: fs
 Source: CRAN
@@ -204,8 +205,8 @@ Requires: BH, Rcpp, later, promises
 
 Package: httr
 Source: CRAN
-Version: 1.3.1
-Hash: 2d32e01e53d532c812052e27a1021441
+Version: 1.4.0
+Hash: 62d62d3ffcc9a34411b6e35a813f72dd
 Requires: R6, curl, jsonlite, mime, openssl
 
 Package: igraph
@@ -221,8 +222,8 @@ Hash: 9d6de5178c1cedabfb24e7d2acc9a092
 
 Package: jsonlite
 Source: CRAN
-Version: 1.5
-Hash: 9c51936d8dd00b2f1d4fe9d10499694c
+Version: 1.6
+Hash: 5f969e213e966135393e3e304abf3f49
 
 Package: knitr
 Source: CRAN
@@ -272,13 +273,13 @@ Requires: digest
 
 Package: mime
 Source: CRAN
-Version: 0.5
-Hash: 463550cf44fb6f0a2359368f42eebe62
+Version: 0.6
+Hash: 2ed8f98b8284ad733f3907fc6e2f1334
 
 Package: openssl
 Source: CRAN
-Version: 1.0.2
-Hash: 12a42cbd5aecdb887782247856ccbafd
+Version: 1.1
+Hash: 82c893294829c4badc3d4133b66d1428
 
 Package: packrat
 Source: CRAN
@@ -287,8 +288,8 @@ Hash: 03fb817297975f1da0d1b774b47620b3
 
 Package: pillar
 Source: CRAN
-Version: 1.3.0
-Hash: 3e43f774fa6dfba877caca1aebbeaa6a
+Version: 1.3.1
+Hash: 9ed4c2a5d3047bfba3e852ad5e806d91
 Requires: cli, crayon, fansi, rlang, utf8
 
 Package: pkgbuild
@@ -330,9 +331,9 @@ Requires: assertthat, magrittr
 
 Package: processx
 Source: CRAN
-Version: 3.2.0
-Hash: 906405f0bc681c9438826952417d5d5a
-Requires: R6, assertthat, crayon, ps
+Version: 3.2.1
+Hash: fdc6a66626b75f96ee28ffc770d9ebd7
+Requires: R6, ps
 
 Package: promises
 Source: CRAN
@@ -342,14 +343,21 @@ Requires: R6, Rcpp, later, magrittr, rlang
 
 Package: ps
 Source: CRAN
-Version: 1.1.0
-Hash: 730119cd27ec2d3270bc572a532e3f81
+Version: 1.3.0
+Hash: 1d4cae95887ffe5b1a22bea5994476cd
 
 Package: purrr
 Source: CRAN
 Version: 0.2.5
 Hash: 8b0c16db10c7e20b70cd37779a673a8b
 Requires: magrittr, rlang, tibble
+
+Package: rcmdcheck
+Source: CRAN
+Version: 1.3.2
+Hash: 629060c5fa6e01e082bad4cfe5d6b215
+Requires: R6, callr, cli, crayon, desc, digest, pkgbuild, prettyunits,
+    rprojroot, sessioninfo, withr, xopen
 
 Package: rematch
 Source: CRAN
@@ -361,6 +369,11 @@ Source: CRAN
 Version: 2.0.1
 Hash: b7f86a340a404c69cfb770dfd2081dd9
 Requires: tibble
+
+Package: remotes
+Source: CRAN
+Version: 2.0.2
+Hash: 7ce52c748688713b0569596bda4f52cc
 
 Package: rex
 Source: CRAN
@@ -411,6 +424,12 @@ Package: rstudioapi
 Source: CRAN
 Version: 0.8
 Hash: 9ba7fe76dcaf96966c449527ca04bb78
+
+Package: sessioninfo
+Source: CRAN
+Version: 1.1.1
+Hash: cebf58aa0945e47a46f23b3b60fac24f
+Requires: cli, withr
 
 Package: shiny
 Source: CRAN
@@ -504,6 +523,12 @@ Source: CRAN
 Version: 1.2.0
 Hash: c6b404c18c699513de6753858d8617a6
 Requires: Rcpp
+
+Package: xopen
+Source: CRAN
+Version: 1.0.0
+Hash: 8b6f6fc52d89c441e9532ba6efc47961
+Requires: processx
 
 Package: xtable
 Source: CRAN
