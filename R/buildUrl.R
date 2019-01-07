@@ -31,7 +31,9 @@ buildUrl <-
              useVerbose = FALSE) {
 
     # Concat account and odata
-    if (!is.null(coreApi$account) && is.null(coreApi$TenantShortName)) {
+    if (coreApi$account == "PLATFORM ADMIN") {
+      odat <- "/odata/"
+    } else if (!is.null(coreApi$account) && is.null(coreApi$TenantShortName)) {
       odat <- paste0("/", odataCleanName(coreApi$account), "/odata/")
     } else if (!is.null(coreApi$TenantShortName)) {
       odat <- paste0("/", odataCleanName(coreApi$TenantShortName), "/odata/")

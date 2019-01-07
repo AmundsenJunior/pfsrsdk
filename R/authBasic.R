@@ -17,6 +17,7 @@
 #' CoreAPIV2::logOut(response$coreApi,useVerbose=TRUE )
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanaltics.com
+#' @author Scott Russell scott.russell@thermofisher.com
 #' @description \code{authBasic} Logs in and returns a fully populated coreApi object in $coreAPI.
 
 
@@ -72,10 +73,13 @@ authBasic <- function(coreApi, useVerbose = FALSE) {
       awselb <- NULL
     }
     employeeId <- httr::content(response)$response$data$employeeId
+    serviceRoot <- httr::content(response)$response$data$serviceRoot
+    
     list(
       jsessionid = jsessionid,
       awselb = awselb,
-      employeeId = employeeId
+      employeeId = employeeId,
+      serviceRoot = serviceRoot
     )
   }
 
@@ -93,7 +97,7 @@ authBasic <- function(coreApi, useVerbose = FALSE) {
     tryCatch(
       getSession(response),
       error = function(e) {
-        list("jsessionid" = NULL, "employeeId" = NULL)
+        list("jsessionid" = NULL, "employeeId" = NULL, "serviceRoot" = NULL)
       }
     )
 
@@ -107,6 +111,9 @@ authBasic <- function(coreApi, useVerbose = FALSE) {
   }
   if (!is.null(session$employeeId)) {
     coreApi$employeeId <- session$employeeId
+  }
+  if (!is.null(session$serviceRoot)) {
+    coreApi$serviceRoot <- session$serviceRoot
   }
 
 
