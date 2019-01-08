@@ -12,6 +12,7 @@
 #'  }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Adam Wheeler adam.j.wheeler@accenture.com
+#' @author Scott Russell scott.russell@thermofisher.com
 #' @description \code{odataCleanName} - converts names to ODATA compliant version. Used to clean names in ODATA calls.
 
 
@@ -20,7 +21,8 @@ odataCleanName <- function(name) {
   name <- gsub("(^[1-9])", "_\\1", name)
 
   name <- gsub(" ", "_", name)
-
+  
+  name <- gsub("-", "_", name)
 
   name
 }
