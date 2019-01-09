@@ -12,14 +12,6 @@ String getGitBranchName() {
 }
 
 ext {
-    // Variant of version string since Docker tags may not contain '+' characters
-    String tag = project.version.toString().replaceAll('\\+', '-')
-
-    imageTag = tag
-    versionTag = project.ext.packageVersion
-    isMaster = GitUtil.isMasterBranch(release.grgit)
-    tagsList = [versionTag, 'latest']
-    pushable = project.hasProperty('pushable') ? pushable.toBoolean() : GitUtil.isAcceptableBranch(release.grgit, pushableBranches.tokenize(','))
     branchName = getGitBranchName().toLowerCase().replace('/', '-').replace('_', '-')
 }
 
@@ -40,19 +32,15 @@ docker {
 images {
     rOdataSdkDocs {
         containerDirectory = 'docs'
-        isMaster = project.ext.isMaster
         dstImageName = dockerDocsImageName
-        tags = project.ext.tagsList
-        isPushable = project.ext.pushable
+        isPushable = true
         branchName = project.ext.branchName.toLowerCase().replace('/', '-').replace('_', '-')
         fromImage = "${dockerDocsSrcImage}"
     }
     rOdataSdkShiny {
         containerDirectory = 'shiny'
-        isMaster = project.ext.isMaster
         dstImageName = dockerShinyImageName
-        tags = project.ext.tagsList
-        isPushable = project.ext.pushable
+        isPushable = true
         branchName = project.ext.branchName.toLowerCase().replace('/', '-').replace('_', '-')
         fromImage = "${dockerShinySrcImage}"
     }

@@ -1,7 +1,7 @@
 Package: CoreAPIV2
 Type: Package
 Title: Functions for interacting with the Platform for Science OData API
-Version: 1.0.0.9000
+Version: 0.9.0.9000
 Authors@R: c(
     person("Craig", "Parman", role = "aut"),
     person("Adam", "Wheeler", role = "aut"),

@@ -29,4 +29,6 @@ _384_WELL_PLATE
 Craig Parman ngsAnalytics, ngsanalytics.com
 
 Adam Wheeler adam.j.wheeler@accenture.com
+
+Scott Russell scott.russell@thermofisher.com
 }
