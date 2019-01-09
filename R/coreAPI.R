@@ -1,5 +1,3 @@
-library(stringi)
-
 #' coreAPI Creates a object of class coreAPI that contains user and connection information.
 #' @param CoreAccountInfo file with account information in json format.
 #' @return Object of class coreAPI
@@ -54,10 +52,7 @@ library(stringi)
 #'    "value": "443"
 #'  }
 #'  ]
-#'
 #' }
-#'
-#'
 #'     }
 #'
 #'  The account value may be set to "" if the user only has access to one tenant.
@@ -78,7 +73,8 @@ coreAPI <- function(CoreAccountInfo) {
       scheme = getAccountInfoValue(accountinfo, "scheme"),
       jsessionId = NULL,
       awselb = NULL,
-      employeeId = NULL
+      employeeId = NULL,
+      serviceRoot = NULL
     )
 
     ,
@@ -89,7 +85,7 @@ coreAPI <- function(CoreAccountInfo) {
 getAccountInfoValue <- function(accountinfo, key) {
   value <- accountinfo$value[accountinfo$key == key]
   
-  if(stri_isempty(value)) {
+  if(stringi::stri_isempty(value)) {
     value <- NULL
   }
   

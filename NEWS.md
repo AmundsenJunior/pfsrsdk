@@ -6,3 +6,4 @@
 * Added Gradle to execute package build, test, documentation process
 * Added `styler` to enforce clean code syntax
 * Added `lintr` as a tool for static code analysis
+* Added `serviceRoot` to coreAPI to enable SDK use against Platform Admin
