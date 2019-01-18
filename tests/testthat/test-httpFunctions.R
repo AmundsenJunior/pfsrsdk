@@ -11,15 +11,15 @@ lapply(environments, function(x) {
 
   test_that(paste0("apiGET will return an entity on: ", x), {
     header <- c("Accept" = "application/json")
-    print(paste0("Entity to get is: ", PERSISTENTBARCODEENTITY))
-    res <- CoreAPIV2::apiGET(con$coreApi, resource = PERSISTENTBARCODEENTITY, query = "", headers = header, useVerbose = verbose)
+    print(paste0("Entity to get is: ", PERSISTENTENTITYTYPE))
+    res <- CoreAPIV2::apiGET(con$coreApi, resource = PERSISTENTENTITYTYPE, query = "", headers = header, useVerbose = verbose)
     expect_equal(res$response$status_code, 200)
   })
 
   test_that(paste0("apiPOST will create an entity on: ", x), {
     header <- c("Content-Type" = "application/json", "If-Match" = "*")
-    print(paste0("Entity to create is: ", PERSISTENTBARCODEENTITY))
-    res <<- CoreAPIV2::apiPOST(con$coreApi, resource = PERSISTENTBARCODEENTITY, body = "{}", encode = "raw", headers = header, useVerbose = verbose)
+    print(paste0("Entity to create is: ", PERSISTENTENTITYTYPE))
+    res <<- CoreAPIV2::apiPOST(con$coreApi, resource = PERSISTENTENTITYTYPE, body = "{}", encode = "raw", headers = header, useVerbose = verbose)
     expect_equal(res$all_headers[[1]]$status, 201)
     options(res = res)
   })
@@ -30,7 +30,7 @@ lapply(environments, function(x) {
     content <- httr::content(res, as = "parsed")
     content["Name"] <- paste0("TEST from Odata: ", content$Barcode)
     body <- content[-1]
-    res <- CoreAPIV2::apiPUT(con$coreApi, resource = PERSISTENTBARCODEENTITY, query = paste0("('", content$Barcode, "')"), body, encode = "raw", headers = header, useVerbose = FALSE, unbox = TRUE)
+    res <- CoreAPIV2::apiPUT(con$coreApi, resource = PERSISTENTENTITYTYPE, query = paste0("('", content$Barcode, "')"), body, encode = "raw", headers = header, useVerbose = FALSE, unbox = TRUE)
     expect_equal(res$all_headers[[1]]$status, 200)
   })
 

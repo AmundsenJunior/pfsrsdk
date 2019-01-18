@@ -75,16 +75,6 @@ buildUrl <-
             ctx,
             "/odatalogin"
           ),
-        file = sdk_url <-
-          paste0(
-            coreApi$scheme,
-            "://",
-            coreApi$coreUrl,
-            ":",
-            coreApi$port,
-            ctx,
-            "/sdk"
-          ),
         json = sdk_url <-
           paste0(
             coreApi$scheme,

@@ -12,11 +12,11 @@ lapply(environments, function(x) {
   con <- Connect(x)
   
   test_that(paste("test updateEntityAttributes() on: ", x), {
-    barcode <- CoreAPIV2::getEntityByName(con$coreApi, TESTPOCO, POCO60NAME, FALSE, FALSE)$entity[[1]]$Barcode
+    barcode <- CoreAPIV2::getEntityByName(con$coreApi, TESTPOCOUPDATETYPE, TESTPOCOUPDATENAME, FALSE, FALSE)$entity[[1]]$Barcode
     
-    ue <- CoreAPIV2::updateEntityAttributes(con$coreApi, TESTPOCO, barcode, TESTPOCOUPDATEATTRLIST, useVerbose = FALSE)
-    expect_match(ue$entity[[names(TESTPOCOUPDATEATTRLIST)[1]]], TESTPOCOUPDATEATTRLIST[[names(TESTPOCOUPDATEATTRLIST)[1]]], all = verbose)
-    expect_match(ue$entity[[names(TESTPOCOUPDATEATTRLIST)[1]]], TESTPOCOUPDATEATTRLIST[[names(TESTPOCOUPDATEATTRLIST)[1]]], all = verbose)
+    ue <- CoreAPIV2::updateEntityAttributes(con$coreApi, TESTPOCOUPDATETYPE, barcode, TESTPOCOUPDATEATTRLIST, useVerbose = FALSE)
+    expect_equal(ue$entity[[names(TESTPOCOUPDATEATTRLIST)[1]]], TESTPOCOUPDATEATTRLIST[[names(TESTPOCOUPDATEATTRLIST)[1]]], all = verbose)
+    expect_equal(ue$entity[[names(TESTPOCOUPDATEATTRLIST)[2]]], TESTPOCOUPDATEATTRLIST[[names(TESTPOCOUPDATEATTRLIST)[2]]], all = verbose)
   })
 
   CoreAPIV2::logOut(con$coreApi)

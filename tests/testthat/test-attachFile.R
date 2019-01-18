@@ -7,17 +7,15 @@ context("Tests for attachFile()")
 
 lapply(environments, function(x) {
   con <- Connect(x)
-  barcode <- CoreAPIV2::getEntityByName(con$coreApi, TESTPOCO, POCO60NAME, FALSE, FALSE)$entity[[1]]$Barcode
   
-  test_that(paste("test attachFile() OData call on: ", x), {
-    
-    # Create a file to use
-    filePath <- tempfile(fileext = ".csv")
-    write.csv(x = runif(n = 1000), file = filePath)
-
+  barcode <- CoreAPIV2::getEntityByName(con$coreApi, TESTPOCOTYPE, TESTPOCONAME, FALSE, FALSE)$entity[[1]]$Barcode
+  filePath <- tempfile(fileext = ".csv")
+  write.csv(x = runif(n = 1000), file = filePath)
+  
+  test_that(paste("test attachFile() OData call on:", x), {
     attachedFile <- CoreAPIV2::attachFile(
       coreApi = con$coreApi,
-      entityType = TESTPOCO,
+      entityType = TESTPOCOTYPE,
       barcode = barcode,
       filePath = filePath,
       targetAttributeName = TESTPOCOFILEATTRNAME
@@ -27,11 +25,12 @@ lapply(environments, function(x) {
     expect_null(attachedFile$response$entity)
   })
 
-  test_that(paste("test attachFile() CoreSDK call on: ", x), {
-    attachedFile <- NULL
+  test_that(paste("test attachFile() CoreSDK call on:", x), {
+    skip("SDK command 'file-attach' fails on CI envs. See RSDK-80")
+    
     attachedFile <- CoreAPIV2::attachFile(
       coreApi = con$coreApi,
-      entityType = TESTPOCO,
+      entityType = TESTPOCOTYPE,
       barcode = barcode,
       filePath = filePath
     )

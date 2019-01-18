@@ -34,7 +34,7 @@ lapply(environments, function(x) {
   })
 
   test_that(paste("Test that the build url handles the file special url on:", x), {
-    ## TODO not tested here until the remediation of the file upload has been completed
+    skip("Not tested here until the remediation of the file upload has been completed. See RSDK-80")
   })
 
   test_that(paste("Test that the build url handles the json special url on:", x), {
@@ -42,7 +42,7 @@ lapply(environments, function(x) {
     pattern <- paste0("^", con$coreApi$scheme, "\\W{3}", con$coreApi$coreUrl, ".\\d+.?\\w*.sdk")
     expect_match(builtURL, pattern)
     
-    jsonEndpoint <- CoreAPIV2::apiGET(coreApi = con$coreApi, POCO60NAME, "", special = "json")
+    jsonEndpoint <- CoreAPIV2::apiGET(coreApi = con$coreApi, TESTPOCONAME, "", special = "json")
     expect_equivalent(jsonEndpoint$response$status_code, 200)
   })
 

@@ -1,5 +1,6 @@
 
 #' @author Adam Wheeler adam.j.wheeler@accenture.com
+#' @author Scott Russell scott.russell@thermofisher.com
 #' @description  This file is run before any tests are executed.
 #' It sets up the environment to run against specific PFS versions.
 
@@ -11,33 +12,18 @@
 
 verbose <- FALSE
 
-# Entity name of a POCO in the system
-POCO60NAME <- "Sarges Best Amber Lager"
-# location barcode of the POCO entity
-POCO60LOC <- "LC3"
-# project barcode of the POCO entity
-POCO60PROJ <- "PJ1"
+# POCO entity
+TESTPOCOTYPE <- "BEER_ORDER"
+TESTPOCONAME <- "BO1"
+TESTPOCOLOC <- "LC3"
+TESTPOCOPROJ <- "PJ1"
 
-# name of the poco's entitytype
-TESTPOCO <- "BEER"
-
-# The name of the association on the poco
-POCOASSOC <- "BEER"
-# Two entities on the pocoassoc type
-POCOASSOC1NAME <- "Sarges Best Dark Lager"
-POCOASSOC2NAME <- "Sarges Best Amber Lager"
-# context set on the assocication
-ASSOCIATIONCONTEXT <- "BEER_ORDERED"
-ASSOCIATIONCONTEXTLISTNAME <- "BEER_ORDERED"
-
-# for update tests
-POCO60LOC2 <- "LC1"
-POCO60PROJ2 <- "PJ2"
-TESTPOCOUPDATEATTRLIST <- list(CI_BRAND = "Duff", CI_TARGET_SED_G_L = 0.52)
+# for file tests
+TESTPOCOFILEATTRNAME <- "CI_INVOICE_FILE"
 
 # for create entity tests
-TESTPOCOCREATEBOOL <- "TRIGGER_EXPT_CREATE_SAMPLE_LOT"
-TESTPOCOCREATEBOOLATTRLIST <- list(CI_TRIGGER_ACTION_TYPE = "Test action type", CI_CREATE_LOT = FALSE)
+TESTPOCOCREATEBOOL <- "BOOLEAN"
+TESTPOCOCREATEBOOLATTRLIST <- list(CI_READONLY = TRUE)
 TESTPOCOCREATEBOOLASSOCLIST <- NULL
 
 TESTPOCOCREATEDEC <- "BEER_ORDER"
@@ -52,11 +38,27 @@ TESTPOCOCREATESTR <- "ACCESS_LEVEL"
 TESTPOCOCREATESTRATTRLIST <- list(COMMENTS = "Test comment")
 TESTPOCOCREATESTRASSOCLIST <- NULL
 
+# for get entity tests
+TESTPOCOGETASSOCTYPE <- "BEER"
+TESTPOCOGETASSOCNAME <- "Sarges Best Dark Lager"
+TESTPOCOGETASSOCCONTEXT <- "BEER_ORDERED"
+
+# for update entity tests
+TESTPOCOUPDATETYPE <- "BEER"
+TESTPOCOUPDATENAME <- "Sarges Best Dark Lager"
+TESTPOCOUPDATEASSOC <- "HOPS"
+TESTPOCOUPDATEASSOCCONTEXT <- "BEER_HOPS"
+TESTPOCOUPDATEASSOCNAME <- "Apollo"
+TESTPOCOUPDATELOC <- "LC1"
+TESTPOCOUPDATEPROJ <- "PJ2"
+TESTPOCOUPDATEATTRLIST <- list(CI_TARGET_ABV = 4.8, CI_TARGET_SED_G_L = 0.73)
+
 ### Stop editing this section now... or else...
 
-# a singe persistant barcode and entity that will always exist in Every PFS instance
-PERSISTENTBARCODE <- "ALC1"
-PERSISTENTBARCODEENTITY <- "ACCESS_LEVEL"
+# a persistant entity that will always exist in Every PFS instance
+PERSISTENTENTITYTYPE <- "ACCESS_LEVEL"
+PERSISTENTENTITYBARCODE <- "ALC1"
+PERSISTENTENTITYNAME <- "ADMIN ACCESS"
 
 # setup to test against multiple environments
 # name files Auth-[pfsversion].json example Auth-5.3.8 for this to pick them up.

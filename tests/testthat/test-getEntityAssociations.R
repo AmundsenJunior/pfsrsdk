@@ -10,14 +10,14 @@ context("Tests for getEntityAssociations")
 lapply(environments, function(x) {
   con <- Connect(x)
   
-  test_that(paste("test getEntityAssociations() on: ", x), {
-    ta1 <- CoreAPIV2::getEntityByName(con$coreApi, POCOASSOC, POCOASSOC1NAME, FALSE, FALSE)
-    PC60 <- CoreAPIV2::getEntityByName(con$coreApi, TESTPOCO, POCO60NAME, FALSE, FALSE)
-    as <- CoreAPIV2::getEntityAssociations(con$coreApi, TESTPOCO, PC60$entity[[1]]$Barcode, associationContext = ASSOCIATIONCONTEXTLISTNAME, fullMetadata = TRUE, useVerbose = FALSE)
+  test_that(paste("test getEntityAssociations() on:", x), {
+    assoc <- CoreAPIV2::getEntityByName(con$coreApi, TESTPOCOGETASSOCTYPE, TESTPOCOGETASSOCNAME, FALSE, FALSE)
+    poco <- CoreAPIV2::getEntityByName(con$coreApi, TESTPOCOTYPE, TESTPOCONAME, FALSE, FALSE)
+    
+    as <- CoreAPIV2::getEntityAssociations(con$coreApi, TESTPOCOTYPE, poco$entity[[1]]$Barcode, associationContext = TESTPOCOGETASSOCCONTEXT, fullMetadata = TRUE, useVerbose = FALSE)
     
     expect_equal(as$response$status_code, 200)
-
-    expect_match(as$entity[[1]]$Barcode, ta1$entity[[1]]$Barcode)
+    expect_match(as$entity[[1]]$Barcode, assoc$entity[[1]]$Barcode)
   })
 
   CoreAPIV2::logOut(con$coreApi)

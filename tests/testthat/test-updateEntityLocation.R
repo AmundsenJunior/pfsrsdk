@@ -11,13 +11,13 @@ lapply(environments, function(x) {
   con <- Connect(x)
   
   test_that(paste("test updateEntityLocation for:", x), {
-    barcode <- CoreAPIV2::getEntityByName(con$coreApi, TESTPOCO, POCO60NAME, useVerbose = verbose)$entity[[1]]$Barcode
+    barcode <- CoreAPIV2::getEntityByName(con$coreApi, TESTPOCOUPDATETYPE, TESTPOCOUPDATENAME, useVerbose = verbose)$entity[[1]]$Barcode
     
-    updateLoc <- CoreAPIV2::updateEntityLocation(con$coreApi, TESTPOCO, barcode, POCO60LOC2, useVerbose = FALSE)
+    updateLoc <- CoreAPIV2::updateEntityLocation(con$coreApi, TESTPOCOUPDATETYPE, barcode, TESTPOCOUPDATELOC, useVerbose = FALSE)
     expect_equivalent(httr::status_code(updateLoc$response), 200)
     
-    loc <- CoreAPIV2::getEntityLocation(con$coreApi, TESTPOCO, barcode, useVerbose = FALSE)
-    expect_match(POCO60LOC2, loc$entity[[1]]$Barcode)
+    loc <- CoreAPIV2::getEntityLocation(con$coreApi, TESTPOCOUPDATETYPE, barcode, useVerbose = FALSE)
+    expect_match(TESTPOCOUPDATELOC, loc$entity[[1]]$Barcode)
   })
   
   CoreAPIV2::logOut(con$coreApi)

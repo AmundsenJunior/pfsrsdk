@@ -21,7 +21,7 @@ attachFile(coreApi, entityType, barcode, filePath,
 \item{filepath}{path to the file to attach}
 }
 \value{
-RETURN returns a list $entity contains entity information, $response contains the entire http response
+RETURN returns a list $entity contains entity information (if present), $response contains the entire http response
 }
 \description{
 \code{attachFile} Attaches a file to entity identified by barcode.
@@ -44,4 +44,6 @@ CoreAPIV2::logOut(login$coreApi )
 Craig Parman ngsAnalytics, ngsanalytics.com
 
 Adam Wheeler, adam.j.wheeler@accenture.com
+
+Scott Russell, scott.russell@thermofisher.com
 }

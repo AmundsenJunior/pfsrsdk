@@ -87,13 +87,6 @@ attachFile <-
           )
         )
 
-      headers <- c("Content-Type" = "multipart/related")
-
-      form <- list(
-        json = jsonlite::toJSON(request),
-        fileData = httr::upload_file(filePath)
-      )
-
       body <- list(
         json = jsonlite::toJSON(request),
         fileData = httr::upload_file(filePath)

@@ -9,11 +9,11 @@ cat(paste0("\n environments:\n", environments, "\n"))
 lapply(environments, function(x) {
   con <- Connect(x)
   test_that(paste("test getEntityLocation for: ", x), {
-    barcode <- CoreAPIV2::getEntityByName(con$coreApi, TESTPOCO, POCO60NAME, useVerbose = verbose)$entity[[1]]$Barcode
-    loc <- CoreAPIV2::getEntityLocation(con$coreApi, TESTPOCO, barcode, useVerbose = FALSE)
+    barcode <- CoreAPIV2::getEntityByName(con$coreApi, TESTPOCOTYPE, TESTPOCONAME, useVerbose = verbose)$entity[[1]]$Barcode
+    loc <- CoreAPIV2::getEntityLocation(con$coreApi, TESTPOCOTYPE, barcode, useVerbose = FALSE)
 
     expect_equivalent(httr::status_code(loc$response), 200)
-    expect_match(loc$entity[[1]]$Barcode, POCO60LOC)
+    expect_match(loc$entity[[1]]$Barcode, TESTPOCOLOC)
   })
   CoreAPIV2::logOut(con$coreApi)
 })

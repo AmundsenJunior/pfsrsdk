@@ -26,7 +26,7 @@ lapply(environments, function(x) {
 
     barcode <- return$entity$Barcode
     b <- CoreAPIV2::getEntityByBarcode(con$coreApi, TESTPOCOCREATEBOOL, barcode, useVerbose = verbose)$entity
-    expect_match(b[[names(TESTPOCOCREATEBOOLATTRLIST[1])]], TESTPOCOCREATEBOOLATTRLIST[[1]], all = verbose)
+    expect_equal(b[[names(TESTPOCOCREATEBOOLATTRLIST[1])]], TESTPOCOCREATEBOOLATTRLIST[[1]], all = verbose)
   })
 
   test_that(paste("test createEntity() for POCO with Decimal attributes on:", x), {
@@ -83,7 +83,7 @@ lapply(environments, function(x) {
 
     barcode <- return$entity$Barcode
     b <- CoreAPIV2::getEntityByBarcode(con$coreApi, TESTPOCOCREATESTR, barcode, useVerbose = verbose)$entity
-    expect_match(b[[names(TESTPOCOCREATESTRATTRLIST[1])]], TESTPOCOCREATESTRATTRLIST[[1]], all = verbose)
+    expect_equal(b[[names(TESTPOCOCREATESTRATTRLIST[1])]], TESTPOCOCREATESTRATTRLIST[[1]], all = verbose)
   })
   
   CoreAPIV2::logOut(con$coreApi)
