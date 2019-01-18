@@ -13,6 +13,7 @@ lapply(environments, function(x) {
     loc <- CoreAPIV2::getEntityLocation(con$coreApi, TESTPOCO, barcode, useVerbose = FALSE)
 
     expect_equivalent(httr::status_code(loc$response), 200)
+    expect_match(loc$entity[[1]]$Barcode, POCO60LOC)
   })
   CoreAPIV2::logOut(con$coreApi)
 })

@@ -1,5 +1,6 @@
 
 #' @author Adam Wheeler adam.j.wheeler@accenture.com
+#' @author Scott Russell scott.russell@thermofisher.com
 #' @description \code{updateEntityAttributes} Tests for updateEntityAttributes.
 
 
@@ -9,13 +10,13 @@ context("Tests for updateEntityAttributes")
 
 lapply(environments, function(x) {
   con <- Connect(x)
+  
   test_that(paste("test updateEntityAttributes() on: ", x), {
-    PC60 <- CoreAPIV2::getEntityByName(con$coreApi, TESTPOCO, POCO60NAME, FALSE, FALSE)
-    # test update attributes
-    timeStamp <- timestamp()
-    updateValues <- list(TST_STRING = timeStamp, TST_BOOL = F)
-    ue <- CoreAPIV2::updateEntityAttributes(con$coreApi, TESTPOCO, PC60$entity[[1]]$Barcode, updateValues, useVerbose = FALSE)
-    expect_match(ue$entity$TST_STRING, timeStamp, all = verbose)
+    barcode <- CoreAPIV2::getEntityByName(con$coreApi, TESTPOCO, POCO60NAME, FALSE, FALSE)$entity[[1]]$Barcode
+    
+    ue <- CoreAPIV2::updateEntityAttributes(con$coreApi, TESTPOCO, barcode, TESTPOCOUPDATEATTRLIST, useVerbose = FALSE)
+    expect_match(ue$entity[[names(TESTPOCOUPDATEATTRLIST)[1]]], TESTPOCOUPDATEATTRLIST[[names(TESTPOCOUPDATEATTRLIST)[1]]], all = verbose)
+    expect_match(ue$entity[[names(TESTPOCOUPDATEATTRLIST)[1]]], TESTPOCOUPDATEATTRLIST[[names(TESTPOCOUPDATEATTRLIST)[1]]], all = verbose)
   })
 
   CoreAPIV2::logOut(con$coreApi)

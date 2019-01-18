@@ -6,7 +6,7 @@ context("test-updateMetadata")
 lapply(environments, function(x) {
   con <- Connect(x)
   test_that(paste("test updateMetadata() on: ", x), {
-    meta <- updateMetadata(con$coreApi, useVerbose = verbose)
+    meta <- CoreAPIV2::updateMetadata(con$coreApi, useVerbose = verbose)
     expect_equivalent(meta$response$status_code, 200, all = verbose)
   })
 

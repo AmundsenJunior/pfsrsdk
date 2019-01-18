@@ -13,6 +13,7 @@ lapply(environments, function(x) {
     pro <- CoreAPIV2::getEntityProject(con$coreApi, TESTPOCO, barcode, useVerbose = FALSE)
 
     expect_equivalent(httr::status_code(pro$response), 200)
+    expect_match(pro$entity[[1]]$Barcode, POCO60PROJ)
   })
   CoreAPIV2::logOut(con$coreApi)
 })

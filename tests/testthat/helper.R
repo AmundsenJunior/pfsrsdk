@@ -11,29 +11,46 @@
 
 verbose <- FALSE
 
-# name of a poco in the system
-POCO60NAME <- "TE1"
+# Entity name of a POCO in the system
+POCO60NAME <- "Sarges Best Amber Lager"
+# location barcode of the POCO entity
+POCO60LOC <- "LC3"
+# project barcode of the POCO entity
+POCO60PROJ <- "PJ1"
+
 # name of the poco's entitytype
-TESTPOCO <- "TESTENTITY"
-# The File attribute on the test poco
-TESTPOCOFILEATTRNAME <- "TST_FILE"
-# The string attribute on the test poco
-TESTPOCOSTRINGATTRNAME <- "TST_STRING"
-# The integer attribute on the test poco
-TESTPOCOINTEGERATTRNAME <- "TST_INTEGER"
-# The bool attribute on the test poco
-TESTPOCOBOOLATTRNAME <- "TST_BOOL"
-### TODO Add a decimal type test. We found that this
-### was once broken so it is worth specifically testing
+TESTPOCO <- "BEER"
 
 # The name of the association on the poco
-POCOASSOC <- "TESTASSOC"
+POCOASSOC <- "BEER"
 # Two entities on the pocoassoc type
-POCOASSOC1NAME <- "TA1"
-POCOASSOC2NAME <- "TA2"
+POCOASSOC1NAME <- "Sarges Best Dark Lager"
+POCOASSOC2NAME <- "Sarges Best Amber Lager"
 # context set on the assocication
-ASSOCIATIONCONTEXT <- "TEST"
-ASSOCIATIONCONTEXTLISTNAME <- "TEST"
+ASSOCIATIONCONTEXT <- "BEER_ORDERED"
+ASSOCIATIONCONTEXTLISTNAME <- "BEER_ORDERED"
+
+# for update tests
+POCO60LOC2 <- "LC1"
+POCO60PROJ2 <- "PJ2"
+TESTPOCOUPDATEATTRLIST <- list(CI_BRAND = "Duff", CI_TARGET_SED_G_L = 0.52)
+
+# for create entity tests
+TESTPOCOCREATEBOOL <- "TRIGGER_EXPT_CREATE_SAMPLE_LOT"
+TESTPOCOCREATEBOOLATTRLIST <- list(CI_TRIGGER_ACTION_TYPE = "Test action type", CI_CREATE_LOT = FALSE)
+TESTPOCOCREATEBOOLASSOCLIST <- NULL
+
+TESTPOCOCREATEDEC <- "BEER_ORDER"
+TESTPOCOCREATEDECATTRLIST <- list(CI_NUM_UNITS = 10.0, CI_UNIT_PRICE = 5.99, CI_INVOICE_FILE = NULL)
+TESTPOCOCREATEDECASSOCLIST <- list(BEER_ORDERED = "BEER('BEER1')")
+
+TESTPOCOCREATEINT <- "LOCATION"
+TESTPOCOCREATEINTATTRLIST <- list(CI_CAPACITY = 100, CI_COUNT = 2)
+TESTPOCOCREATEINTASSOCLIST <- NULL
+
+TESTPOCOCREATESTR <- "ACCESS_LEVEL"
+TESTPOCOCREATESTRATTRLIST <- list(COMMENTS = "Test comment")
+TESTPOCOCREATESTRASSOCLIST <- NULL
 
 ### Stop editing this section now... or else...
 
