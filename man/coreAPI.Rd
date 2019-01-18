@@ -62,10 +62,7 @@ The json must include the fields shown below.
    "value": "443"
  }
  ]
-
 }
-
-
     }
 
  The account value may be set to "" if the user only has access to one tenant.
