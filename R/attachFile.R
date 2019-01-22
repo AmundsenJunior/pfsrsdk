@@ -8,7 +8,7 @@
 #' @param targetAttributeName - if included the name if the attribute to attach the file to.  Must be in all caps.
 #' @param useVerbose Use verbose communication for debugging
 #' @export
-#' @return RETURN returns a list $entity contains entity information, $response contains the entire http response
+#' @return RETURN returns a list $entity contains entity information (if present), $response contains the entire http response
 #' @examples
 #' \dontrun{
 #' api<-CoreAPI("PATH TO JSON FILE")
@@ -19,6 +19,7 @@
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Adam Wheeler, adam.j.wheeler@accenture.com
+#' @author Scott Russell, scott.russell@thermofisher.com
 #' @description \code{attachFile} Attaches a file to entity identified by barcode.
 #' Note: This function uses the JSON API to post a file to an entity and
 #' Odata to post to an attribute.
@@ -86,13 +87,6 @@ attachFile <-
           )
         )
 
-      headers <- c("Content-Type" = "multipart/related")
-
-      form <- list(
-        json = jsonlite::toJSON(request),
-        fileData = httr::upload_file(filePath)
-      )
-
       body <- list(
         json = jsonlite::toJSON(request),
         fileData = httr::upload_file(filePath)
@@ -124,9 +118,9 @@ attachFile <-
         )
       }
     }
-
+    
     list(
-      entity = httr::content(response)$response$data,
+      entity = if(response$status_code == 204) NULL else httr::content(response),
       response = response
     )
   }

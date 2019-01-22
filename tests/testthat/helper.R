@@ -1,5 +1,6 @@
 
 #' @author Adam Wheeler adam.j.wheeler@accenture.com
+#' @author Scott Russell scott.russell@thermofisher.com
 #' @description  This file is run before any tests are executed.
 #' It sets up the environment to run against specific PFS versions.
 
@@ -11,38 +12,59 @@
 
 verbose <- FALSE
 
-# name of a poco in the system
-POCO60NAME <- "TE1"
-# name of the poco's entitytype
-TESTPOCO <- "TESTENTITY"
-# The File attribute on the test poco
-TESTPOCOFILEATTRNAME <- "TST_FILE"
-# The string attribute on the test poco
-TESTPOCOSTRINGATTRNAME <- "TST_STRING"
-# The integer attribute on the test poco
-TESTPOCOINTEGERATTRNAME <- "TST_INTEGER"
-# The bool attribute on the test poco
-TESTPOCOBOOLATTRNAME <- "TST_BOOL"
-### TODO Add a decimal type test. We found that this
-### was once broken so it is worth specifically testing
+# POCO entity
+TESTPOCOTYPE <- "BEER_ORDER"
+TESTPOCONAME <- "BO1"
+TESTPOCOLOC <- "LC3"
+TESTPOCOPROJ <- "PJ1"
 
-# The name of the association on the poco
-POCOASSOC <- "TESTASSOC"
-# Two entities on the pocoassoc type
-POCOASSOC1NAME <- "TA1"
-POCOASSOC2NAME <- "TA2"
-# context set on the assocication
-ASSOCIATIONCONTEXT <- "TEST"
-ASSOCIATIONCONTEXTLISTNAME <- "TEST"
+# for file tests
+TESTPOCOFILEATTRNAME <- "CI_INVOICE_FILE"
+
+# for create entity tests
+TESTPOCOCREATEBOOL <- "BOOLEAN"
+TESTPOCOCREATEBOOLATTRLIST <- list(CI_READONLY = TRUE)
+TESTPOCOCREATEBOOLASSOCLIST <- NULL
+
+TESTPOCOCREATEDEC <- "BEER_ORDER"
+TESTPOCOCREATEDECATTRLIST <- list(CI_NUM_UNITS = 10.0, CI_UNIT_PRICE = 5.99, CI_INVOICE_FILE = NULL)
+TESTPOCOCREATEDECASSOCLIST <- list(BEER_ORDERED = "BEER('BEER1')")
+
+TESTPOCOCREATEINT <- "LOCATION"
+TESTPOCOCREATEINTATTRLIST <- list(CI_CAPACITY = 100, CI_COUNT = 2)
+TESTPOCOCREATEINTASSOCLIST <- NULL
+
+TESTPOCOCREATESTR <- "ACCESS_LEVEL"
+TESTPOCOCREATESTRATTRLIST <- list(COMMENTS = "Test comment")
+TESTPOCOCREATESTRASSOCLIST <- NULL
+
+# for get entity tests
+TESTPOCOGETASSOCTYPE <- "BEER"
+TESTPOCOGETASSOCNAME <- "Sarges Best Dark Lager"
+TESTPOCOGETASSOCCONTEXT <- "BEER_ORDERED"
+
+# for update entity tests
+TESTPOCOUPDATETYPE <- "BEER"
+TESTPOCOUPDATENAME <- "Sarges Best Dark Lager"
+TESTPOCOUPDATEASSOC <- "HOPS"
+TESTPOCOUPDATEASSOCCONTEXT <- "BEER_HOPS"
+TESTPOCOUPDATEASSOCNAME <- "Apollo"
+TESTPOCOUPDATELOC <- "LC1"
+TESTPOCOUPDATEPROJ <- "PJ2"
+TESTPOCOUPDATEATTRLIST <- list(CI_TARGET_ABV = 4.8, CI_TARGET_SED_G_L = 0.73)
+
+# for error tests
+TESTPOCONONEXISTENTTYPE <- "WATER"
 
 ### Stop editing this section now... or else...
 
-# a singe persistant barcode and entity that will always exist in Every PFS instance
-PERSISTENTBARCODE <- "ALC1"
-PERSISTENTBARCODEENTITY <- "ACCESS_LEVEL"
+# a persistant entity that will always exist in Every PFS instance
+PERSISTENTENTITYTYPE <- "ACCESS_LEVEL"
+PERSISTENTENTITYBARCODE <- "ALC1"
+PERSISTENTENTITYNAME <- "ADMIN ACCESS"
 
 # setup to test against multiple environments
-# name files Auth-[pfsversion].json example Auth-5.3.8 for this to pick them up.
+# name files Auth-[pfsversion].json example Auth-5.3.8.json for this to pick them up.
 environments <- list.files("test_environment", "^(Auth-)[0-9]+\\.[0-9]+\\.[0-9]+\\.json$", full.names = TRUE)
 
 ## Set environments to be tested.

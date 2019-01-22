@@ -7,10 +7,12 @@ context("Tests for getEntityByName")
 
 lapply(environments, function(x) {
   con <- Connect(x)
-  test_that(paste("test getEntityByName() on: ", x), {
-    ta1 <- CoreAPIV2::getEntityByName(con$coreApi, POCOASSOC, POCOASSOC1NAME, FALSE, FALSE)
-    Name <- ta1$entity[[1]]$Name
-    expect_match(Name, POCOASSOC1NAME, all = verbose)
+  
+  test_that(paste("test getEntityByName() on:", x), {
+    ta1 <- CoreAPIV2::getEntityByName(con$coreApi, PERSISTENTENTITYTYPE, PERSISTENTENTITYNAME, FALSE, FALSE)
+    name <- ta1$entity[[1]]$Name
+    
+    expect_match(name, PERSISTENTENTITYNAME, all = verbose)
   })
 
   CoreAPIV2::logOut(con$coreApi)

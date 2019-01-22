@@ -8,11 +8,13 @@ context("Tests for getEntityByBarcode")
 
 lapply(environments, function(x) {
   con <- Connect(x)
+  
   test_that(paste("test getEntityByBarcode() on: ", x), {
-    b <- CoreAPIV2::getEntityByBarcode(con$coreApi, PERSISTENTBARCODEENTITY, PERSISTENTBARCODE,
+    b <- CoreAPIV2::getEntityByBarcode(con$coreApi, PERSISTENTENTITYTYPE, PERSISTENTENTITYBARCODE,
       useVerbose = verbose
     )$entity
-    expect_match(b$Barcode, PERSISTENTBARCODE, all = verbose)
+    
+    expect_match(b$Barcode, PERSISTENTENTITYBARCODE, all = verbose)
   })
 
   CoreAPIV2::logOut(con$coreApi)

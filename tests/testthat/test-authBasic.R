@@ -12,17 +12,17 @@ lapply(environments, function(x) {
     expect_that(is.null(con$coreApi$jsessionId), equals(FALSE))
   })
 
-  test_that(paste("test Updating Metadata of: ", x), {
+  test_that(paste("test Updating Metadata of:", x), {
     metadata <- CoreAPIV2::updateMetadata(con$coreApi, useVerbose = TRUE)
     print(httr::http_status(metadata$response))
     expect_match(httr::http_status(metadata$response)$category, "Success")
   })
-  test_that(paste("test logout of: ", x), {
+  test_that(paste("test logout of:", x), {
     logout <- CoreAPIV2::logOut(con$coreApi, useVerbose = verbose)
     expect_match(logout$success, "Success")
   })
 
-  test_that("single account with bad password returns error", {
+  test_that(paste("single account with bad password returns error on:", x), {
     verbose <- FALSE
     api <- CoreAPIV2::coreAPI(x)
     bapi <- api

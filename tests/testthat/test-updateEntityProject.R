@@ -8,12 +8,15 @@ cat(paste0("\n environments:\n", environments, "\n"))
 
 lapply(environments, function(x) {
   con <- Connect(x)
+  
   test_that(paste("test updateEntityProject for: ", x), {
-    barcode <- CoreAPIV2::getEntityByName(con$coreApi, TESTPOCO, POCO60NAME, useVerbose = verbose)$entity[[1]]$Barcode
-    pro <- CoreAPIV2::getEntityProject(con$coreApi, TESTPOCO, barcode, useVerbose = FALSE)
-    updatedPro <- CoreAPIV2::updateEntityProject(con$coreApi, TESTPOCO, barcode, pro$entity[[1]]$Barcode, useVerbose = FALSE)
-
-    expect_equivalent(httr::status_code(updatedPro$response), 200)
+    barcode <- CoreAPIV2::getEntityByName(con$coreApi, TESTPOCOUPDATETYPE, TESTPOCOUPDATENAME, useVerbose = verbose)$entity[[1]]$Barcode
+    
+    updateProj <- CoreAPIV2::updateEntityProject(con$coreApi, TESTPOCOUPDATETYPE, barcode, TESTPOCOUPDATEPROJ, useVerbose = FALSE)
+    expect_equivalent(httr::status_code(updateProj$response), 200)
+    
+    proj <- CoreAPIV2::getEntityProject(con$coreApi, TESTPOCOUPDATETYPE, barcode, useVerbose = FALSE)
+    expect_match(TESTPOCOUPDATEPROJ, proj$entity[[1]]$Barcode)
   })
   CoreAPIV2::logOut(con$coreApi)
 })
