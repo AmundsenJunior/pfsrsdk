@@ -64,7 +64,7 @@ PERSISTENTENTITYBARCODE <- "ALC1"
 PERSISTENTENTITYNAME <- "ADMIN ACCESS"
 
 # setup to test against multiple environments
-# name files Auth-[pfsversion].json example Auth-5.3.8 for this to pick them up.
+# name files Auth-[pfsversion].json example Auth-5.3.8.json for this to pick them up.
 environments <- list.files("test_environment", "^(Auth-)[0-9]+\\.[0-9]+\\.[0-9]+\\.json$", full.names = TRUE)
 
 ## Set environments to be tested.
