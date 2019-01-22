@@ -53,6 +53,9 @@ TESTPOCOUPDATELOC <- "LC1"
 TESTPOCOUPDATEPROJ <- "PJ2"
 TESTPOCOUPDATEATTRLIST <- list(CI_TARGET_ABV = 4.8, CI_TARGET_SED_G_L = 0.73)
 
+# for error tests
+TESTPOCONONEXISTENTTYPE <- "WATER"
+
 ### Stop editing this section now... or else...
 
 # a persistant entity that will always exist in Every PFS instance
