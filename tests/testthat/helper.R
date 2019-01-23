@@ -67,9 +67,7 @@ EXPERIMENTPROTOCOLBARCODE <- "BTNP1"
 # type of experiment assay
 EXPERIMENTASSAYTYPE <- "BITTERNESS ASSAY"
 # Barcode for the experiment assay to use
-EXPERIMENTASSAYBARCODE <- "BTNA1" 
-
-
+EXPERIMENTASSAYBARCODE <- "BTNA1"  
 
 ### Stop editing this section now... or else...
 
