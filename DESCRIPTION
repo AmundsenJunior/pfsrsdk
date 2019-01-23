@@ -21,6 +21,7 @@ Imports:
     utils, 
     xml2
 Suggests:
+    devtools,
     knitr,
     lintr,
     pkgdown,
@@ -28,8 +29,7 @@ Suggests:
     shiny,
     styler,
     testthat,
-    testthis,
-    devtools
+    testthis
 RoxygenNote: 6.1.1
 VignetteBuilder: knitr
 Encoding: UTF-8
