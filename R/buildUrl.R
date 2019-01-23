@@ -17,6 +17,7 @@
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Scott Russell scott.russell@thermofisher.com
+#' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description \code{buildUrl} build URL for call to Core REST API.
 
 

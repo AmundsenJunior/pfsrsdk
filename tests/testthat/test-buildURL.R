@@ -1,6 +1,7 @@
 
 #' @author Adam Wheeler adam.j.wheeler@accenture.com
 #' @author Scott Russell scott.russell@thermofisher.com
+#' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description \code{buildUrl} testing buildURL.
 
 

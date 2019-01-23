@@ -59,6 +59,7 @@
 #' As an alternative the environment json object from Postman can be used directly.
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Scott Russell scott.russell@thermofisher.com
+#' @author Natasha Mora natasha.mora@thermofisher.com
 coreAPI <- function(CoreAccountInfo) {
   accountinfo <- jsonlite::fromJSON(CoreAccountInfo)$values
   structure(
