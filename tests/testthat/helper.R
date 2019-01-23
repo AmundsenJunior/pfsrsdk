@@ -91,7 +91,7 @@ if (length(environments) > 1) {
   # Offer the user the option to select the environments that they would like to test.
   cat("Choose the environments that you want to test from the list below. Separate each number with a space. Hit return to test all:\n")
   print.simple.list(environments)
-  selection <- readline()
+  selection <- if (interactive()) readline() else ""
   if (nchar(selection) > 0) environments <- environments[lapply(strsplit(selection, " "), as.numeric)[[1]]]
 }
 
