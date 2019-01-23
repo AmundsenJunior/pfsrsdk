@@ -10,14 +10,20 @@
 #' @param special  passed to buildUrl for special sdk endpoints
 #' @param useVerbose  Use verbose communication for debugging
 #' @param unbox use autounbox when doing lait yo json conversion
-#' @param valuFlag Tells the PUT if there needs to be a /$value added to the end.
+#' @param valueFlag Tells the PUT if there needs to be a /$value added to the end.
 #' @export
 #' @return Returns the entire http response
 #' @examples
 #' \dontrun{
 #' api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
 #' login<- CoreAPIV2::authBasic(api)
-#' response <-CoreAPIV2::apiPUT(login$coreApi,"SAMPLE",body,"json",special=NULL,useVerbose=FALSE,unbox = TRUE)
+#' response <-CoreAPIV2::apiPUT(login$coreApi,
+#'     "SAMPLE",
+#'     body,
+#'     "json",
+#'     special=NULL,
+#'     useVerbose=FALSE,
+#'     unbox = TRUE)
 #' content <- httr::coontent(response)
 #' CoreAPIV2::logOut(login$coreApi )
 #' }

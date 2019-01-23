@@ -23,18 +23,10 @@ getWellContents <-
   function(coreApi,
              containerBarcode,
              useVerbose = FALSE) {
-    # clean the name for ODATA
-
-    resource <- CoreAPIV2::ODATAcleanName(containerType)
 
     # make sure containerWellNum is numeric
 
     containerWellNum <- as.numeric(containerWellNum)
-
-    # first get the cellID for the well
-
-    # id <- getContainerCellIds(coreApi, containerType, containerBarcode, useVerbose = FALSE)$entity[containerWellNum]
-
 
     resource <- "CELL"
 

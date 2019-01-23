@@ -3,10 +3,7 @@
 #' \code{getExperimentSamplesRawData }  Gets raw data for a experiment container identified by barcode.
 #'
 #' @param coreApi coreApi object with valid jsessionid
-#' @param experimentType experiment type for sample
-#' @param assayType  assay type for sample
 #' @param experimentContainerBarcode experiment sample container of entity to get
-#' @param dataName assay data name to retrive as configured in the assay.
 #' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http call
 #' @return returns a list $entity contains data frame with derived experiment sample barcodes concentration,
 #'         and assay raw data. $response contains the entire http response
@@ -15,7 +12,9 @@
 #' \dontrun{
 #' api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
 #' login<- CoreAPIV2::authBasic(api)
-#' response<-  getExperimentSamplesRawData (login$coreApi,"ExperimentContainerBarcode",useVerbose = FALSE)
+#' response<-  getExperimentSamplesRawData (login$coreApi,
+#'     "ExperimentContainerBarcode",
+#'     useVerbose = FALSE)
 #' rawdata <- response$entity
 #' CoreAPIV2:logOut(login$coreApi)
 #' }

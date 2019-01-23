@@ -56,12 +56,30 @@ TESTPOCOUPDATEATTRLIST <- list(CI_TARGET_ABV = 4.8, CI_TARGET_SED_G_L = 0.73)
 # for error tests
 TESTPOCONONEXISTENTTYPE <- "WATER"
 
+# type of experiment
+EXPERIMENTTYPE <- "BITTERNESS EXPERIMENT"
+# Experiment Barcode
+EXPERIMENTBARCODE <- 'BTXP1' 
+# type of experiment protocol
+PROTOCOLTYPE <- "BITTERNESS PROTOCOL"
+# Barcode for the experiment protocol
+EXPERIMENTPROTOCOLBARCODE <- "BTNP1"
+# type of experiment assay
+EXPERIMENTASSAYTYPE <- "BITTERNESS ASSAY"
+# Barcode for the experiment assay to use
+EXPERIMENTASSAYBARCODE <- "BTNA1" 
+
+
+
 ### Stop editing this section now... or else...
 
 # a persistant entity that will always exist in Every PFS instance
 PERSISTENTENTITYTYPE <- "ACCESS_LEVEL"
 PERSISTENTENTITYBARCODE <- "ALC1"
 PERSISTENTENTITYNAME <- "ADMIN ACCESS"
+
+
+
 
 # setup to test against multiple environments
 # name files Auth-[pfsversion].json example Auth-5.3.8.json for this to pick them up.
