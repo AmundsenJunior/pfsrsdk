@@ -7,7 +7,7 @@
       "enabled": true
     },    
     {
-      "key": "TenantShortName",
+      "key": "alias",
       "value": "SHORTNAMEINURL",
       "type": "text",
       "enabled": true

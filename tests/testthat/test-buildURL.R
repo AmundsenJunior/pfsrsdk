@@ -13,10 +13,10 @@ lapply(environments, function(x) {
   
   if (con$coreApi$account == "PLATFORM ADMIN") {
     odat <- "/odata/"
-  } else if (!is.null(con$coreApi$account) && is.null(con$coreApi$TenantShortName)) {
+  } else if (!is.null(con$coreApi$account) && is.null(con$coreApi$alias)) {
     odat <- paste0("/", CoreAPIV2::odataCleanName(con$coreApi$account), "/odata/")
-  } else if (!is.null(con$coreApi$TenantShortName)) {
-    odat <- paste0("/", CoreAPIV2::odataCleanName(con$coreApi$TenantShortName), "/odata/")
+  } else if (!is.null(con$coreApi$alias)) {
+    odat <- paste0("/", CoreAPIV2::odataCleanName(con$coreApi$alias), "/odata/")
   } else {
     odat <- "/odata/"
   }

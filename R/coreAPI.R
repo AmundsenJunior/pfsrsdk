@@ -22,7 +22,7 @@
 #'    "value": "R-Integration_Baseline"
 #'  },
 #'  {
-#'    "key": "TenantShortName",
+#'    "key": "alias",
 #'    "value": "bp2",
 #'    "type": "text",
 #'    "enabled": true
@@ -66,7 +66,7 @@ coreAPI <- function(CoreAccountInfo) {
       user = getAccountInfoValue(accountinfo, "username"),
       pwd = getAccountInfoValue(accountinfo, "password"),
       account = getAccountInfoValue(accountinfo, "tenant"),
-      TenantShortName = getAccountInfoValue(accountinfo, "TenantShortName"),
+      alias = getAccountInfoValue(accountinfo, "alias"),
       context = getAccountInfoValue(accountinfo, "context"),
       coreUrl = getAccountInfoValue(accountinfo, "host"),
       port = getAccountInfoValue(accountinfo, "port"),
