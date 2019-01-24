@@ -27,7 +27,7 @@ apiPUT(coreApi, resource = NULL, query = NULL, body = NULL, encode,
 
 \item{unbox}{use autounbox when doing lait yo json conversion}
 
-\item{valuFlag}{Tells the PUT if there needs to be a /$value added to the end.}
+\item{valueFlag}{Tells the PUT if there needs to be a /$value added to the end.}
 }
 \value{
 Returns the entire http response
@@ -42,7 +42,13 @@ Returns the entire http response
 \dontrun{
 api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
 login<- CoreAPIV2::authBasic(api)
-response <-CoreAPIV2::apiPUT(login$coreApi,"SAMPLE",body,"json",special=NULL,useVerbose=FALSE,unbox = TRUE)
+response <-CoreAPIV2::apiPUT(login$coreApi,
+    "SAMPLE",
+    body,
+    "json",
+    special=NULL,
+    useVerbose=FALSE,
+    unbox = TRUE)
 content <- httr::coontent(response)
 CoreAPIV2::logOut(login$coreApi )
 }

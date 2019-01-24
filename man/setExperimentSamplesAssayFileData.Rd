@@ -5,26 +5,28 @@
 \title{setExperimentSamplesAssayFileData - puts file attached as assay data in an experiment.}
 \usage{
 setExperimentSamplesAssayFileData(coreApi, assayType,
-  experimentSamplebarcode, attributeName, filepath, useVerbose = FALSE)
+  experimentSampleBarcode, attributeName, filePath, useVerbose = FALSE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
 
 \item{assayType}{assay type to get}
 
-\item{experimentSamplebarcode}{experiment sample barcode of entity to get}
+\item{experimentSampleBarcode}{experiment sample barcode of entity to get}
 
-\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http POST}
-
-\item{attrributeName}{Name of the attibute that containts the file data}
+\item{attributeName}{Name of the attibute that containts the file data}
 
 \item{filePath}{path to file to upload}
+
+\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http POST}
 }
 \value{
-returns a list $entity containsbinary object that in the file, $response contains the entire http response
+returns a list $entity containsbinary object that in the file, $response contains 
+the entire http response
 }
 \description{
-\code{ setExperimentSamplesAssayFileData } Puts file attached as assay data in an experiment
+\code{ setExperimentSamplesAssayFileData } Puts file attached as assay data
+ in an experiment
 }
 \details{
 \code{setExperimentSamplesAssayFileData }  puts file attached as assay data.
@@ -33,7 +35,11 @@ returns a list $entity containsbinary object that in the file, $response contain
 \dontrun{
 api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
 login<- CoreAPIV2::authBasic(api)
-response<-  setExperimentSamplesAssayFileData(login$coreApi,"assayType","barcode","filepath","CI_FILE")
+response<-  setExperimentSamplesAssayFileData(login$coreApi,
+"assayType",
+"barcode",
+"filePath",
+"CI_FILE")
 CoreAPIV2:logOut(login$coreApi)
 }
 }

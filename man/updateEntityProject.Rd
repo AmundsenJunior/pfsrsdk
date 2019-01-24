@@ -14,9 +14,9 @@ updateEntityProject(coreApi, entityType, barcode, projectBarcodes,
 
 \item{barcode}{barcode of entity to get}
 
-\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http POST}
+\item{projectBarcodes}{one or more project barcodes to associate to the entity}
 
-\item{projectBarcode}{one or more project barcodes to associate to the entity}
+\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http POST}
 }
 \value{
 returns a list $entity contains entity information, $response contains the entire http response

@@ -14,9 +14,9 @@ getExperimentSamplesAssayFileData(coreApi, assayType,
 
 \item{experimentSamplebarcode}{experiment sample barcode of entity to get}
 
-\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http POST}
+\item{attributeName}{Name of the attibute that containts the file data}
 
-\item{attrributeName}{Name of the attibute that containts the file data}
+\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http POST}
 }
 \value{
 returns a list $entity containsbinary object that in the file, $response contains the entire http response

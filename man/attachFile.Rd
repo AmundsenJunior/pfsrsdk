@@ -10,15 +10,15 @@ attachFile(coreApi, entityType, barcode, filePath,
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
 
+\item{entityType}{PFS entity type}
+
 \item{barcode}{User provided barcode as a character string}
+
+\item{filePath}{path to the file to attach}
 
 \item{targetAttributeName}{- if included the name if the attribute to attach the file to.  Must be in all caps.}
 
 \item{useVerbose}{Use verbose communication for debugging}
-
-\item{filename}{name to use for the attached file}
-
-\item{filepath}{path to the file to attach}
 }
 \value{
 RETURN returns a list $entity contains entity information (if present), $response contains the entire http response
@@ -35,8 +35,12 @@ Odata to post to an attribute.
 \dontrun{
 api<-CoreAPI("PATH TO JSON FILE")
 login<- CoreAPIV2::authBasic(api)
-modifiedItem<-CoreAPIV2::attachFile(response$coreApi,barcode,filename,
-         filepath,targetAttributeName="",useVerbose=FALSE)
+modifiedItem<-CoreAPIV2::attachFile(login$coreApi,
+     entitytype,
+     barcode,
+     filePath,
+     targetAttributeName="",
+     useVerbose=FALSE)
 CoreAPIV2::logOut(login$coreApi )
 }
 }

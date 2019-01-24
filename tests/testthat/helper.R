@@ -56,12 +56,30 @@ TESTPOCOUPDATEATTRLIST <- list(CI_TARGET_ABV = 4.8, CI_TARGET_SED_G_L = 0.73)
 # for error tests
 TESTPOCONONEXISTENTTYPE <- "WATER"
 
+# type of experiment
+EXPERIMENTTYPE <- "BITTERNESS EXPERIMENT"
+# Experiment Barcode
+EXPERIMENTBARCODE <- 'BTXP1' 
+# type of experiment protocol
+PROTOCOLTYPE <- "BITTERNESS PROTOCOL"
+# Barcode for the experiment protocol
+EXPERIMENTPROTOCOLBARCODE <- "BTNP1"
+# type of experiment assay
+EXPERIMENTASSAYTYPE <- "BITTERNESS ASSAY"
+# Barcode for the experiment assay to use
+EXPERIMENTASSAYBARCODE <- "BTNA1" 
+
+
+
 ### Stop editing this section now... or else...
 
 # a persistant entity that will always exist in Every PFS instance
 PERSISTENTENTITYTYPE <- "ACCESS_LEVEL"
 PERSISTENTENTITYBARCODE <- "ALC1"
 PERSISTENTENTITYNAME <- "ADMIN ACCESS"
+
+
+
 
 # setup to test against multiple environments
 # name files Auth-[pfsversion].json example Auth-5.3.8.json for this to pick them up.
@@ -73,7 +91,7 @@ if (length(environments) > 1) {
   # Offer the user the option to select the environments that they would like to test.
   cat("Choose the environments that you want to test from the list below. Separate each number with a space. Hit return to test all:\n")
   print.simple.list(environments)
-  selection <- readline()
+  selection <- if (interactive()) readline() else ""
   if (nchar(selection) > 0) environments <- environments[lapply(strsplit(selection, " "), as.numeric)[[1]]]
 }
 

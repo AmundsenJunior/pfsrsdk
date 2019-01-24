@@ -28,7 +28,7 @@ getEntityByName <-
              name,
              fullMetadata = TRUE,
              useVerbose = FALSE) {
-    query <- URLencode(paste0("?$filter=Name eq '", name, "'"))
+    query <- utils::URLencode(paste0("?$filter=Name eq '", name, "'"))
 
 
 

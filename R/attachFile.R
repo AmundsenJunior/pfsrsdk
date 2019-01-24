@@ -2,9 +2,9 @@
 #'
 #' \code{attachFile}  Attaches a file to an entity or file attribute.
 #' @param coreApi coreApi object with valid jsessionid
+#' @param entityType PFS entity type
 #' @param barcode User provided barcode as a character string
-#' @param filename name to use for the attached file
-#' @param filepath path to the file to attach
+#' @param filePath path to the file to attach
 #' @param targetAttributeName - if included the name if the attribute to attach the file to.  Must be in all caps.
 #' @param useVerbose Use verbose communication for debugging
 #' @export
@@ -13,8 +13,12 @@
 #' \dontrun{
 #' api<-CoreAPI("PATH TO JSON FILE")
 #' login<- CoreAPIV2::authBasic(api)
-#' modifiedItem<-CoreAPIV2::attachFile(response$coreApi,barcode,filename,
-#'          filepath,targetAttributeName="",useVerbose=FALSE)
+#' modifiedItem<-CoreAPIV2::attachFile(login$coreApi,
+#'      entitytype,
+#'      barcode,
+#'      filePath,
+#'      targetAttributeName="",
+#'      useVerbose=FALSE)
 #' CoreAPIV2::logOut(login$coreApi )
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com

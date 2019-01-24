@@ -13,12 +13,6 @@ getExperimentSamplesRawData(coreApi, experimentContainerBarcode,
 \item{experimentContainerBarcode}{experiment sample container of entity to get}
 
 \item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http call}
-
-\item{experimentType}{experiment type for sample}
-
-\item{assayType}{assay type for sample}
-
-\item{dataName}{assay data name to retrive as configured in the assay.}
 }
 \value{
 returns a list $entity contains data frame with derived experiment sample barcodes concentration,
@@ -34,7 +28,9 @@ returns a list $entity contains data frame with derived experiment sample barcod
 \dontrun{
 api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
 login<- CoreAPIV2::authBasic(api)
-response<-  getExperimentSamplesRawData (login$coreApi,"ExperimentContainerBarcode",useVerbose = FALSE)
+response<-  getExperimentSamplesRawData (login$coreApi,
+    "ExperimentContainerBarcode",
+    useVerbose = FALSE)
 rawdata <- response$entity
 CoreAPIV2:logOut(login$coreApi)
 }

@@ -5,7 +5,7 @@
 #' @param coreApi coreApi object with valid jsessionid
 #' @param assayType assay type to get
 #' @param experimentSamplebarcode experiment sample barcode of entity to get
-#' @param attrributeName  Name of the attibute that containts the file data
+#' @param attributeName Name of the attibute that containts the file data
 #' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http POST
 #' @return returns a list $entity containsbinary object that in the file, $response contains the entire http response
 #' @export

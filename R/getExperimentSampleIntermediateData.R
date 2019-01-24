@@ -15,7 +15,11 @@
 #' \dontrun{
 #' api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
 #' login<- CoreAPIV2::authBasic(api)
-#' response<-  getExperimentSamplesIntermediateData(login$coreApi,"ExperimentType","assayType","dataName","barcode")
+#' response<-  getExperimentSamplesIntermediateData(login$coreApi,
+#'     "ExperimentType",
+#'     "assayType",
+#'     "dataName",
+#'     "barcode")
 #' rawdata <- response$entity
 #' CoreAPIV2:logOut(login$coreApi)
 #' }

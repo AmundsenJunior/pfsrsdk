@@ -15,7 +15,10 @@
 #' \dontrun{
 #' api<-CoreAPIV2::coreApi("PATH TO JSON FILE")
 #' login<- CoreAPIV2::authBasic(api)
-#' experiment<-CoreAPIV2::createExperiment(login$coreApi,"Experiment_Type","Assaybarcode","Protocolbarcode")
+#' experiment<-CoreAPIV2::createExperiment(login$coreApi,
+#'     "Experiment_Type",
+#'     "Assaybarcode",
+#'     "Protocolbarcode")
 #' CoreAPIV2::logOut(login$coreApi )
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
@@ -32,9 +35,9 @@ createExperiment <-
              useVerbose = FALSE) {
     # clean the names for ODATA
 
-    experimentType <- CoreAPIV2::ODATAcleanName(experimentType)
-    assayType <- CoreAPIV2::ODATAcleanName(assayType)
-    protocolType <- CoreAPIV2::ODATAcleanName(protocolType)
+    experimentType <- CoreAPIV2::odataCleanName(experimentType)
+    assayType <- CoreAPIV2::odataCleanName(assayType)
+    protocolType <- CoreAPIV2::odataCleanName(protocolType)
 
     assayRef <-
       list("EXPERIMENT_ASSAY@odata.bind" = paste0("/", assayType, "('", assayBarcode, "')"))

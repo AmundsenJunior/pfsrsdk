@@ -37,7 +37,10 @@ RETURN returns a list $entity contains entity information, $response contains th
 \dontrun{
 api<-CoreAPIV2::coreApi("PATH TO JSON FILE")
 login<- CoreAPIV2::authBasic(api)
-experiment<-CoreAPIV2::createExperiment(login$coreApi,"Experiment_Type","Assaybarcode","Protocolbarcode")
+experiment<-CoreAPIV2::createExperiment(login$coreApi,
+    "Experiment_Type",
+    "Assaybarcode",
+    "Protocolbarcode")
 CoreAPIV2::logOut(login$coreApi )
 }
 }
