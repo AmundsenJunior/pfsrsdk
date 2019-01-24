@@ -5,20 +5,15 @@ context("Tests for updateEntityLocation")
 
 # Completed regression for 5.3.8 and 6.0.1
 
-cat(paste0("\n environments:\n", environments, "\n"))
-
-lapply(environments, function(x) {
-  con <- Connect(x)
-  
-  test_that(paste("test updateEntityLocation for:", x), {
-    barcode <- CoreAPIV2::getEntityByName(con$coreApi, TESTPOCOUPDATETYPE, TESTPOCOUPDATENAME, useVerbose = verbose)$entity[[1]]$Barcode
+test_that(paste("test updateEntityLocation for:", env$auth), {
+  barcode <- CoreAPIV2::getEntityByName(con$coreApi, data$testPocoUpdateType, data$testPocoUpdateName, useVerbose = verbose)$entity[[1]]$Barcode
     
-    updateLoc <- CoreAPIV2::updateEntityLocation(con$coreApi, TESTPOCOUPDATETYPE, barcode, TESTPOCOUPDATELOC, useVerbose = FALSE)
-    expect_equivalent(httr::status_code(updateLoc$response), 200)
+  updateLoc <- CoreAPIV2::updateEntityLocation(con$coreApi, data$testPocoUpdateType, barcode, data$testPocoUpdateLoc, useVerbose = verbose)
+  expect_equivalent(httr::status_code(updateLoc$response), 200)
     
-    loc <- CoreAPIV2::getEntityLocation(con$coreApi, TESTPOCOUPDATETYPE, barcode, useVerbose = FALSE)
-    expect_match(TESTPOCOUPDATELOC, loc$entity[[1]]$Barcode)
-  })
-  
-  CoreAPIV2::logOut(con$coreApi)
+  loc <- CoreAPIV2::getEntityLocation(con$coreApi, data$testPocoUpdateType, barcode, useVerbose = verbose)
+  expect_match(data$testPocoUpdateLoc, loc$entity[[1]]$Barcode)
+    
+  # update back to original value
+  CoreAPIV2::updateEntityLocation(con$coreApi, data$testPocoUpdateType, barcode, data$testPocoLoc, useVerbose = verbose)
 })

@@ -28,6 +28,7 @@ Suggests:
     pkgdown,
     rmarkdown,
     shiny,
+    stringr,
     styler,
     testthat,
     testthis

@@ -8,7 +8,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE)
 ```
 ## Introduction
 
@@ -18,21 +18,21 @@ versions used.
 
 ## CoreAPIV2 Package Information
 
-```{r echo = FALSE}
+```{r}
 packageDescription("CoreAPIV2")
 ```
 
 ## R Environment Information
 
-```{r echo = FALSE}
+```{r}
 library('knitr')
 
 s<-sessionInfo()
-envrio<-as.data.frame(s$R.version)
+enviro<-as.data.frame(s$R.version)
 
-kable(envrio[,1:5], format = "markdown")
-kable(envrio[,6:10], format = "markdown")
-kable(envrio[,11:length(envrio)], format = "markdown")
+kable(enviro[,1:5], format = "markdown")
+kable(enviro[,6:10], format = "markdown")
+kable(enviro[,11:length(enviro)], format = "markdown")
 ```
 
 ## Required Packages
@@ -40,23 +40,24 @@ kable(envrio[,11:length(envrio)], format = "markdown")
 CoreAPIV2 uses `packrat` for package build and runtime dependency management
 (See `README.md` for more information).
 
-```{r echo = FALSE}
+```{r}
 library('knitr')
 
 d<-packageDescription("CoreAPIV2")
 imports<-strsplit(d[["Imports"]], "[[:punct:][:space:]]+")[[1]]
-importframe<-data.frame(package = imports)
+importFrame<-data.frame(package = imports)
 
-kable(importframe, format = "markdown")
+kable(importFrame, format = "markdown")
 ```
 
 ## Unit Test Results
 
-```{r echo = FALSE}
+```{r eval=FALSE}
 library('knitr')
 library('testthat')
- 
-log<-capture.output(tr<-test_dir("../tests/testthat"))
 
+#TODO re-enable block as part of output from running tests in CI 
+
+log<-capture.output(tr<-test_dir("../tests/testthat"))
 kable(as.data.frame(tr), longtable = TRUE, font_size = 7)
 ```

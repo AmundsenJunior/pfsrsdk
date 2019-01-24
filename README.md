@@ -62,6 +62,16 @@ in order to have `packrat` update the `packrat.lock` file.
 
 TODO: Testing process description
 
+#### Running Individual Tests
+
+As the testing suite uses `setup.R` and `teardown.R` for pre- and post-test
+actions, invoking such helpers is only available from the `testthat::test_dir()`
+or `testthat::test_package()` functions. To test an individual file, execute
+using a filter for that test file name:
+```r
+testthat::test_dir("tests/testthat", filter = "updateEntityLocation")
+```
+
 ### Building the Package
 
 The [`devtools` package](https://github.com/r-lib/devtools) provides crucial

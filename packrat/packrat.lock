@@ -51,6 +51,12 @@ Source: CRAN
 Version: 3.98-1.16
 Hash: 52b8f335b145afc4bccb7fe8122b89c0
 
+Package: askpass
+Source: CRAN
+Version: 1.1
+Hash: 6f6c430e3cd0dd7d48f447700f4d7e7f
+Requires: sys
+
 Package: assertthat
 Source: CRAN
 Version: 0.2.0
@@ -121,8 +127,8 @@ Hash: ff2840dd9b0d563fc80377a5a45510cd
 
 Package: curl
 Source: CRAN
-Version: 3.2
-Hash: e3318ec2d42d15a38485bab047d114ba
+Version: 3.3
+Hash: 38a30b33137041a896bd51ae0e9d1d49
 
 Package: desc
 Source: CRAN
@@ -278,8 +284,9 @@ Hash: 2ed8f98b8284ad733f3907fc6e2f1334
 
 Package: openssl
 Source: CRAN
-Version: 1.1
-Hash: 82c893294829c4badc3d4133b66d1428
+Version: 1.2.1
+Hash: c3c2751a977ed402ec7a2a32698fb533
+Requires: askpass
 
 Package: packrat
 Source: CRAN
@@ -394,19 +401,11 @@ Requires: base64enc, evaluate, htmltools, jsonlite, knitr, mime,
     rprojroot, stringr, tinytex, yaml
 
 Package: roxygen2
-Source: github
-Version: 6.1.0.9000
-Hash: d80ea5563c783b80ad5a6a501f4c88c9
+Source: CRAN
+Version: 6.1.1
+Hash: 8d50e18cdfe6805761db35b027b254eb
 Requires: R6, Rcpp, brew, commonmark, desc, digest, pkgload, purrr,
     stringi, stringr, xml2
-GithubRepo: roxygen
-GithubUsername: klutometis
-GithubRef: master
-GithubSha1: 9adcc8ecb874a802e6947bcd0bd65ff771704a43
-RemoteHost: https://api.github.com
-RemoteRepo: roxygen
-RemoteUsername: klutometis
-RemoteSha: 9adcc8ecb874a802e6947bcd0bd65ff771704a43
 
 Package: rprojroot
 Source: CRAN
@@ -465,6 +464,11 @@ Version: 1.0.2
 Hash: a803f5288519f928124d6305af477120
 Requires: backports, cli, enc, magrittr, purrr, rematch2, rlang,
     rprojroot, tibble, withr
+
+Package: sys
+Source: CRAN
+Version: 2.1
+Hash: 5ce312d2f816b21f602cb81fe4659a0b
 
 Package: testthat
 Source: CRAN
