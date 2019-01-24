@@ -105,18 +105,12 @@ apiGET <-
     } else {
       # chunked response
       more_content <- TRUE # flag for more chunks
-
-      skiptoken <- 1 # counter for chunks
-
       content <- httr::content(response)$value
 
       # parallel this to get all the content at once.
       while (more_content) {
         # build url for next chunk
-        sdk_url <- paste0(base_sdk_url, "?$skiptoken=", skiptoken)
-
-        skiptoken <- skiptoken + 1
-
+        sdk_url <- httr::content(response)$`@odata.nextLink`
         # get next data chunk
 
         #
