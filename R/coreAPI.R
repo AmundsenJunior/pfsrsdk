@@ -22,7 +22,7 @@
 #'    "value": "R-Integration_Baseline"
 #'  },
 #'  {
-#'    "key": "TenantShortName",
+#'    "key": "alias",
 #'    "value": "bp2",
 #'    "type": "text",
 #'    "enabled": true
@@ -59,6 +59,7 @@
 #' As an alternative the environment json object from Postman can be used directly.
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Scott Russell scott.russell@thermofisher.com
+#' @author Natasha Mora natasha.mora@thermofisher.com
 coreAPI <- function(CoreAccountInfo) {
   accountinfo <- jsonlite::fromJSON(CoreAccountInfo)$values
   structure(
@@ -66,7 +67,7 @@ coreAPI <- function(CoreAccountInfo) {
       user = getAccountInfoValue(accountinfo, "username"),
       pwd = getAccountInfoValue(accountinfo, "password"),
       account = getAccountInfoValue(accountinfo, "tenant"),
-      TenantShortName = getAccountInfoValue(accountinfo, "TenantShortName"),
+      alias = getAccountInfoValue(accountinfo, "alias"),
       context = getAccountInfoValue(accountinfo, "context"),
       coreUrl = getAccountInfoValue(accountinfo, "host"),
       port = getAccountInfoValue(accountinfo, "port"),

@@ -39,4 +39,6 @@ logOut(login$coreApi )
 Craig Parman ngsAnalytics, ngsanalytics.com
 
 Scott Russell scott.russell@thermofisher.com
+
+Natasha Mora natasha.mora@thermofisher.com
 }

@@ -32,7 +32,7 @@ The json must include the fields shown below.
    "value": "R-Integration_Baseline"
  },
  {
-   "key": "TenantShortName",
+   "key": "alias",
    "value": "bp2",
    "type": "text",
    "enabled": true
@@ -77,4 +77,6 @@ api<-CoreAPIV2::coreAPI("/home/environment.json")
 Craig Parman ngsAnalytics, ngsanalytics.com
 
 Scott Russell scott.russell@thermofisher.com
+
+Natasha Mora natasha.mora@thermofisher.com
 }

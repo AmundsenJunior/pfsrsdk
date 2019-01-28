@@ -17,6 +17,7 @@
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Scott Russell scott.russell@thermofisher.com
+#' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description \code{buildUrl} build URL for call to Core REST API.
 
 
@@ -33,10 +34,10 @@ buildUrl <-
     # Concat account and odata
     if (coreApi$account == "PLATFORM ADMIN") {
       odat <- "/odata/"
-    } else if (!is.null(coreApi$account) && is.null(coreApi$TenantShortName)) {
+    } else if (!is.null(coreApi$account) && is.null(coreApi$alias)) {
       odat <- paste0("/", odataCleanName(coreApi$account), "/odata/")
-    } else if (!is.null(coreApi$TenantShortName)) {
-      odat <- paste0("/", odataCleanName(coreApi$TenantShortName), "/odata/")
+    } else if (!is.null(coreApi$alias)) {
+      odat <- paste0("/", odataCleanName(coreApi$alias), "/odata/")
     } else {
       odat <- "/odata/"
     }
