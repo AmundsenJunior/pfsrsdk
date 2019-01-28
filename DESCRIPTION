@@ -21,6 +21,7 @@ Imports:
     utils, 
     xml2
 Suggests:
+    devtools,
     knitr,
     lintr,
     pkgdown,
