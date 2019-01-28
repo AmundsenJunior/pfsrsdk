@@ -1,6 +1,6 @@
-#' experimentUnPublish UnPublishes an experiment.
+#' experimentUnpublish Unpublishes an experiment.
 #'
-#' \code{experimentUnPublish} UnPublishes an experiment.
+#' \code{experimentUnpublish} Unpublishes an experiment.
 #' @param coreApi coreApi object with valid jsessionid
 #' @param experimentType experiment entity type
 #' @param experimentBarcode barcode of the experiment
@@ -11,18 +11,18 @@
 #' \dontrun{
 #' api<-CoreAPIV2("PATH TO JSON FILE")
 #' login<- CoreAPIV2::authBasic(api)
-#' update<- CoreAPIV2::experimentUnPublish(login$coreApi,experimentType, exptbarcode,useVerbose = TRUE)
+#' update<- CoreAPIV2::experimentUnpublish(login$coreApi,experimentType, exptbarcode,useVerbose = TRUE)
 #' CoreAPIV2::logOut(login$coreApi )
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
-#' @description \code{experimentUnPublish} - UnPublishes an experiment.
+#' @description \code{experimentUnpublish} - Unpublishes an experiment.
 
 
 
 
 
 
-experimentUnPublish <-
+experimentUnpublish <-
   function(coreApi,
              experimentType,
              experimentBarcode,
