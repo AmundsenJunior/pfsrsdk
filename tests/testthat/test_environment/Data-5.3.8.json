@@ -1,0 +1,56 @@
+{
+  "testPocoType": "BEER_ORDER",
+  "testPocoName": "BO1",
+  "testPocoLoc": "LC3",
+  "testPocoProj": "PJ1",
+  "testPocoFileAttrName": "CI_INVOICE_FILE",
+  "testPocoCreateBoolType": "BOOLEAN",
+  "testPocoCreateBoolAttrList": [{
+    "CI_READONLY": true
+  }],
+  "testPocoCreateBoolAssocList": [{}],
+  "testPocoCreateDecType": "BEER_ORDER",
+  "testPocoCreateDecAttrList": [{
+    "CI_NUM_UNITS": 10.0,
+    "CI_UNIT_PRICE": 5.99,
+    "CI_INVOICE_FILE": null
+  }],
+  "testPocoCreateDecAssocList": [{
+    "BEER_ORDERED": "BEER('BEER1')"
+  }],
+  "testPocoCreateIntType": "LOCATION",
+  "testPocoCreateIntAttrList" : [{
+    "CI_CAPACITY": 100,
+    "CI_COUNT": 2
+  }],
+  "testPocoCreateIntAssocList": [{}],
+  "testPocoCreateStrType": "ACCESS_LEVEL",
+  "testPocoCreateStrAttrList": [{
+    "COMMENTS": "Test comment"
+  }],
+  "testPocoCreateStrAssocList": [{}],
+  "testPocoGetAssocType": "BEER",
+  "testPocoGetAssocName": "Sarges Best Dark Lager",
+  "testPocoGetAssocContext": "BEER_ORDERED",
+  "testPocoUpdateType": "BEER",
+  "testPocoUpdateName": "Sarges Best Dark Lager",
+  "testPocoUpdateAssocType": "HOPS",
+  "testPocoUpdateAssocName": "Apollo",
+  "testPocoUpdateAssocContext": "BEER_HOPS",
+  "testPocoUpdateLoc": "LC1",
+  "testPocoUpdateProj": "PJ2",
+  "testPocoUpdateAttrList": [{
+    "CI_TARGET_ABV": 4.8,
+    "CI_TARGET_SED_G_L": 0.73
+  }],
+  "testPocoNonexistentType": "WATER",
+  "persistentEntityType": "ACCESS_LEVEL",
+  "persistentEntityName": "ADMIN ACCESS",
+  "persistentEntityBarcode": "ALC1",
+  "experimentType": "BITTERNESS_EXPERIMENT",
+  "experimentBarcode": "BTXP1",
+  "experimentAssayType": "BITTERNESS_ASSAY",
+  "experimentAssayBarcode": "BTNA1",
+  "experimentProtocolType": "BITTERNESS_PROTOCOL",
+  "experimentProtocolBarcode": "BTNP1"
+}
