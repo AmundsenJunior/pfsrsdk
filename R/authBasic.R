@@ -2,8 +2,8 @@
 #'
 #' \code{authBasic} Authenticates against the ODATA REST API using basic authentication.
 #'
-#' @param coreApi object of class coreApi that contains user, password,  baseURL and
-#' account. account is required if user has access to multiple tenants.
+#' @param coreApi object of class coreApi that contains username, password,  baseURL and
+#' tenant. tenant is required if user has access to multiple tenants.
 #' @param useVerbose - Use verbose settings for HTTP commands
 #' @return returns a list with two oblects. coreApi which returns the passed coreApi object with  jsessionid,
 #'            awselb and employeeid populated, $response contains the entire http response
@@ -18,17 +18,18 @@
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanaltics.com
 #' @author Scott Russell scott.russell@thermofisher.com
+#' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description \code{authBasic} Logs in and returns a fully populated coreApi object in $coreAPI.
 
 
 
 authBasic <- function(coreApi, useVerbose = FALSE) {
-  if (is.null(coreApi$account)) {
+  if (is.null(coreApi$tenant)) {
     request <-
       list(request = list(
         data = list(
-          lims_userName = jsonlite::unbox(coreApi$user),
-          lims_password = jsonlite::unbox(coreApi$pwd)
+          lims_userName = jsonlite::unbox(coreApi$username),
+          lims_password = jsonlite::unbox(coreApi$password)
         ),
         typeParam = jsonlite::unbox("*"),
         sdkCmd = jsonlite::unbox("sdk-login")
@@ -38,14 +39,14 @@ authBasic <- function(coreApi, useVerbose = FALSE) {
       list(
         "entityID" = jsonlite::unbox(""),
         "barcode" = jsonlite::unbox(""),
-        "name" = jsonlite::unbox(coreApi$account)
+        "name" = jsonlite::unbox(coreApi$tenant)
       )
 
     request <-
       list(request = list(
         data = list(
-          lims_userName = jsonlite::unbox(coreApi$user),
-          lims_password = jsonlite::unbox(coreApi$pwd),
+          lims_userName = jsonlite::unbox(coreApi$username),
+          lims_password = jsonlite::unbox(coreApi$password),
           accountRef = accountObject
         ),
         typeParam = jsonlite::unbox("*"),
