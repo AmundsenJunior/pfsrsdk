@@ -7,8 +7,8 @@
 #' api<-CoreAPIV2::coreAPI("/home/environment.json")
 #' }
 #' @details{ Creates a object of class coreAPI that contains username,
-#'          password, base url, tenant, port.
-#'          It has slots for tenant, jsessionId, AWSELB, and base URL.
+#'          password, host, tenant, port.
+#'          It has slots for tenant, jsessionId, AWSELB, and host.
 #'          Requires a json file that is a POSTMAN environment file.
 #'         \code{#'Creates a object of class coreAPI that contains tenant information}
 #'         \code{coreAPI("path to json")}.
