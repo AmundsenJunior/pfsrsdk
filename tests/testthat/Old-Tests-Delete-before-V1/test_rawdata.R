@@ -19,7 +19,7 @@ test_that(paste("test get expt., expt. sample, raw and intermediate data", insta
   con <- CoreAPIV2::authBasic(api, useVerbose = verbose)
 
 
-  expect_match(api$coreUrl, con$coreApi$coreUrl, all = verbose)
+  expect_match(api$host, con$coreApi$host, all = verbose)
   expect_that(is.null(con$coreApi$jsessionId), equals(FALSE))
 
   # get the experiment

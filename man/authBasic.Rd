@@ -7,8 +7,8 @@
 authBasic(coreApi, useVerbose = FALSE)
 }
 \arguments{
-\item{coreApi}{object of class coreApi that contains user, password,  baseURL and
-account. account is required if user has access to multiple tenants.}
+\item{coreApi}{object of class coreApi that contains username, password,  baseURL and
+tenant. tenant is required if user has access to multiple tenants.}
 
 \item{useVerbose}{- Use verbose settings for HTTP commands}
 }
@@ -35,4 +35,6 @@ CoreAPIV2::logOut(response$coreApi,useVerbose=TRUE )
 Craig Parman ngsAnalytics, ngsanaltics.com
 
 Scott Russell scott.russell@thermofisher.com
+
+Natasha Mora natasha.mora@thermofisher.com
 }

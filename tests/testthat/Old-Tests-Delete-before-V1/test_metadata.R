@@ -20,7 +20,7 @@ test_that(paste("test getEntityMetadata for entity with attributes and associati
 
   con <- CoreAPIV2::authBasic(api, useVerbose = verbose)
 
-  expect_match(api$coreUrl, con$coreApi$coreUrl, all = verbose)
+  expect_match(api$host, con$coreApi$host, all = verbose)
 
   expect_that(is.null(con$coreApi$jsessionId), equals(FALSE))
 
@@ -40,7 +40,7 @@ test_that(paste("test getEntityMetadata for entity without attributes and associ
 
   con <- CoreAPIV2::authBasic(api, useVerbose = verbose)
 
-  expect_match(api$coreUrl, con$coreApi$coreUrl, all = verbose)
+  expect_match(api$host, con$coreApi$host, all = verbose)
 
   expect_that(is.null(con$coreApi$jsessionId), equals(FALSE))
 
@@ -65,7 +65,7 @@ test_that(paste("test getEntityMetadata errors out if entityType is not correct"
 
   con <- CoreAPIV2::authBasic(api, useVerbose = verbose)
 
-  expect_match(api$coreUrl, con$coreApi$coreUrl, all = verbose)
+  expect_match(api$host, con$coreApi$host, all = verbose)
 
   expect_that(is.null(con$coreApi$jsessionId), equals(FALSE))
 

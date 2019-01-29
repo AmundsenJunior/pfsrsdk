@@ -19,7 +19,7 @@ test_that(paste("test GET of a single well container", instance), {
 
   con <- CoreAPIV2::authBasic(api, useVerbose = verbose)
 
-  expect_match(api$coreUrl, con$coreApi$coreUrl, all = verbose)
+  expect_match(api$host, con$coreApi$host, all = verbose)
   expect_that(is.null(con$coreApi$jsessionId), equals(FALSE))
 
   containers <- getExperimentContainers(con$coreApi, "BIOCHEMICAL DOSE RESPONSE EXPERIMENT", "BDR25", TRUE)
@@ -46,7 +46,7 @@ test_that(paste("test login and get container and cell contents for multi well p
 
   con <- CoreAPIV2::authBasic(api, useVerbose = verbose)
 
-  expect_match(api$coreUrl, con$coreApi$coreUrl, all = verbose)
+  expect_match(api$host, con$coreApi$host, all = verbose)
   expect_that(is.null(con$coreApi$jsessionId), equals(FALSE))
 
   lheader <- c(Accept = "application/json;odata.metadata=full")
@@ -85,7 +85,7 @@ test_that(paste("test  get container IDs for multi well plate and Vial", instanc
 
   con <- CoreAPIV2::authBasic(api, useVerbose = verbose)
 
-  expect_match(api$coreUrl, con$coreApi$coreUrl, all = verbose)
+  expect_match(api$host, con$coreApi$host, all = verbose)
   expect_that(is.null(con$coreApi$jsessionId), equals(FALSE))
 
 
@@ -120,7 +120,7 @@ test_that(paste("test create container, setContents, and update contents", insta
 
   con <- CoreAPIV2::authBasic(api, useVerbose = verbose)
 
-  expect_match(api$coreUrl, con$coreApi$coreUrl, all = verbose)
+  expect_match(api$host, con$coreApi$host, all = verbose)
   expect_that(is.null(con$coreApi$jsessionId), equals(FALSE))
 
 
