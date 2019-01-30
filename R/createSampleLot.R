@@ -16,6 +16,7 @@
 #' logOut(login$coreApi )
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description \code{createSampleLot} Creates a new sample lot using the parent sample barcode
 
 
@@ -30,7 +31,7 @@ createSampleLot <-
              useVerbose = FALSE) {
     # clean the name for ODATA
 
-    sampleType <- CoreAPIV2::ODATAcleanName(sampleType)
+    sampleType <- CoreAPIV2::odataCleanName(sampleType)
 
     lotName <- paste0(sampleType, "_LOT")
 

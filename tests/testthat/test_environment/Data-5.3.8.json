@@ -47,10 +47,12 @@
   "persistentEntityType": "ACCESS_LEVEL",
   "persistentEntityName": "ADMIN ACCESS",
   "persistentEntityBarcode": "ALC1",
-  "experimentType": "BITTERNESS_EXPERIMENT",
+  "experimentType": "BITTERNESS EXPERIMENT",
   "experimentBarcode": "BTXP1",
   "experimentAssayType": "BITTERNESS_ASSAY",
   "experimentAssayBarcode": "BTNA1",
   "experimentProtocolType": "BITTERNESS_PROTOCOL",
-  "experimentProtocolBarcode": "BTNP1"
+  "experimentProtocolBarcode": "BTNP1",
+  "sampleType": "BEER_SAMPLE",
+  "sampleBarcode": "BS998"
 }
