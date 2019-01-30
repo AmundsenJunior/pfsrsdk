@@ -25,7 +25,7 @@ test_that("full sample to container cycle", {
 
   con <- CoreAPIV2::authBasic(api, useVerbose = verbose)
 
-  expect_match(api$coreUrl, con$coreApi$coreUrl, all = verbose) # 1
+  expect_match(api$host, con$coreApi$host, all = verbose) # 1
   expect_that(is.null(con$coreApi$jsessionId), equals(FALSE)) # 2
 
 

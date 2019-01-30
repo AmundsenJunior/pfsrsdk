@@ -19,7 +19,7 @@ test_that(paste("test log in and get an entity", instance), {
 
   con <- CoreAPIV2::authBasic(api, useVerbose = verbose)
 
-  expect_match(api$coreUrl, con$coreApi$coreUrl, all = verbose)
+  expect_match(api$host, con$coreApi$host, all = verbose)
   expect_that(is.null(con$coreApi$jsessionId), equals(FALSE))
 
 
@@ -54,7 +54,7 @@ test_that(paste("test login and get an entity that returns chunked response", in
 
   con <- CoreAPIV2::authBasic(api, useVerbose = verbose)
 
-  expect_match(api$coreUrl, con$coreApi$coreUrl, all = verbose)
+  expect_match(api$host, con$coreApi$host, all = verbose)
   expect_that(is.null(con$coreApi$jsessionId), equals(FALSE))
 
   lheader <- c(Accept = "application/json;odata.metadata=full")
@@ -80,7 +80,7 @@ test_that(paste("test login and get container and cell contents", instance), {
 
   con <- CoreAPIV2::authBasic(api, useVerbose = verbose)
 
-  expect_match(api$coreUrl, con$coreApi$coreUrl, all = verbose)
+  expect_match(api$host, con$coreApi$host, all = verbose)
   expect_that(is.null(con$coreApi$jsessionId), equals(FALSE))
 
   lheader <- c(Accept = "application/json;odata.metadata=full")

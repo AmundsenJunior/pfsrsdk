@@ -7,7 +7,7 @@
 coreAPI(CoreAccountInfo)
 }
 \arguments{
-\item{CoreAccountInfo}{file with account information in json format.}
+\item{CoreAccountInfo}{file with tenant information in json format.}
 }
 \value{
 Object of class coreAPI
@@ -16,11 +16,11 @@ Object of class coreAPI
 coreAPI Creates a object of class coreAPI that contains user and connection information.
 }
 \details{
-{ Creates a object of class coreAPI that contains user name,
-         password base url, account, port.
-         It has slots for account, jsessionId, AWSELB, and base URL.
+{ Creates a object of class coreAPI that contains username,
+         password, host, tenant, port.
+         It has slots for tenant, jsessionId, AWSELB, and host.
          Requires a json file that is a POSTMAN environment file.
-        \code{#'Creates a object of class coreAPI that contains account information}
+        \code{#'Creates a object of class coreAPI that contains tenant information}
         \code{coreAPI("path to json")}.
 }
 The json must include the fields shown below.
@@ -65,7 +65,7 @@ The json must include the fields shown below.
 }
     }
 
- The account value may be set to "" if the user only has access to one tenant.
+ The tenant value may be set to "" if the user only has access to one tenant.
 As an alternative the environment json object from Postman can be used directly.
 }
 \examples{

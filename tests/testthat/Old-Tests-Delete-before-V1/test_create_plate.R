@@ -22,7 +22,7 @@ test_that(paste("create and fill plate with setWellContents", instance), {
   con <- CoreAPIV2::authBasic(api, useVerbose = verbose)
 
 
-  expect_match(api$coreUrl, con$coreApi$coreUrl, all = verbose)
+  expect_match(api$host, con$coreApi$host, all = verbose)
   expect_that(is.null(con$coreApi$jsessionId), equals(FALSE))
   # create plate
 
@@ -92,7 +92,7 @@ test_that(paste("create and fill plate with setCellContents", instance), {
   con <- CoreAPIV2::authBasic(api, useVerbose = verbose)
 
 
-  expect_match(api$coreUrl, con$coreApi$coreUrl, all = verbose)
+  expect_match(api$host, con$coreApi$host, all = verbose)
   expect_that(is.null(con$coreApi$jsessionId), equals(FALSE))
   # create plate
 

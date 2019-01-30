@@ -20,7 +20,7 @@ test_that(paste("create a sample and attach a file", instance), {
 
   con <- CoreAPIV2::authBasic(api, useVerbose = verbose)
 
-  expect_match(api$coreUrl, con$coreApi$coreUrl, all = verbose)
+  expect_match(api$host, con$coreApi$host, all = verbose)
   expect_that(is.null(con$coreApi$jsessionId), equals(FALSE))
 
 

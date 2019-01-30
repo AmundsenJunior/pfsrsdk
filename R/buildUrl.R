@@ -31,11 +31,11 @@ buildUrl <-
              special = NULL,
              useVerbose = FALSE) {
 
-    # Concat account and odata
-    if (coreApi$account == "PLATFORM ADMIN") {
+    # Concat tenant and odata
+    if (coreApi$tenant == "PLATFORM ADMIN") {
       odat <- "/odata/"
-    } else if (!is.null(coreApi$account) && is.null(coreApi$alias)) {
-      odat <- paste0("/", odataCleanName(coreApi$account), "/odata/")
+    } else if (!is.null(coreApi$tenant) && is.null(coreApi$alias)) {
+      odat <- paste0("/", odataCleanName(coreApi$tenant), "/odata/")
     } else if (!is.null(coreApi$alias)) {
       odat <- paste0("/", odataCleanName(coreApi$alias), "/odata/")
     } else {
@@ -55,7 +55,7 @@ buildUrl <-
         paste0(
           coreApi$scheme,
           "://",
-          coreApi$coreUrl,
+          coreApi$host,
           ":",
           coreApi$port,
           ctx,
@@ -70,7 +70,7 @@ buildUrl <-
           paste0(
             coreApi$scheme,
             "://",
-            coreApi$coreUrl,
+            coreApi$host,
             ":",
             coreApi$port,
             ctx,
@@ -80,7 +80,7 @@ buildUrl <-
           paste0(
             coreApi$scheme,
             "://",
-            coreApi$coreUrl,
+            coreApi$host,
             ":",
             coreApi$port,
             ctx,
