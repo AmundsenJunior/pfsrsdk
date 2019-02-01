@@ -23,24 +23,26 @@
 getCellContents <-
   function(coreApi, containerCellId, useVerbose = FALSE) {
     # make sure containerCellNum is numeric
-
     containerCellId <- as.numeric(containerCellId)
-
 
     resource <- "CELL"
 
+    expansion <- switch(EXPR = substr(coreApi$semVer, 1, 1),
+                        "2" = "?$expand=CONTENT($expand=IMPL_SAMPLE_LOT)",
+                        "3" = "?$expand=CELL_CONTENTS($expand=SAMPLE_LOT)",
+                        print("?$expand=CELL_CONTENTS($expand=SAMPLE_LOT")
+    )
+    
     query <-
       paste0(
         "(",
         containerCellId,
-        ")?$expand=CELL_CONTENTS($expand=SAMPLE_LOT)"
+        ")",
+        expansion
       )
-
 
     header <-
       c("Content-Type" = "application/json;odata.metadata=full", Accept = "application/json")
-
-
 
     response <-
       CoreAPIV2::apiGET(
@@ -50,8 +52,6 @@ getCellContents <-
         headers = header,
         useVerbose = useVerbose
       )
-
-
 
     response <-
       list(entity = response$content, response = response$response)

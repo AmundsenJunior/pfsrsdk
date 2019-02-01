@@ -43,6 +43,7 @@
   "sampleBarcode": "",
   "intermediateDataName": "",
   "singleWellContainerBarcode":"",
-  "multiWellContainerBarcode":""
+  "multiWellContainerBarcode":"",
+  "containerCellId": ""
 }
 

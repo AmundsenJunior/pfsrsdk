@@ -59,5 +59,6 @@
   "sampleBarcode": "BS1000",
   "intermediateDataName": "CI_BITTERNESS_IBU_INTERMEDIATE",
   "singleWellContainerBarcode":"VIA1",
-  "multiWellContainerBarcode":"96W1"
+  "multiWellContainerBarcode":"96W1",
+  "containerCellId": "17376900"
 }
