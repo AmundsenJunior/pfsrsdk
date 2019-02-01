@@ -36,13 +36,13 @@ createSampleLot <-
 
     lotName <- paste0(sampleType, "_LOT")
 
-    version <- switch(EXPR = coreApi$semVer,
+    dataBind <- switch(EXPR = coreApi$semVer,
            "2.7.1" = "IMPL_LOT_SAMPLE@odata.bind",
            print("SAMPLE@odata.bind"))
     
-    lotRef <- list(version = paste0("/", sampleType, "('", sampleBarcode, "')"))
+    lotRef <- list(dataBind = paste0("/", sampleType, "('", sampleBarcode, "')"))
     
-    names(lotRef) <- version
+    names(lotRef) <- dataBind
 
     fullBody <- jsonlite::toJSON(c(body, lotRef), auto_unbox = TRUE)
 

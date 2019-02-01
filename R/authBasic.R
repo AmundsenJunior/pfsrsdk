@@ -119,7 +119,7 @@ authBasic <- function(coreApi, useVerbose = FALSE) {
   }
   
   if (is.null(coreApi$semVer)){
-    coreApi$semVer <- setSemVer(coreApi)
+    coreApi$semVer <- getSemVer(coreApi)
     warning(paste("SemVer variable in JSON connection string should be set to", coreApi$semVer))
     }
 
