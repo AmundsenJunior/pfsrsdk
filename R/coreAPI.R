@@ -120,5 +120,10 @@ getAccountInfoValue <- function(accountinfo, key) {
     value <- NULL
   }
   
+  envVar <- stringr::str_to_upper(key)
+  if(!stringi::stri_isempty(Sys.getenv(envVar))) {
+    value <- Sys.getenv(envVar)
+  }
+  
   return(value)
 }

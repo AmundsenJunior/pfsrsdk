@@ -6,9 +6,13 @@ Authors@R: c(
     person("Craig", "Parman", role = "aut"),
     person("Adam", "Wheeler", role = "aut"),
     person("Natasha", "Mora", role = "aut"),
-    person(family = "Thermo Fisher Scientific Platform for Science Analytics team", email = "core_developeers@coreinformatics.com", role = c("ctb", "cre", "cph"))
+    person("Scott", "Russell", role = "aut"),
+    person(family = "Thermo Fisher Scientific Platform for Science Data Science team",
+      email = "core_developeers@coreinformatics.com", role = c("ctb", "cre", "cph"))
     )
-Description: The package provides functions for interacting with the Thermo Fisher Scientific Platform for Science OData API.
+Description: The package provides functions for interacting with the Thermo 
+  Fisher Scientific Platform for Science OData API. It is compatible with PFS
+  versions 5.3.8 and 6.0.1.
 License: AGPL (>=2)
 URL: https://bitbucket.org/corelims/coreapiv2
 BugReports: https://corelims.atlassian.net/secure/RapidBoard.jspa?rapidView=395&projectKey=RSDK&view=planning
