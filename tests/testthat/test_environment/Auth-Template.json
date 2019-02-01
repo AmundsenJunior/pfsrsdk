@@ -55,6 +55,12 @@
       "name": "passwordadmin",
       "enabled": true,
       "hovered": false
+    },
+    {
+      "key": "semver",
+      "value": "",
+      "type": "text",
+      "enabled": true
     }
   ]
 }

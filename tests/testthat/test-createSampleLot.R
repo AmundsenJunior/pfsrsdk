@@ -7,7 +7,7 @@ test_that(paste("test createSampleLot() on:", env$auth), {
   result <- CoreAPIV2::createSampleLot(con$coreApi,
                                          data$sampleType,
                                          data$sampleBarcode,
-                                         body = NULL, ###get back to this
+                                         body = NULL,
                                          useVerbose = verbose)
   #browser()
   expect_gt(httr::content(result$response)$CI_LOT_NUM, 0)

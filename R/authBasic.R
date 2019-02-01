@@ -18,6 +18,7 @@
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanaltics.com
 #' @author Scott Russell scott.russell@thermofisher.com
+#' @author Adam Wheeler, adam.j.wheeler@accenture.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description \code{authBasic} Logs in and returns a fully populated coreApi object in $coreAPI.
 
@@ -116,6 +117,11 @@ authBasic <- function(coreApi, useVerbose = FALSE) {
   if (!is.null(session$serviceRoot)) {
     coreApi$serviceRoot <- session$serviceRoot
   }
+  
+  if (is.null(coreApi$semVer)){
+    coreApi$semVer <- setSemVer(coreApi)
+    warning(paste('SemVer variable in JSON connection string should be set to', coreApi$semVer))
+    }
 
 
   list(coreApi = coreApi, response = response)

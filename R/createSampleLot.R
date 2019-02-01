@@ -35,16 +35,17 @@ createSampleLot <-
 
     lotName <- paste0(sampleType, "_LOT")
 
-
+#TODO Add a case_when or switch statement.
 
     lotRef <-
-      list("SAMPLE@odata.bind" = paste0("/", sampleType, "('", sampleBarcode, "')"))
+      list("SAMPLE@odata.bind" = paste0("/", sampleType, "('", sampleBarcode, "')")) #for V6
+      #list("IMPL_LOT_SAMPLE@odata.bind" = paste0("/", sampleType, "('", sampleBarcode, "')")) #for V5.3.8
 
     fullBody <- jsonlite::toJSON(c(body, lotRef), auto_unbox = TRUE)
 
     headers <-
       c("Content-Type" = "application/json;odata.metadata=full", accept = "application/json")
-
+browser()
     response <-
       CoreAPIV2::apiPOST(
         coreApi,
