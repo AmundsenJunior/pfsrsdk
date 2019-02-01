@@ -9,6 +9,6 @@ test_that(paste("test createSampleLot() on:", env$auth), {
                                          data$sampleBarcode,
                                          body = NULL,
                                          useVerbose = verbose)
-  #browser()
+
   expect_gt(httr::content(result$response)$CI_LOT_NUM, 0)
 })

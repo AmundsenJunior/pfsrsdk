@@ -25,43 +25,71 @@ coreAPI Creates a object of class coreAPI that contains user and connection info
 }
 The json must include the fields shown below.
     \code{
-     {
-   "values": [
- {
-   "key": "tenant",
-   "value": "R-Integration_Baseline"
- },
- {
-   "key": "alias",
-   "value": "bp2",
-   "type": "text",
-   "enabled": true
- },
- {
-   "key": "scheme",
-   "value": "https"
- },
- {
-   "key": "host",
-   "value": "lims.ccc.cloud"
- },
- {
-   "key": "context",
-   "value": ""
- },
- {
-   "key": "username",
-  "value": "yyyy"
- },
- {
-   "key": "password",
-   "value": "xxxxx"
- },
- {
-   "key": "port",
-   "value": "443"
- }
- ]
+{
+  "values": [
+    {
+      "key": "tenant",
+      "value": "FULLNAMEOFTENANT",
+      "type": "text",
+      "enabled": true
+    },    
+    {
+      "key": "alias",
+      "value": "SHORTNAMEINURL",
+      "type": "text",
+      "enabled": true
+    },
+    {
+      "key": "scheme",
+      "value": "https",
+      "type": "text",
+      "name": "scheme",
+      "enabled": true,
+      "hovered": false
+    },
+    {
+      "key": "host",
+      "value": "HOSTNAME",
+      "type": "text",
+      "name": "host",
+      "enabled": true,
+      "hovered": false
+    },
+    {
+      "key": "port",
+      "value": "443",
+      "type": "text",
+      "enabled": true
+    },
+    {
+      "key": "context",
+      "value": "",
+      "type": "text",
+      "enabled": true
+    },
+    {
+      "key": "username",
+      "value": "USER",
+      "type": "text",
+      "name": "nameadmin",
+      "enabled": true,
+      "hovered": false
+    },
+    {
+      "key": "password",
+      "value": "PASSWORD",
+      "type": "text",
+      "name": "passwordadmin",
+      "enabled": true,
+      "hovered": false
+    },
+    {
+      "key": "semver",
+      "value": "",
+      "type": "text",
+      "enabled": true
+    }
+    ]
 }
     }
 
@@ -77,6 +105,8 @@ api<-CoreAPIV2::coreAPI("/home/environment.json")
 Craig Parman ngsAnalytics, ngsanalytics.com
 
 Scott Russell scott.russell@thermofisher.com
+
+Adam Wheeler, adam.j.wheeler@accenture.com
 
 Natasha Mora natasha.mora@thermofisher.com
 }

@@ -17,6 +17,7 @@
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
+#' @author Adam Wheeler, adam.j.wheeler@accenture.com
 #' @description \code{createSampleLot} Creates a new sample lot using the parent sample barcode
 
 
@@ -35,17 +36,19 @@ createSampleLot <-
 
     lotName <- paste0(sampleType, "_LOT")
 
-#TODO Add a case_when or switch statement.
-
-    lotRef <-
-      list("SAMPLE@odata.bind" = paste0("/", sampleType, "('", sampleBarcode, "')")) #for V6
-      #list("IMPL_LOT_SAMPLE@odata.bind" = paste0("/", sampleType, "('", sampleBarcode, "')")) #for V5.3.8
+    version <- switch(EXPR = coreApi$semVer,
+           "2.7.1" = "IMPL_LOT_SAMPLE@odata.bind",
+           print("SAMPLE@odata.bind"))
+    
+    lotRef <- list(version = paste0("/", sampleType, "('", sampleBarcode, "')"))
+    
+    names(lotRef) <- version
 
     fullBody <- jsonlite::toJSON(c(body, lotRef), auto_unbox = TRUE)
 
     headers <-
       c("Content-Type" = "application/json;odata.metadata=full", accept = "application/json")
-browser()
+
     response <-
       CoreAPIV2::apiPOST(
         coreApi,
@@ -56,8 +59,6 @@ browser()
         special = NULL,
         useVerbose = useVerbose
       )
-
-
 
     list(entity = httr::content(response), response = response)
   }
