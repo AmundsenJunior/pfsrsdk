@@ -9,4 +9,4 @@
 * Added `serviceRoot` to coreAPI to enable SDK use against Platform Admin
 * Replaced `TenantShortName` with `alias` on *.json files and corresponding R/ and tests/ files. Everyone shall update auth files to match new standard.
 * Replaced `account` to `tenant`, `coreUrl` to `host`, `user` to `username` and `pwd` to `password` in the CoreApi class.
-* Added `setSemVer` function to test the PFS version being used and adapt commands when necessary as in `createSampleLot.R`.
+* Added `getSemVer` function to test the PFS version being used and adapt commands when necessary as in `createSampleLot.R`.
