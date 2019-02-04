@@ -17,6 +17,7 @@
 #' CoreAPIV2:logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description \code{ getExperimentSamples}  Gets experiment sample barcodes from experiment identified by experiment barcode.
 
 
@@ -30,12 +31,11 @@ getExperimentSamples <-
              useVerbose = FALSE) {
     # clean the name for ODATA
 
-    resource <- CoreAPIV2::ODATAcleanName(experimentType)
-
-
+    resource <-
+      paste0(CoreAPIV2::odataCleanName(experimentType),"('", barcode, "')")
+    
     query <-
-      paste0("('", barcode, "')/EXPERIMENT_SAMPLES")
-
+      "?$expand=REV_EXPERIMENT_EXPERIMENT_SAMPLE"
 
     header <-
       c("Content-Type" = "application/json;odata.metadata=full", Accept = "application/json")
@@ -51,12 +51,12 @@ getExperimentSamples <-
         useVerbose = useVerbose
       )
 
-
-
+    ResponseContent <- httr::content(response$response, as = "parsed")
+    
 
     list(entity = unlist((
       lapply(
-        response$content,
+        ResponseContent$value,
         FUN = function(x)
           x$Barcode
       )
