@@ -27,9 +27,9 @@ returns a list $entity contains entity information, $response contains the entir
 }
 \examples{
 \dontrun{
-api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-login<- CoreAPIV2::authBasic(api)
-response<-  CoreAPIV2::getExperimentSamples(login$coreApi,"entityType","barcode")
+api <- CoreAPIV2::CoreAPI("PATH TO JSON FILE")
+login <- CoreAPIV2::authBasic(api)
+response <- CoreAPIV2::getExperimentSamples(login$coreApi, "entityType", "barcode")
 experimentsampleBarcodes <- response$entity
 CoreAPIV2:logOut(login$coreApi)
 }

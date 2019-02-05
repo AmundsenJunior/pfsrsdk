@@ -9,4 +9,16 @@ test_that(paste("test getExperimentSamples() on:", env$auth), {
   result <- CoreAPIV2::getExperimentSamples(con$coreApi, data$experimentType, data$experimentBarcode, useVerbose = verbose)
 
   expect_equal(result$response$response$status_code, 200)
+
+  expect_gt(
+    unlist(
+      length(
+        lapply(
+          result$response$content$REV_EXPERIMENT_EXPERIMENT_SAMPLE,
+          FUN = function(x)
+            x$Barcode
+        )
+      )
+    ), 0
+  )
 })

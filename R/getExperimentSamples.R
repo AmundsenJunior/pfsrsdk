@@ -10,9 +10,9 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-#' login<- CoreAPIV2::authBasic(api)
-#' response<-  CoreAPIV2::getExperimentSamples(login$coreApi,"entityType","barcode")
+#' api <- CoreAPIV2::CoreAPI("PATH TO JSON FILE")
+#' login <- CoreAPIV2::authBasic(api)
+#' response <- CoreAPIV2::getExperimentSamples(login$coreApi, "entityType", "barcode")
 #' experimentsampleBarcodes <- response$entity
 #' CoreAPIV2:logOut(login$coreApi)
 #' }
@@ -32,8 +32,8 @@ getExperimentSamples <-
     # clean the name for ODATA
 
     resource <-
-      paste0(CoreAPIV2::odataCleanName(experimentType),"('", barcode, "')")
-    
+      paste0(CoreAPIV2::odataCleanName(experimentType), "('", barcode, "')")
+
     query <-
       "?$expand=REV_EXPERIMENT_EXPERIMENT_SAMPLE"
 
@@ -52,7 +52,7 @@ getExperimentSamples <-
       )
 
     ResponseContent <- httr::content(response$response, as = "parsed")
-    
+
 
     list(entity = unlist((
       lapply(
