@@ -29,12 +29,16 @@ RETURN returns a list $entity contains entity information, $response contains th
 }
 \examples{
 \dontrun{
-api<-CoreAPIV2("PATH TO JSON FILE")
-login<- CoreAPIV2::authBasic(api)
-lot<-CoreAPIV2::createSampleLot(login$coreApi,"Sample_Name")
-logOut(login$coreApi )
+api <- CoreAPIV2("PATH TO JSON FILE")
+login <- CoreAPIV2::authBasic(api)
+lot <- CoreAPIV2::createSampleLot(login$coreApi, "Sample_Name")
+logOut(login$coreApi)
 }
 }
 \author{
 Craig Parman ngsAnalytics, ngsanalytics.com
+
+Natasha Mora natasha.mora@thermofisher.com
+
+Adam Wheeler, adam.j.wheeler@accenture.com
 }
