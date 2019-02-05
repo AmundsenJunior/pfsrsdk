@@ -24,11 +24,11 @@ returns a list with two oblects. coreApi which returns the passed coreApi object
 }
 \examples{
 \dontrun{
-api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-response<- CoreAPIV2::authBasic(api)
+api <- CoreAPIV2::CoreAPI("PATH TO JSON FILE")
+response <- CoreAPIV2::authBasic(api)
 login <- response$core$Api
 error <- httr::http_error(response$response)
-CoreAPIV2::logOut(response$coreApi,useVerbose=TRUE )
+CoreAPIV2::logOut(response$coreApi, useVerbose = TRUE)
 }
 }
 \author{

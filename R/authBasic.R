@@ -10,11 +10,11 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-#' response<- CoreAPIV2::authBasic(api)
+#' api <- CoreAPIV2::CoreAPI("PATH TO JSON FILE")
+#' response <- CoreAPIV2::authBasic(api)
 #' login <- response$core$Api
 #' error <- httr::http_error(response$response)
-#' CoreAPIV2::logOut(response$coreApi,useVerbose=TRUE )
+#' CoreAPIV2::logOut(response$coreApi, useVerbose = TRUE)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanaltics.com
 #' @author Scott Russell scott.russell@thermofisher.com
@@ -76,7 +76,7 @@ authBasic <- function(coreApi, useVerbose = FALSE) {
     }
     employeeId <- httr::content(response)$response$data$employeeId
     serviceRoot <- httr::content(response)$response$data$serviceRoot
-    
+
     list(
       jsessionid = jsessionid,
       awselb = awselb,
@@ -117,11 +117,11 @@ authBasic <- function(coreApi, useVerbose = FALSE) {
   if (!is.null(session$serviceRoot)) {
     coreApi$serviceRoot <- session$serviceRoot
   }
-  
-  if (is.null(coreApi$semVer)){
+
+  if (is.null(coreApi$semVer)) {
     coreApi$semVer <- getSemVer(coreApi)
     warning(paste("SemVer variable in JSON connection string should be set to", coreApi$semVer))
-    }
+  }
 
 
   list(coreApi = coreApi, response = response)

@@ -10,10 +10,10 @@
 #' @return RETURN returns a list $entity contains entity information, $response contains the entire http response
 #' @examples
 #' \dontrun{
-#' api<-CoreAPIV2("PATH TO JSON FILE")
-#' login<- CoreAPIV2::authBasic(api)
-#' lot<-CoreAPIV2::createSampleLot(login$coreApi,"Sample_Name")
-#' logOut(login$coreApi )
+#' api <- CoreAPIV2("PATH TO JSON FILE")
+#' login <- CoreAPIV2::authBasic(api)
+#' lot <- CoreAPIV2::createSampleLot(login$coreApi, "Sample_Name")
+#' logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
@@ -36,12 +36,20 @@ createSampleLot <-
 
     lotName <- paste0(sampleType, "_LOT")
 
-    dataBind <- switch(EXPR = coreApi$semVer,
-           "2.7.1" = "IMPL_LOT_SAMPLE@odata.bind",
-           print("SAMPLE@odata.bind"))
-    
+    dataBind <- switch(EXPR = substr(coreApi$semVer, 1, 1),
+      "2" = "IMPL_LOT_SAMPLE@odata.bind",
+      "3" = "SAMPLE@odata.bind",
+      print("SAMPLE@odata.bind")
+    )
+
+    switch(EXPR = coreApi$semVer,
+      "2.7.1" = NULL,
+      "3.0.3" = NULL,
+      print(warning("This PFS version has not been tested. Please contact support if any errors arise."))
+    )
+
     lotRef <- list(dataBind = paste0("/", sampleType, "('", sampleBarcode, "')"))
-    
+
     names(lotRef) <- dataBind
 
     fullBody <- jsonlite::toJSON(c(body, lotRef), auto_unbox = TRUE)
