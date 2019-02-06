@@ -37,7 +37,9 @@
   "experimentAssayBarcode": "",
   "experimentProtocolType": "",
   "experimentProtocolBarcode": "",
+  "experimentSampleBarcode": "",
   "sampleType": "",
-  "sampleBarcode": ""
+  "sampleBarcode": "",
+  "assayType": ""
 }
 
