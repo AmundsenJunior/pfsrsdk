@@ -30,17 +30,17 @@ getExperimentSamples <-
              experimentType,
              barcode,
              useVerbose = FALSE) {
-   
+
     # clean the name for ODATA
     resource <-
       paste0(CoreAPIV2::odataCleanName(experimentType), "('", barcode, "')")
-    
+
     query <- switch(EXPR = substr(coreApi$semVer, 1, 1),
-                        "2" = "?$expand=REV_EXPERIMENT_EXPERIMENT_SAMPLE",
-                        "3" = "?$expand=EXPERIMENT_SAMPLES",
-                        print("?$expand=EXPERIMENT_SAMPLES")
+      "2" = "?$expand=REV_EXPERIMENT_EXPERIMENT_SAMPLE",
+      "3" = "?$expand=EXPERIMENT_SAMPLES",
+      print("?$expand=EXPERIMENT_SAMPLES")
     )
-    
+
     header <-
       c("Content-Type" = "application/json;odata.metadata=full", Accept = "application/json")
 

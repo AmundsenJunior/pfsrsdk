@@ -28,11 +28,11 @@ getCellContents <-
     resource <- "CELL"
 
     expansion <- switch(EXPR = substr(coreApi$semVer, 1, 1),
-                        "2" = "?$expand=CONTENT($expand=IMPL_SAMPLE_LOT)",
-                        "3" = "?$expand=CELL_CONTENTS($expand=SAMPLE_LOT)",
-                        print("?$expand=CELL_CONTENTS($expand=SAMPLE_LOT")
+      "2" = "?$expand=CONTENT($expand=IMPL_SAMPLE_LOT)",
+      "3" = "?$expand=CELL_CONTENTS($expand=SAMPLE_LOT)",
+      print("?$expand=CELL_CONTENTS($expand=SAMPLE_LOT")
     )
-    
+
     query <-
       paste0(
         "(",
