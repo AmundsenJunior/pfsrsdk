@@ -48,8 +48,8 @@ Hash: c7273c0f0bc9f5e41f4c52a8cf571f0f
 
 Package: XML
 Source: CRAN
-Version: 3.98-1.16
-Hash: 52b8f335b145afc4bccb7fe8122b89c0
+Version: 3.98-1.17
+Hash: d5fcc1369137ba6a5a7d4b41ac58c9bd
 
 Package: askpass
 Source: CRAN

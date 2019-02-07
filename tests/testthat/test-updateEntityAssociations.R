@@ -15,7 +15,7 @@ test_that(paste("test updateEntityAssociations() on:", env$auth), {
 
   us <- CoreAPIV2::updateEntityAssociations(con$coreApi, data$testPocoUpdateType, poco$entity[[1]]$Barcode, updateValues, useVerbose = verbose)
   expect_equivalent(httr::status_code(us$response), 200)
-    
+
   as <- CoreAPIV2::getEntityAssociations(con$coreApi, data$testPocoUpdateType, poco$entity[[1]]$Barcode, associationContext = data$testPocoUpdateAssocContext, fullMetadata = TRUE, useVerbose = verbose)
   expect_match(as$entity[[1]]$Barcode, assoc$entity[[1]]$Barcode)
 })

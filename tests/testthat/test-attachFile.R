@@ -7,7 +7,7 @@ context("Tests for attachFile()")
 barcode <- CoreAPIV2::getEntityByName(con$coreApi, data$testPocoType, data$testPocoName, FALSE, FALSE)$entity[[1]]$Barcode
 filePath <- tempfile(fileext = ".csv")
 write.csv(x = runif(n = 1000), file = filePath)
-  
+
 test_that(paste("test attachFile() OData call on:", env$auth), {
   attachedFile <- CoreAPIV2::attachFile(
     coreApi = con$coreApi,
@@ -23,7 +23,7 @@ test_that(paste("test attachFile() OData call on:", env$auth), {
 
 test_that(paste("test attachFile() CoreSDK call on:", env$auth), {
   skip("SDK command 'file-attach' fails on CI envs. See RSDK-80")
-    
+
   attachedFile <- CoreAPIV2::attachFile(
     coreApi = con$coreApi,
     entityType = data$testPocoType,

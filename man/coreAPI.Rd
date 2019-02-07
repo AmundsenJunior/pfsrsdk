@@ -32,7 +32,7 @@ The json must include the fields shown below.
       "value": "FULLNAMEOFTENANT",
       "type": "text",
       "enabled": true
-    },    
+    },
     {
       "key": "alias",
       "value": "SHORTNAMEINURL",

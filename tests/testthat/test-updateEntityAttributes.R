@@ -8,7 +8,7 @@ context("Tests for updateEntityAttributes")
 
 test_that(paste("test updateEntityAttributes() on: ", env$auth), {
   barcode <- CoreAPIV2::getEntityByName(con$coreApi, data$testPocoUpdateType, data$testPocoUpdateName, FALSE, FALSE)$entity[[1]]$Barcode
-    
+
   ue <- CoreAPIV2::updateEntityAttributes(con$coreApi, data$testPocoUpdateType, barcode, data$testPocoUpdateAttrList, useVerbose = verbose)
   expect_equal(ue$entity[[names(data$testPocoUpdateAttrList)[1]]], data$testPocoUpdateAttrList[[names(data$testPocoUpdateAttrList)[1]]], all = verbose)
 })

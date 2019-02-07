@@ -10,6 +10,6 @@ test_that(paste("test getEntityByBarcode() on: ", env$auth), {
   b <- CoreAPIV2::getEntityByBarcode(con$coreApi, data$persistentEntityType, data$persistentEntityBarcode,
     useVerbose = verbose
   )$entity
-    
+
   expect_match(b$Barcode, data$persistentEntityBarcode, all = verbose)
 })

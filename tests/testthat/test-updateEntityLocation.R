@@ -7,13 +7,13 @@ context("Tests for updateEntityLocation")
 
 test_that(paste("test updateEntityLocation for:", env$auth), {
   barcode <- CoreAPIV2::getEntityByName(con$coreApi, data$testPocoUpdateType, data$testPocoUpdateName, useVerbose = verbose)$entity[[1]]$Barcode
-    
+
   updateLoc <- CoreAPIV2::updateEntityLocation(con$coreApi, data$testPocoUpdateType, barcode, data$testPocoUpdateLoc, useVerbose = verbose)
   expect_equivalent(httr::status_code(updateLoc$response), 200)
-    
+
   loc <- CoreAPIV2::getEntityLocation(con$coreApi, data$testPocoUpdateType, barcode, useVerbose = verbose)
   expect_match(data$testPocoUpdateLoc, loc$entity[[1]]$Barcode)
-    
+
   # update back to original value
   CoreAPIV2::updateEntityLocation(con$coreApi, data$testPocoUpdateType, barcode, data$testPocoLoc, useVerbose = verbose)
 })

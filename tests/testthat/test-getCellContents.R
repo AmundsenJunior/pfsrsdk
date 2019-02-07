@@ -11,9 +11,9 @@ test_that(paste("test getCellContents() on:", env$auth), {
   expect_equal(result$response$status_code, 200)
 
   expansion <- switch(EXPR = substr(con$coreApi$semVer, 1, 1),
-                      "2" = "CONTENT",
-                      "3" = "CELL_CONTENTS",
-                      print("CELL_CONTENTS")
+    "2" = "CONTENT",
+    "3" = "CELL_CONTENTS",
+    print("CELL_CONTENTS")
   )
   
   expect_gt(length(result$entity[[expansion]][[1]]), 0)

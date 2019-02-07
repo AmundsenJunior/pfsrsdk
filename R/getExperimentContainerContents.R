@@ -1,28 +1,27 @@
-#' getContainerContents -  Gets container contents.
+#' getExperimentContainerContents -  Gets experiment container contents.
 #'
-#' \code{getContainerContents} Gets information about container contents.
+#' \code{getExperimentContainerContents} Gets experiment container contents.
 #' @param coreApi coreApi object with valid jsessionid
-#' @param containerBarcode container barcode
-#' @param containerType container entity type
-#' @param fullMetadata return full metadata
-#' @param useVerbose  Use verbose communication for debugging
+#' @param containerBarcode Experiment container barcode
+#' @param containerType Experiment container entity type
+#' @param fullMetadata Boolean on whether to return full metadata
+#' @param useVerbose  Boolean on whether to use verbose communication for debugging
 #' @export
 #' @return RETURN returns a list $entity contains cell information, $response contains the entire http response
 #' @examples
 #' \dontrun{
 #' api<-CoreAPI("PATH TO JSON FILE")
 #' login<- CoreAPIV2::authBasic(api)
-#' cell<-CoreAPIV2::getContainerContents(login$coreApi,"VIA9","VIAL")
-#' CoreAPIV2::logOut(login$coreApi)
+#' cell<-CoreAPIV2::getExperimentContainerContents(login$coreApi,"BTCR1","EXPERIMENT_CONTAINTER")
+#' CoreAPIV2::logOut(login$coreApi )
 #' }
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Scott Russell scott.russell@thermofisher.com
-#' @description \code{getContainerContents} - Gets information about container cell contents.
+#' @description \code{getExperimentContainerContents} - Gets information about experiment container contents.
 
-getContainerContents <-
+getExperimentContainerContents <-
   function(coreApi,
              containerBarcode,
-             containerType = "CONTAINER",
+             containerType = "EXPERIMENT_CONTAINER",
              fullMetadata = TRUE,
              useVerbose = FALSE) {
 
@@ -39,9 +38,10 @@ getContainerContents <-
       paste0(
         "('",
         containerBarcode,
-        "')",
+        "')/CONTAINER",
         expansion
       )
+
 
     if (fullMetadata) {
       header <- c(Accept = "application/json;odata.metadata=full")

@@ -23,15 +23,15 @@ getContainerCellIds <-
              containerType,
              containerBarcode,
              useVerbose = FALSE) {
-    
+
     # clean the name for ODATA
     resource <- CoreAPIV2::odataCleanName(containerType)
 
     expansion <- switch(EXPR = substr(coreApi$semVer, 1, 1),
-                        "2" = "REV_IMPL_CONTAINER_CELL",
-                        "3" = "CELLS",
-                        print("CELLS")
-                 )
+      "2" = "REV_IMPL_CONTAINER_CELL",
+      "3" = "CELLS",
+      print("CELLS")
+    )
 
     query <-
       paste0(
