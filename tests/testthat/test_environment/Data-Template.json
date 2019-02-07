@@ -39,6 +39,7 @@
   "experimentProtocolBarcode": "",
   "experimentSampleBarcode": "",
   "sampleType": "",
-  "sampleBarcode": ""
+  "sampleBarcode": "",
+  "intermediateDataName": ""
 }
 
