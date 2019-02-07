@@ -2,9 +2,7 @@
 
 pipeline {
     agent {
-        node {
-            label 'agent-debian'
-        }
+        node { label 'agent-debian' }
     }
 
     environment {
@@ -12,7 +10,7 @@ pipeline {
     }
 
     options {
-        timeout(time: 1, unit: 'HOURS')
+        timeout(time: 2, unit: 'HOURS')
         buildDiscarder(logRotator(numToKeepStr: '5', artifactNumToKeepStr: '5'))
     }
 
@@ -34,8 +32,92 @@ pipeline {
                 gradleTask('installPackage')
             }
         }
+        
+        stage('test-package') {
+            stages {
+                stage('test-pfs-2.7.1') {
+                    environment {
+                        TEST_VERSION = '2.7.1'
+                        K8S_TEST_NAMESPACE = stringScrub("pfs-sdk-2-7-1-test-${BRANCH_NAME.replace('.', '-').take(15)}-${BUILD_NUMBER}")
+                    }
 
-        stage('build-docs') { //TODO: move stage to post-test execution, to include test results in site docs
+                    stages {
+                        stage('install-pfs-env') {
+                            steps {
+                                createK8sNamespace()
+                                helmInstall('pfs-legacy',
+                                    [ chartVersion: TEST_VERSION,
+                                      timeout: 1200,
+                                      templateValues: [
+                                        'namespace': K8S_TEST_NAMESPACE 
+                                      ]
+                                    ])
+                                sleep 300
+                            }
+                        }
+
+                        stage('execute-pfs-sdk-tests') {
+                            environment {
+                                HOST = getK8sValue('pod', 'pfs-pod', '{{.status.hostIP}}')
+                                PORT = getK8sValue('service', 'pfs-service', "\'{{range .spec.ports}}{{if eq .name \"http\"}}{{.nodePort}}{{end}}{{end}}\'")
+                                TEST_ENV = "${TEST_VERSION}"
+                            }
+                            steps {
+                                gradleTask('testPackage')
+                            }
+                        }
+                    }
+
+                    post {
+                        always {
+                            purgeK8sNamespace()
+                        }
+                    }
+                }
+
+                stage('test-pfs-3.0.3') {
+                    environment {
+                        TEST_VERSION = '3.0.3'
+                        K8S_TEST_NAMESPACE = stringScrub("pfs-sdk-3-0-3-test-${BRANCH_NAME.replace('.', '-').take(15)}-${BUILD_NUMBER}")
+                    }
+
+                    stages {
+                        stage('install-pfs-env') {
+                            steps {
+                                createK8sNamespace()
+                                helmInstall('pfs-legacy',
+                                    [ chartVersion: TEST_VERSION,
+                                      timeout: 1200,
+                                      templateValues: [
+                                        'namespace': K8S_TEST_NAMESPACE
+                                      ]
+                                    ])
+                                sleep 300
+                            }
+                        }
+
+                        stage('execute-pfs-sdk-tests') {
+                            environment {
+                                HOST = getK8sValue('pod', 'pfs-pod', '{{.status.hostIP}}')
+                                PORT = getK8sValue('service', 'pfs-service', "\'{{range .spec.ports}}{{if eq .name \"http\"}}{{.nodePort}}{{end}}{{end}}\'")
+                                TEST_ENV = "${TEST_VERSION}"
+                            }
+                            steps {
+                                gradleTask('testPackage')
+                            }
+                        }
+                    }
+                    
+                    post {
+                        always {
+                            purgeK8sNamespace()
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('build-docs') {
             steps {
                 gradleTask('pkgdownSite')
             }
@@ -52,34 +134,12 @@ pipeline {
                 gradleTask('publishImages', false, DOCKER_REGISTRY_GRADLE_PARAMS)
             }
         }
-
-       //TODO: create Helm chart for docs image
-       // stage('chart-publish') {
-       //     steps {
-       //         helmPublish('')
-       //     }
-       // }
-
-       // stage('helm-install-test') {
-       //     steps {
-       //         createK8sNamespace()
-       //         helmInstall('', [ timeout: 600 ])
-       //         helmTest('')
-       //     }
-       // }
-
-       // stage('beta-promotion') {
-       //     steps {
-       //         helmAssignChannel('', BETA_CHANNEL)
-       //     }
-       // }
     }
 
     post {
         always {
-            //helmUninstall('')
-            //deleteK8sNamespace()
-            sendNotification(PFSAN)
+            junit allowEmptyResults: true, testResults: 'build/tests/*.xml'
+            sendNotification('#data-science-team')
             cleanWs deleteDirs: true, notFailBuild: true
         }
     }

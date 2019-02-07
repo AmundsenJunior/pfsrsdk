@@ -18,6 +18,7 @@
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
+#' @author Scott Russell scott.russell@thermofisher.com
 #' @description \code{ getExperimentSamples}  Gets experiment sample barcodes from experiment identified by experiment barcode.
 
 
@@ -29,14 +30,17 @@ getExperimentSamples <-
              experimentType,
              barcode,
              useVerbose = FALSE) {
+   
     # clean the name for ODATA
-
     resource <-
       paste0(CoreAPIV2::odataCleanName(experimentType), "('", barcode, "')")
-
-    query <-
-      "?$expand=REV_EXPERIMENT_EXPERIMENT_SAMPLE"
-
+    
+    query <- switch(EXPR = substr(coreApi$semVer, 1, 1),
+                        "2" = "?$expand=REV_EXPERIMENT_EXPERIMENT_SAMPLE",
+                        "3" = "?$expand=EXPERIMENT_SAMPLES",
+                        print("?$expand=EXPERIMENT_SAMPLES")
+    )
+    
     header <-
       c("Content-Type" = "application/json;odata.metadata=full", Accept = "application/json")
 

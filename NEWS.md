@@ -10,3 +10,4 @@
 * Replaced `TenantShortName` with `alias` on *.json files and corresponding R/ and tests/ files. Everyone shall update auth files to match new standard.
 * Replaced `account` to `tenant`, `coreUrl` to `host`, `user` to `username` and `pwd` to `password` in the CoreApi class.
 * Added `getSemVer` function to test the PFS version being used and adapt commands when necessary as in `createSampleLot.R`.
+* Enabled automated testing via Jenkins against multiple versions of PFS for compatibility validation.

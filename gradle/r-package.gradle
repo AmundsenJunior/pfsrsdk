@@ -41,6 +41,8 @@ project.ext {
     packageName = description.getPackageName()
     packageFileDir = "${project.buildDir}/package"
     packageFileName = "${project.ext.packageName}_${project.ext.packageVersion}.tar.gz"
+    packageTestDir = "${project.buildDir}/tests"
+    packageTestFileName = "${project.ext.packageName}-${project.ext.packageVersion}"
     packageDocsName = "${project.ext.packageName}-${project.ext.packageVersion}-docs"
 }
 
@@ -66,6 +68,19 @@ class RScriptInstallPackageTask extends com.umayrh.gradle.RScriptTask {
     File getBuildFile() { return this.buildFile; }
 }
 
+class RScriptTestPackageTask extends com.umayrh.gradle.RScriptTask {
+    File testReportDir = project.file("${project.ext.packageTestDir}")
+    String testEnvVersion = System.getenv('TEST_ENV') ?: '2.7.1'
+    File testReportFile = project.file("${project.ext.packageTestDir}/${project.ext.packageTestFileName}-${testEnvVersion}.xml")
+    
+    @Input
+    String description = "Test the package, via testthat"
+    String expression = "withr::with_options(list(testthat.output_file = \"${testReportFile}\"), {devtools::test(reporter = JunitReporter)})"
+    
+    @OutputDirectory
+    File getTestDir() { return this.testReportFile; }
+}
+
 class RScriptPkgdownSiteTask extends com.umayrh.gradle.RScriptTask {
     File docsDir = project.file("${project.ext.docsDir}")
     
@@ -84,6 +99,9 @@ task installPackage(type: RScriptInstallPackageTask, group: "R packaging") {
     outputs.upToDateWhen { return true; }
 }
 
-task pkgdownSite(type: RScriptPkgdownSiteTask, group: "R packaging") {
-    dependsOn 'installPackage'
-}
+task testPackage(type: RScriptTestPackageTask, group: "R packaging")
+
+task pkgdownSite(type: RScriptPkgdownSiteTask, group: "R packaging")
+
+installDeps.enabled = false
+

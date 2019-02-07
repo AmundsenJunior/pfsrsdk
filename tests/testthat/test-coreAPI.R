@@ -5,6 +5,8 @@
 
 context("Tests for coreAPI")
 
+testthat::setup(Sys.setenv(HOST = "localhost"))
+
 testapi <- CoreAPIV2::coreAPI("test_environment/Auth-Template.json")
   
 test_that("test coreAPI sets class configuration NULL when JSON configuration value is ''", {
@@ -12,5 +14,7 @@ test_that("test coreAPI sets class configuration NULL when JSON configuration va
 })
 
 test_that("test coreAPI sets class configuration to JSON configuration value", {
-  expect_match(testapi$host, "HOSTNAME")
+  expect_match(testapi$host, Sys.getenv("HOST"))
 })
+
+testthat::teardown(Sys.unsetenv("HOST"))
