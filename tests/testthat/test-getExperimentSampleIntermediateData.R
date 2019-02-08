@@ -12,5 +12,5 @@ test_that(paste("test getExperimentSampleIntermediateData() on:", env$auth), {
 
   expect_gt(length(result$entity$barcodes), 0)
 
-  expect_false(is.null(result$entity$CI_BITTERNESS_IBU_INTERMEDIATE), FALSE)
+  expect_false(is.null(result$entity[[data$intermediateDataName]]), FALSE)
 })
