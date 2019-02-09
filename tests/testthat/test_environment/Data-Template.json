@@ -38,6 +38,7 @@
   "experimentProtocolType": "",
   "experimentProtocolBarcode": "",
   "experimentSampleBarcode": "",
+  "experimentContainerBarcode": "BTCR1",
   "sampleType": "",
   "sampleBarcode": ""
 }
