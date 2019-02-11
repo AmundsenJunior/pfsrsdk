@@ -117,7 +117,8 @@ getExperimentSampleIntermediateData <-
       }))
 
     # TODO - Allow users to put more than one intermediateDataName, currently only one can be
-    # passed and it has to be written in UPPERCASE in PFS, unless line 41 is commented out.
+    # passed and it has to be written in UPPERCASE in PFS, unless line "intermediateDataName <- CoreAPIV2::attributeCleanName(intermediateDataName)"
+    # is commented out.
 
     dataValues <-
       unlist(lapply(derivedSamples, function(x) {
