@@ -30,19 +30,9 @@ getExperimentContainers <-
 
     resource <- CoreAPIV2::odataCleanName(experimentType)
 
-
-    query <- switch(EXPR = substr(coreApi$semVer, 1, 1),
-      "2" = paste0(
-        "('", experimentBarcode, "')/REV_CONTAINER_EXPERIMENT_EXPERIMENT_CONTAINER"
-      ),
-      "3" = paste0(
-        "('", experimentBarcode, "')/EXPERIMENT_CONTAINERS"
-      ),
-      print(
-        paste0(
-          "('", experimentBarcode, "')/EXPERIMENT_CONTAINERS"
-        )
-      )
+    association <- switch(EXPR = substr(coreApi$semVer, 1, 1),
+      "2" = "REV_CONTAINER_EXPERIMENT_EXPERIMENT_CONTAINER",
+      print("EXPERIMENT_CONTAINERS")
     )
 
 
@@ -54,7 +44,7 @@ getExperimentContainers <-
       CoreAPIV2::apiGET(
         coreApi,
         resource = resource,
-        query = query,
+        query = paste0("('", experimentBarcode, "')/", association),
         headers = header,
         useVerbose = useVerbose
       )
