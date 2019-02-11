@@ -10,15 +10,17 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-#' login<- CoreAPIV2::authBasic(api)
-#' response<-  getExperimentSamplesRawData (login$coreApi,
-#'     "ExperimentContainerBarcode",
-#'     useVerbose = FALSE)
+#' api <- CoreAPIV2::CoreAPI("PATH TO JSON FILE")
+#' login <- CoreAPIV2::authBasic(api)
+#' response <- getExperimentSamplesRawData(login$coreApi,
+#'   "experimentContainerBarcode",
+#'   useVerbose = FALSE
+#' )
 #' rawdata <- response$entity
 #' CoreAPIV2:logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description \code{ getExperimentSamplesRawData }   Gets raw data for a experiment container identified by barcode.
 
 
@@ -31,7 +33,7 @@ getExperimentSamplesRawData <-
 
 
     query <- paste0(
-      "?$filter=EXPERIMENT_CONTAINER/Name%20eq%20'",
+      "?$filter=EXPERIMENT_CONTAINER/Barcode%20eq%20'",
       experimentContainerBarcode,
       "'"
     )

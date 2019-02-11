@@ -26,15 +26,18 @@ returns a list $entity contains data frame with derived experiment sample barcod
 }
 \examples{
 \dontrun{
-api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-login<- CoreAPIV2::authBasic(api)
-response<-  getExperimentSamplesRawData (login$coreApi,
-    "ExperimentContainerBarcode",
-    useVerbose = FALSE)
+api <- CoreAPIV2::CoreAPI("PATH TO JSON FILE")
+login <- CoreAPIV2::authBasic(api)
+response <- getExperimentSamplesRawData(login$coreApi,
+  "experimentContainerBarcode",
+  useVerbose = FALSE
+)
 rawdata <- response$entity
 CoreAPIV2:logOut(login$coreApi)
 }
 }
 \author{
 Craig Parman ngsAnalytics, ngsanalytics.com
+
+Natasha Mora natasha.mora@thermofisher.com
 }

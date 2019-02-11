@@ -9,6 +9,6 @@ test_that(paste("test getExperimentSamplesRawData() on:", env$auth), {
   result <- CoreAPIV2::getExperimentSamplesRawData(con$coreApi, data$experimentContainerBarcode, useVerbose = verbose)
 
   expect_equal(result$response$status_code, 200)
-  
+
   expect_gt(length(result$entity$DATA_VALUE), 0)
 })

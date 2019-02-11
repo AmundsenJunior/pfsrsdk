@@ -16,7 +16,7 @@ test_that(paste("test getExperimentSamples() on:", env$auth), {
                       "3" = "EXPERIMENT_SAMPLES",
                       print("EXPERIMENT_SAMPLES")
   )
-browser()  
+
   expect_gt(
       length(
         lapply(
