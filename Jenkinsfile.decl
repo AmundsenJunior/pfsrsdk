@@ -70,7 +70,7 @@ pipeline {
 
                     post {
                         always {
-                            purgeK8sNamespace()
+                            deleteK8sNamespace()
                         }
                     }
                 }
@@ -110,7 +110,7 @@ pipeline {
                     
                     post {
                         always {
-                            purgeK8sNamespace()
+                            deleteK8sNamespace()
                         }
                     }
                 }
