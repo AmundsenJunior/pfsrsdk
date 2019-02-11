@@ -54,6 +54,7 @@
   "experimentProtocolType": "BITTERNESS_PROTOCOL",
   "experimentProtocolBarcode": "BTNP1",
   "experimentSampleBarcode": "BTES3",
+  "experimentContainerBarcode": "BTCR1",
   "sampleType": "BEER_SAMPLE",
   "sampleBarcode": "BS1000"
 }

@@ -16,9 +16,8 @@ test_that(paste("test getExperimentSamples() on:", env$auth), {
                       "3" = "EXPERIMENT_SAMPLES",
                       print("EXPERIMENT_SAMPLES")
   )
-  
+
   expect_gt(
-    unlist(
       length(
         lapply(
           result$response$content[[expansion]],
@@ -26,6 +25,6 @@ test_that(paste("test getExperimentSamples() on:", env$auth), {
             x$Barcode
         )
       )
-    ), 0
+  , 0
   )
 })
