@@ -40,6 +40,7 @@
   "experimentSampleBarcode": "",
   "experimentContainerBarcode": "BTCR1",
   "sampleType": "",
-  "sampleBarcode": ""
+  "sampleBarcode": "",
+  "intermediateDataName": ""
 }
 
