@@ -11,6 +11,7 @@ Test%205.2.postman_environment.json
 old_testthat/*
 tests/testthat/test_environment/*.json
 !tests/testthat/test_environment/*Template.json
+!tests/testthat/test_environment/Data*.json
 docs/
 # Packrat files
 packrat/lib*/
