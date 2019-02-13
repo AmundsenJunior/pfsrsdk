@@ -38,9 +38,11 @@
   "experimentProtocolType": "",
   "experimentProtocolBarcode": "",
   "experimentSampleBarcode": "",
-  "experimentContainerBarcode": "BTCR1",
+  "experimentContainerBarcode": "",
   "sampleType": "",
   "sampleBarcode": "",
-  "intermediateDataName": ""
+  "intermediateDataName": "",
+    "singleWellContainerBarcode":"",
+  "multiWellContainerBarcode":""
 }
 
