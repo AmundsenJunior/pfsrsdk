@@ -4,7 +4,7 @@
 \alias{getExperimentContainers}
 \title{getExperimentContainers - Gets experiment containers from experiment identified by barcode.}
 \usage{
-getExperimentContainers(coreApi, experimentType, barcode,
+getExperimentContainers(coreApi, experimentType, experimentBarcode,
   useVerbose = FALSE)
 }
 \arguments{
@@ -12,7 +12,7 @@ getExperimentContainers(coreApi, experimentType, barcode,
 
 \item{experimentType}{experiment entity type to get}
 
-\item{barcode}{barcode of experiment to query}
+\item{experimentBarcode}{barcode of experiment to query}
 
 \item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http POST}
 }
@@ -27,12 +27,14 @@ returns a list $entity contains barcodes of the containers, $response contains t
 }
 \examples{
 \dontrun{
-api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-login<- CoreAPIV2::authBasic(api)
-exptCaontainerBarcodes <-  CoreAPIV2::getExperimentContainers(login$coreApi,"entityType","barcode")
+api <- CoreAPIV2::CoreAPI("PATH TO JSON FILE")
+login <- CoreAPIV2::authBasic(api)
+exptContainerBarcodes <- CoreAPIV2::getExperimentContainers(login$coreApi, "experimentType", "experimentBarcode")
 CoreAPIV2:logOut(login$coreApi)
 }
 }
 \author{
 Craig Parman ngsAnalytics, ngsanalytics.com
+
+Natasha Mora natasha.mora@thermofisher.com
 }
