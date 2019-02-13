@@ -35,6 +35,7 @@
   "experimentBarcode": "",
   "experimentAssayType": "",
   "experimentAssayBarcode": "",
+  "experimentAssayUpdateAttrList": [{}],
   "experimentProtocolType": "",
   "experimentProtocolBarcode": "",
   "experimentSampleBarcode": "",

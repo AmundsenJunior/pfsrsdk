@@ -4,17 +4,18 @@
 \alias{updateExperimentSampleData}
 \title{updateExperimentSampleData - Update experiment sample assay data.}
 \usage{
-updateExperimentSampleData(coreApi, assayType, experimentSamplebarcode,
-  assayAttributeValues, useVerbose = FALSE)
+updateExperimentSampleData(coreApi, experimentAssayType,
+  experimentSampleBarcode, experimentAssayUpdateAttrList,
+  useVerbose = FALSE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
 
-\item{assayType}{entity type to get as character string}
+\item{experimentAssayType}{entity type to get as character string}
 
-\item{experimentSamplebarcode}{User provided barcode as a character string}
+\item{experimentSampleBarcode}{User provided barcode as a character string}
 
-\item{assayAttributeValues}{assay attributes as a list of key-values pairs}
+\item{experimentAssayUpdateAttrList}{assay attributes as a list of key-values pairs}
 
 \item{useVerbose}{Use verbose communication for debugging}
 }
@@ -30,14 +31,19 @@ RETURN returns a list $entity contains entity information,
 }
 \examples{
 \dontrun{
-api<-CoreAPI("PATH TO JSON FILE")
-login<- CoreAPIV2::authBasic(api)
-response<-CoreAPIV2::updateExperimentSampleData(login$coreApi,assayType,
-                  experimentSampleBarcode,assayAtributeValues)
+api <- CoreAPI("PATH TO JSON FILE")
+login <- CoreAPIV2::authBasic(api)
+response <- CoreAPIV2::updateExperimentSampleData(login$coreApi,
+  experimentAssayType = "BITTERNESS_ASSAY",
+  experimentSampleBarcode = "BTES3", experimentAssayUpdateAttrList = list(CI_BITTERNESS_IBU = 9.7, CI_ACCEPT = FALSE)
+)
 updatedEntity <- response$entity
-CoreAPIV2::logOut(login$coreApi ) response<- CoreAPI::authBasic(coreApi)
+CoreAPIV2::logOut(login$coreApi)
+response <- CoreAPI::authBasic(coreApi)
 }
 }
 \author{
 Craig Parman ngsAnalytics, ngsanalytics.com
+
+Natasha Mora natasha.mora@thermofisher.com
 }
