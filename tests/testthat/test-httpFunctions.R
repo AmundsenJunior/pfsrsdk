@@ -27,4 +27,5 @@ test_that(paste0("apiPUT will update an entity on: ", env$auth), {
   body <- content[-1]
   res <- CoreAPIV2::apiPUT(con$coreApi, resource = data$persistentEntityType, query = paste0("('", content$Barcode, "')"), body, encode = "raw", headers = header, useVerbose = verbose, unbox = TRUE)
   expect_equal(res$all_headers[[1]]$status, 200)
+  res <<- NULL
 })
