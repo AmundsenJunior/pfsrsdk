@@ -29,7 +29,7 @@ returns a list $entity contains barcodes of the containers, $response contains t
 \dontrun{
 api <- CoreAPIV2::CoreAPI("PATH TO JSON FILE")
 login <- CoreAPIV2::authBasic(api)
-exptCaontainerBarcodes <- CoreAPIV2::getExperimentContainers(login$coreApi, "experimentType", "experimentBarcode")
+exptContainerBarcodes <- CoreAPIV2::getExperimentContainers(login$coreApi, "experimentType", "experimentBarcode")
 CoreAPIV2:logOut(login$coreApi)
 }
 }
