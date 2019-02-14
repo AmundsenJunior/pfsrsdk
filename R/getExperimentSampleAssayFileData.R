@@ -32,7 +32,7 @@ getExperimentSamplesAssayFileData <-
 
 
 
-    resource <- paste0(CoreAPIV2::ODATAcleanName(assayType), "_DATA")
+    resource <- paste0(CoreAPIV2::odataCleanName(assayType), "_DATA")
 
 
     query <- paste0(
