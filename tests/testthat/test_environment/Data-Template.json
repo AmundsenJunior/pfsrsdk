@@ -44,6 +44,9 @@
   "intermediateDataName": "",
   "singleWellContainerBarcode":"",
   "multiWellContainerBarcode":"",
-  "containerCellId": ""
+  "containerCellId": "",
+   "experimentFileAssayType":"", 
+  "experimentSampleBarcodeWithFileAttr":"", 
+  "fileAttrName":""
 }
 
