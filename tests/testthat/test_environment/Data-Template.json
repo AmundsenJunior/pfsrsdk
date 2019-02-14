@@ -53,6 +53,7 @@
   "experimentFileAssayType":"", 
   "experimentSampleBarcodeWithFileAttr":"", 
   "fileAttrName":"",
-  "sampleLotBarcode":""
+  "sampleLotBarcode":"",
+  "rawDataCellNum": "",
+  "rawDataValues": [{}]
 }
-

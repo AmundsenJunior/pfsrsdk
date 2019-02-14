@@ -4,8 +4,8 @@
 #'
 #' @param coreApi coreApi object with valid jsessionid
 #' @param experimentContainerBarcode User provided barcode as a character string
-#' @param cellNum cell (well) number of container
-#' @param values assay attributes as a list of key-values pairs
+#' @param rawDataCellNum cell (well) number of container
+#' @param rawDataValues assay attributes as a list of key-values pairs
 #' @param useVerbose Use verbose communication for debugging
 #' @export
 #' @return RETURN returns a list $entity contains entity information,
@@ -14,23 +14,24 @@
 #' \dontrun{
 #' api<-CoreAPI("PATH TO JSON FILE")
 #' login<- CoreAPIV2::authBasic(api)
-#' response<-updateExperimentSampleRawData(login$coreApi,"contBarcode",cellNum=1,
-#'                    values = list(DATA_VALUE = 100 ,CI_ACCEPT = FALSE)
+#' response<-updateExperimentSampleRawData(login$coreApi,experimentContainerBarcode="BTCR1",rawDataCellNum=1,
+#'                    rawDataValues = list(DATA_VALUE = 100 ,CI_ACCEPT = FALSE)
 #'
 #' updatedEntity <- response$entity
 #' CoreAPIV2::logOut(login$coreApi ) response<- CoreAPI::authBasic(coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description \code{updateExperimentSampleRawData} Update experiment sample assay raw data.
 
 
 
 updateExperimentSampleRawData <-
   function(coreApi,
-             experimentContainerBarcode,
-             cellNum,
-             values,
-             useVerbose = FALSE) {
+           experimentContainerBarcode,
+           rawDataCellNum,
+           rawDataValues,
+           useVerbose = FALSE) {
 
     # get the current values
 
@@ -39,7 +40,7 @@ updateExperimentSampleRawData <-
 
     query <- paste0(
       "?$filter=CI_CELL%20eq%20",
-      as.integer(cellNum),
+      as.integer(rawDataCellNum),
       "%20and%20EXPERIMENT_CONTAINER/Name%20eq%20'",
       experimentContainerBarcode,
       "'"
@@ -64,13 +65,13 @@ updateExperimentSampleRawData <-
     body <- response$content[[1]]
 
 
-    for (i in 1:length(values))
+    for (i in 1:length(rawDataValues))
     {
       eval(parse(
         text =
           paste0(
-            "body$", names(values)[i],
-            "<-", values[i]
+            "body$", names(rawDataValues)[i],
+            "<-", rawDataValues[i]
           )
       ))
     }
