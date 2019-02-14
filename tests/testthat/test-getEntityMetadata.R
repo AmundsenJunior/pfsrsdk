@@ -11,7 +11,7 @@ test_that(paste("test getEntityMetadata() on:", env$auth), {
   # Check to verify that the function returned a list. dependending on tenant this list may be empty
   expect_equivalent(class(out$template), "list", all = verbose)
 })
-  
+
 test_that(paste("test getEntityMetadata() errors out if entityType does not exist on:", env$auth), {
   expect_error(CoreAPIV2::getEntityMetadata(con$coreApi, data$testPocoNonexistentType, useVerbose = verbose))
 })

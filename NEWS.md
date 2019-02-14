@@ -11,3 +11,5 @@
 * Replaced `account` to `tenant`, `coreUrl` to `host`, `user` to `username` and `pwd` to `password` in the CoreApi class.
 * Added `getSemVer` function to test the PFS version being used and adapt commands when necessary as in `createSampleLot.R`.
 * Enabled automated testing via Jenkins against multiple versions of PFS for compatibility validation.
+* Updated `getContainerContents` to handle generic CONTAINER contents requests.
+* Created `getExperimentContainerContents to get any container contents of EXPERIMENT_CONTAINER base type.

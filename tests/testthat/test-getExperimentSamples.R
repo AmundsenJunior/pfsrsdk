@@ -12,19 +12,19 @@ test_that(paste("test getExperimentSamples() on:", env$auth), {
   expect_equal(result$response$response$status_code, 200)
 
   expansion <- switch(EXPR = substr(con$coreApi$semVer, 1, 1),
-                      "2" = "REV_EXPERIMENT_EXPERIMENT_SAMPLE",
-                      "3" = "EXPERIMENT_SAMPLES",
-                      print("EXPERIMENT_SAMPLES")
+    "2" = "REV_EXPERIMENT_EXPERIMENT_SAMPLE",
+    "3" = "EXPERIMENT_SAMPLES",
+    print("EXPERIMENT_SAMPLES")
   )
 
   expect_gt(
-      length(
-        lapply(
-          result$response$content[[expansion]],
-          FUN = function(x)
-            x$Barcode
-        )
+    length(
+      lapply(
+        result$response$content[[expansion]],
+        FUN = function(x)
+          x$Barcode
       )
-  , 0
+    )
+    , 0
   )
 })

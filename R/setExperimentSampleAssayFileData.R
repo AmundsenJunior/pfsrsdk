@@ -8,7 +8,7 @@
 #' @param attributeName  Name of the attibute that containts the file data
 #' @param filePath path to file to upload
 #' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http POST
-#' @return returns a list $entity containsbinary object that in the file, $response contains 
+#' @return returns a list $entity containsbinary object that in the file, $response contains
 #' the entire http response
 #' @export
 #' @examples

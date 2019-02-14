@@ -22,7 +22,7 @@
 #'       "value": "FULLNAMEOFTENANT",
 #'       "type": "text",
 #'       "enabled": true
-#'     },    
+#'     },
 #'     {
 #'       "key": "alias",
 #'       "value": "SHORTNAMEINURL",
@@ -104,7 +104,7 @@ coreAPI <- function(CoreAccountInfo) {
       jsessionId = NULL,
       awselb = NULL,
       employeeId = NULL,
-      serviceRoot = NULL, 
+      serviceRoot = NULL,
       semVer = getAccountInfoValue(accountinfo, "semver")
     )
 
@@ -115,15 +115,15 @@ coreAPI <- function(CoreAccountInfo) {
 
 getAccountInfoValue <- function(accountinfo, key) {
   value <- accountinfo$value[accountinfo$key == key]
-  
-  if(stringi::stri_isempty(value)) {
+
+  if (stringi::stri_isempty(value)) {
     value <- NULL
   }
-  
+
   envVar <- stringr::str_to_upper(key)
-  if(!stringi::stri_isempty(Sys.getenv(envVar))) {
+  if (!stringi::stri_isempty(Sys.getenv(envVar))) {
     value <- Sys.getenv(envVar)
   }
-  
+
   return(value)
 }

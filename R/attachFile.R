@@ -122,9 +122,9 @@ attachFile <-
         )
       }
     }
-    
+
     list(
-      entity = if(response$status_code == 204) NULL else httr::content(response),
+      entity = if (response$status_code == 204) NULL else httr::content(response),
       response = response
     )
   }

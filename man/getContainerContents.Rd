@@ -2,10 +2,10 @@
 % Please edit documentation in R/getContainerContents.R
 \name{getContainerContents}
 \alias{getContainerContents}
-\title{getContainerContents -  Gets information about container contents.}
+\title{getContainerContents -  Gets container contents.}
 \usage{
 getContainerContents(coreApi, containerBarcode,
-  containerType = "EXPERIMENT_CONTAINER", fullMetadata = TRUE,
+  containerType = "CONTAINER", fullMetadata = TRUE,
   useVerbose = FALSE)
 }
 \arguments{
@@ -32,10 +32,12 @@ RETURN returns a list $entity contains cell information, $response contains the 
 \dontrun{
 api<-CoreAPI("PATH TO JSON FILE")
 login<- CoreAPIV2::authBasic(api)
-cell<-CoreAPIV2::getContainerContents(login$coreApi,"VIA9","1")
-CoreAPIV2::logOut(login$coreApi )
+cell<-CoreAPIV2::getContainerContents(login$coreApi,"VIA9","VIAL")
+CoreAPIV2::logOut(login$coreApi)
 }
 }
 \author{
 Craig Parman ngsAnalytics, ngsanalytics.com
+
+Scott Russell scott.russell@thermofisher.com
 }

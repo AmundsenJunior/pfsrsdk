@@ -11,8 +11,8 @@ test_that(paste("test getExperimentSampleAssayData() on:", env$auth), {
   expect_equal(result$response$status_code, 200)
 
   expect_gt(
-      length(
-        result$entity[[1]]$Barcode
-      ), 0
+    length(
+      result$entity[[1]]$Barcode
+    ), 0
   )
 })

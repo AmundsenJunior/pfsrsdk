@@ -21,7 +21,7 @@ setExperimentSamplesAssayFileData(coreApi, assayType,
 \item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http POST}
 }
 \value{
-returns a list $entity containsbinary object that in the file, $response contains 
+returns a list $entity containsbinary object that in the file, $response contains
 the entire http response
 }
 \description{
