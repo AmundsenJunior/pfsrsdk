@@ -61,6 +61,8 @@
   "singleWellContainerBarcode":"VIA1",
   "multiWellContainerBarcode":"96W1",
   "containerCellId": "17376900",
+  "containerType": "CONTAINER",
+  "containerBarcode": "96W1",
   "experimentFileAssayType":"TURBIDITY ASSAY", 
   "experimentSampleBarcodeWithFileAttr":"TBES1", 
   "fileAttrName":"ci_extra_data"

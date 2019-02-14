@@ -45,7 +45,9 @@
   "singleWellContainerBarcode":"",
   "multiWellContainerBarcode":"",
   "containerCellId": "",
-   "experimentFileAssayType":"", 
+  "containerType": "",
+  "containerBarcode": "",
+  "experimentFileAssayType":"", 
   "experimentSampleBarcodeWithFileAttr":"", 
   "fileAttrName":""
 }

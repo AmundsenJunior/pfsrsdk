@@ -15,34 +15,33 @@
 #' CoreAPIV2::logOut(login$coreApi )
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Scott Russell scott.russell@thermofisher.com
 #' @description \code{getContainerCellIds} -  Gets cell ids for a container
-
-
 
 getContainerCellIds <-
   function(coreApi,
              containerType,
              containerBarcode,
              useVerbose = FALSE) {
+    
     # clean the name for ODATA
+    resource <- CoreAPIV2::odataCleanName(containerType)
 
-    resource <- CoreAPIV2::ODATAcleanName(containerType)
-
-
+    expansion <- switch(EXPR = substr(coreApi$semVer, 1, 1),
+                        "2" = "REV_IMPL_CONTAINER_CELL",
+                        "3" = "CELLS",
+                        print("CELLS")
+                 )
 
     query <-
       paste0(
         "('",
         containerBarcode,
-        "')?$expand=CELLS"
+        "')?$expand=",
+        expansion
       )
 
-
-
-
     header <- c(Accept = "application/json;odata.metadata=minimal")
-
-
 
     out <-
       CoreAPIV2::apiGET(
@@ -54,7 +53,7 @@ getContainerCellIds <-
       )
 
     cells <-
-      unlist(lapply(out$content$CELLS, function(x)
+      unlist(lapply(out$content[[expansion]], function(x)
         x$Id))
 
     list(entity = cells, response = out$response)
