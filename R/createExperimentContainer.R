@@ -23,24 +23,23 @@
 
 createExperimentContainer <-
   function(coreApi,
-           experimentType,
-           experimentBarcode,
-           containerBarcode,
-           body = NULL,
-           useVerbose = FALSE) {
+             experimentType,
+             experimentBarcode,
+             containerBarcode,
+             body = NULL,
+             useVerbose = FALSE) {
     experimentType <- CoreAPIV2::odataCleanName(experimentType)
     headers <-
       c("Content-Type" = "application/json;odata.metadata=full")
-    
+
     CoreAPIV2::case(
-      grepl("[0-2]+\\.[0-9]+\\.[0-9]+",coreApi$semVer) ~ {
-        
+      grepl("[0-2]+\\.[0-9]+\\.[0-9]+", coreApi$semVer) ~ {
         body <- list(
           "CONTAINER_EXPERIMENT@odata.bind" = paste0("/", experimentType, "('", experimentBarcode, "')"),
           "CONTAINER@odata.bind" = paste0("/CONTAINER('", containerBarcode, "')")
         )
       },
-      grepl("[3-9]+\\.[0-9]+\\.[0-9]+",coreApi$semVer) ~ {
+      grepl("[3-9]+\\.[0-9]+\\.[0-9]+", coreApi$semVer) ~ {
         body <- list(
           "EXPERIMENT@odata.bind" = paste0("/", experimentType, "('", experimentBarcode, "')"),
           "CONTAINER@odata.bind" = paste0("/CONTAINER('", containerBarcode, "')")
@@ -48,7 +47,7 @@ createExperimentContainer <-
       }
     )
     resource <- paste0(experimentType, "_CONTAINER")
-    
+
     response <-
       CoreAPIV2::apiPOST(
         coreApi,
@@ -59,9 +58,8 @@ createExperimentContainer <-
         special = NULL,
         useVerbose = useVerbose
       )
-    
-    
-    
+
+
+
     list(entity = httr::content(response), response = response)
   }
-

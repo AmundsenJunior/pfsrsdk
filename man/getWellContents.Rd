@@ -2,34 +2,41 @@
 % Please edit documentation in R/getWellContents.R
 \name{getWellContents}
 \alias{getWellContents}
-\title{getWellContents -  Gets information about a single container well contents.}
+\title{getWellContents -  Gets content information of a single container well.}
 \usage{
-getWellContents(coreApi, containerBarcode, useVerbose = FALSE)
+getWellContents(coreApi, containerBarcode, containerWellNum,
+  containerType = "CONTAINER", useVerbose = FALSE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
 
 \item{containerBarcode}{container barcode}
 
-\item{useVerbose}{Use verbose communication for debugging}
+\item{containerWellNum}{number location of container's well}
+
+\item{containerType}{entity type of container (default: "CONTAINER")}
+
+\item{useVerbose}{Use verbose communication for debugging (default: FALSE)}
 }
 \value{
-RETURN returns a list $entity contains cell information, $response contains the entire http response
+RETURN returns a list $entity contains well information, $response contains the entire http response
 }
 \description{
-\code{getWellContents} -  Gets information about a single container well contents.
+\code{getWellContents} - Gets content information of a single container well.
 }
 \details{
-\code{getWellContents} Gets information about container well contents.
+\code{getWellContents} Gets content information of a single container well.
 }
 \examples{
 \dontrun{
 api<-CoreAPI("PATH TO JSON FILE")
 login<- CoreAPIV2::authBasic(api)
-cell<-CoreAPIV2::getWellContents(login$coreApi,"VIA9","1",fullMetadata = TRUE)
-CoreAPIV2::logOut(login$coreApi )
+well<-CoreAPIV2::getWellContents(login$coreApi,"VIA9","1", "VIAL")
+CoreAPIV2::logOut(login$coreApi)
 }
 }
 \author{
 Craig Parman ngsAnalytics, ngsanalytics.com
+
+Scott Russell scott.russell@thermofisher.com
 }

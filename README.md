@@ -213,9 +213,9 @@ R Command|Gradle Task
 `devtools::document()`|`./gradlew document`
 `packrat::clean()`|`./gradlew packratClean`
 `packrat::restore()`|`./gradlew packratRestore`
-`devtools::test()`|`./gradlew test`
 `devtools::build(path = "build/package")`|`./gradlew buildPackage`
 `devtools::install(pkg = "build/package")`|`.gradlew installPackage`
+`devtools::test(reporter = JunitReporter)`|`./gradlew testPackage`
 `pkgdown::build_site(override = list(destination = "build/docs"))`|`./gradlew pkgdownSite`
 
 #### Documentation ZIP publishing

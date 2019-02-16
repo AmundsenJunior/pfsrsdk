@@ -16,9 +16,9 @@
 #'    grepl("[3-9]+\\.[0-9]+\\.[0-9]+","3.7.1") ~ {
 #'      body <- list("b",
 #'                   "a")
-#'    } 
-#')
-#'}
+#'    }
+#' )
+#' }
 #' @author Adam Wheeler, adam.j.wheeler@accenture.com
 #' @description \code{case} Performs a vectorized IF
 

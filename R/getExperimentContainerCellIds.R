@@ -1,9 +1,9 @@
-#' getContainerCellIds -  Gets cell ids for a container
+#' getExperimentContainerCellIds - Gets cell ids for a container in an experiment.
 #'
-#' \code{getContainerCellIds} Gets information about container contents.
+#' \code{getExperimentContainerCellIds} Gets cell ids for a container in an experiment.
 #' @param coreApi coreApi object with valid jsessionid
-#' @param containerBarcode container barcode
-#' @param containerType container entity type (default: CONTAINER)
+#' @param experimentContainerBarcode container barcode
+#' @param experimentContainerType container entity type (default: EXPERIMENT_CONTAINER)
 #' @param useVerbose  Use verbose communication for debugging (default: FALSE)
 #' @export
 #' @return RETURN returns $entity a array of cell IDs and  $response contains the entire http response
@@ -11,21 +11,18 @@
 #' \dontrun{
 #' api<-CoreAPI("PATH TO JSON FILE")
 #' login<- CoreAPIV2::authBasic(api)
-#' cellIDs<-CoreAPIV2::getContainerCellIds(login$coreApi, "TE1", containerType = "384 WELL PLATE")$entity
+#' cellIDs<-CoreAPIV2::getExperimentContainerCellIds(login$coreApi, "BTCR1", "BITTERNESS EXPERIMENT CONTAINER")$entity
 #' CoreAPIV2::logOut(login$coreApi )
 #' }
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Scott Russell scott.russell@thermofisher.com
-#' @description \code{getContainerCellIds} -  Gets cell ids for a container
+#' @description \code{getExperimentContainerCellIds} - Gets cell ids for a container in an experiment.
 
-getContainerCellIds <-
+getExperimentContainerCellIds <-
   function(coreApi,
-             containerBarcode,
-             containerType = "CONTAINER",
+             experimentContainerBarcode,
+             experimentContainerType = "EXPERIMENT_CONTAINER",
              useVerbose = FALSE) {
-
-    # clean the name for ODATA
-    resource <- CoreAPIV2::odataCleanName(containerType)
+    resource <- CoreAPIV2::odataCleanName(experimentContainerType)
 
     CoreAPIV2::case(
       grepl("[0-2]+\\.[0-9]+\\.[0-9]+", coreApi$semVer) ~ {
@@ -39,8 +36,8 @@ getContainerCellIds <-
     query <-
       paste0(
         "('",
-        containerBarcode,
-        "')?$expand=",
+        experimentContainerBarcode,
+        "')/CONTAINER?$expand=",
         expansion
       )
 
@@ -55,9 +52,7 @@ getContainerCellIds <-
         useVerbose = useVerbose
       )
 
-    cells <-
-      unlist(lapply(out$content[[expansion]], function(x)
-        x$Id))
+    cells <- unlist(lapply(out$content[[1]][[expansion]], function(x) x$Id))
 
     list(entity = cells, response = out$response)
   }

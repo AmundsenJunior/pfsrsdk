@@ -1,10 +1,10 @@
-#' getWellContents -  Gets content information of a single container well.
+#' getExperimentWellContents -  Gets content information of a single container well in an experiment.
 #'
-#' \code{getWellContents} Gets content information of a single container well.
+#' \code{getExperimentWellContents} Gets content information of a single container well in an experiment.
 #' @param coreApi coreApi object with valid jsessionid
-#' @param containerBarcode container barcode
-#' @param containerWellNum number location of container's well
-#' @param containerType entity type of container (default: "CONTAINER")
+#' @param experimentContainerBarcode experiment container barcode
+#' @param experimentContainerWellNum number location of experiment container's well
+#' @param experimentContainerType entity type of experiment container (default: "EXPERIMENT_CONTAINER")
 #' @param useVerbose  Use verbose communication for debugging (default: FALSE)
 #' @export
 #' @return RETURN returns a list $entity contains well information, $response contains the entire http response
@@ -12,24 +12,23 @@
 #' \dontrun{
 #' api<-CoreAPI("PATH TO JSON FILE")
 #' login<- CoreAPIV2::authBasic(api)
-#' well<-CoreAPIV2::getWellContents(login$coreApi,"VIA9","1", "VIAL")
+#' well<-CoreAPIV2::getExperimentWellContents(login$coreApi,"BTCR1","1", "BITTERNESS_EXPERIEMENT_CONTAINER")
 #' CoreAPIV2::logOut(login$coreApi)
 #' }
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Scott Russell scott.russell@thermofisher.com
-#' @description \code{getWellContents} - Gets content information of a single container well.
+#' @description \code{getExperimentWellContents} - Gets content information of a single container well in an experiment.
 
-getWellContents <-
+getExperimentWellContents <-
   function(coreApi,
-             containerBarcode,
-             containerWellNum,
-             containerType = "CONTAINER",
+             experimentContainerBarcode,
+             experimentContainerWellNum,
+             experimentContainerType = "EXPERIMENT_CONTAINER",
              useVerbose = FALSE) {
-    containerType <- CoreAPIV2::odataCleanName(containerType)
-    containerWellNum <- as.numeric(containerWellNum)
+    experimentContainerType <- CoreAPIV2::odataCleanName(experimentContainerType)
+    experimentContainerWellNum <- as.numeric(experimentContainerWellNum)
     resource <- "CELL"
 
-    cellId <- CoreAPIV2::getContainerCellIds(coreApi, containerBarcode, containerType, useVerbose)$entity[containerWellNum]
+    cellId <- CoreAPIV2::getExperimentContainerCellIds(coreApi, experimentContainerBarcode, experimentContainerType, useVerbose)$entity[experimentContainerWellNum]
 
     CoreAPIV2::case(
       grepl("[0-2]+\\.[0-9]+\\.[0-9]+", coreApi$semVer) ~ {

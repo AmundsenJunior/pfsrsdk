@@ -15,6 +15,6 @@ test_that(paste("test getCellContents() on:", env$auth), {
     "3" = "CELL_CONTENTS",
     print("CELL_CONTENTS")
   )
-  
+
   expect_gt(length(result$entity[[expansion]][[1]]), 0)
 })
