@@ -4,7 +4,6 @@
 #' @param coreApi coreApi object with valid jsessionid
 #' @param xmlFilePath Path to XML file
 #' @param appName name of PFS app to enable
-#' @export
 #' @return RETURN returns the entire http response
 #' @examples
 #' \dontrun{

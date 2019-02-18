@@ -28,7 +28,7 @@ test_that(paste("test case requires a 2 sided formula i.e (LHS~RHS)"), {
     TRUE ~ {
       answer <- "fail"
     }
-  )}, "Cases must be a two-sided formula, not a logical")
+  )}, "Case LHS must be a two-sided formula, not a logical")
 })
 
 test_that(paste("test case requires a logical LHS"), {

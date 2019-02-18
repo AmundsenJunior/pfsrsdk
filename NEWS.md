@@ -13,3 +13,4 @@
 * Enabled automated testing via Jenkins against multiple versions of PFS for compatibility validation.
 * Updated `getContainerContents` to handle generic CONTAINER contents requests.
 * Created `getExperimentContainerContents to get any container contents of EXPERIMENT_CONTAINER base type.
+* Updated setup.r and teardown.r. setup will now load the coreappsdk xml and teardown hides information that is not needed during log out. 
