@@ -22,8 +22,6 @@ test_that(paste("test attachFile() OData call on:", env$auth), {
 })
 
 test_that(paste("test attachFile() CoreSDK call on:", env$auth), {
-  skip("SDK command 'file-attach' fails on CI envs. See RSDK-80")
-
   attachedFile <- CoreAPIV2::attachFile(
     coreApi = con$coreApi,
     entityType = data$testPocoType,

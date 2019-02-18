@@ -50,6 +50,7 @@
   "containerBarcode": "",
   "experimentFileAssayType":"", 
   "experimentSampleBarcodeWithFileAttr":"", 
-  "fileAttrName":""
+  "fileAttrName":"",
+  "sampleLotBarcode":""
 }
 

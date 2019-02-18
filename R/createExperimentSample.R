@@ -13,8 +13,12 @@
 #' \dontrun{
 #' api<-CoreAPIV2::coreApi("PATH TO JSON FILE")
 #' login<- CoreAPIV2::authBasic(api)
-#' item<-CoreAPIV2::createExperimentSample(login$coreApi,"Experiment_Type",
-#'        "Assaybarcode","ProtocolBarcode")
+#' item<-CoreAPIV2::createExperimentSample(login$coreApi,
+#'    experimentType,
+#'    experimentBarcode,
+#'    sampleLotBarcode,
+#'    body = NULL,
+#'    useVerbose = FALSE)
 #' CoreAPIV2::logOut(login$coreApi )
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
@@ -29,7 +33,7 @@ createExperimentSample <-
              useVerbose = FALSE) {
     # clean the names for ODATA
 
-    experimentType <- CoreAPIV2::ODATAcleanName(experimentType)
+    experimentType <- CoreAPIV2::odataCleanName(experimentType)
 
     experimentSampleType <- paste0(experimentType, "_SAMPLE")
 

@@ -66,5 +66,6 @@
   "containerBarcode": "VIA1",
   "experimentFileAssayType":"TURBIDITY ASSAY", 
   "experimentSampleBarcodeWithFileAttr":"TBES1", 
-  "fileAttrName":"ci_extra_data"
+  "fileAttrName":"ci_extra_data",
+  "sampleLotBarcode":"BS20-1"
 }
