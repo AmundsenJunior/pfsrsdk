@@ -49,7 +49,7 @@ response <-CoreAPIV2::apiPUT(login$coreApi,
     special=NULL,
     useVerbose=FALSE,
     unbox = TRUE)
-content <- httr::coontent(response)
+content <- httr::content(response)
 CoreAPIV2::logOut(login$coreApi )
 }
 }
