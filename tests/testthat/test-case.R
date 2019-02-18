@@ -32,15 +32,17 @@ test_that(paste("test case requires a 2 sided formula i.e (LHS~RHS)"), {
 })
 
 test_that(paste("test case requires a logical LHS"), {
-  expect_error({case(
-    10L ~ {
-      answer <- "pass"
-    },
-    TRUE ~ {
-      answer <- "pass"
-    },
-    TRUE ~ {
-      answer <- "fail"
-    }
-  )}, "Case 10 LHS must be a logical, not integer")
+  expect_error({
+    case(
+      10L ~ {
+        answer <- "pass"
+      },
+      TRUE ~ {
+        answer <- "pass"
+      },
+      TRUE ~ {
+        answer <- "fail"
+      }
+    )
+  }, "Case 10 LHS must be a logical, not integer")
 })

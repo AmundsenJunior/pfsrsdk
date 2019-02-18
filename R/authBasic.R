@@ -42,7 +42,7 @@ authBasic <- function(coreApi, useVerbose = FALSE) {
         "barcode" = jsonlite::unbox(""),
         "name" = jsonlite::unbox(coreApi$tenant)
       )
-    
+
     request <-
       list(request = list(
         data = list(
@@ -54,8 +54,8 @@ authBasic <- function(coreApi, useVerbose = FALSE) {
         sdkCmd = jsonlite::unbox("sdk-login")
       ))
   }
-  
-  
+
+
   response <-
     CoreAPIV2::apiPOST(
       coreApi,
@@ -64,9 +64,9 @@ authBasic <- function(coreApi, useVerbose = FALSE) {
       useVerbose = useVerbose,
       special = "login"
     )
-  
-  
-  
+
+
+
   getSession <- function(response) {
     jsessionid <- httr::content(response)$response$data$jsessionid
     awselb <-
@@ -76,7 +76,7 @@ authBasic <- function(coreApi, useVerbose = FALSE) {
     }
     employeeId <- httr::content(response)$response$data$employeeId
     serviceRoot <- httr::content(response)$response$data$serviceRoot
-    
+
     list(
       jsessionid = jsessionid,
       awselb = awselb,
@@ -84,7 +84,7 @@ authBasic <- function(coreApi, useVerbose = FALSE) {
       serviceRoot = serviceRoot
     )
   }
-  
+
   if (httr::http_error(response)) {
     stop({
       print("API call failed")
@@ -93,8 +93,8 @@ authBasic <- function(coreApi, useVerbose = FALSE) {
     call. = FALSE
     )
   }
-  
-  
+
+
   session <-
     tryCatch(
       getSession(response),
@@ -102,9 +102,9 @@ authBasic <- function(coreApi, useVerbose = FALSE) {
         list("jsessionid" = NULL, "employeeId" = NULL, "serviceRoot" = NULL)
       }
     )
-  
-  
-  
+
+
+
   if (!is.null(session$jsessionid)) {
     coreApi$jsessionId <- session$jsessionid
   }
@@ -117,12 +117,12 @@ authBasic <- function(coreApi, useVerbose = FALSE) {
   if (!is.null(session$serviceRoot)) {
     coreApi$serviceRoot <- session$serviceRoot
   }
-  
-  if (is.null(coreApi$semVer)){
+
+  if (is.null(coreApi$semVer)) {
     coreApi$semVer <- getSemVer(coreApi)
-    warning(paste('SemVer variable in JSON connection string should be set to', coreApi$semVer))
+    warning(paste("SemVer variable in JSON connection string should be set to", coreApi$semVer))
   }
-  
+
   if (!any(coreApi$semVer %in% getOption("pfs.testedVersions"))) {
     warning(getOption("pfs.untestedVersionMessage"))
     options("pfs.tested" = FALSE)

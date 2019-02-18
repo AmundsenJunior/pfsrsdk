@@ -4,17 +4,17 @@
 \alias{getContainerCellIds}
 \title{getContainerCellIds -  Gets cell ids for a container}
 \usage{
-getContainerCellIds(coreApi, containerType, containerBarcode,
-  useVerbose = FALSE)
+getContainerCellIds(coreApi, containerBarcode,
+  containerType = "CONTAINER", useVerbose = FALSE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
 
-\item{containerType}{container entity type}
-
 \item{containerBarcode}{container barcode}
 
-\item{useVerbose}{Use verbose communication for debugging}
+\item{containerType}{container entity type (default: CONTAINER)}
+
+\item{useVerbose}{Use verbose communication for debugging (default: FALSE)}
 }
 \value{
 RETURN returns $entity a array of cell IDs and  $response contains the entire http response
@@ -29,7 +29,7 @@ RETURN returns $entity a array of cell IDs and  $response contains the entire ht
 \dontrun{
 api<-CoreAPI("PATH TO JSON FILE")
 login<- CoreAPIV2::authBasic(api)
-cellIDs<-CoreAPIV2::getContainerCellIds(login$coreApi,"384 WELL PLATE","TE1")$entity
+cellIDs<-CoreAPIV2::getContainerCellIds(login$coreApi, "TE1", containerType = "384 WELL PLATE")$entity
 CoreAPIV2::logOut(login$coreApi )
 }
 }
