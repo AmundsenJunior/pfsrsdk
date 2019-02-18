@@ -3,17 +3,16 @@
 
 # Explicitly declare text files you want to always be normalized and converted
 # to native line endings on checkout.
-*.R text
-*.r text
-*.R* text
-DESCRIPTION text
-*.md text
-*.gradle text
+*.r text eol=lf
+*.R text eol=lf
+DESCRIPTION text eol=lf
+*.md text eol=lf
+*.gradle text eol=lf
 
 # Declare files that will always have CRLF line endings on checkout.
 # Example: *.sln text eol=crlf
 *.bat text eol=crlf
 
 # Denote all files that are truly binary and should not be modified.
-# Example: *.png binary
 # Example: *.jpg binary
+**.png binary
