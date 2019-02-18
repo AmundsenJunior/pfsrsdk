@@ -3,10 +3,10 @@
 #' \code{setWellContents} Puts a sample lot in a container well.
 #' @param coreApi coreApi object with valid jsessionid
 #' @param containerType container type
-#' @param containerBarcode container barcode
-#' @param containerWellNum container well number
+#' @param containerBarcode barcode of a container that IS NOT assigned to an experiment.
+#' @param containerWellNum container well number (The plate must have a sample in well A1 in order to setWellContents in other wells.)
 #' @param sampleLotType sample lot type
-#' @param sampleLotBarcode barcode of lot to add to cell
+#' @param sampleLotBarcode barcode of lot to add to well
 #' @param amount amount to add (numeric)
 #' @param amountUnit units
 #' @param concentration (numeric)
@@ -19,12 +19,13 @@
 #' \dontrun{
 #' api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
 #' login<- CoreAPIV2::authBasic(api)
-#' cell<- updateCellContents<-(coreApi, containerType,containerBarcode, containerCellNum,
-#'                            sampleLotType,sampleLotBarcode, amount, amountUnit, concentration,
-#'                            concentrationUnit,useVerbose = FALSE)
+#' well<- setWellContents<-(coreApi, containerType = "CONTAINER", containerBarcode = "96W101", containerWellNum = "1",
+#'                            sampleLotType = "BEER_SAMPLE_LOT", sampleLotBarcode = "BS1000-1", amount = 1, amountUnit = "ml", concentration = 1,
+#'                            concentrationUnit = "nM",useVerbose = FALSE)
 #' CoreAPIV2::logOut(login$coreApi )
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description \code{setWellContents} - Puts a cell lot in a container well.
 
 
@@ -46,15 +47,17 @@ setWellContents <-
              useVerbose = FALSE) {
     # clean the name for ODATA
 
-    containerType <- CoreAPIV2::ODATAcleanName(containerType)
+    containerType <- CoreAPIV2::odataCleanName(containerType)
 
 
     containerWellNum <- as.numeric(containerWellNum)
+    amount <- as.numeric(amount)
+    concentration <- as.numeric(concentration)
 
     # first get the cellID for the well
 
     cellID <-
-      getContainerCellIds(coreApi, containerType, containerBarcode, useVerbose = FALSE)$entity[containerWellNum]
+      getContainerCellIds(coreApi, containerBarcode, containerType, useVerbose = FALSE)$entity[containerWellNum]
 
 
     # get ID for lot number
@@ -63,7 +66,6 @@ setWellContents <-
         coreApi,
         entityType = sampleLotType,
         barcode = sampleLotBarcode,
-
         fullMetadata = FALSE,
         useVerbose = useVerbose
       )$entity$Id

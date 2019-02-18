@@ -13,13 +13,13 @@ setWellContents(coreApi, containerType, containerBarcode, containerWellNum,
 
 \item{containerType}{container type}
 
-\item{containerBarcode}{container barcode}
+\item{containerBarcode}{barcode of a container that IS NOT assigned to an experiment.}
 
-\item{containerWellNum}{container well number}
+\item{containerWellNum}{container well number (The plate must have a sample in well A1 in order to setWellContent in other wells.)}
 
 \item{sampleLotType}{sample lot type}
 
-\item{sampleLotBarcode}{barcode of lot to add to cell}
+\item{sampleLotBarcode}{barcode of lot to add to well}
 
 \item{amount}{amount to add (numeric)}
 
@@ -45,12 +45,14 @@ RETURN returns a list $entity contains updated container
 \dontrun{
 api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
 login<- CoreAPIV2::authBasic(api)
-cell<- updateCellContents<-(coreApi, containerType,containerBarcode, containerCellNum,
-                           sampleLotType,sampleLotBarcode, amount, amountUnit, concentration,
-                           concentrationUnit,useVerbose = FALSE)
+well<- setWellContents<-(coreApi, containerType = "CONTAINER", containerBarcode = "96W101", containerWellNum = "1",
+                           sampleLotType = "BEER_SAMPLE_LOT", sampleLotBarcode = "BS1000-1", amount = 1, amountUnit = "ml", concentration = 1,
+                           concentrationUnit = "nM",useVerbose = FALSE)
 CoreAPIV2::logOut(login$coreApi )
 }
 }
 \author{
 Craig Parman ngsAnalytics, ngsanalytics.com
+
+Natasha Mora natasha.mora@thermofisher.com
 }

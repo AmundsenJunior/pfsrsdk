@@ -59,20 +59,27 @@
   "experimentContainerWellNum": "1",
   "sampleType": "BEER_SAMPLE",
   "sampleBarcode": "BS1000",
+  "sampleLotType": "BEER_SAMPLE_LOT",
+  "sampleLotBarcode": "BS20-1",
   "intermediateDataName": "CI_BITTERNESS_IBU_INTERMEDIATE",
   "singleWellContainerBarcode":"VIA1",
   "multiWellContainerBarcode":"96W1",
   "containerCellId": "17376900",
   "containerType": "VIAL",
   "containerBarcode": "VIA1",
+  "nonExperimentContainerType": "CONTAINER",
+  "nonExperimentContainerBarcode": "96W11",
   "containerWellNum": "1",
   "experimentFileAssayType":"TURBIDITY ASSAY", 
   "experimentSampleBarcodeWithFileAttr":"TBES1", 
   "fileAttrName":"ci_extra_data",
-  "sampleLotBarcode":"BS20-1",
   "rawDataCellNum": "1",
   "rawDataValues": [{
     "DATA_VALUE": 7.4,
     "CI_ACCEPT": true
-  }]
+  }],
+  "wellContentsAmount": "1",
+  "wellContentsAmountUnit": "mL",
+  "wellContentsConcentration": "1",
+  "wellContentsConcentrationUnit": "nM"
 }
