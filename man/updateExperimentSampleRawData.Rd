@@ -4,17 +4,17 @@
 \alias{updateExperimentSampleRawData}
 \title{updateExperimentSampleRawData - Update experiment sample raw data.}
 \usage{
-updateExperimentSampleRawData(coreApi, experimentContainerBarcode, cellNum,
-  values, useVerbose = FALSE)
+updateExperimentSampleRawData(coreApi, experimentContainerBarcode,
+  rawDataCellNum, rawDataValues, useVerbose = FALSE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
 
 \item{experimentContainerBarcode}{User provided barcode as a character string}
 
-\item{cellNum}{cell (well) number of container}
+\item{rawDataCellNum}{cell (well) number of container}
 
-\item{values}{assay attributes as a list of key-values pairs}
+\item{rawDataValues}{assay attributes as a list of key-values pairs}
 
 \item{useVerbose}{Use verbose communication for debugging}
 }
@@ -32,8 +32,8 @@ RETURN returns a list $entity contains entity information,
 \dontrun{
 api<-CoreAPI("PATH TO JSON FILE")
 login<- CoreAPIV2::authBasic(api)
-response<-updateExperimentSampleRawData(login$coreApi,"contBarcode",cellNum=1,
-                   values = list(DATA_VALUE = 100 ,CI_ACCEPT = FALSE)
+response<-updateExperimentSampleRawData(login$coreApi,experimentContainerBarcode="BTCR1",rawDataCellNum=1,
+                   rawDataValues = list(DATA_VALUE = 100 ,CI_ACCEPT = FALSE)
 
 updatedEntity <- response$entity
 CoreAPIV2::logOut(login$coreApi ) response<- CoreAPI::authBasic(coreApi)
@@ -41,4 +41,6 @@ CoreAPIV2::logOut(login$coreApi ) response<- CoreAPI::authBasic(coreApi)
 }
 \author{
 Craig Parman ngsAnalytics, ngsanalytics.com
+
+Natasha Mora natasha.mora@thermofisher.com
 }
