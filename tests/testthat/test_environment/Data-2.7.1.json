@@ -75,7 +75,7 @@
   "containerWellNum": "1",
   "experimentFileAssayType":"TURBIDITY ASSAY", 
   "experimentSampleBarcodeWithFileAttr":"TBES1", 
-  "fileAttrName":"ci_extra_data",
+  "fileAttrName":"CI_EXTRA_DATA",
   "rawDataCellNum": "1",
   "rawDataValues": [{
     "DATA_VALUE": 7.4,
