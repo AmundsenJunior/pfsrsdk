@@ -20,6 +20,26 @@ Reference any of the below resources for developing in this package.
 
 ### Managing Package Dependencies
 
+#### Development Dependencies
+
+When working on the package, development tasks - such as building, documenting,
+or testing - require other packages to execute. These packages are available in
+the `packrat` environment (see below). Any new development dependencies should
+be installed in the packrat environment and a new snapshot taken. Please update
+the below list with any additional development dependencies:
+
+* `devtools`
+* `knitr`
+* `lintr`
+* `pkgdown`
+* `rmarkdown`
+* `shiny`
+* `styler`
+* `testthat`
+* `testthis`
+
+#### Packrat
+
 The [`packrat` package](https://github.com/rstudio/packrat) manages all R
 package dependencies that this project uses. `packrat` provides a local
 repository of packages, based upon a sweep of all `R/` code for any `library()`
@@ -27,7 +47,7 @@ or `required()` calls. It stores versioned TARs of those packages, retrieved
 from CRAN or other defined repositories in the `packrat/src/` directory, along
 with a `packrat.lock` file that specifies the packages and their versions.
 
-#### `packrat::init()`
+##### `packrat::init()`
 
 These files are generated on a new project by calling:
 ```r
@@ -37,7 +57,7 @@ packrat::init()
 and are part of source control. Git ignores all installed instances of packages
 in the `packrat/lib*/` directories.
 
-#### `packrat::restore()`
+##### `packrat::restore()`
 
 In a new clone of this project, initialize your environment into the `packrat` 
 repository by calling:
@@ -47,7 +67,7 @@ packrat::restore()
 This will put all calls to dependencies in your source files towards the
 `packrat` context.
 
-#### `packrat::snapshot()`
+##### `packrat::snapshot()`
 
 If you are adding any new package dependencies to the project, you can install
 them with regular install commands (e.g. `install.packages()` or

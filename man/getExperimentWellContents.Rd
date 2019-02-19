@@ -11,13 +11,13 @@ getExperimentWellContents(coreApi, experimentContainerBarcode,
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
 
+\item{experimentContainerBarcode}{experiment container barcode}
+
+\item{experimentContainerWellNum}{number location of experiment container's well}
+
+\item{experimentContainerType}{entity type of experiment container (default: "EXPERIMENT_CONTAINER")}
+
 \item{useVerbose}{Use verbose communication for debugging (default: FALSE)}
-
-\item{containerBarcode}{container barcode}
-
-\item{containerWellNum}{number location of container's well}
-
-\item{containerType}{entity type of container (default: "EXPERIMENT_CONTAINER")}
 }
 \value{
 RETURN returns a list $entity contains well information, $response contains the entire http response

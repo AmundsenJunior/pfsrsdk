@@ -18,24 +18,13 @@ URL: https://bitbucket.org/corelims/coreapiv2
 BugReports: https://corelims.atlassian.net/secure/RapidBoard.jspa?rapidView=395&projectKey=RSDK&view=planning
 LazyData: TRUE
 Imports:
-    base64enc,
     httr,
-    stringi,
     jsonlite,
-    XML,
-    utils, 
-    xml2
-Suggests:
-    devtools,
-    knitr,
-    lintr,
-    pkgdown,
-    rmarkdown,
-    shiny,
+    stringi,
     stringr,
-    styler,
-    testthat,
-    testthis
+    utils, 
+    XML
+Suggests:
 RoxygenNote: 6.1.1
 VignetteBuilder: knitr
 Encoding: UTF-8
