@@ -3,53 +3,57 @@
 #' \code{updateExperimentSampleData} Update experiment sample assay data.
 #'
 #' @param coreApi coreApi object with valid jsessionid
-#' @param assayType entity type to get as character string
-#' @param experimentSamplebarcode User provided barcode as a character string
-#' @param assayAttributeValues assay attributes as a list of key-values pairs
+#' @param experimentAssayType entity type to get as character string
+#' @param experimentSampleBarcode User provided barcode as a character string
+#' @param experimentAssayUpdateAttrList assay attributes as a list of key-values pairs
 #' @param useVerbose Use verbose communication for debugging
 #' @export
 #' @return RETURN returns a list $entity contains entity information,
 #'        $response contains the entire http response
 #' @examples
 #' \dontrun{
-#' api<-CoreAPI("PATH TO JSON FILE")
-#' login<- CoreAPIV2::authBasic(api)
-#' response<-CoreAPIV2::updateExperimentSampleData(login$coreApi,assayType,
-#'                   experimentSampleBarcode,assayAtributeValues)
+#' api <- CoreAPI("PATH TO JSON FILE")
+#' login <- CoreAPIV2::authBasic(api)
+#' response <- CoreAPIV2::updateExperimentSampleData(login$coreApi,
+#'   experimentAssayType = "BITTERNESS_ASSAY",
+#'   experimentSampleBarcode = "BTES3", experimentAssayUpdateAttrList = list(CI_BITTERNESS_IBU = 9.7, CI_ACCEPT = FALSE)
+#' )
 #' updatedEntity <- response$entity
-#' CoreAPIV2::logOut(login$coreApi ) response<- CoreAPI::authBasic(coreApi)
+#' CoreAPIV2::logOut(login$coreApi)
+#' response <- CoreAPI::authBasic(coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description \code{updateExperimentSampleData} Update experiment sample assay data.
 
 
 
 updateExperimentSampleData <-
   function(coreApi,
-             assayType,
-             experimentSamplebarcode,
-             assayAttributeValues,
+             experimentAssayType,
+             experimentSampleBarcode,
+             experimentAssayUpdateAttrList,
              useVerbose = FALSE) {
     # Clean Names of assay
 
-    assayType <- CoreAPIV2::ODATAcleanName(assayType)
+    experimentAssayType <- CoreAPIV2::odataCleanName(experimentAssayType)
 
 
     # Clean Names of attributes
 
 
-    for (i in 1:length(names(assayAttributeValues)))
+    for (i in 1:length(names(experimentAssayUpdateAttrList)))
     {
-      names(assayAttributeValues)[i] <-
-        CoreAPIV2::attributeCleanName(names(assayAttributeValues)[i])
+      names(experimentAssayUpdateAttrList)[i] <-
+        CoreAPIV2::attributeCleanName(names(experimentAssayUpdateAttrList)[i])
     }
 
 
 
-    body <- assayAttributeValues # needs to be unboxed
+    body <- experimentAssayUpdateAttrList # needs to be unboxed
 
-    resource <- paste0(assayType, "_DATA")
-    query <- paste0("('", experimentSamplebarcode, "')")
+    resource <- paste0(experimentAssayType, "_DATA")
+    query <- paste0("('", experimentSampleBarcode, "')")
 
     header <- c("Content-Type" = "application/json", "If-Match" = "*")
 

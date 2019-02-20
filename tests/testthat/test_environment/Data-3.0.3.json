@@ -51,6 +51,9 @@
   "experimentBarcode": "BTXP1",
   "experimentAssayType": "BITTERNESS_ASSAY",
   "experimentAssayBarcode": "BTNA1",
+  "experimentAssayUpdateAttrList": [{
+    "CI_BITTERNESS_IBU": 9.23
+  }],
   "experimentProtocolType": "BITTERNESS_PROTOCOL",
   "experimentProtocolBarcode": "BTNP1",
   "experimentSampleBarcode": "BTES3",
