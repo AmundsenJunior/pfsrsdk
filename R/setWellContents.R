@@ -4,7 +4,7 @@
 #' @param coreApi coreApi object with valid jsessionid
 #' @param containerType container type
 #' @param containerBarcode barcode of a container that IS NOT assigned to an experiment.
-#' @param containerWellNum container well number (The plate must have a sample in well A1 in order to setWellContents in other wells.)
+#' @param containerWellNum container well number. (In PFS 5.3.8 (semVer 2.7.1) if multi-wells are used, well A1 has to be filled or filled first in order to setWellContents in other cells.)
 #' @param sampleLotType sample lot type
 #' @param sampleLotBarcode barcode of lot to add to well
 #' @param amount amount to add (numeric)
@@ -53,6 +53,10 @@ setWellContents <-
     containerWellNum <- as.numeric(containerWellNum)
     amount <- as.numeric(amount)
     concentration <- as.numeric(concentration)
+    
+    if ((grepl("[0-2]+\\.[0-9]+\\.[0-9]+", coreApi$semVer) & (!(amount%%1==0) | !(concentration%%1==0)))) {
+      stop(paste0("Amount: ", amount, " and Concentration: ", concentration, " values have to be of type numeric with no decimal places."))
+    }
 
     # first get the cellID for the well
 
@@ -105,7 +109,7 @@ setWellContents <-
 
     header <-
       c("Content-Type" = "application/json;metadata=minimal", Accept = "application/json")
-
+    
     response <-
       CoreAPIV2::apiPOST(
         coreApi,

@@ -15,7 +15,7 @@ setWellContents(coreApi, containerType, containerBarcode, containerWellNum,
 
 \item{containerBarcode}{barcode of a container that IS NOT assigned to an experiment.}
 
-\item{containerWellNum}{container well number (The plate must have a sample in well A1 in order to setWellContents in other wells.)}
+\item{containerWellNum}{container well number. (In PFS 5.3.8 (semVer 2.7.1) if multi-wells are used, well A1 has to be filled or filled first in order to setWellContents in other cells.)}
 
 \item{sampleLotType}{sample lot type}
 

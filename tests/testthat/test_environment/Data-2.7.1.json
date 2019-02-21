@@ -68,6 +68,7 @@
   "singleWellContainerBarcode":"VIA1",
   "multiWellContainerBarcode":"96W1",
   "containerCellId": "17376900",
+  "setCellContentsContainerCellId": "17369762",
   "containerType": "VIAL",
   "containerBarcode": "VIA1",
   "nonExperimentContainerType": "CONTAINER",
