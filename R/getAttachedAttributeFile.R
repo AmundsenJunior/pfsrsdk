@@ -13,7 +13,7 @@
 #' \dontrun{
 #' api <- CoreAPIV2::CoreAPI("PATH TO JSON FILE")
 #' login <- CoreAPIV2::authBasic(api)
-#' response <- getAttachedAttributeFile(login$coreApi, entityType, barcode, attributeName)
+#' response <- getAttachedAttributeFile(login$coreApi, entityType, barcode, attribute)
 #' witeBin(response$entity, "filename.txt")
 #' CoreAPIV2:logOut(login$coreApi)
 #' }
@@ -107,12 +107,11 @@ getAttachedAttributeFile <-
 #' @param attribute name of the attribute
 #' @param useVerbose TRUE or FALSE to indicate if verbose options should be used
 #' @return returns a list $entity contains file data, $response contains the entire http response
-#' @export
 #' @examples
 #' \dontrun{
 #' api <- CoreAPIV2::CoreAPI("PATH TO JSON FILE")
 #' login <- CoreAPIV2::authBasic(api)
-#' response <- getAttachedFile(login$coreApi, entityType, barcode, attributeName)
+#' response <- getAttachedFile(login$coreApi, entityType, barcode, attribute)
 #' witeBin(response$entity, "filename.txt")
 #' CoreAPIV2:logOut(login$coreApi)
 #' }

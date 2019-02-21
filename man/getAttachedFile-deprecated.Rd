@@ -28,7 +28,7 @@ The $entity slot contains the binary file data.
 \dontrun{
 api <- CoreAPIV2::CoreAPI("PATH TO JSON FILE")
 login <- CoreAPIV2::authBasic(api)
-response <- getAttachedFile(login$coreApi, entityType, barcode, attributeName)
+response <- getAttachedFile(login$coreApi, entityType, barcode, attribute)
 witeBin(response$entity, "filename.txt")
 CoreAPIV2:logOut(login$coreApi)
 }
