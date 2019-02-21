@@ -41,6 +41,50 @@ pipeline {
                         K8S_TEST_NAMESPACE = stringScrub("pfs-sdk-2-7-1-test-${BRANCH_NAME.replace('.', '-').take(15)}-${BUILD_NUMBER}")
                     }
 
+                    when {
+                        expression { BRANCH_NAME ==~ /(master|develop)/ }
+                    }
+
+                    stages {
+                        stage('install-pfs-env') {
+                            steps {
+                                createK8sNamespace()
+                                helmInstall('pfs-legacy',
+                                    [ chartVersion: TEST_VERSION,
+                                      timeout: 1200,
+                                      templateValues: [
+                                        'namespace': K8S_TEST_NAMESPACE 
+                                      ]
+                                    ])
+                                sleep 300
+                            }
+                        }
+
+                        stage('execute-pfs-sdk-tests') {
+                            environment {
+                                HOST = getK8sValue('pod', 'pfs-pod', '{{.status.hostIP}}')
+                                PORT = getK8sValue('service', 'pfs-service', "\'{{range .spec.ports}}{{if eq .name \"http\"}}{{.nodePort}}{{end}}{{end}}\'")
+                                TEST_ENV = "${TEST_VERSION}"
+                            }
+                            steps {
+                                gradleTask('testPackage')
+                            }
+                        }
+                    }
+
+                    post {
+                        always {
+                            deleteK8sNamespace()
+                        }
+                    }
+                }
+
+                stage('test-pfs-2.8.1') {
+                    environment {
+                        TEST_VERSION = '2.8.1'
+                        K8S_TEST_NAMESPACE = stringScrub("pfs-sdk-2-8-1-test-${BRANCH_NAME.replace('.', '-').take(15)}-${BUILD_NUMBER}")
+                    }
+
                     stages {
                         stage('install-pfs-env') {
                             steps {
@@ -79,6 +123,50 @@ pipeline {
                     environment {
                         TEST_VERSION = '3.0.3'
                         K8S_TEST_NAMESPACE = stringScrub("pfs-sdk-3-0-3-test-${BRANCH_NAME.replace('.', '-').take(15)}-${BUILD_NUMBER}")
+                    }
+                    
+                    when {
+                        expression { BRANCH_NAME ==~ /(master|develop)/ }
+                    }
+
+                    stages {
+                        stage('install-pfs-env') {
+                            steps {
+                                createK8sNamespace()
+                                helmInstall('pfs-legacy',
+                                    [ chartVersion: TEST_VERSION,
+                                      timeout: 1200,
+                                      templateValues: [
+                                        'namespace': K8S_TEST_NAMESPACE
+                                      ]
+                                    ])
+                                sleep 300
+                            }
+                        }
+
+                        stage('execute-pfs-sdk-tests') {
+                            environment {
+                                HOST = getK8sValue('pod', 'pfs-pod', '{{.status.hostIP}}')
+                                PORT = getK8sValue('service', 'pfs-service', "\'{{range .spec.ports}}{{if eq .name \"http\"}}{{.nodePort}}{{end}}{{end}}\'")
+                                TEST_ENV = "${TEST_VERSION}"
+                            }
+                            steps {
+                                gradleTask('testPackage')
+                            }
+                        }
+                    }
+                    
+                    post {
+                        always {
+                            deleteK8sNamespace()
+                        }
+                    }
+                }
+                
+                stage('test-pfs-3.0.4') {
+                    environment {
+                        TEST_VERSION = '3.0.4'
+                        K8S_TEST_NAMESPACE = stringScrub("pfs-sdk-3-0-4-test-${BRANCH_NAME.replace('.', '-').take(15)}-${BUILD_NUMBER}")
                     }
 
                     stages {
