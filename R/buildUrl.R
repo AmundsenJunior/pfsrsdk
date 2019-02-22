@@ -10,9 +10,9 @@
 #' @return RETURN Core REST URL
 #' @examples
 #' \dontrun{
-#' api <- CoreAPIV2("PATH TO JSON FILE")
-#' login <- CoreAPIV2::authBasic(api)
-#' URL <- CoreAPIV2::buildUrl(api, "Sample", "('PS1')")
+#' api <- coreAPI("PATH TO JSON FILE")
+#' login <- authBasic(api)
+#' URL <- buildUrl(api, "Sample", "('PS1')")
 #' logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
@@ -30,7 +30,7 @@ buildUrl <-
              query = NULL,
              special = NULL,
              useVerbose = FALSE) {
-
+    # nolint start
     # Concat tenant and odata
     if (coreApi$tenant == "PLATFORM ADMIN") {
       odat <- "/odata/"
@@ -88,6 +88,6 @@ buildUrl <-
           )
       )
     }
-
+    # nolint end
     return(sdk_url)
   }

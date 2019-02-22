@@ -13,8 +13,8 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' api <- CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-#' login <- CoreAPIV2::authBasic(api)
+#' api <- coreAPI("PATH TO JSON FILE")
+#' login <- authBasic(api)
 #' response <- getExperimentSampleIntermediateData(
 #'   login$coreApi,
 #'   "experimentType",
@@ -23,7 +23,7 @@
 #'   "experimentSampleBarcode"
 #' )
 #' rawdata <- response$entity
-#' CoreAPIV2:logOut(login$coreApi)
+#' logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
@@ -39,9 +39,9 @@ getExperimentSampleIntermediateData <-
              experimentSampleBarcode,
              useVerbose = FALSE) {
     # clean the name for ODATA
-    experimentType <- CoreAPIV2::odataCleanName(experimentType)
-    experimentAssayType <- CoreAPIV2::odataCleanName(experimentAssayType)
-    intermediateDataName <- CoreAPIV2::attributeCleanName(intermediateDataName)
+    experimentType <- odataCleanName(experimentType)
+    experimentAssayType <- odataCleanName(experimentAssayType)
+    intermediateDataName <- attributeCleanName(intermediateDataName)
     resource <- paste0(experimentType, "_SAMPLE")
 
 
@@ -59,7 +59,7 @@ getExperimentSampleIntermediateData <-
 
 
     response <-
-      CoreAPIV2::apiGET(
+      apiGET(
         coreApi,
         resource = resource,
         query = query,
@@ -117,7 +117,7 @@ getExperimentSampleIntermediateData <-
       }))
 
     # TODO - Allow users to put more than one intermediateDataName, currently only one can be
-    # passed and it has to be written in UPPERCASE in PFS, unless line "intermediateDataName <- CoreAPIV2::attributeCleanName(intermediateDataName)"
+    # passed and it has to be written in UPPERCASE in PFS, unless line "intermediateDataName <- attributeCleanName(intermediateDataName)"
     # is commented out.
 
     dataValues <-
@@ -171,8 +171,8 @@ getExperimentSampleIntermediateData <-
 #'         and assay raw data. $response contains the entire http response
 #' @examples
 #' \dontrun{
-#' api <- CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-#' login <- CoreAPIV2::authBasic(api)
+#' api <- coreAPI("PATH TO JSON FILE")
+#' login <- authBasic(api)
 #' response <- getExperimentSamplesIntermediateData(
 #'   login$coreApi,
 #'   "experimentType",
@@ -181,18 +181,18 @@ getExperimentSampleIntermediateData <-
 #'   "experimentSampleBarcode"
 #' )
 #' rawdata <- response$entity
-#' CoreAPIV2:logOut(login$coreApi)
+#' logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description \code{getExperimentSamplesIntermediateData}   Gets raw data for a experiment sample identified by barcode.
 #'
 #' @name getExperimentSamplesIntermediateData-deprecated
-#' @seealso \code{\link{CoreAPIV2-deprecated}}
+#' @seealso \code{\link{pfsrsdk-deprecated}}
 #' @keywords internal
 NULL
 
-#' @rdname CoreAPIV2-deprecated
+#' @rdname pfsrsdk-deprecated
 #' @section \code{getExperimentSamplesIntermediateData}:
 #' For \code{getExperimentSamplesIntermediateData}, use \code{\link{getExperimentSampleIntermediateData}}.
 #'
@@ -209,9 +209,9 @@ getExperimentSamplesIntermediateData <-
     .Deprecated(new = "getExperimentSampleIntermediateData")
 
     # clean the name for ODATA
-    experimentType <- CoreAPIV2::odataCleanName(experimentType)
-    experimentAssayType <- CoreAPIV2::odataCleanName(experimentAssayType)
-    intermediateDataName <- CoreAPIV2::attributeCleanName(intermediateDataName)
+    experimentType <- odataCleanName(experimentType)
+    experimentAssayType <- odataCleanName(experimentAssayType)
+    intermediateDataName <- attributeCleanName(intermediateDataName)
     resource <- paste0(experimentType, "_SAMPLE")
 
 
@@ -229,7 +229,7 @@ getExperimentSamplesIntermediateData <-
 
 
     response <-
-      CoreAPIV2::apiGET(
+      apiGET(
         coreApi,
         resource = resource,
         query = query,

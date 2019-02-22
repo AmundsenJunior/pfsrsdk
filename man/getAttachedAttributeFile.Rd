@@ -30,11 +30,11 @@ The $entity slot contains the binary file data.
 }
 \examples{
 \dontrun{
-api <- CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-login <- CoreAPIV2::authBasic(api)
+api <- coreAPI("PATH TO JSON FILE")
+login <- authBasic(api)
 response <- getAttachedAttributeFile(login$coreApi, entityType, barcode, attribute)
 witeBin(response$entity, "filename.txt")
-CoreAPIV2:logOut(login$coreApi)
+logOut(login$coreApi)
 }
 }
 \author{

@@ -30,10 +30,10 @@ RETURN returns a list $entity contains cell information, $response contains the 
 }
 \examples{
 \dontrun{
-api<-CoreAPI("PATH TO JSON FILE")
-login<- CoreAPIV2::authBasic(api)
-cell<-CoreAPIV2::getContainerContents(login$coreApi,"VIA9","VIAL")
-CoreAPIV2::logOut(login$coreApi)
+api <- coreAPI("PATH TO JSON FILE")
+login <- authBasic(api)
+cell <- getContainerContents(login$coreApi, "VIA9", "VIAL")
+logOut(login$coreApi)
 }
 }
 \author{

@@ -6,15 +6,15 @@
 #' @param entityType entity type to get
 #' @param name name of entity to get
 #' @param fullMetadata - get full metadata
-#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http POST
+#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http 
 #' @return returns a list $entity contains entity information, $response contains the entire http response
 #' @export
 #' @examples
 #' \dontrun{
-#' api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-#' login<- CoreAPIV2::authBasic(api)
-#' item<-CoreAPIV2::getEntityByName(login$coreApi,"entityType","name")
-#' CoreAPIV2::logOut(login$coreApi)
+#' api <- coreAPI("PATH TO JSON FILE")
+#' login <- authBasic(api)
+#' item <- getEntityByName(login$coreApi, "entityType", "name")
+#' logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Adam Wheeler adam.j.wheeler@accenture.com
@@ -41,7 +41,7 @@ getEntityByName <-
 
 
     out <-
-      CoreAPIV2::apiGET(
+      apiGET(
         coreApi,
         resource = entityType,
         query = query,

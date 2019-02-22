@@ -36,9 +36,10 @@ RETURN returns a list $entity contains updated container information,
 }
 \examples{
 \dontrun{
-api <- CoreAPIV2("PATH TO JSON FILE")
-login <- CoreAPIV2::authBasic(api)
-response <- CoreAPIV2::updateCellContents(login$coreApi,
+api <- coreAPI("PATH TO JSON FILE")
+login <- authBasic(api)
+response <- updateCellContents(
+  login$coreApi,
   "96 WELL PLATE",
   "96W78",
   "1",
@@ -46,12 +47,13 @@ response <- CoreAPIV2::updateCellContents(login$coreApi,
   "10.1",
   "mL",
   "0.5",
-  "nM")
-CoreAPIV2::logOut(login$coreApi )
+  "nM"
+)
+logOut(login$coreApi)
 }
 }
 \seealso{
-\code{\link{CoreAPIV2-deprecated}}
+\code{\link{pfsrsdk-deprecated}}
 }
 \author{
 Craig Parman ngsAnalytics, ngsanalytics.com

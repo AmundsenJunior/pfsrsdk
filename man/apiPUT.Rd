@@ -40,17 +40,18 @@ Returns the entire http response
 }
 \examples{
 \dontrun{
-api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-login<- CoreAPIV2::authBasic(api)
-response <-CoreAPIV2::apiPUT(login$coreApi,
-    "SAMPLE",
-    body,
-    "json",
-    special=NULL,
-    useVerbose=FALSE,
-    unbox = TRUE)
+api <- coreAPI("PATH TO JSON FILE")
+login <- authBasic(api)
+response <- apiPUT(login$coreApi,
+  "SAMPLE",
+  body,
+  "json",
+  special = NULL,
+  useVerbose = FALSE,
+  unbox = TRUE
+)
 content <- httr::content(response)
-CoreAPIV2::logOut(login$coreApi )
+logOut(login$coreApi)
 }
 }
 \author{

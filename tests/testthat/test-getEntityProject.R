@@ -6,8 +6,8 @@ context("Tests for getEntityProject")
 # Completed regression for 5.3.8 and 6.0.1
 
 test_that(paste("test getEntityProject for:", env$auth), {
-  barcode <- CoreAPIV2::getEntityByName(con$coreApi, data$testPocoType, data$testPocoName, useVerbose = verbose)$entity[[1]]$Barcode
-  pro <- CoreAPIV2::getEntityProject(con$coreApi, data$testPocoType, barcode, useVerbose = verbose)
+  barcode <- getEntityByName(con$coreApi, data$testPocoType, data$testPocoName, useVerbose = verbose)$entity[[1]]$Barcode
+  pro <- getEntityProject(con$coreApi, data$testPocoType, barcode, useVerbose = verbose)
 
   expect_equivalent(httr::status_code(pro$response), 200)
   expect_match(pro$entity[[1]]$Barcode, data$testPocoProj)

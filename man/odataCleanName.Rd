@@ -20,10 +20,8 @@ Returns name in ODATA compliant form
 }
 \examples{
 \dontrun{
-new_name <-CoreAPIV2::odataCleanName("384 Well Plate")
-new_name
-_384_WELL_PLATE
- }
+new_name <- odataCleanName("384 Well Plate")
+}
 }
 \author{
 Craig Parman ngsAnalytics, ngsanalytics.com

@@ -12,15 +12,15 @@
 #'        $response contains the entire http response
 #' @examples
 #' \dontrun{
-#' api <- CoreAPI("PATH TO JSON FILE")
-#' login <- CoreAPIV2::authBasic(api)
-#' response <- CoreAPIV2::updateExperimentSampleData(login$coreApi,
+#' api <- coreAPI("PATH TO JSON FILE")
+#' login <- authBasic(api)
+#' response <- updateExperimentSampleData(login$coreApi,
 #'   experimentAssayType = "BITTERNESS_ASSAY",
 #'   experimentSampleBarcode = "BTES3", experimentAssayUpdateAttrList = list(CI_BITTERNESS_IBU = 9.7, CI_ACCEPT = FALSE)
 #' )
 #' updatedEntity <- response$entity
-#' CoreAPIV2::logOut(login$coreApi)
-#' response <- CoreAPI::authBasic(coreApi)
+#' logOut(login$coreApi)
+#' response <- authBasic(coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
@@ -36,7 +36,7 @@ updateExperimentSampleData <-
              useVerbose = FALSE) {
     # Clean Names of assay
 
-    experimentAssayType <- CoreAPIV2::odataCleanName(experimentAssayType)
+    experimentAssayType <- odataCleanName(experimentAssayType)
 
 
     # Clean Names of attributes
@@ -45,7 +45,7 @@ updateExperimentSampleData <-
     for (i in 1:length(names(experimentAssayUpdateAttrList)))
     {
       names(experimentAssayUpdateAttrList)[i] <-
-        CoreAPIV2::attributeCleanName(names(experimentAssayUpdateAttrList)[i])
+        attributeCleanName(names(experimentAssayUpdateAttrList)[i])
     }
 
 
@@ -58,7 +58,7 @@ updateExperimentSampleData <-
     header <- c("Content-Type" = "application/json", "If-Match" = "*")
 
     response <-
-      CoreAPIV2::apiPUT(
+      apiPUT(
         coreApi,
         resource = resource,
         query = query,

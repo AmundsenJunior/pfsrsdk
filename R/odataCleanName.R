@@ -6,10 +6,8 @@
 #' @return Returns name in ODATA compliant form
 #' @examples
 #' \dontrun{
-#' new_name <-CoreAPIV2::odataCleanName("384 Well Plate")
-#' new_name
-#' _384_WELL_PLATE
-#'  }
+#' new_name <- odataCleanName("384 Well Plate")
+#' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Adam Wheeler adam.j.wheeler@accenture.com
 #' @author Scott Russell scott.russell@thermofisher.com
@@ -36,20 +34,18 @@ odataCleanName <- function(name) {
 #' @return Returns name in ODATA compliant form
 #' @examples
 #' \dontrun{
-#' new_name <-CoreAPIV2::ODATAcleanName("384 Well Plate")
-#' new_name
-#' _384_WELL_PLATE
-#'  }
+#' new_name <- ODATAcleanName("384 Well Plate")
+#' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Adam Wheeler adam.j.wheeler@accenture.com
 #' @description \code{ODATAcleanName} - converts names to ODATA compliant version. Used to clean names in ODATA calls.
 #'
-#' @name ODATAcleanName-deprecated
-#' @seealso \code{\link{CoreAPIV2-deprecated}}
+#' @name pfsrsdk-deprecated
+#' @seealso \code{\link{pfsrsdk-deprecated}}
 #' @keywords internal
 NULL
 
-#' @rdname CoreAPIV2-deprecated
+#' @rdname pfsrsdk-deprecated
 #' @section \code{ODATAcleanName}:
 #' For \code{ODATAcleanName}, use \code{\link{odataCleanName}}.
 #'

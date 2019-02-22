@@ -11,15 +11,16 @@
 #' @return RETURN returns a list $entity contains entity information, $response contains the entire http response
 #' @examples
 #' \dontrun{
-#' api<-CoreAPIV2::coreApi("PATH TO JSON FILE")
-#' login<- CoreAPIV2::authBasic(api)
-#' item<-CoreAPIV2::createExperimentSample(login$coreApi,
-#'    experimentType,
-#'    experimentBarcode,
-#'    sampleLotBarcode,
-#'    body = NULL,
-#'    useVerbose = FALSE)
-#' CoreAPIV2::logOut(login$coreApi )
+#' api <- coreAPI("PATH TO JSON FILE")
+#' login <- authBasic(api)
+#' item <- createExperimentSample(login$coreApi,
+#'   experimentType,
+#'   experimentBarcode,
+#'   sampleLotBarcode,
+#'   body = NULL,
+#'   useVerbose = FALSE
+#' )
+#' logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @description \code{createExperimentSample} Creates a new experiment sample fomr a sample lot.
@@ -33,16 +34,16 @@ createExperimentSample <-
              useVerbose = FALSE) {
     # clean the names for ODATA
 
-    experimentType <- CoreAPIV2::odataCleanName(experimentType)
+    experimentType <- odataCleanName(experimentType)
 
     experimentSampleType <- paste0(experimentType, "_SAMPLE")
 
     exptRef <-
       list("EXPERIMENT@odata.bind" = paste0("/", experimentType, "('", experimentBarcode, "')"))
-
+    # no lint start
     entityRef <-
       list("ENTITY@odata.bind" = paste0("/ENTITY('", sampleLotBarcode, "')"))
-
+    # no lint end
     fullBody <-
       jsonlite::toJSON(c(body, exptRef, entityRef), auto_unbox = TRUE)
 
@@ -52,7 +53,7 @@ createExperimentSample <-
       c("Content-Type" = "application/json;odata.metadata=full")
 
     response <-
-      CoreAPIV2::apiPOST(
+      apiPOST(
         coreApi,
         resource = experimentSampleType,
         body = fullBody,

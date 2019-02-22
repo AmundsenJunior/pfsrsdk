@@ -1,7 +1,7 @@
 library(shiny)
 
 shinyServer(function(input, output){
-  packageName <- "CoreAPIV2"
+  packageName <- "pfsrsdk"
   pkgs <- as.data.frame(installed.packages()[,c(1,3)])
   
   if(packageName %in% pkgs[["Package"]]) {

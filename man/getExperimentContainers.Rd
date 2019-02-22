@@ -14,7 +14,7 @@ getExperimentContainers(coreApi, experimentType, experimentBarcode,
 
 \item{experimentBarcode}{barcode of experiment to query}
 
-\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http POST}
+\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http}
 }
 \value{
 returns a list $entity contains barcodes of the containers, $response contains the entire http response
@@ -27,10 +27,10 @@ returns a list $entity contains barcodes of the containers, $response contains t
 }
 \examples{
 \dontrun{
-api <- CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-login <- CoreAPIV2::authBasic(api)
-exptContainerBarcodes <- CoreAPIV2::getExperimentContainers(login$coreApi, "experimentType", "experimentBarcode")
-CoreAPIV2:logOut(login$coreApi)
+api <- coreAPI("PATH TO JSON FILE")
+login <- authBasic(api)
+exptContainerBarcodes <- getExperimentContainers(login$coreApi, "experimentType", "experimentBarcode")
+logOut(login$coreApi)
 }
 }
 \author{

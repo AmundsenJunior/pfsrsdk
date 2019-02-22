@@ -20,9 +20,9 @@ RETURN returns semVer containing the semVer of the PFS system.
 }
 \examples{
 \dontrun{
-api <- CoreAPIV2("PATH TO JSON FILE")
-login <- CoreAPIV2::authBasic(api)
-semver <- CoreAPIV2::getSemVer(login$coreApi)
+api <- coreAPI("PATH TO JSON FILE")
+login <- authBasic(api)
+semver <- getSemVer(login$coreApi)
 logOut(login$coreApi)
 }
 }

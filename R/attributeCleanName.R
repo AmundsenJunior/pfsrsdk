@@ -7,10 +7,10 @@
 #' @return Returns attribute name as the API will use.
 #' @examples
 #' \dontrun{
-#' new_name <-CoreAPIV2::attributeCleanName("My Comments")
+#' new_name <- attributeCleanName("My Comments")
 #' new_name
 #' MY_COMMENTS
-#'  }
+#' }
 #' @author Craig Parman, ngsAnalytics, ngsanalytics.com
 #' @author Adam Wheeler ajwtech@gmail.com
 #' @description \code{attriureCleanName} - onverts names to uppercase and replaces spaces with underscores to

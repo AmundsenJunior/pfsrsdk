@@ -4,12 +4,12 @@
 #'
 context("Tests for attachFile()")
 
-barcode <- CoreAPIV2::getEntityByName(con$coreApi, data$testPocoType, data$testPocoName, FALSE, FALSE)$entity[[1]]$Barcode
+barcode <- getEntityByName(con$coreApi, data$testPocoType, data$testPocoName, FALSE, FALSE)$entity[[1]]$Barcode
 filePath <- tempfile(fileext = ".csv")
 write.csv(x = runif(n = 1000), file = filePath)
 
 test_that(paste("test attachFile() OData call on:", env$auth), {
-  attachedFile <- CoreAPIV2::attachFile(
+  attachedFile <- attachFile(
     coreApi = con$coreApi,
     entityType = data$testPocoType,
     barcode = barcode,
@@ -22,7 +22,7 @@ test_that(paste("test attachFile() OData call on:", env$auth), {
 })
 
 test_that(paste("test attachFile() CoreSDK call on:", env$auth), {
-  attachedFile <- CoreAPIV2::attachFile(
+  attachedFile <- attachFile(
     coreApi = con$coreApi,
     entityType = data$testPocoType,
     barcode = barcode,

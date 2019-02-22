@@ -1,12 +1,12 @@
-Package: CoreAPIV2
+Package: pfsrsdk
 Type: Package
 Title: Functions for interacting with the Platform for Science OData API
 Version: 0.9.0.9000
 Authors@R: c(
-    person("Craig", "Parman", role = "aut"),
     person("Adam", "Wheeler", role = "aut"),
-    person("Natasha", "Mora", role = "aut"),
     person("Scott", "Russell", role = "aut"),
+    person("Natasha", "Mora", role = "aut"),
+    person("Craig", "Parman", role = "aut"),
     person(family = "Thermo Fisher Scientific Platform for Science Data Science team",
       email = "core_developeers@coreinformatics.com", role = c("ctb", "cre", "cph"))
     )

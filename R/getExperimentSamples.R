@@ -5,16 +5,16 @@
 #' @param coreApi coreApi object with valid jsessionid
 #' @param experimentType experiment entity type to get
 #' @param barcode barcode of entity to get
-#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http POST
+#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http 
 #' @return returns a list $entity contains entity information, $response contains the entire http response
 #' @export
 #' @examples
 #' \dontrun{
-#' api <- CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-#' login <- CoreAPIV2::authBasic(api)
-#' response <- CoreAPIV2::getExperimentSamples(login$coreApi, "entityType", "barcode")
+#' api <- coreAPI("PATH TO JSON FILE")
+#' login <- authBasic(api)
+#' response <- getExperimentSamples(login$coreApi, "experimentType", "barcode")
 #' experimentsampleBarcodes <- response$entity
-#' CoreAPIV2:logOut(login$coreApi)
+#' logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
@@ -33,7 +33,7 @@ getExperimentSamples <-
 
     # clean the name for ODATA
     resource <-
-      paste0(CoreAPIV2::odataCleanName(experimentType), "('", barcode, "')")
+      paste0(odataCleanName(experimentType), "('", barcode, "')")
 
     query <- switch(EXPR = substr(coreApi$semVer, 1, 1),
       "2" = "?$expand=REV_EXPERIMENT_EXPERIMENT_SAMPLE",
@@ -47,7 +47,7 @@ getExperimentSamples <-
 
 
     response <-
-      CoreAPIV2::apiGET(
+      apiGET(
         coreApi,
         resource = resource,
         query = query,

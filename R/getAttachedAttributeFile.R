@@ -11,11 +11,11 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' api <- CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-#' login <- CoreAPIV2::authBasic(api)
+#' api <- coreAPI("PATH TO JSON FILE")
+#' login <- authBasic(api)
 #' response <- getAttachedAttributeFile(login$coreApi, entityType, barcode, attribute)
 #' witeBin(response$entity, "filename.txt")
-#' CoreAPIV2:logOut(login$coreApi)
+#' logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Adam Wheeler adam.j.wheeler@accenture.com
@@ -30,10 +30,10 @@ getAttachedAttributeFile <-
              useVerbose = FALSE) {
     # clean the name for ODATA
 
-    resource <- CoreAPIV2::odataCleanName(entityType)
+    resource <- odataCleanName(entityType)
 
-    attribute <- CoreAPIV2::odataCleanName(attribute)
-
+    attribute <- odataCleanName(attribute)
+    # no lint start
     query <- paste0(
       "('",
       barcode,
@@ -41,15 +41,15 @@ getAttachedAttributeFile <-
       attribute,
       "/$value"
     )
-
+    # no lint end
 
     header <- c(Accept = "application/json")
 
 
-    resource <- CoreAPIV2::odataCleanName(resource)
+    resource <- odataCleanName(resource)
 
     sdk_url <-
-      CoreAPIV2::buildUrl(
+      buildUrl(
         coreApi,
         resource = resource,
         query = query,
@@ -109,11 +109,11 @@ getAttachedAttributeFile <-
 #' @return returns a list $entity contains file data, $response contains the entire http response
 #' @examples
 #' \dontrun{
-#' api <- CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-#' login <- CoreAPIV2::authBasic(api)
+#' api <- coreAPI("PATH TO JSON FILE")
+#' login <- authBasic(api)
 #' response <- getAttachedFile(login$coreApi, entityType, barcode, attribute)
 #' witeBin(response$entity, "filename.txt")
-#' CoreAPIV2:logOut(login$coreApi)
+#' logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @description \code{ getAttachedFile }  Gets file attached to an attribute on a entity.
@@ -121,11 +121,11 @@ getAttachedAttributeFile <-
 
 #'
 #' @name getAttachedFile-deprecated
-#' @seealso \code{\link{CoreAPIV2-deprecated}}
+#' @seealso \code{\link{pfsrsdk-deprecated}}
 #' @keywords internal
 NULL
 
-#' @rdname CoreAPIV2-deprecated
+#' @rdname pfsrsdk-deprecated
 #' @section \code{getAttachedFile}:
 #' For \code{getAttachedFile}, use \code{\link{getAttachedAttributeFile}}.
 #'
@@ -141,10 +141,10 @@ getAttachedFile <-
              useVerbose = FALSE) {
     # clean the name for ODATA
 
-    resource <- CoreAPIV2::odataCleanName(entityType)
+    resource <- odataCleanName(entityType)
 
-    attribute <- CoreAPIV2::odataCleanName(attribute)
-
+    attribute <- odataCleanName(attribute)
+    # no lint start
     query <- paste0(
       "('",
       barcode,
@@ -152,15 +152,15 @@ getAttachedFile <-
       attribute,
       "/$value"
     )
-
+    # no lint end
 
     header <- c(Accept = "application/json")
 
 
-    resource <- CoreAPIV2::odataCleanName(resource)
+    resource <- odataCleanName(resource)
 
     sdk_url <-
-      CoreAPIV2::buildUrl(
+      buildUrl(
         coreApi,
         resource = resource,
         query = query,

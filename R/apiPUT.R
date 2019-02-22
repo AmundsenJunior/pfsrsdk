@@ -15,17 +15,18 @@
 #' @return Returns the entire http response
 #' @examples
 #' \dontrun{
-#' api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-#' login<- CoreAPIV2::authBasic(api)
-#' response <-CoreAPIV2::apiPUT(login$coreApi,
-#'     "SAMPLE",
-#'     body,
-#'     "json",
-#'     special=NULL,
-#'     useVerbose=FALSE,
-#'     unbox = TRUE)
+#' api <- coreAPI("PATH TO JSON FILE")
+#' login <- authBasic(api)
+#' response <- apiPUT(login$coreApi,
+#'   "SAMPLE",
+#'   body,
+#'   "json",
+#'   special = NULL,
+#'   useVerbose = FALSE,
+#'   unbox = TRUE
+#' )
 #' content <- httr::content(response)
-#' CoreAPIV2::logOut(login$coreApi )
+#' logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Adam Wheeler, adam.j.wheeler@accenture.com
@@ -43,7 +44,7 @@ apiPUT <-
              unbox = TRUE,
              valueFlag = FALSE) {
     # clean the resource name for ODATA
-    resource <- CoreAPIV2::odataCleanName(resource)
+    resource <- odataCleanName(resource)
 
     # Check that encode parameter is proper
 
@@ -57,12 +58,13 @@ apiPUT <-
     }
 
     sdk_url <- paste0(
-      CoreAPIV2::buildUrl(
+      buildUrl(
         coreApi,
         resource = resource,
         query = query,
         special = special,
         useVerbose = useVerbose
+        # nolint
       ), ifelse(valueFlag, "/$value", "")
     )
 

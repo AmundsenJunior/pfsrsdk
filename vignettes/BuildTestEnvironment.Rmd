@@ -13,13 +13,13 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE)
 ## Introduction
 
 This document lists the R version and package vesions used in the development of
-the CoreAPIV2 package. It is built automatically and reflects the latest
+the pfsrsdk package. It is built automatically and reflects the latest
 versions used. 
 
-## CoreAPIV2 Package Information
+## pfsrsdk Package Information
 
 ```{r}
-packageDescription("CoreAPIV2")
+packageDescription("pfsrsdk")
 ```
 
 ## R Environment Information
@@ -37,13 +37,13 @@ kable(enviro[,11:length(enviro)], format = "markdown")
 
 ## Required Packages
 
-CoreAPIV2 uses `packrat` for package build and runtime dependency management
+pfsrsdk uses `packrat` for package build and runtime dependency management
 (See `README.md` for more information).
 
 ```{r}
 library('knitr')
 
-d<-packageDescription("CoreAPIV2")
+d<-packageDescription("pfsrsdk")
 imports<-strsplit(d[["Imports"]], "[[:punct:][:space:]]+")[[1]]
 importFrame<-data.frame(package = imports)
 

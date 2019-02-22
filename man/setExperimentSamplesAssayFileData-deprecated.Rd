@@ -29,18 +29,20 @@ the entire http response
 }
 \examples{
 \dontrun{
-api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-login<- CoreAPIV2::authBasic(api)
-response<-  setExperimentSamplesAssayFileData(login$coreApi,
-"assayType",
-"barcode",
-"filePath",
-"CI_FILE")
-CoreAPIV2:logOut(login$coreApi)
+api <- coreAPI("PATH TO JSON FILE")
+login <- authBasic(api)
+response <- setExperimentSamplesAssayFileData(
+  login$coreApi,
+  "assayType",
+  "barcode",
+  "filePath",
+  "CI_FILE"
+)
+logOut(login$coreApi)
 }
 }
 \seealso{
-\code{\link{CoreAPIV2-deprecated}}
+\code{\link{pfsrsdk-deprecated}}
 }
 \author{
 Craig Parman ngsAnalytics, ngsanalytics.com

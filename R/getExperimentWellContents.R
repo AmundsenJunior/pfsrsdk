@@ -10,10 +10,10 @@
 #' @return RETURN returns a list $entity contains well information, $response contains the entire http response
 #' @examples
 #' \dontrun{
-#' api<-CoreAPI("PATH TO JSON FILE")
-#' login<- CoreAPIV2::authBasic(api)
-#' well<-CoreAPIV2::getExperimentWellContents(login$coreApi,"BTCR1","1", "BITTERNESS_EXPERIEMENT_CONTAINER")
-#' CoreAPIV2::logOut(login$coreApi)
+#' api <- coreAPI("PATH TO JSON FILE")
+#' login <- authBasic(api)
+#' well <- getExperimentWellContents(login$coreApi, "BTCR1", "1", "BITTERNESS_EXPERIEMENT_CONTAINER")
+#' logOut(login$coreApi)
 #' }
 #' @author Scott Russell scott.russell@thermofisher.com
 #' @description \code{getExperimentWellContents} - Gets content information of a single container well in an experiment.
@@ -24,13 +24,13 @@ getExperimentWellContents <-
              experimentContainerWellNum,
              experimentContainerType = "EXPERIMENT_CONTAINER",
              useVerbose = FALSE) {
-    experimentContainerType <- CoreAPIV2::odataCleanName(experimentContainerType)
+    experimentContainerType <- odataCleanName(experimentContainerType)
     experimentContainerWellNum <- as.numeric(experimentContainerWellNum)
     resource <- "CELL"
 
-    cellId <- CoreAPIV2::getExperimentContainerCellIds(coreApi, experimentContainerBarcode, experimentContainerType, useVerbose)$entity[experimentContainerWellNum]
+    cellId <- getExperimentContainerCellIds(coreApi, experimentContainerBarcode, experimentContainerType, useVerbose)$entity[experimentContainerWellNum]
 
-    CoreAPIV2::case(
+    case(
       grepl("[0-2]+\\.[0-9]+\\.[0-9]+", coreApi$semVer) ~ {
         query <- paste0("(", cellId, ")?$expand=CONTENT($expand=IMPL_SAMPLE_LOT)")
       },
@@ -43,7 +43,7 @@ getExperimentWellContents <-
       c("Content-Type" = "application/json;odata.metadata=minimal", Accept = "application/json")
 
     response <-
-      CoreAPIV2::apiGET(
+      apiGET(
         coreApi,
         resource = resource,
         query = query,

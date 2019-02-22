@@ -5,6 +5,6 @@
 context("test-updateMetadata")
 
 test_that(paste("test updateMetadata() on: ", env$auth), {
-  meta <- CoreAPIV2::updateMetadata(con$coreApi, useVerbose = verbose)
+  meta <- updateMetadata(con$coreApi, useVerbose = verbose)
   expect_equivalent(meta$response$status_code, 200, all = verbose)
 })

@@ -14,7 +14,7 @@ getExperimentSamples(coreApi, experimentType, barcode,
 
 \item{barcode}{barcode of entity to get}
 
-\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http POST}
+\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http}
 }
 \value{
 returns a list $entity contains entity information, $response contains the entire http response
@@ -27,11 +27,11 @@ returns a list $entity contains entity information, $response contains the entir
 }
 \examples{
 \dontrun{
-api <- CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-login <- CoreAPIV2::authBasic(api)
-response <- CoreAPIV2::getExperimentSamples(login$coreApi, "entityType", "barcode")
+api <- coreAPI("PATH TO JSON FILE")
+login <- authBasic(api)
+response <- getExperimentSamples(login$coreApi, "experimentType", "barcode")
 experimentsampleBarcodes <- response$entity
-CoreAPIV2:logOut(login$coreApi)
+logOut(login$coreApi)
 }
 }
 \author{

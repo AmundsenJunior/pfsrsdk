@@ -8,13 +8,13 @@ context("test-httpFunctions")
 
 test_that(paste0("apiGET will return an entity on: ", env$auth), {
   header <- c("Accept" = "application/json")
-  res <- CoreAPIV2::apiGET(con$coreApi, resource = data$persistentEntityType, query = "", headers = header, useVerbose = verbose)
+  res <- apiGET(con$coreApi, resource = data$persistentEntityType, query = "", headers = header, useVerbose = verbose)
   expect_equal(res$response$status_code, 200)
 })
 
 test_that(paste0("apiPOST will create an entity on: ", env$auth), {
   header <- c("Content-Type" = "application/json", "If-Match" = "*")
-  res <<- CoreAPIV2::apiPOST(con$coreApi, resource = data$persistentEntityType, body = "{}", encode = "raw", headers = header, useVerbose = verbose)
+  res <<- apiPOST(con$coreApi, resource = data$persistentEntityType, body = "{}", encode = "raw", headers = header, useVerbose = verbose)
   expect_equal(res$all_headers[[1]]$status, 201)
   options(res = res)
 })
@@ -25,7 +25,7 @@ test_that(paste0("apiPUT will update an entity on: ", env$auth), {
   content <- httr::content(res, as = "parsed")
   content["Name"] <- paste0("TEST from Odata: ", content$Barcode)
   body <- content[-1]
-  res <- CoreAPIV2::apiPUT(con$coreApi, resource = data$persistentEntityType, query = paste0("('", content$Barcode, "')"), body, encode = "raw", headers = header, useVerbose = verbose, unbox = TRUE)
+  res <- apiPUT(con$coreApi, resource = data$persistentEntityType, query = paste0("('", content$Barcode, "')"), body, encode = "raw", headers = header, useVerbose = verbose, unbox = TRUE)
   expect_equal(res$all_headers[[1]]$status, 200)
   res <<- NULL
 })

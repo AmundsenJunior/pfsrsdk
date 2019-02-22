@@ -27,10 +27,10 @@ RETURN returns a list $entity contains updated experiment information, $response
 }
 \examples{
 \dontrun{
-api<-CoreAPIV2("PATH TO JSON FILE")
-login<- CoreAPIV2::authBasic(api)
-update<- CoreAPIV2::experimentPublish(login$coreApi,experimentType, exptbarcode,useVerbose = TRUE)
-CoreAPIV2::logOut(login$coreApi )
+api <- coreAPI("PATH TO JSON FILE")
+login <- authBasic(api)
+update <- experimentPublish(login$coreApi, experimentType, experimentBarcode, useVerbose = TRUE)
+logOut(login$coreApi)
 }
 }
 \author{

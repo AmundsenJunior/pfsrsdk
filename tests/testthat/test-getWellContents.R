@@ -6,11 +6,11 @@ context("Tests for getWellContents")
 # Completed regression for 5.3.8 and 6.0.1
 
 test_that(paste("test getWellContents() on:", env$auth), {
-  result <- CoreAPIV2::getWellContents(con$coreApi, data$containerBarcode, data$containerWellNum, data$containerType, verbose)
+  result <- getWellContents(con$coreApi, data$containerBarcode, data$containerWellNum, data$containerType, verbose)
 
   expect_equal(result$response$status_code, 200)
 
-  CoreAPIV2::case(
+  case(
     grepl("[0-2]+\\.[0-9]+\\.[0-9]+", con$coreApi$semVer) ~ {
       expansion <- "CONTENT"
     },

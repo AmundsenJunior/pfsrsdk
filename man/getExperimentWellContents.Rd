@@ -30,10 +30,10 @@ RETURN returns a list $entity contains well information, $response contains the 
 }
 \examples{
 \dontrun{
-api<-CoreAPI("PATH TO JSON FILE")
-login<- CoreAPIV2::authBasic(api)
-well<-CoreAPIV2::getExperimentWellContents(login$coreApi,"BTCR1","1", "BITTERNESS_EXPERIEMENT_CONTAINER")
-CoreAPIV2::logOut(login$coreApi)
+api <- coreAPI("PATH TO JSON FILE")
+login <- authBasic(api)
+well <- getExperimentWellContents(login$coreApi, "BTCR1", "1", "BITTERNESS_EXPERIEMENT_CONTAINER")
+logOut(login$coreApi)
 }
 }
 \author{

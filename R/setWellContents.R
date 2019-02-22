@@ -17,12 +17,14 @@
 #'         information, $response contains the entire http response
 #' @examples
 #' \dontrun{
-#' api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-#' login<- CoreAPIV2::authBasic(api)
-#' well<- setWellContents<-(coreApi, containerType = "CONTAINER", containerBarcode = "96W101", containerWellNum = "1",
-#'                            sampleLotType = "BEER_SAMPLE_LOT", sampleLotBarcode = "BS1000-1", amount = 1, amountUnit = "ml", concentration = 1,
-#'                            concentrationUnit = "nM",useVerbose = FALSE)
-#' CoreAPIV2::logOut(login$coreApi )
+#' api <- coreAPI("PATH TO JSON FILE")
+#' login <- authBasic(api)
+#' well <- setWellContents(login$coreAPI,
+#'   containerType = "CONTAINER", containerBarcode = "96W101", containerWellNum = "1",
+#'   sampleLotType = "BEER_SAMPLE_LOT", sampleLotBarcode = "BS1000-1", amount = 1, amountUnit = "ml", concentration = 1,
+#'   concentrationUnit = "nM", useVerbose = FALSE
+#' )
+#' logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
@@ -47,14 +49,14 @@ setWellContents <-
              useVerbose = FALSE) {
     # clean the name for ODATA
 
-    containerType <- CoreAPIV2::odataCleanName(containerType)
+    containerType <- odataCleanName(containerType)
 
 
     containerWellNum <- as.numeric(containerWellNum)
     amount <- as.numeric(amount)
     concentration <- as.numeric(concentration)
-    
-    if ((grepl("[0-2]+\\.[0-9]+\\.[0-9]+", coreApi$semVer) & (!(amount%%1==0) | !(concentration%%1==0)))) {
+
+    if ((grepl("[0-2]+\\.[0-9]+\\.[0-9]+", coreApi$semVer) & (!(amount %% 1 == 0) | !(concentration %% 1 == 0)))) {
       stop(paste0("Amount: ", amount, " and Concentration: ", concentration, " values have to be of type numeric with no decimal places."))
     }
 
@@ -66,7 +68,7 @@ setWellContents <-
 
     # get ID for lot number
     lotID <-
-      CoreAPIV2::getEntityByBarcode(
+      getEntityByBarcode(
         coreApi,
         entityType = sampleLotType,
         barcode = sampleLotBarcode,
@@ -109,9 +111,9 @@ setWellContents <-
 
     header <-
       c("Content-Type" = "application/json;metadata=minimal", Accept = "application/json")
-    
+
     response <-
-      CoreAPIV2::apiPOST(
+      apiPOST(
         coreApi,
         resource = query,
         body = body,

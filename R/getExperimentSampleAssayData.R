@@ -5,15 +5,15 @@
 #' @param coreApi coreApi object with valid jsessionid
 #' @param experimentAssayType assay type to get
 #' @param experimentSampleBarcode experiment sample barcode of entity to get
-#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http POST
+#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http 
 #' @return returns a list $entity contains entity information, $response contains the entire http response
 #' @export
 #' @examples
 #' \dontrun{
-#' api <- CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-#' login <- CoreAPIV2::authBasic(api)
-#' experiment <- getExperimentSampleAssayData(login$coreApi, "experimentAssayType", "barcode")
-#' CoreAPIV2:logOut(login$coreApi)
+#' api <- coreAPI("PATH TO JSON FILE")
+#' login <- authBasic(api)
+#' experiment <- getExperimentSampleAssayData(login$coreApi, "experimentAssayType", "experimentSampleBarcode")
+#' logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
@@ -31,9 +31,9 @@ getExperimentSampleAssayData <-
              useVerbose = FALSE) {
     # clean the name for ODATA
 
-    resource <- CoreAPIV2::odataCleanName("EXPERIMENT_SAMPLE")
+    resource <- odataCleanName("EXPERIMENT_SAMPLE")
 
-    experimentAssayType <- CoreAPIV2::odataCleanName(experimentAssayType)
+    experimentAssayType <- odataCleanName(experimentAssayType)
 
     query <- paste0(
       "('",
@@ -49,7 +49,7 @@ getExperimentSampleAssayData <-
 
 
     response <-
-      CoreAPIV2::apiGET(
+      apiGET(
         coreApi,
         resource = resource,
         query = query,

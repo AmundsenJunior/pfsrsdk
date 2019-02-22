@@ -12,13 +12,16 @@
 #'        $response contains the entire http response
 #' @examples
 #' \dontrun{
-#' api<-CoreAPI("PATH TO JSON FILE")
-#' login<- CoreAPIV2::authBasic(api)
-#' response<-updateExperimentSampleRawData(login$coreApi,experimentContainerBarcode="BTCR1",rawDataCellNum=1,
-#'                    rawDataValues = list(DATA_VALUE = 100 ,CI_ACCEPT = FALSE)
-#'
+#' api <- coreAPI("PATH TO JSON FILE")
+#' login <- authBasic(api)
+#' response <- updateExperimentSampleRawData(login$coreApi,
+#'   experimentContainerBarcode = "BTCR1", rawDataCellNum = 1,
+#'   rawDataValues = list(DATA_VALUE = 100, CI_ACCEPT = FALSE)
+#' )
+#' 
 #' updatedEntity <- response$entity
-#' CoreAPIV2::logOut(login$coreApi ) response<- CoreAPI::authBasic(coreApi)
+#' logOut(login$coreApi)
+#' response <- authBasic(coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
@@ -28,10 +31,10 @@
 
 updateExperimentSampleRawData <-
   function(coreApi,
-           experimentContainerBarcode,
-           rawDataCellNum,
-           rawDataValues,
-           useVerbose = FALSE) {
+             experimentContainerBarcode,
+             rawDataCellNum,
+             rawDataValues,
+             useVerbose = FALSE) {
 
     # get the current values
 
@@ -53,7 +56,7 @@ updateExperimentSampleRawData <-
 
 
     response <-
-      CoreAPIV2::apiGET(
+      apiGET(
         coreApi,
         resource = resource,
         query = query,
@@ -84,7 +87,7 @@ updateExperimentSampleRawData <-
     header <- c("Content-Type" = "application/json", "If-Match" = "*")
 
     response <-
-      CoreAPIV2::apiPUT(
+      apiPUT(
         coreApi,
         resource = resource,
         query = query,

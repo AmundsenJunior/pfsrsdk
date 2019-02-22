@@ -5,7 +5,7 @@
 context("Tests for createExperimentContainer")
 
 test_that(paste("test createExperimentContainer() on a single well container in:", env$auth), {
-  ec <- CoreAPIV2::createExperimentContainer(con$coreApi,
+  ec <- createExperimentContainer(con$coreApi,
     data$experimentType,
     data$experimentBarcode,
     data$singleWellContainerBarcode,
@@ -18,7 +18,7 @@ test_that(paste("test createExperimentContainer() on a single well container in:
 test_that(paste("test createExperimentContainer() on a multi well container in:", env$auth), {
   # add multi well container
 
-  ec <- CoreAPIV2::createExperimentContainer(con$coreApi,
+  ec <- createExperimentContainer(con$coreApi,
     data$experimentType,
     data$experimentBarcode,
     data$multiWellContainerBarcode,

@@ -7,15 +7,15 @@
 #' @param barcode barcode of entity to get
 #' @param associationContext association context
 #' @param fullMetadata - get full metadata
-#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http POST
+#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http 
 #' @return returns a list $entity contains entity associations, $response contains the entire http response
 #' @export
 #' @examples
 #' \dontrun{
-#' api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-#' login<- CoreAPIV2::authBasic(api)
-#' associations<-CoreAPIV2::getEntityAssociations(login$coreApi,"entityType","barcode",values)
-#' CoreAPIV2::logOut(login$coreApi)
+#' api <- coreAPI("PATH TO JSON FILE")
+#' login <- authBasic(api)
+#' associations <- getEntityAssociations(login$coreAPI, "entityType", "barcode", "associationContext")
+#' logOut(login$coreAPI)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Adam Wheeler adam.j.wheeler@accenture.com
@@ -33,7 +33,7 @@ getEntityAssociations <-
              useVerbose = FALSE) {
 
     # this is the context for the association not the URL context
-    associationContext <- CoreAPIV2::odataCleanName(associationContext)
+    associationContext <- odataCleanName(associationContext)
     query <- paste0("('", barcode, "')/", associationContext)
 
 
@@ -46,7 +46,7 @@ getEntityAssociations <-
 
 
     out <-
-      CoreAPIV2::apiGET(
+      apiGET(
         coreApi,
         resource = entityType,
         query = query,

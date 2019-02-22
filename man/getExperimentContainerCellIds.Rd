@@ -27,10 +27,10 @@ RETURN returns $entity a array of cell IDs and  $response contains the entire ht
 }
 \examples{
 \dontrun{
-api<-CoreAPI("PATH TO JSON FILE")
-login<- CoreAPIV2::authBasic(api)
-cellIDs<-CoreAPIV2::getExperimentContainerCellIds(login$coreApi, "BTCR1", "BITTERNESS EXPERIMENT CONTAINER")$entity
-CoreAPIV2::logOut(login$coreApi )
+api <- coreAPI("PATH TO JSON FILE")
+login <- authBasic(api)
+cellIDs <- getExperimentContainerCellIds(login$coreApi, "BTCR1", "BITTERNESS EXPERIMENT CONTAINER")$entity
+logOut(login$coreApi)
 }
 }
 \author{

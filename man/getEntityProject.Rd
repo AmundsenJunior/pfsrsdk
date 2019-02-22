@@ -13,7 +13,7 @@ getEntityProject(coreApi, entityType, barcode, useVerbose = FALSE)
 
 \item{barcode}{barcode of entity to get}
 
-\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http POST}
+\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http}
 }
 \value{
 returns a list $entity contains projects entity information, $response contains the entire http response
@@ -26,10 +26,10 @@ returns a list $entity contains projects entity information, $response contains 
 }
 \examples{
 \dontrun{
-api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-login<- CoreAPIV2::authBasic(api)
-item<-CoreAPIV2::getEntityLocation(login$coreApi,"entityType","barcode")
-CoreAPIV2::logOut(login$coreApi)
+api <- coreAPI("PATH TO JSON FILE")
+login <- authBasic(api)
+item <- getEntityLocation(login$coreApi, "entityType", "barcode")
+logOut(login$coreApi)
 }
 }
 \author{

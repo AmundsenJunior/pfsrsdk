@@ -1,4 +1,4 @@
-# CoreAPIV2 
+# pfsrsdk 
 
 *R package to interact with the Thermo Fisher Scientific Platform for Science OData API* 
 
@@ -7,7 +7,7 @@
 Install the package from Bitbucket with `devtools`:
 ```r
 install.packages("devtools")
-devtools::install_bitbucket("corelims/coreapiv2", auth_user="BITBUCKET_USER", password="BITBUCKET_PASSWORD")
+devtools::install_bitbucket("corelims/pfsrsdk", auth_user="BITBUCKET_USER", password="BITBUCKET_PASSWORD")
 ```
 
 ## Usage

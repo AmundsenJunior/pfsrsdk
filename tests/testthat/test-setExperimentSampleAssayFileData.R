@@ -9,7 +9,7 @@ filePath <- tempfile(fileext = ".csv")
 write.csv(x = runif(n = 1000), file = filePath)
 
 test_that(paste("test setExperimentSampleAssayFileData() on:", env$auth), {
-  result <- CoreAPIV2::setExperimentSampleAssayFileData(con$coreApi,
+  result <- setExperimentSampleAssayFileData(con$coreApi,
     data$experimentFileAssayType,
     data$experimentSampleBarcodeWithFileAttr,
     data$fileAttrName,

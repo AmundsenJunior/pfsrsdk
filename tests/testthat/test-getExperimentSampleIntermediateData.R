@@ -6,7 +6,7 @@ context("Tests for getExperimentSampleIntermediateData")
 # Completed regression for 5.3.8 and 6.0.1
 
 test_that(paste("test getExperimentSampleIntermediateData() on:", env$auth), {
-  result <- CoreAPIV2::getExperimentSampleIntermediateData(con$coreApi, data$experimentType, data$experimentAssayType, data$intermediateDataName, data$experimentSampleBarcode, useVerbose = verbose)
+  result <- getExperimentSampleIntermediateData(con$coreApi, data$experimentType, data$experimentAssayType, data$intermediateDataName, data$experimentSampleBarcode, useVerbose = verbose)
 
   expect_equal(result$response$status_code, 200)
 

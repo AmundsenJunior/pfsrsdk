@@ -9,10 +9,10 @@
 #' @return RETURN returns $entity a array of cell IDs and  $response contains the entire http response
 #' @examples
 #' \dontrun{
-#' api<-CoreAPI("PATH TO JSON FILE")
-#' login<- CoreAPIV2::authBasic(api)
-#' cellIDs<-CoreAPIV2::getExperimentContainerCellIds(login$coreApi, "BTCR1", "BITTERNESS EXPERIMENT CONTAINER")$entity
-#' CoreAPIV2::logOut(login$coreApi )
+#' api <- coreAPI("PATH TO JSON FILE")
+#' login <- authBasic(api)
+#' cellIDs <- getExperimentContainerCellIds(login$coreApi, "BTCR1", "BITTERNESS EXPERIMENT CONTAINER")$entity
+#' logOut(login$coreApi)
 #' }
 #' @author Scott Russell scott.russell@thermofisher.com
 #' @description \code{getExperimentContainerCellIds} - Gets cell ids for a container in an experiment.
@@ -22,9 +22,9 @@ getExperimentContainerCellIds <-
              experimentContainerBarcode,
              experimentContainerType = "EXPERIMENT_CONTAINER",
              useVerbose = FALSE) {
-    resource <- CoreAPIV2::odataCleanName(experimentContainerType)
+    resource <- odataCleanName(experimentContainerType)
 
-    CoreAPIV2::case(
+    case(
       grepl("[0-2]+\\.[0-9]+\\.[0-9]+", coreApi$semVer) ~ {
         expansion <- "REV_IMPL_CONTAINER_CELL"
       },
@@ -44,7 +44,7 @@ getExperimentContainerCellIds <-
     header <- c(Accept = "application/json;odata.metadata=minimal")
 
     out <-
-      CoreAPIV2::apiGET(
+      apiGET(
         coreApi,
         resource = resource,
         query = query,

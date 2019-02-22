@@ -16,7 +16,7 @@ getEntityByBarcode(coreApi, entityType, barcode, fullMetadata = TRUE,
 
 \item{fullMetadata}{- get full metadata, default is TRUE}
 
-\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http POST}
+\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http}
 }
 \value{
 returns a list $entity contains entity information, $response contains the entire http response
@@ -29,10 +29,10 @@ returns a list $entity contains entity information, $response contains the entir
 }
 \examples{
 \dontrun{
-api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-login<- CoreAPIV2::authBasic(api)
-item<-CoreAPIV2::getEntityByBarcode(login$coreApi,"entityType","barcode")
-CoreAPIV2::logOut(login$coreApi)
+api <- coreAPI("PATH TO JSON FILE")
+login <- authBasic(api)
+item <- getEntityByBarcode(login$coreApi, "entityType", "barcode")
+logOut(login$coreApi)
 }
 }
 \author{

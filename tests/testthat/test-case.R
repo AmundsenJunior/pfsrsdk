@@ -20,15 +20,17 @@ test_that(paste("test case evaluates the first TRUE LHS"), {
 })
 
 test_that(paste("test case requires a 2 sided formula i.e (LHS~RHS)"), {
-  expect_error({case(
-    FALSE ,
-    TRUE ~ {
-      answer <- "pass"
-    },
-    TRUE ~ {
-      answer <- "fail"
-    }
-  )}, "Case LHS must be a two-sided formula, not a logical")
+  expect_error({
+    case(
+      FALSE,
+      TRUE ~ {
+        answer <- "pass"
+      },
+      TRUE ~ {
+        answer <- "fail"
+      }
+    )
+  }, "Case LHS must be a two-sided formula, not a logical")
 })
 
 test_that(paste("test case requires a logical LHS"), {

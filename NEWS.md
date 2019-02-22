@@ -1,4 +1,4 @@
-# coreapiv2 0.9.0.9000
+# pfsrsdk 0.9.0.9000
 
 ## New Features
 

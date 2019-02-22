@@ -9,10 +9,10 @@
 #' @return RETURN returns a list $entity contains updated experiment information, $response contains the entire http response
 #' @examples
 #' \dontrun{
-#' api<-CoreAPIV2("PATH TO JSON FILE")
-#' login<- CoreAPIV2::authBasic(api)
-#' update<- CoreAPIV2::experimentUnpublish(login$coreApi,experimentType, exptbarcode,useVerbose = TRUE)
-#' CoreAPIV2::logOut(login$coreApi )
+#' api <- coreAPI("PATH TO JSON FILE")
+#' login <- authBasic(api)
+#' update <- experimentUnpublish(login$coreApi, experimentType, experimentBarcode, useVerbose = TRUE)
+#' logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @description \code{experimentUnpublish} - Unpublishes an experiment.
@@ -65,7 +65,7 @@ experimentUnpublish <-
     )
 
     response <-
-      CoreAPIV2::apiPOST(
+      apiPOST(
         coreApi,
         resource = NULL,
         body = jsonlite::toJSON(request),

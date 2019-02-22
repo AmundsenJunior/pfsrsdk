@@ -10,9 +10,9 @@
 #' @return RETURN returns a list $entity contains entity information, $response contains the entire http response
 #' @examples
 #' \dontrun{
-#' api <- CoreAPIV2("PATH TO JSON FILE")
-#' login <- CoreAPIV2::authBasic(api)
-#' lot <- CoreAPIV2::createSampleLot(login$coreApi, "Sample_Name")
+#' api <- coreAPI("PATH TO JSON FILE")
+#' login <- authBasic(api)
+#' lot <- createSampleLot(login$coreApi, sampleType, sampleBarcode,)
 #' logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
@@ -32,7 +32,7 @@ createSampleLot <-
              useVerbose = FALSE) {
     # clean the name for ODATA
 
-    sampleType <- CoreAPIV2::odataCleanName(sampleType)
+    sampleType <- odataCleanName(sampleType)
 
     lotName <- paste0(sampleType, "_LOT")
 
@@ -58,7 +58,7 @@ createSampleLot <-
       c("Content-Type" = "application/json;odata.metadata=full", accept = "application/json")
 
     response <-
-      CoreAPIV2::apiPOST(
+      apiPOST(
         coreApi,
         resource = lotName,
         body = fullBody,

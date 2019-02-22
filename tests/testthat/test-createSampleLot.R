@@ -4,7 +4,7 @@
 context("Tests for createSampleLot")
 
 test_that(paste("test createSampleLot() on:", env$auth), {
-  result <- CoreAPIV2::createSampleLot(con$coreApi,
+  result <- createSampleLot(con$coreApi,
     data$sampleType,
     data$sampleBarcode,
     body = NULL,

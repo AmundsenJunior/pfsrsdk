@@ -4,18 +4,18 @@
 #'
 #' @param coreApi coreApi object with valid jsessionid
 #' @param assayType assay type to get
-#' @param experimentSamplebarcode experiment sample barcode of entity to get
+#' @param experimentSampleBarcode experiment sample barcode of entity to get
 #' @param attributeName Name of the attibute that containts the file data
-#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http POST
+#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http
 #' @return returns a list $entity containsbinary object that in the file, $response contains the entire http response
 #' @export
 #' @examples
 #' \dontrun{
-#' api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-#' login<- CoreAPIV2::authBasic(api)
-#' response<-  getExperimentSamplesAssayFileData(login$coreApi,"assayType","barcode","CI_FILE")
+#' api <- coreAPI("PATH TO JSON FILE")
+#' login <- authBasic(api)
+#' response <- getExperimentSamplesAssayFileData(login$coreApi, "assayType", "experimentSampleBarcode", "CI_FILE")
 #' writeBin(response$entity, "myfile.png")
-#' CoreAPIV2:logOut(login$coreApi)
+#' logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @description \code{ getExperimentSamplesAssayFileData }  Gets file attached as assay data.
@@ -25,24 +25,24 @@
 getExperimentSamplesAssayFileData <-
   function(coreApi,
              assayType,
-             experimentSamplebarcode,
+             experimentSampleBarcode,
              attributeName,
              useVerbose = FALSE) {
     # clean the name for ODATA
 
 
 
-    resource <- paste0(CoreAPIV2::odataCleanName(assayType), "_DATA")
+    resource <- paste0(odataCleanName(assayType), "_DATA")
 
-
+    # no lint start
     query <- paste0(
       "('",
-      experimentSamplebarcode,
+      experimentSampleBarcode,
       "')/",
-      CoreAPIV2::attributeCleanName(attributeName),
+      attributeCleanName(attributeName),
       "/$value"
     )
-
+    # no lint end
 
 
     headers <- c(Accept = "image/png")
@@ -50,10 +50,10 @@ getExperimentSamplesAssayFileData <-
 
 
 
-    resource <- CoreAPIV2::odataCleanName(resource)
+    resource <- odataCleanName(resource)
 
     sdk_url <-
-      CoreAPIV2::buildUrl(
+      buildUrl(
         coreApi,
         resource = resource,
         query = query,

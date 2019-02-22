@@ -3,7 +3,7 @@
 #' \code{setCellContents} Puts a sample lot in a container cell.
 #' @param coreApi coreApi object with valid jsessionid
 #' @param containerType container type
-#' @param containerBarcode barcode of a container that IS NOT assigned to an experiment. 
+#' @param containerBarcode barcode of a container that IS NOT assigned to an experiment.
 #' @param containerCellId container cell id. (In PFS 5.3.8 (semVer 2.7.1) if multi-wells are used, cell A1 has to be filled or filled first in order to setCellContents in other cells.)
 #' @param sampleLotType sample lot type
 #' @param sampleLotBarcode barcode of lot to add to cell
@@ -17,12 +17,14 @@
 #'         information, $response contains the entire http response
 #' @examples
 #' \dontrun{
-#' api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-#' login<- CoreAPIV2::authBasic(api)
-#' cell<- updateCellContents<-(coreApi, containerType,containerBarcode, containerCellId,
-#'                            sampleLotType,sampleLotBarcode, amount, amountUnit, concentration,
-#'                            concentrationUnit,useVerbose = FALSE)
-#' CoreAPIV2::logOut(login$coreApi )
+#' api <- coreAPI("PATH TO JSON FILE")
+#' login <- authBasic(api)
+#' cell <- setCellContents(login$coreAPI, containerType, containerBarcode, containerCellId,
+#'   sampleLotType, sampleLotBarcode, amount, amountUnit, concentration,
+#'   concentrationUnit,
+#'   useVerbose = FALSE
+#' )
+#' logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
@@ -47,20 +49,20 @@ setCellContents <-
              useVerbose = FALSE) {
     # clean the name for ODATA
 
-    containerType <- CoreAPIV2::odataCleanName(containerType)
+    containerType <- odataCleanName(containerType)
 
 
     containerCellId <- as.numeric(containerCellId)
     amount <- as.numeric(amount)
     concentration <- as.numeric(concentration)
 
-    if ((grepl("[0-2]+\\.[0-9]+\\.[0-9]+", coreApi$semVer) & (!(amount%%1==0) | !(concentration%%1==0)))) {
+    if ((grepl("[0-2]+\\.[0-9]+\\.[0-9]+", coreApi$semVer) & (!(amount %% 1 == 0) | !(concentration %% 1 == 0)))) {
       stop(paste0("Amount: ", amount, " and Concentration: ", concentration, " values have to be of type numeric with no decimal places."))
     }
 
     # get ID for lot number
     lotID <-
-      CoreAPIV2::getEntityByBarcode(
+      getEntityByBarcode(
         coreApi,
         entityType = sampleLotType,
         barcode = sampleLotBarcode,
@@ -78,9 +80,9 @@ setCellContents <-
           cellId = jsonlite::unbox(containerCellId),
           amount = jsonlite::unbox(amount),
           amountUnit = jsonlite::unbox(amountUnit),
-          
-          
-          
+
+
+
           contents = list(c(
             list(
               lotId = jsonlite::unbox(lotID),
@@ -106,7 +108,7 @@ setCellContents <-
       c("Content-Type" = "application/json;metadata=minimal", Accept = "application/json")
 
     response <-
-      CoreAPIV2::apiPOST(
+      apiPOST(
         coreApi,
         resource = query,
         body = body,

@@ -11,7 +11,7 @@ getEntityMetadata(coreApi, entityType, useVerbose = FALSE)
 
 \item{entityType}{entity type to get metadata for}
 
-\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http POST}
+\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http}
 }
 \value{
 returns a list containing $attributes for attribute properties,
@@ -26,10 +26,10 @@ named attributes,associations, and template. Template can be used as the body to
 }
 \examples{
 \dontrun{
-api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-login<- CoreAPIV2::authBasic(api)
-item<-CoreAPIV2::getEntityMetadata(login$coreApi,"entityType","barcode")
-CoreAPIV2::logOut(login$coreApi)
+api <- coreAPI("PATH TO JSON FILE")
+login <- authBasic(api)
+item <- getEntityMetadata(login$coreApi, "entityType")
+logOut(login$coreApi)
 }
 }
 \author{

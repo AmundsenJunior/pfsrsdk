@@ -9,10 +9,10 @@
 #' @return RETURN returns $entity a array of cell IDs and  $response contains the entire http response
 #' @examples
 #' \dontrun{
-#' api<-CoreAPI("PATH TO JSON FILE")
-#' login<- CoreAPIV2::authBasic(api)
-#' cellIDs<-CoreAPIV2::getContainerCellIds(login$coreApi, "TE1", containerType = "384 WELL PLATE")$entity
-#' CoreAPIV2::logOut(login$coreApi )
+#' api <- coreAPI("PATH TO JSON FILE")
+#' login <- authBasic(api)
+#' cellIDs <- getContainerCellIds(login$coreApi, "TE1", containerType = "384 WELL PLATE")$entity
+#' logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Scott Russell scott.russell@thermofisher.com
@@ -25,9 +25,9 @@ getContainerCellIds <-
              useVerbose = FALSE) {
 
     # clean the name for ODATA
-    resource <- CoreAPIV2::odataCleanName(containerType)
+    resource <- odataCleanName(containerType)
 
-    CoreAPIV2::case(
+    case(
       grepl("[0-2]+\\.[0-9]+\\.[0-9]+", coreApi$semVer) ~ {
         expansion <- "REV_IMPL_CONTAINER_CELL"
       },
@@ -47,7 +47,7 @@ getContainerCellIds <-
     header <- c(Accept = "application/json;odata.metadata=minimal")
 
     out <-
-      CoreAPIV2::apiGET(
+      apiGET(
         coreApi,
         resource = resource,
         query = query,

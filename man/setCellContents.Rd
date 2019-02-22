@@ -43,12 +43,14 @@ RETURN returns a list $entity contains updated container
 }
 \examples{
 \dontrun{
-api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-login<- CoreAPIV2::authBasic(api)
-cell<- updateCellContents<-(coreApi, containerType,containerBarcode, containerCellId,
-                           sampleLotType,sampleLotBarcode, amount, amountUnit, concentration,
-                           concentrationUnit,useVerbose = FALSE)
-CoreAPIV2::logOut(login$coreApi )
+api <- coreAPI("PATH TO JSON FILE")
+login <- authBasic(api)
+cell <- setCellContents(login$coreAPI, containerType, containerBarcode, containerCellId,
+  sampleLotType, sampleLotBarcode, amount, amountUnit, concentration,
+  concentrationUnit,
+  useVerbose = FALSE
+)
+logOut(login$coreApi)
 }
 }
 \author{

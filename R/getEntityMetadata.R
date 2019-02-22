@@ -4,16 +4,16 @@
 #'
 #' @param coreApi coreApi object with valid jsessionid
 #' @param entityType entity type to get metadata for
-#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http POST
+#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http 
 #' @return returns a list containing $attributes for attribute properties,
 #' and $association for association properties; $template contains a list that can be converted to JSON for object creation.
 #' @export
 #' @examples
 #' \dontrun{
-#' api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-#' login<- CoreAPIV2::authBasic(api)
-#' item<-CoreAPIV2::getEntityMetadata(login$coreApi,"entityType","barcode")
-#' CoreAPIV2::logOut(login$coreApi)
+#' api <- coreAPI("PATH TO JSON FILE")
+#' login <- authBasic(api)
+#' item <- getEntityMetadata(login$coreApi, "entityType")
+#' logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @description \code{getEntityMetadata} Get an entity metadata by entityType. Returns a list with three data frames
@@ -25,7 +25,7 @@
 getEntityMetadata <- function(coreApi, entityType, useVerbose = FALSE) {
   # clean the name for ODATA
 
-  entityType <- CoreAPIV2::odataCleanName(entityType)
+  entityType <- odataCleanName(entityType)
 
   ## get all metadata
 
@@ -34,7 +34,7 @@ getEntityMetadata <- function(coreApi, entityType, useVerbose = FALSE) {
   # need special GET for XML with a basic authorization header
 
   m <-
-    CoreAPIV2::apiGET(
+    apiGET(
       coreApi,
       resource = NULL,
       query = "$metadata",

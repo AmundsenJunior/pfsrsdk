@@ -35,13 +35,15 @@ RETURN returns a list $entity contains entity information, $response contains th
 }
 \examples{
 \dontrun{
-api<-CoreAPIV2::coreApi("PATH TO JSON FILE")
-login<- CoreAPIV2::authBasic(api)
-experiment<-CoreAPIV2::createExperiment(login$coreApi,
-    "Experiment_Type",
-    "Assaybarcode",
-    "Protocolbarcode")
-CoreAPIV2::logOut(login$coreApi )
+api <- coreAPI("PATH TO JSON FILE")
+login <- authBasic(api)
+experiment <- createExperiment(
+  login$coreApi,
+  "Experiment_Type",
+  "Assaybarcode",
+  "Protocolbarcode"
+)
+logOut(login$coreApi)
 }
 }
 \author{

@@ -43,12 +43,14 @@ RETURN returns a list $entity contains updated container
 }
 \examples{
 \dontrun{
-api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-login<- CoreAPIV2::authBasic(api)
-well<- setWellContents<-(coreApi, containerType = "CONTAINER", containerBarcode = "96W101", containerWellNum = "1",
-                           sampleLotType = "BEER_SAMPLE_LOT", sampleLotBarcode = "BS1000-1", amount = 1, amountUnit = "ml", concentration = 1,
-                           concentrationUnit = "nM",useVerbose = FALSE)
-CoreAPIV2::logOut(login$coreApi )
+api <- coreAPI("PATH TO JSON FILE")
+login <- authBasic(api)
+well <- setWellContents(login$coreAPI,
+  containerType = "CONTAINER", containerBarcode = "96W101", containerWellNum = "1",
+  sampleLotType = "BEER_SAMPLE_LOT", sampleLotBarcode = "BS1000-1", amount = 1, amountUnit = "ml", concentration = 1,
+  concentrationUnit = "nM", useVerbose = FALSE
+)
+logOut(login$coreApi)
 }
 }
 \author{

@@ -6,16 +6,16 @@
 #' @param entityType entity type to get
 #' @param barcode barcode of entity to get
 #' @param projectBarcodes one or more project barcodes to associate to the entity
-#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http POST
+#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http 
 #' @return returns a list $entity contains entity information, $response contains the entire http response
 #' @export
 #' @examples
 #' \dontrun{
-#' api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-#' login<- CoreAPIV2::authBasic(api)
-#' response<-CoreAPIV2::updateEntityProject(login$coreApi,"entityType","barcode","locationBarcode")
-#' entity <-response$entity
-#' CoreAPIV2::logOut(login$coreApi)
+#' api <- coreAPI("PATH TO JSON FILE")
+#' login <- authBasic(api)
+#' response <- updateEntityProject(login$coreApi, "entityType", "barcode", "locationBarcode")
+#' entity <- response$entity
+#' logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Adam Wheeler adam.j.wheeler@accenture.com
@@ -35,7 +35,7 @@ updateEntityProject <-
     # Get entityType
 
     entity <-
-      CoreAPIV2::getEntityByBarcode(coreApi,
+      getEntityByBarcode(coreApi,
         entityType,
         barcode,
         fullMetadata = FALSE,
@@ -51,14 +51,14 @@ updateEntityProject <-
           x
         })
 
-
+    # no lint start
 
     for (i in 1:length(projectBarcodes))
     {
       projectBarcodes[i] <-
         paste0("/PROJECT", "('", projectBarcodes[i], "')")
     }
-
+    # no lint end
     old_values[["PROJECT@odata.binding"]] <- projectBarcodes
 
 
@@ -72,7 +72,7 @@ updateEntityProject <-
 
 
     response <-
-      CoreAPIV2::apiPUT(
+      apiPUT(
         coreApi,
         resource = entityType,
         query = query,

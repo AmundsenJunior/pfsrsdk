@@ -10,9 +10,9 @@ context("Tests for buildURL")
 if (con$coreApi$tenant == "PLATFORM ADMIN") {
   odat <- "/odata/"
 } else if (!is.null(con$coreApi$tenant) && is.null(con$coreApi$alias)) {
-  odat <- paste0("/", CoreAPIV2::odataCleanName(con$coreApi$tenant), "/odata/")
+  odat <- paste0("/", odataCleanName(con$coreApi$tenant), "/odata/")
 } else if (!is.null(con$coreApi$alias)) {
-  odat <- paste0("/", CoreAPIV2::odataCleanName(con$coreApi$alias), "/odata/")
+  odat <- paste0("/", odataCleanName(con$coreApi$alias), "/odata/")
 } else {
   odat <- "/odata/"
 }
@@ -20,7 +20,7 @@ if (con$coreApi$tenant == "PLATFORM ADMIN") {
 test_that(paste("Test that buildURL responds correctly when passed a resource and query on:", env$auth), {
   resource <- "res"
   query <- "?test query"
-  builtURL <- CoreAPIV2::buildUrl(con$coreApi, resource = resource, query = query)
+  builtURL <- buildUrl(con$coreApi, resource = resource, query = query)
   pattern <- paste0("^", con$coreApi$scheme, "\\W{3}", con$coreApi$host, ".\\d+.?\\w*.", odat, resource, ".?", query)
   expect_match(builtURL, pattern)
 })
@@ -34,9 +34,9 @@ test_that(paste("Test that the build url handles the file special url on:", env$
 })
 
 test_that(paste("Test that the build url handles the json special url on:", env$auth), {
-  builtURL <- CoreAPIV2::buildUrl(con$coreApi, special = "json")
+  builtURL <- buildUrl(con$coreApi, special = "json")
   pattern <- paste0("^", con$coreApi$scheme, "\\W{3}", con$coreApi$host, ".\\d+.?\\w*.sdk")
   expect_match(builtURL, pattern)
-  jsonEndpoint <- CoreAPIV2::apiGET(coreApi = con$coreApi, data$testPocoName, "", special = "json")
+  jsonEndpoint <- apiGET(coreApi = con$coreApi, data$testPocoName, "", special = "json")
   expect_equivalent(jsonEndpoint$response$status_code, 200)
 })

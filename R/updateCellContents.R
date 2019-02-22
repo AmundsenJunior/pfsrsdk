@@ -15,9 +15,10 @@
 #'   $response contains the entire http response
 #' @examples
 #' \dontrun{
-#' api <- CoreAPIV2("PATH TO JSON FILE")
-#' login <- CoreAPIV2::authBasic(api)
-#' response <- CoreAPIV2::updateCellContents(login$coreApi,
+#' api <- coreAPI("PATH TO JSON FILE")
+#' login <- authBasic(api)
+#' response <- updateCellContents(
+#'   login$coreApi,
 #'   "96 WELL PLATE",
 #'   "96W78",
 #'   "1",
@@ -25,18 +26,19 @@
 #'   "10.1",
 #'   "mL",
 #'   "0.5",
-#'   "nM")
-#' CoreAPIV2::logOut(login$coreApi )
+#'   "nM"
+#' )
+#' logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Scott Russell scott.russell@thermofisher.com
 #' @description \code{updateCellContents} - Updates amount and concentrations of existing cell.
 #' @name updateCellContents-deprecated
-#' @seealso \code{\link{CoreAPIV2-deprecated}}
+#' @seealso \code{\link{pfsrsdk-deprecated}}
 #' @keywords internal
 NULL
 
-#' @rdname CoreAPIV2-deprecated
+#' @rdname pfsrsdk-deprecated
 #' @section \code{updateCellContents}:
 #' For \code{updateCellContents}, use \code{\link{setCellContents}}.
 #'
@@ -96,7 +98,7 @@ updateCellContents <-
     )
 
     response <-
-      CoreAPIV2::apiPOST(
+      apiPOST(
         coreApi,
         resource = NULL,
         body = jsonlite::toJSON(request),

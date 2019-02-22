@@ -5,6 +5,6 @@
 context("Tests for experimentPublish")
 
 test_that(paste("test experimentPublish() on:", env$auth), {
-  result <- CoreAPIV2::experimentPublish(con$coreApi, data$experimentType, data$experimentBarcode, useVerbose = verbose)
+  result <- experimentPublish(con$coreApi, data$experimentType, data$experimentBarcode, useVerbose = verbose)
   expect_equal(httr::content(result$response)$response$data$values$PUBLISHED$stringData, "true")
 })

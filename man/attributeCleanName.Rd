@@ -21,10 +21,10 @@ reference attribute names.
 }
 \examples{
 \dontrun{
-new_name <-CoreAPIV2::attributeCleanName("My Comments")
+new_name <- attributeCleanName("My Comments")
 new_name
 MY_COMMENTS
- }
+}
 }
 \author{
 Craig Parman, ngsAnalytics, ngsanalytics.com

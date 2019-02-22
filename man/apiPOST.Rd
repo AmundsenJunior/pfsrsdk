@@ -33,12 +33,12 @@ Returns the entire http response
 }
 \examples{
 \dontrun{
-api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-login<- CoreAPIV2::authBasic(api)
-response <-CoreAPIV2::apiPOST(login$coreApi,"SAMPLE",body,"json",special=NULL,useVerbose=FALSE)
+api <- coreAPI("PATH TO JSON FILE")
+login <- authBasic(api)
+response <- apiPOST(login$coreApi, "SAMPLE", body, "json", special = NULL, useVerbose = FALSE)
 message <- httr::content(response)
 error <- httr::http_error(response)
-CoreAPIV2::logOut(login$coreApi )
+logOut(login$coreApi)
 }
 }
 \author{

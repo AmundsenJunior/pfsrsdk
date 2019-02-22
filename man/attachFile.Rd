@@ -33,15 +33,16 @@ Odata to post to an attribute.
 }
 \examples{
 \dontrun{
-api<-CoreAPI("PATH TO JSON FILE")
-login<- CoreAPIV2::authBasic(api)
-modifiedItem<-CoreAPIV2::attachFile(login$coreApi,
-     entitytype,
-     barcode,
-     filePath,
-     targetAttributeName="",
-     useVerbose=FALSE)
-CoreAPIV2::logOut(login$coreApi )
+api <- coreAPI("PATH TO JSON FILE")
+login <- authBasic(api)
+modifiedItem <- attachFile(login$coreApi,
+  entitytype,
+  barcode,
+  filePath,
+  targetAttributeName = "",
+  useVerbose = FALSE
+)
+logOut(login$coreApi)
 }
 }
 \author{

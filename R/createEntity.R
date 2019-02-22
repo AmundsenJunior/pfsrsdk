@@ -12,10 +12,10 @@
 #' @return RETURN returns a list $entity contains entity information, $response contains the entire http response
 #' @examples
 #' \dontrun{
-#' api<-CoreAPIV2::coreApi("PATH TO JSON FILE")
-#' login<- CoreAPI::authBasic(api)
-#' item<-CoreAPI::createEntity(login$coreApi,"Entity_Type")
-#' CoreAPI::logOut(login$coreApi )
+#' api <- coreAPI("PATH TO JSON FILE")
+#' login <- authBasic(api)
+#' item <- createEntity(login$coreApi, "Entity_Type")
+#' logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @description \code{createEntity} Creates a new entity instance. Required inputs are url, jsessionId and entityType.
@@ -38,7 +38,7 @@ createEntity <- function(coreApi,
     c("Content-Type" = "application/json;odata.metadata=full", accept = "application/json")
 
   response <-
-    CoreAPIV2::apiPOST(
+    apiPOST(
       coreApi,
       resource = entityType,
       body = jsonlite::toJSON(body, auto_unbox = TRUE),

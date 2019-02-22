@@ -6,7 +6,7 @@ context("Tests for setWellContents")
 # Completed regression for 5.3.8 and 6.0.1
 
 test_that(paste("test setWellContents() on:", env$auth), {
-  result <- CoreAPIV2::setWellContents(con$coreApi,
+  result <- setWellContents(con$coreApi,
     data$nonExperimentContainerType,
     data$nonExperimentContainerBarcode,
     data$containerWellNum,

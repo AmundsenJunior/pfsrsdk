@@ -10,10 +10,10 @@
 #' @return RETURN returns a list $entity contains cell information, $response contains the entire http response
 #' @examples
 #' \dontrun{
-#' api<-CoreAPI("PATH TO JSON FILE")
-#' login<- CoreAPIV2::authBasic(api)
-#' cell<-CoreAPIV2::getExperimentContainerContents(login$coreApi,"BTCR1","EXPERIMENT_CONTAINTER")
-#' CoreAPIV2::logOut(login$coreApi )
+#' api <- coreAPI("PATH TO JSON FILE")
+#' login <- authBasic(api)
+#' cell <- getExperimentContainerContents(login$coreApi, "BTCR1", "EXPERIMENT_CONTAINTER")
+#' logOut(login$coreApi)
 #' }
 #' @author Scott Russell scott.russell@thermofisher.com
 #' @description \code{getExperimentContainerContents} - Gets information about experiment container contents.
@@ -26,7 +26,7 @@ getExperimentContainerContents <-
              useVerbose = FALSE) {
 
     # clean the name for ODATA
-    resource <- CoreAPIV2::odataCleanName(containerType)
+    resource <- odataCleanName(containerType)
 
     expansion <- switch(EXPR = substr(coreApi$semVer, 1, 1),
       "2" = "?$expand=REV_IMPL_CONTAINER_CELL($expand=CONTENT($expand=IMPL_SAMPLE_LOT))",
@@ -50,7 +50,7 @@ getExperimentContainerContents <-
     }
 
     out <-
-      CoreAPIV2::apiGET(
+      apiGET(
         coreApi,
         resource = resource,
         query = query,

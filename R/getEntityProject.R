@@ -5,15 +5,15 @@
 #' @param coreApi coreApi object with valid jsessionid
 #' @param entityType entity type to get
 #' @param barcode barcode of entity to get
-#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http POST
+#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http 
 #' @return returns a list $entity contains projects entity information, $response contains the entire http response
 #' @export
 #' @examples
 #' \dontrun{
-#' api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-#' login<- CoreAPIV2::authBasic(api)
-#' item<-CoreAPIV2::getEntityLocation(login$coreApi,"entityType","barcode")
-#' CoreAPIV2::logOut(login$coreApi)
+#' api <- coreAPI("PATH TO JSON FILE")
+#' login <- authBasic(api)
+#' item <- getEntityLocation(login$coreApi, "entityType", "barcode")
+#' logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Adam Wheeler adam.j.wheeler@accenture.com
@@ -29,7 +29,7 @@ getEntityProject <-
     header <- c(Accept = "application/json;odata.metadata=minimal")
 
     out <-
-      CoreAPIV2::apiGET(
+      apiGET(
         coreApi,
         resource = entityType,
         query = query,

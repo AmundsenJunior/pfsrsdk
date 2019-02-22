@@ -1,3 +1,3 @@
 library(testthat)
 
-test_check("CoreAPIV2")
+test_check("pfsrsdk")

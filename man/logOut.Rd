@@ -22,9 +22,9 @@ returns list with $success = "Success" when sucessful, $response contains the en
 }
 \examples{
 \dontrun{
-api<-CoreAPIV2::coreAPI("PATH TO JSON FILE")
-response<- CoreAPIV2::authBasic(api)
-logOut <- CoreAPIV2::logOut(response$coreApi,useVerbose=TRUE )
+api <- coreAPI("PATH TO JSON FILE")
+response <- authBasic(api)
+logOut <- logOut(response$coreApi, useVerbose = TRUE)
 }
 }
 \author{

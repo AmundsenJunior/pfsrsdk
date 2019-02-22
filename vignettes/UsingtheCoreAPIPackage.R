@@ -1,28 +1,28 @@
 ## ----eval = FALSE--------------------------------------------------------
-#  api<-CoreAPI("PATH TO JSON FILE")
-#  login<- CoreAPI::authBasic(api)
-#  response <-CoreAPI::apiCall(login$coreApi,body,"json",,special=NULL,useVerbose=FALSE)
+#  api<-coreAPI("PATH TO JSON FILE")
+#  login<- authBasic(api)
+#  response <-apiCall(login$coreApi,body,"json",,special=NULL,useVerbose=FALSE)
 #  logOut(login$coreApi )
 
 ## ----eval = FALSE--------------------------------------------------------
 #  
 #  #get login information
 #  
-#  loginInfo<-CoreAPI::coreAPI(CoreAccountInfo="path/account.json")
+#  loginInfo<-coreAPI(CoreAccountInfo="path/account.json")
 #  
 #  # authenticate
-#  response<- CoreAPI::authBasic(loginInfo)
+#  response<- authBasic(loginInfo)
 #  
 #  #print the session ID
 #  print(response$coreApi$jsessionId)
 #  
 #  #log out
-#  CoreAPI::logOut(response$coreApi)$success
+#  logOut(response$coreApi)$success
 #  
 
 ## ----eval = FALSE--------------------------------------------------------
 #  
-#  CoreAPI::createEntity(response$coreApi,entityType)
+#  createEntity(response$coreApi,entityType)
 #  
 
 ## ----eval = FALSE--------------------------------------------------------
@@ -41,13 +41,13 @@
 #  
 #  associations<-list(SAMPLE_ENZYME=data.frame(name="",entitiyId="",barcode="ENZ1"))
 #  
-#  CoreAPI::createEntity(response$coreApi,entityType,attributeValues,associations)
+#  createEntity(response$coreApi,entityType,attributeValues,associations)
 #  
 
 ## ----eval = FALSE--------------------------------------------------------
 #  entityBarcode <-"PS100"
 #  
-#  CoreAPI::updateEntity(response$coreApi,entityType,entitybarcode,
+#  updateEntity(response$coreApi,entityType,entitybarcode,
 #                        attributevalues=attributeValues,associations = associations)
 #  
 
@@ -67,7 +67,7 @@
 #  
 #  # attach to the attribute named File
 #  
-#   items2<-CoreAPI::attachFile(response$coreApi,barcode,"SAgraph.png",filepath,targetAttributeName="File")
+# items2<-attachFile(response$coreApi,barcode,"SAgraph.png",filepath,targetAttributeName="File")
 #  
 #  #attach to the entity
 #  
@@ -101,36 +101,36 @@
 ## ----eval = FALSE--------------------------------------------------------
 #  
 #  
-#  api<-CoreAPI::coreAPI(CoreAccountInfo = "testfiles/account.json")
+#  api<-coreAPI(CoreAccountInfo = "testfiles/account.json")
 #  
 #  #login
 #  
-#  login<-CoreAPI::authBasic(tapi)
+#  login<-authBasic(tapi)
 #  
 #  #create sample
 #  
-#  sample<- CoreAPI::createEntity(r$coreApi,"Patient Sample")
+#  sample<-createEntity(r$coreApi,"Patient Sample")
 #  
 #  sampleBarcode<-sample$entity$barcode
 #  
 #  #create lot
 #  
-#  lot<-CoreAPI::createSampleLot(r$coreApi,"PATIENT SAMPLE LOT",sampleBarcode)
+#  lot<-createSampleLot(r$coreApi,"PATIENT SAMPLE LOT",sampleBarcode)
 #  
 #  #create container
 #  
-#  cont <- CoreAPI::createEntity(r$coreApi,containerType)
+#  cont <- createEntity(r$coreApi,containerType)
 #  
 #  cont_barcode <- cont$entity$barcode
 #  
 #  #fill container
 #  
-#  filledContainer<-CoreAPI::updateCellContents(r$coreApi,containerType,
+#  filledContainer<-updateCellContents(r$coreApi,containerType,
 #                                               cont_barcode,"1", lot_barcode,2, "ml", 3, "uM")
 #  
 #  #log out
 #  
-#  out<-CoreAPI::logOut(r$coreApi)
+#  out<-logOut(r$coreApi)
 #  
 #  
 
@@ -141,11 +141,11 @@
 
 ## ----eval = FALSE--------------------------------------------------------
 #  
-#  contCell <- CoreAPI::getCellContents(r$coreApi,cont$entity$barcode,"1")
+#  contCell <- getCellContents(r$coreApi,cont$entity$barcode,"1")
 #  
 #  sourceCellID <-contCell$entity$cells[[1]]$cellId
 #  
-#  cont2Cell<- CoreAPI::getCellContents(r$coreApi,cont2$entity$barcode,"1")
+#  cont2Cell<- getCellContents(r$coreApi,cont2$entity$barcode,"1")
 #  
 #  destCellID <- cont2Cell$entity$cells[[1]]$cellId
 #  
@@ -157,12 +157,12 @@
 
 ## ----eval = FALSE--------------------------------------------------------
 #  
-#  lineage<-CoreAPI::getContainerLineage(r$coreApi,cont$entity$barcode)
+#  lineage<-getContainerLineage(r$coreApi,cont$entity$barcode)
 #  
 
 ## ----eval=FALSE----------------------------------------------------------
 #  
-#   item <- CoreAPI::createEntity(r$coreApi,entityType = experimentType,
+#   item <- createEntity(r$coreApi,entityType = experimentType,
 #                                 attributeValues = list(TEST_ATTRIBUTE = "a value"),
 #                                 associations = list(EXPERIMENT_ASSAY=
 #                                 data.frame(name="",entityId ="",barcode=assayBarcode),
@@ -174,12 +174,12 @@
 #  
 #  #add a container which creates an experiment sample
 #  
-#  update<-CoreAPI::updateExperimentContainers(r$coreApi,containerBarcode, experimentType,                                                                     newExptbarcode,useVerbose = FALSE)
+#  update<-updateExperimentContainers(r$coreApi,containerBarcode, experimentType,                                                                     newExptbarcode,useVerbose = FALSE)
 #  
 #  
 
 ## ----eval = FALSE--------------------------------------------------------
 #  
-#  secondSample<-CoreAPI::createExperimentSample(r$coreApi,experimentSampleType,sampleLot,newExptbarcode,useVerbose=FALSE)
+#  secondSample<-createExperimentSample(r$coreApi,experimentSampleType,sampleLot,newExptbarcode,useVerbose=FALSE)
 #  
 

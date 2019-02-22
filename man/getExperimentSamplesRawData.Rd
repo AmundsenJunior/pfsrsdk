@@ -26,14 +26,14 @@ returns a list $entity contains data frame with derived experiment sample barcod
 }
 \examples{
 \dontrun{
-api <- CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-login <- CoreAPIV2::authBasic(api)
+api <- coreAPI("PATH TO JSON FILE")
+login <- authBasic(api)
 response <- getExperimentSamplesRawData(login$coreApi,
   "experimentContainerBarcode",
   useVerbose = FALSE
 )
 rawdata <- response$entity
-CoreAPIV2:logOut(login$coreApi)
+logOut(login$coreApi)
 }
 }
 \author{

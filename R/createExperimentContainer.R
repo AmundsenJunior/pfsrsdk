@@ -11,11 +11,13 @@
 #' @return RETURN returns a list $entity contains entity information, $response contains the entire http response
 #' @examples
 #' \dontrun{
-#' api<-CoreAPIV2::coreApi("PATH TO JSON FILE")
-#' login<- CoreAPIV2::authBasic(api)
-#' item<-CoreAPIV2::createExperimentContainer(login$coreApi,"Experiment_Type",
-#'      "ExperimentBarCode","Containerbarcode")
-#' CoreAPIV2::logOut(login$coreApi )
+#' api <- coreAPI("PATH TO JSON FILE")
+#' login <- authBasic(api)
+#' item <- createExperimentContainer(
+#'   login$coreApi, "Experiment_Type",
+#'   "ExperimentBarCode", "Containerbarcode"
+#' )
+#' logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @description \code{createExperimentContainer}Creates a new experiment container by adding an exiting container
@@ -28,11 +30,11 @@ createExperimentContainer <-
              containerBarcode,
              body = NULL,
              useVerbose = FALSE) {
-    experimentType <- CoreAPIV2::odataCleanName(experimentType)
+    experimentType <- odataCleanName(experimentType)
     headers <-
       c("Content-Type" = "application/json;odata.metadata=full")
-
-    CoreAPIV2::case(
+    # no lint start
+    case(
       grepl("[0-2]+\\.[0-9]+\\.[0-9]+", coreApi$semVer) ~ {
         body <- list(
           "CONTAINER_EXPERIMENT@odata.bind" = paste0("/", experimentType, "('", experimentBarcode, "')"),
@@ -46,10 +48,11 @@ createExperimentContainer <-
         )
       }
     )
+    # no lint end
     resource <- paste0(experimentType, "_CONTAINER")
 
     response <-
-      CoreAPIV2::apiPOST(
+      apiPOST(
         coreApi,
         resource = resource,
         body = jsonlite::toJSON(body, auto_unbox = TRUE),

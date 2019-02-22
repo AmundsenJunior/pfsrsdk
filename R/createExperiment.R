@@ -13,13 +13,15 @@
 #' @return RETURN returns a list $entity contains entity information, $response contains the entire http response
 #' @examples
 #' \dontrun{
-#' api<-CoreAPIV2::coreApi("PATH TO JSON FILE")
-#' login<- CoreAPIV2::authBasic(api)
-#' experiment<-CoreAPIV2::createExperiment(login$coreApi,
-#'     "Experiment_Type",
-#'     "Assaybarcode",
-#'     "Protocolbarcode")
-#' CoreAPIV2::logOut(login$coreApi )
+#' api <- coreAPI("PATH TO JSON FILE")
+#' login <- authBasic(api)
+#' experiment <- createExperiment(
+#'   login$coreApi,
+#'   "Experiment_Type",
+#'   "Assaybarcode",
+#'   "Protocolbarcode"
+#' )
+#' logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @description \code{createExperiment} Creates a new experiment.
@@ -35,9 +37,9 @@ createExperiment <-
              useVerbose = FALSE) {
     # clean the names for ODATA
 
-    experimentType <- CoreAPIV2::odataCleanName(experimentType)
-    assayType <- CoreAPIV2::odataCleanName(assayType)
-    protocolType <- CoreAPIV2::odataCleanName(protocolType)
+    experimentType <- odataCleanName(experimentType)
+    assayType <- odataCleanName(assayType)
+    protocolType <- odataCleanName(protocolType)
 
     assayRef <-
       list("EXPERIMENT_ASSAY@odata.bind" = paste0("/", assayType, "('", assayBarcode, "')"))
@@ -56,7 +58,7 @@ createExperiment <-
     headers <- c("Content-Type" = "application/json")
 
     response <-
-      CoreAPIV2::apiPOST(
+      apiPOST(
         coreApi,
         resource = experimentType,
         body = fullBody,

@@ -7,10 +7,10 @@
 #' @return RETURN returns the entire http response
 #' @examples
 #' \dontrun{
-#' api<-CoreAPIV2::coreAPI("PATH TO JSON FILE")
-#' login<- CoreAPIV2::authBasic(api)
-#' loadXMLconfigFile(coreApi,"PathtoFile/test.xml")
-#' CoreAPIV2::logOut(login$coreApi )
+#' api <- coreAPI("PATH TO JSON FILE")
+#' login <- authBasic(api)
+#' loadXMLconfigFile(login$coreApi, "PathtoFile/test.xml")
+#' logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Adam Wheeler adam.j.wheeler@accenture.com

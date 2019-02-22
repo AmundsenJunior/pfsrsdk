@@ -4,15 +4,15 @@
 #' @param coreApi coreApi object with valid jsessionid
 #' @param experimentType experiment entity type to get
 #' @param experimentBarcode barcode of experiment to query
-#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http POST
+#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http 
 #' @return returns a list $entity contains barcodes of the containers, $response contains the entire http response
 #' @export
 #' @examples
 #' \dontrun{
-#' api <- CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-#' login <- CoreAPIV2::authBasic(api)
-#' exptContainerBarcodes <- CoreAPIV2::getExperimentContainers(login$coreApi, "experimentType", "experimentBarcode")
-#' CoreAPIV2:logOut(login$coreApi)
+#' api <- coreAPI("PATH TO JSON FILE")
+#' login <- authBasic(api)
+#' exptContainerBarcodes <- getExperimentContainers(login$coreApi, "experimentType", "experimentBarcode")
+#' logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
@@ -28,7 +28,7 @@ getExperimentContainers <-
              useVerbose = FALSE) {
     # clean the name for ODATA
 
-    resource <- CoreAPIV2::odataCleanName(experimentType)
+    resource <- odataCleanName(experimentType)
 
     association <- switch(EXPR = substr(coreApi$semVer, 1, 1),
       "2" = "REV_CONTAINER_EXPERIMENT_EXPERIMENT_CONTAINER",
@@ -41,7 +41,7 @@ getExperimentContainers <-
 
 
     response <-
-      CoreAPIV2::apiGET(
+      apiGET(
         coreApi,
         resource = resource,
         query = paste0("('", experimentBarcode, "')/", association),

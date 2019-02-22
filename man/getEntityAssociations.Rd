@@ -18,7 +18,7 @@ getEntityAssociations(coreApi, entityType, barcode, associationContext,
 
 \item{fullMetadata}{- get full metadata}
 
-\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http POST}
+\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http}
 }
 \value{
 returns a list $entity contains entity associations, $response contains the entire http response
@@ -28,10 +28,10 @@ returns a list $entity contains entity associations, $response contains the enti
 }
 \examples{
 \dontrun{
-api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-login<- CoreAPIV2::authBasic(api)
-associations<-CoreAPIV2::getEntityAssociations(login$coreApi,"entityType","barcode",values)
-CoreAPIV2::logOut(login$coreApi)
+api <- coreAPI("PATH TO JSON FILE")
+login <- authBasic(api)
+associations <- getEntityAssociations(login$coreAPI, "entityType", "barcode", "associationContext")
+logOut(login$coreAPI)
 }
 }
 \author{

@@ -30,13 +30,16 @@ RETURN returns a list $entity contains entity information,
 }
 \examples{
 \dontrun{
-api<-CoreAPI("PATH TO JSON FILE")
-login<- CoreAPIV2::authBasic(api)
-response<-updateExperimentSampleRawData(login$coreApi,experimentContainerBarcode="BTCR1",rawDataCellNum=1,
-                   rawDataValues = list(DATA_VALUE = 100 ,CI_ACCEPT = FALSE)
+api <- coreAPI("PATH TO JSON FILE")
+login <- authBasic(api)
+response <- updateExperimentSampleRawData(login$coreApi,
+  experimentContainerBarcode = "BTCR1", rawDataCellNum = 1,
+  rawDataValues = list(DATA_VALUE = 100, CI_ACCEPT = FALSE)
+)
 
 updatedEntity <- response$entity
-CoreAPIV2::logOut(login$coreApi ) response<- CoreAPI::authBasic(coreApi)
+logOut(login$coreApi)
+response <- authBasic(coreApi)
 }
 }
 \author{

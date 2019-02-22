@@ -5,7 +5,7 @@
 context("Tests for createExperiment")
 
 test_that(paste("test createExperiment() on: ", env$auth), {
-  expt <- CoreAPIV2::createExperiment(con$coreApi,
+  expt <- createExperiment(con$coreApi,
     data$experimentType,
     data$experimentAssayType,
     data$experimentAssayBarcode,

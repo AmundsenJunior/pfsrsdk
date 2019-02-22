@@ -16,11 +16,9 @@ Object of class coreAPI
 coreAPI Creates a object of class coreAPI that contains user and connection information.
 }
 \details{
-{ Creates a object of class coreAPI that contains username,
-         password, host, tenant, port.
-         It has slots for tenant, jsessionId, AWSELB, and host.
-         Requires a json file that is a POSTMAN environment file.
-        \code{#'Creates a object of class coreAPI that contains tenant information}
+{ Creates a object of class list that contains connection information.
+         Requires a json formatted datastring.
+        \code{#'Creates a object of class list that contains connection information}
         \code{coreAPI("path to json")}.
 }
 The json must include the fields shown below.
@@ -98,7 +96,7 @@ As an alternative the environment json object from Postman can be used directly.
 }
 \examples{
 \dontrun{
-api<-CoreAPIV2::coreAPI("/home/environment.json")
+api <- coreAPI("/home/environment.json")
 }
 }
 \author{

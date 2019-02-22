@@ -6,7 +6,7 @@ context("Tests for getExperimentSamplesAssayFileData")
 # Completed regression for 5.3.8 and 6.0.1
 
 test_that(paste("test getExperimentSamplesAssayFileData() on:", env$auth), {
-  result <- CoreAPIV2::getExperimentSamplesAssayFileData(con$coreApi,
+  result <- getExperimentSamplesAssayFileData(con$coreApi,
     data$experimentFileAssayType,
     data$experimentSampleBarcodeWithFileAttr,
     data$fileAttrName,

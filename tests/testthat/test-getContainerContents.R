@@ -6,7 +6,7 @@ context("Tests for getContainerContents")
 # Completed regression for 5.3.8 and 6.0.1
 
 test_that(paste("test getContainerContents() on:", env$auth), {
-  result <- CoreAPIV2::getContainerContents(con$coreApi, data$containerBarcode, data$containerType, useVerbose = verbose)
+  result <- getContainerContents(con$coreApi, data$containerBarcode, data$containerType, useVerbose = verbose)
 
   expect_equal(result$response$status_code, 200)
 

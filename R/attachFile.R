@@ -11,15 +11,16 @@
 #' @return RETURN returns a list $entity contains entity information (if present), $response contains the entire http response
 #' @examples
 #' \dontrun{
-#' api<-CoreAPI("PATH TO JSON FILE")
-#' login<- CoreAPIV2::authBasic(api)
-#' modifiedItem<-CoreAPIV2::attachFile(login$coreApi,
-#'      entitytype,
-#'      barcode,
-#'      filePath,
-#'      targetAttributeName="",
-#'      useVerbose=FALSE)
-#' CoreAPIV2::logOut(login$coreApi )
+#' api <- coreAPI("PATH TO JSON FILE")
+#' login <- authBasic(api)
+#' modifiedItem <- attachFile(login$coreApi,
+#'   entitytype,
+#'   barcode,
+#'   filePath,
+#'   targetAttributeName = "",
+#'   useVerbose = FALSE
+#' )
+#' logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Adam Wheeler, adam.j.wheeler@accenture.com
@@ -48,12 +49,21 @@ attachFile <-
       # Check if the metadata reports this as a stream
 
       met <- getEntityMetadata(coreApi, entityType)
-      valueFlag <- ifelse(match("Edm.Stream", met$attributes$types[match(targetAttributeName, met$attributes$names)]) == 1, TRUE, FALSE)
+      valueFlag <- ifelse(match(
+        "Edm.Stream",
+        met$attributes$types[match(
+          targetAttributeName,
+          met$attributes$names
+        )]
+      ) == 1,
+      TRUE,
+      FALSE
+      )
       body <- httr::upload_file(filePath)
       query <- paste0("('", barcode, "')/", targetAttributeName)
       header <- c("If-Match" = "*")
       response <-
-        CoreAPIV2::apiPUT(
+        apiPUT(
           coreApi,
           resource = entityType,
           query = query,

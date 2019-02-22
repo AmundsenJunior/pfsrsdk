@@ -6,7 +6,7 @@ context("Tests for getCellContents")
 # Completed regression for 5.3.8 and 6.0.1
 
 test_that(paste("test getCellContents() on:", env$auth), {
-  result <- CoreAPIV2::getCellContents(con$coreApi, data$containerCellId, useVerbose = verbose)
+  result <- getCellContents(con$coreApi, data$containerCellId, useVerbose = verbose)
 
   expect_equal(result$response$status_code, 200)
 

@@ -5,18 +5,18 @@
 \title{getExperimentSamplesAssayFileData - Gets file attached as assay data.}
 \usage{
 getExperimentSamplesAssayFileData(coreApi, assayType,
-  experimentSamplebarcode, attributeName, useVerbose = FALSE)
+  experimentSampleBarcode, attributeName, useVerbose = FALSE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
 
 \item{assayType}{assay type to get}
 
-\item{experimentSamplebarcode}{experiment sample barcode of entity to get}
+\item{experimentSampleBarcode}{experiment sample barcode of entity to get}
 
 \item{attributeName}{Name of the attibute that containts the file data}
 
-\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http POST}
+\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http}
 }
 \value{
 returns a list $entity containsbinary object that in the file, $response contains the entire http response
@@ -30,11 +30,11 @@ Use getExperimentSamplesAssayData for non-file data.
 }
 \examples{
 \dontrun{
-api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-login<- CoreAPIV2::authBasic(api)
-response<-  getExperimentSamplesAssayFileData(login$coreApi,"assayType","barcode","CI_FILE")
+api <- coreAPI("PATH TO JSON FILE")
+login <- authBasic(api)
+response <- getExperimentSamplesAssayFileData(login$coreApi, "assayType", "experimentSampleBarcode", "CI_FILE")
 writeBin(response$entity, "myfile.png")
-CoreAPIV2:logOut(login$coreApi)
+logOut(login$coreApi)
 }
 }
 \author{

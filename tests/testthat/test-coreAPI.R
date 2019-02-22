@@ -7,7 +7,7 @@ context("Tests for coreAPI")
 
 testthat::setup(Sys.setenv(HOST = "localhost"))
 
-testapi <- CoreAPIV2::coreAPI("test_environment/Auth-Template.json")
+testapi <- coreAPI("test_environment/Auth-Template.json")
 
 test_that("test coreAPI sets class configuration NULL when JSON configuration value is ''", {
   expect_that(is.null(testapi$context), equals(TRUE))

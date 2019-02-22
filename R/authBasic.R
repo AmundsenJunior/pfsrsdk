@@ -10,11 +10,11 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' api <- CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-#' response <- CoreAPIV2::authBasic(api)
+#' api <- coreAPI("PATH TO JSON FILE")
+#' response <- authBasic(api)
 #' login <- response$core$Api
 #' error <- httr::http_error(response$response)
-#' CoreAPIV2::logOut(response$coreApi, useVerbose = TRUE)
+#' logOut(response$coreApi, useVerbose = TRUE)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanaltics.com
 #' @author Scott Russell scott.russell@thermofisher.com
@@ -57,7 +57,7 @@ authBasic <- function(coreApi, useVerbose = FALSE) {
 
 
   response <-
-    CoreAPIV2::apiPOST(
+    apiPOST(
       coreApi,
       body = request,
       encode = "json",

@@ -10,10 +10,10 @@
 #' @return RETURN returns a list $entity contains well information, $response contains the entire http response
 #' @examples
 #' \dontrun{
-#' api<-CoreAPI("PATH TO JSON FILE")
-#' login<- CoreAPIV2::authBasic(api)
-#' well<-CoreAPIV2::getWellContents(login$coreApi,"VIA9","1", "VIAL")
-#' CoreAPIV2::logOut(login$coreApi)
+#' api <- coreAPI("PATH TO JSON FILE")
+#' login <- authBasic(api)
+#' well <- getWellContents(login$coreApi, "VIA9", "1", "VIAL")
+#' logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Scott Russell scott.russell@thermofisher.com
@@ -25,13 +25,13 @@ getWellContents <-
              containerWellNum,
              containerType = "CONTAINER",
              useVerbose = FALSE) {
-    containerType <- CoreAPIV2::odataCleanName(containerType)
+    containerType <- odataCleanName(containerType)
     containerWellNum <- as.numeric(containerWellNum)
     resource <- "CELL"
 
-    cellId <- CoreAPIV2::getContainerCellIds(coreApi, containerBarcode, containerType, useVerbose)$entity[containerWellNum]
+    cellId <- getContainerCellIds(coreApi, containerBarcode, containerType, useVerbose)$entity[containerWellNum]
 
-    CoreAPIV2::case(
+    case(
       grepl("[0-2]+\\.[0-9]+\\.[0-9]+", coreApi$semVer) ~ {
         query <- paste0("(", cellId, ")?$expand=CONTENT($expand=IMPL_SAMPLE_LOT)")
       },
@@ -44,7 +44,7 @@ getWellContents <-
       c("Content-Type" = "application/json;odata.metadata=minimal", Accept = "application/json")
 
     response <-
-      CoreAPIV2::apiGET(
+      apiGET(
         coreApi,
         resource = resource,
         query = query,

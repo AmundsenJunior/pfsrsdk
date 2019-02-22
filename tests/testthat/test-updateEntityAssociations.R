@@ -7,15 +7,15 @@ context("Tests for updateEntityAssociations")
 # Completed regression for 5.3.8 and 6.0.1
 
 test_that(paste("test updateEntityAssociations() on:", env$auth), {
-  assoc <- CoreAPIV2::getEntityByName(con$coreApi, data$testPocoUpdateAssocType, data$testPocoUpdateAssocName, FALSE, FALSE)
-  poco <- CoreAPIV2::getEntityByName(con$coreApi, data$testPocoUpdateType, data$testPocoUpdateName, FALSE, FALSE)
+  assoc <- getEntityByName(con$coreApi, data$testPocoUpdateAssocType, data$testPocoUpdateAssocName, FALSE, FALSE)
+  poco <- getEntityByName(con$coreApi, data$testPocoUpdateType, data$testPocoUpdateName, FALSE, FALSE)
 
   updateValues <- list()
   updateValues[[data$testPocoUpdateAssocContext]] <- c(data$testPocoUpdateAssocType, assoc$entity[[1]]$Barcode)
 
-  us <- CoreAPIV2::updateEntityAssociations(con$coreApi, data$testPocoUpdateType, poco$entity[[1]]$Barcode, updateValues, useVerbose = verbose)
+  us <- updateEntityAssociations(con$coreApi, data$testPocoUpdateType, poco$entity[[1]]$Barcode, updateValues, useVerbose = verbose)
   expect_equivalent(httr::status_code(us$response), 200)
 
-  as <- CoreAPIV2::getEntityAssociations(con$coreApi, data$testPocoUpdateType, poco$entity[[1]]$Barcode, associationContext = data$testPocoUpdateAssocContext, fullMetadata = TRUE, useVerbose = verbose)
+  as <- getEntityAssociations(con$coreApi, data$testPocoUpdateType, poco$entity[[1]]$Barcode, associationContext = data$testPocoUpdateAssocContext, fullMetadata = TRUE, useVerbose = verbose)
   expect_match(as$entity[[1]]$Barcode, assoc$entity[[1]]$Barcode)
 })

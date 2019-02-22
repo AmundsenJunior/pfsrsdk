@@ -13,12 +13,12 @@
 
 #' @examples
 #' \dontrun{
-#' api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-#' login<- CoreAPIV2::authBasic(api)
-#' response <-CoreAPIV2::apiGET(login$coreApi,"json",resource,query)
+#' api <- coreAPI("PATH TO JSON FILE")
+#' login <- authBasic(api)
+#' response <- apiGET(login$coreApi, "json", resource, query)
 #' content <- response$content
 #' error <- httr::http_error(response$response)
-#' CoreAPIV2::logOut(login$coreApi)
+#' logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @description \code{apiGET} - Do a get from the Core ODATA REST API.
@@ -33,10 +33,10 @@ apiGET <-
              useVerbose = FALSE) {
     # clean the resource name for ODATA
 
-    resource <- CoreAPIV2::odataCleanName(resource)
+    resource <- odataCleanName(resource)
 
     sdk_url <-
-      CoreAPIV2::buildUrl(
+      buildUrl(
         coreApi,
         resource = resource,
         query = query,

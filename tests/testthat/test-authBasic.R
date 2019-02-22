@@ -12,20 +12,20 @@ test_that(paste("test login parameters for environment and updating metadata", e
 })
 
 test_that(paste("test Updating Metadata of:", env$auth), {
-  metadata <- CoreAPIV2::updateMetadata(con$coreApi, useVerbose = TRUE)
+  metadata <- updateMetadata(con$coreApi, useVerbose = TRUE)
   print(httr::http_status(metadata$response))
   expect_match(httr::http_status(metadata$response)$category, "Success")
 })
 
 test_that(paste("test logout of:", env$auth), {
-  logout <- CoreAPIV2::logOut(con$coreApi, useVerbose = verbose)
+  logout <- logOut(con$coreApi, useVerbose = verbose)
   expect_match(logout$success, "Success")
 })
 
 test_that(paste("single account with bad password returns error on:", env$auth), {
   verbose <- FALSE
-  api <- CoreAPIV2::coreAPI(env$auth)
+  api <- coreAPI(env$auth)
   bapi <- api
   bapi$password <- "badpassword"
-  expect_error(CoreAPIV2::authBasic(bapi, useVerbose = verbose))
+  expect_error(authBasic(bapi, useVerbose = verbose))
 })

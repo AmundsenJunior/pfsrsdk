@@ -13,14 +13,16 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' api <- CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-#' login <- CoreAPIV2::authBasic(api)
-#' response <- setExperimentSampleAssayFileData(login$coreApi,
+#' api <- coreAPI("PATH TO JSON FILE")
+#' login <- authBasic(api)
+#' response <- setExperimentSampleAssayFileData(
+#'   login$coreApi,
 #'   "TURBIDITY ASSAY",
 #'   "TBES1",
 #'   "CI_EXTRA_DATA",
-#'   "/path/to/data.file")
-#' CoreAPIV2::logOut(login$coreApi)
+#'   "/path/to/data.file"
+#' )
+#' logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Scott Russell scott.russell@thermofisher.com
@@ -42,13 +44,13 @@ setExperimentSampleAssayFileData <-
       )
     }
 
-    resource <- paste0(CoreAPIV2::odataCleanName(assayType), "_DATA")
+    resource <- paste0(odataCleanName(assayType), "_DATA")
 
     query <- paste0(
       "('",
       experimentSampleBarcode,
       "')/",
-      CoreAPIV2::attributeCleanName(attributeName)
+      attributeCleanName(attributeName)
     )
 
     metadata <- getEntityMetadata(coreApi, resource)
@@ -57,7 +59,7 @@ setExperimentSampleAssayFileData <-
     header <- c("If-Match" = "*")
 
     response <-
-      CoreAPIV2::apiPUT(
+      apiPUT(
         coreApi,
         resource = resource,
         query = query,
@@ -93,25 +95,27 @@ setExperimentSampleAssayFileData <-
 #' the entire http response
 #' @examples
 #' \dontrun{
-#' api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-#' login<- CoreAPIV2::authBasic(api)
-#' response<-  setExperimentSamplesAssayFileData(login$coreApi,
-#' "assayType",
-#' "barcode",
-#' "filePath",
-#' "CI_FILE")
-#' CoreAPIV2:logOut(login$coreApi)
+#' api <- coreAPI("PATH TO JSON FILE")
+#' login <- authBasic(api)
+#' response <- setExperimentSamplesAssayFileData(
+#'   login$coreApi,
+#'   "assayType",
+#'   "barcode",
+#'   "filePath",
+#'   "CI_FILE"
+#' )
+#' logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @description \code{ setExperimentSamplesAssayFileData } Puts file attached as assay data
 #'  in an experiment
 #'
 #' @name setExperimentSamplesAssayFileData-deprecated
-#' @seealso \code{\link{CoreAPIV2-deprecated}}
+#' @seealso \code{\link{pfsrsdk-deprecated}}
 #' @keywords internal
 NULL
 
-#' @rdname CoreAPIV2-deprecated
+#' @rdname pfsrsdk-deprecated
 #' @section \code{setExperimentSamplesAssayFileData}:
 #' For \code{setExperimentSamplesAssayFileData}, use \code{\link{setExperimentSampleAssayFileData}}.
 #'
@@ -135,23 +139,23 @@ setExperimentSamplesAssayFileData <-
       )
     }
 
-    resource <- paste0(CoreAPIV2::ODATAcleanName(assayType), "_DATA")
-    resource <- CoreAPIV2::ODATAcleanName(resource)
-
+    resource <- paste0(ODATAcleanName(assayType), "_DATA")
+    resource <- ODATAcleanName(resource)
+    # no lint start
     query <- paste0(
       "('",
       experimentSampleBarcode,
       "')/",
-      CoreAPIV2::attributeCleanName(attributeName),
+      attributeCleanName(attributeName),
       "/$value"
     )
-
+    # no lint end
     headers <- c(Accept = "image/png")
 
     body <- httr::upload_file(filePath, type = "image/png")
 
     sdk_url <-
-      CoreAPIV2::buildUrl(
+      buildUrl(
         coreApi,
         resource = resource,
         query = query,

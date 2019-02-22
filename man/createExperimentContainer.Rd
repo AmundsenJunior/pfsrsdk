@@ -32,11 +32,13 @@ to an experiment.
 }
 \examples{
 \dontrun{
-api<-CoreAPIV2::coreApi("PATH TO JSON FILE")
-login<- CoreAPIV2::authBasic(api)
-item<-CoreAPIV2::createExperimentContainer(login$coreApi,"Experiment_Type",
-     "ExperimentBarCode","Containerbarcode")
-CoreAPIV2::logOut(login$coreApi )
+api <- coreAPI("PATH TO JSON FILE")
+login <- authBasic(api)
+item <- createExperimentContainer(
+  login$coreApi, "Experiment_Type",
+  "ExperimentBarCode", "Containerbarcode"
+)
+logOut(login$coreApi)
 }
 }
 \author{

@@ -29,9 +29,9 @@ RETURN returns a list $entity contains entity information, $response contains th
 }
 \examples{
 \dontrun{
-api <- CoreAPIV2("PATH TO JSON FILE")
-login <- CoreAPIV2::authBasic(api)
-lot <- CoreAPIV2::createSampleLot(login$coreApi, "Sample_Name")
+api <- coreAPI("PATH TO JSON FILE")
+login <- authBasic(api)
+lot <- createSampleLot(login$coreApi, sampleType, sampleBarcode,)
 logOut(login$coreApi)
 }
 }

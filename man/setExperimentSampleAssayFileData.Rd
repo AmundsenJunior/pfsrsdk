@@ -32,14 +32,16 @@ the entire http response
 }
 \examples{
 \dontrun{
-api <- CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-login <- CoreAPIV2::authBasic(api)
-response <- setExperimentSampleAssayFileData(login$coreApi,
+api <- coreAPI("PATH TO JSON FILE")
+login <- authBasic(api)
+response <- setExperimentSampleAssayFileData(
+  login$coreApi,
   "TURBIDITY ASSAY",
   "TBES1",
   "CI_EXTRA_DATA",
-  "/path/to/data.file")
-CoreAPIV2::logOut(login$coreApi)
+  "/path/to/data.file"
+)
+logOut(login$coreApi)
 }
 }
 \author{

@@ -8,9 +8,9 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' api<-CoreAPIV2::coreAPI("PATH TO JSON FILE")
-#' response<- CoreAPIV2::authBasic(api)
-#' logOut <- CoreAPIV2::logOut(response$coreApi,useVerbose=TRUE )
+#' api <- coreAPI("PATH TO JSON FILE")
+#' response <- authBasic(api)
+#' logOut <- logOut(response$coreApi, useVerbose = TRUE)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @description \code{logOut} logs out of the current session.
@@ -34,7 +34,7 @@ logOut <- function(coreApi, useVerbose = FALSE) {
     c("Content-Type" = "application/json;odata.metadata=full", accept = "application/json")
 
   response <-
-    CoreAPIV2::apiPOST(
+    apiPOST(
       coreApi = coreApi,
       body = request,
       headers = headers,

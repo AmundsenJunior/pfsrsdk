@@ -6,17 +6,17 @@
 #' @param entityType entity type to get
 #' @param barcode barcode of entity to get
 #' @param updateValues values to update as list of associations contex and entity type pair and barcode
-#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http POST
+#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http 
 #' @return returns a list $entity contains entity information, $response contains the entire http response
 #' @export
 #' @examples
 #' \dontrun{
-#' api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-#' login<- CoreAPIV2::authBasic(api)
+#' api <- coreAPI("PATH TO JSON FILE")
+#' login <- authBasic(api)
 #' updateValues <- list(SAMPLE_ENZYME = c("ENZYME", "ENZ2"))
-#' response <-CoreAPIV2::updateEntityAssociations(login$coreApi,"entityType","barcode",values)
+#' response <- updateEntityAssociations(login$coreApi, "entityType", "barcode", updateValues)
 #' udatedEntity <- response$entity
-#' CoreAPIV2::logOut(login$coreApi)
+#' logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Adam Wheeler adam.j.wheeler@accenture.com
@@ -36,7 +36,7 @@ updateEntityAssociations <-
     # Get entityType
 
     entity <-
-      CoreAPIV2::getEntityByBarcode(coreApi,
+      getEntityByBarcode(coreApi,
         entityType,
         barcode,
         fullMetadata = FALSE,
@@ -81,7 +81,7 @@ updateEntityAssociations <-
 
 
     response <-
-      CoreAPIV2::apiPUT(
+      apiPUT(
         coreApi,
         resource = entityType,
         query = query,

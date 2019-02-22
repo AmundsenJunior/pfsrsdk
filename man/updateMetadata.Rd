@@ -9,7 +9,7 @@ updateMetadata(coreApi, useVerbose = FALSE)
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
 
-\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http POST}
+\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http}
 }
 \value{
 returns XML with all entitiy metadata
@@ -20,10 +20,10 @@ Must be run after any configuration changes.
 }
 \examples{
 \dontrun{
-api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
-login<- CoreAPIV2::authBasic(api)
-metadata<-CoreAPIV2::updateMetadata(login$coreApi,useverbose=TRUE)
-CoreAPIV2::logOut(login$coreApi)
+api <- coreAPI("PATH TO JSON FILE")
+login <- authBasic(api)
+metadata <- updateMetadata(login$coreApi, useverbose = TRUE)
+logOut(login$coreApi)
 }
 }
 \author{
