@@ -13,9 +13,9 @@ setCellContents(coreApi, containerType, containerBarcode, containerCellId,
 
 \item{containerType}{container type}
 
-\item{containerBarcode}{container barcode}
+\item{containerBarcode}{barcode of a container that IS NOT assigned to an experiment.}
 
-\item{containerCellId}{container cell id}
+\item{containerCellId}{container cell id. (In PFS 5.3.8 (semVer 2.7.1) if multi-wells are used, cell A1 has to be filled or filled first in order to setCellContents in other cells.)}
 
 \item{sampleLotType}{sample lot type}
 
@@ -53,4 +53,6 @@ CoreAPIV2::logOut(login$coreApi )
 }
 \author{
 Craig Parman ngsAnalytics, ngsanalytics.com
+
+Natasha Mora natasha.mora@thermofisher.com
 }

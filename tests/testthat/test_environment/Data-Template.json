@@ -50,6 +50,7 @@
   "singleWellContainerBarcode":"",
   "multiWellContainerBarcode":"",
   "containerCellId": "",
+  "setCellContentsContainerCellId": "",
   "containerType": "",
   "containerBarcode": "",
   "nonExperimentContainerType": "",
