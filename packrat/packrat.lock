@@ -390,8 +390,8 @@ Requires: lazyeval, magrittr
 
 Package: rlang
 Source: CRAN
-Version: 0.3.0.1
-Hash: 35fb7a51d5d756c56f793ed9c381fb84
+Version: 0.3.1
+Hash: 1176a91e0c23d4fc8f48bc5704a6f826
 
 Package: rmarkdown
 Source: CRAN
