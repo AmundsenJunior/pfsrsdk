@@ -1,8 +1,20 @@
 # pfsrsdk 
 
-*R package to interact with the Thermo Fisher Scientific Platform for Science OData API* 
+*R package to interact with the Thermo Fisher Scientific Platform for Science APIs* 
 
 ## Installation
+
+### From RStudio Server Pro
+
+If developing on a Thermo Fisher Scientific-hosted RStudio Server Pro
+environment, the administrators have made the `pfsrsdk` package available from
+the server's local CRAN repository.
+```r
+install.packages("pfsrsdk")
+library(pfsrsdk)
+```
+
+### From Bitbucket
 
 Install the package from Bitbucket with `devtools`:
 ```r
@@ -16,7 +28,7 @@ See package documentation for usage.
 
 ## Contributing
 
-Reference any of the below resources for developing in this package.
+Reference the below resources for developing in this package.
 
 ### Managing Package Dependencies
 
@@ -80,14 +92,22 @@ in order to have `packrat` update the `packrat.lock` file.
 
 ### Testing the Package
 
-TODO: Testing process description
+#### Test Configuration
+
+The `pfsrsdk` package tests are written to use a configurable set of values for
+evaluating the SDK calls against a user's development or automated test
+environment. This configuration is made in `tests/testthat/test_environment`,
+on a corresponding set of `Auth-X.Y.Z.json` and `Data-X.Y.Z.json` files. Setting
+values in the `Data-X.Y.Z.json` files that match data present in a user's
+development or test environment enable the tests to execute successfully,
+regardless of environment or available data.
 
 #### Running Individual Tests
 
-As the testing suite uses `setup.R` and `teardown.R` for pre- and post-test
-actions, invoking such helpers is only available from the `testthat::test_dir()`
-or `testthat::test_package()` functions. To test an individual file, execute
-using a filter for that test file name:
+The testing suite uses `setup.R` and `teardown.R` for pre- and post-test
+actions, so invoking such helpers is only available from the
+`testthat::test_dir()` or `testthat::test_package()` functions. To test an
+individual file, execute using a filter for that test file name:
 ```r
 testthat::test_dir("tests/testthat", filter = "updateEntityLocation")
 ```
@@ -134,8 +154,7 @@ their corresponding `R/` changes.
 
 #### `pkgdown`
 
-From a built and installed package, we also can generate a static HTML
-documentation site, using the
+We also can generate a static HTML documentation site, using the
 [`pkgdown` package](https://github.com/r-lib/pkgdown). This package builds the
 HTML, CSS, and JS files from the various package documentation sources: `man/`,
 `vignettes/`, `DESCRIPTION`, `README.md`, and `NEWS.md`. The site is created by
@@ -264,12 +283,12 @@ site. These two images are built on top of the
 [`nginx`](https://hub.docker.com/_/nginx/) public images, respectively. The
 images can be generated on a system with Docker installed by calling:
 ```
-./gradlew buildROdataSdkShinyImage
-./gradlew buildROdataSdkDocsImage
+./gradlew buildPfsRSdkShinyImage
+./gradlew buildPfsRSdkDocsImage
 ```
 
 Both of these images can be run as webapps:
 ```
-docker run -d -p 8080:80 quay.coredev.cloud/core-informatics/r-odata-sdk-docs:latest
-docker run -d -p 3838:3838 quay.coredev.cloud/core-informatics/r-odata-sdk-shiny:latest
+docker run -d -p 8080:80 quay.coredev.cloud/core-informatics/pfsrsdk-docs:latest
+docker run -d -p 3838:3838 quay.coredev.cloud/core-informatics/pfsrsdk-shiny:latest
 ```

@@ -2,7 +2,7 @@
 #' @author Scott Russell scott.russell@thermofisher.com
 #' @description \code Tests for updateMetadata
 
-context("test-updateMetadata")
+context("Tests for updateMetadata")
 
 test_that(paste("test updateMetadata() on: ", env$auth), {
   meta <- updateMetadata(con$coreApi, useVerbose = verbose)

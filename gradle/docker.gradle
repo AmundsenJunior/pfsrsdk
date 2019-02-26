@@ -30,14 +30,14 @@ docker {
 }
 
 images {
-    rOdataSdkDocs {
+    pfsRSdkDocs {
         containerDirectory = 'docs'
         dstImageName = dockerDocsImageName
         isPushable = true
         branchName = project.ext.branchName.toLowerCase().replace('/', '-').replace('_', '-')
         fromImage = "${dockerDocsSrcImage}"
     }
-    rOdataSdkShiny {
+    pfsRSdkShiny {
         containerDirectory = 'shiny'
         dstImageName = dockerShinyImageName
         isPushable = true
@@ -57,7 +57,7 @@ task copyShinyApp(type: Copy, group: 'docker') {
     into 'build/shiny'
 }
 
-createROdataSdkDocsConfigfile {
+createPfsRSdkDocsConfigfile {
     dependsOn 'pkgdownSite'
     
     destFile = project.file('build/docs/Dockerfile')
@@ -70,7 +70,7 @@ createROdataSdkDocsConfigfile {
     addFile '.', '/usr/share/nginx/html/'
 }
 
-createROdataSdkShinyConfigfile {
+createPfsRSdkShinyConfigfile {
     dependsOn 'copyPackage'
     dependsOn 'copyShinyApp'
     

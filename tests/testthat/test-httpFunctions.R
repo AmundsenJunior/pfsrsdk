@@ -2,7 +2,7 @@
 #' @author Scott Russell scott.russell@thermofisher.com
 #' @description test all the basic api functions.
 
-context("test-httpFunctions")
+context("Tests for httpFunctions")
 
 # Completed regression for 5.3.8 and 6.0.1
 

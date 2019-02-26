@@ -38,11 +38,12 @@ pipeline {
                 stage('test-pfs-2.7.1') {
                     environment {
                         TEST_VERSION = '2.7.1'
-                        K8S_TEST_NAMESPACE = stringScrub("pfs-sdk-2-7-1-test-${BRANCH_NAME.replace('.', '-').take(15)}-${BUILD_NUMBER}")
+                        K8S_TEST_NAMESPACE = stringScrub("pfsrsdk-2-7-1-test-${BRANCH_NAME.replace('.', '-').take(15)}-${BUILD_NUMBER}")
+                        RELEASE_NAME = stringScrub("${RELEASE_NAME.take(32)}-2-7-1")
                     }
 
                     when {
-                        expression { BRANCH_NAME ==~ /(master|develop)/ }
+                        expression { BRANCH_NAME ==~ /(develop|master|release.+)/ }
                     }
 
                     stages {
@@ -56,18 +57,27 @@ pipeline {
                                         'namespace': K8S_TEST_NAMESPACE 
                                       ]
                                     ])
-                                sleep 300
+                                sleep 120
                             }
                         }
 
                         stage('execute-pfs-sdk-tests') {
+                            options { retry(2) }
+
                             environment {
                                 HOST = getK8sValue('pod', 'pfs-pod', '{{.status.hostIP}}')
                                 PORT = getK8sValue('service', 'pfs-service', "\'{{range .spec.ports}}{{if eq .name \"http\"}}{{.nodePort}}{{end}}{{end}}\'")
                                 TEST_ENV = "${TEST_VERSION}"
                             }
+                            
                             steps {
-                                gradleTask('testPackage')
+                                script {
+                                    try {
+                                        gradleTask('testPackage')
+                                    } catch (err) {
+                                        echo err
+                                    }
+                                }
                             }
                         }
                     }
@@ -82,7 +92,8 @@ pipeline {
                 stage('test-pfs-2.8.1') {
                     environment {
                         TEST_VERSION = '2.8.1'
-                        K8S_TEST_NAMESPACE = stringScrub("pfs-sdk-2-8-1-test-${BRANCH_NAME.replace('.', '-').take(15)}-${BUILD_NUMBER}")
+                        K8S_TEST_NAMESPACE = stringScrub("pfsrsdk-2-8-1-test-${BRANCH_NAME.replace('.', '-').take(15)}-${BUILD_NUMBER}")
+                        RELEASE_NAME = stringScrub("${RELEASE_NAME.take(32)}-2-8-1")
                     }
 
                     stages {
@@ -96,18 +107,27 @@ pipeline {
                                         'namespace': K8S_TEST_NAMESPACE 
                                       ]
                                     ])
-                                sleep 300
+                                sleep 120
                             }
                         }
 
                         stage('execute-pfs-sdk-tests') {
+                            options { retry(2) }
+
                             environment {
                                 HOST = getK8sValue('pod', 'pfs-pod', '{{.status.hostIP}}')
                                 PORT = getK8sValue('service', 'pfs-service', "\'{{range .spec.ports}}{{if eq .name \"http\"}}{{.nodePort}}{{end}}{{end}}\'")
                                 TEST_ENV = "${TEST_VERSION}"
                             }
+
                             steps {
-                                gradleTask('testPackage')
+                                script {
+                                    try {
+                                        gradleTask('testPackage')
+                                    } catch (err) {
+                                        echo err
+                                    }
+                                }
                             }
                         }
                     }
@@ -122,11 +142,12 @@ pipeline {
                 stage('test-pfs-3.0.3') {
                     environment {
                         TEST_VERSION = '3.0.3'
-                        K8S_TEST_NAMESPACE = stringScrub("pfs-sdk-3-0-3-test-${BRANCH_NAME.replace('.', '-').take(15)}-${BUILD_NUMBER}")
+                        K8S_TEST_NAMESPACE = stringScrub("pfsrsdk-3-0-3-test-${BRANCH_NAME.replace('.', '-').take(15)}-${BUILD_NUMBER}")
+                        RELEASE_NAME = stringScrub("${RELEASE_NAME.take(32)}-3-0-3")
                     }
                     
                     when {
-                        expression { BRANCH_NAME ==~ /(master|develop)/ }
+                        expression { BRANCH_NAME ==~ /(develop|master|release.+)/ }
                     }
 
                     stages {
@@ -140,18 +161,27 @@ pipeline {
                                         'namespace': K8S_TEST_NAMESPACE
                                       ]
                                     ])
-                                sleep 300
+                                sleep 120
                             }
                         }
 
                         stage('execute-pfs-sdk-tests') {
+                            options { retry(2) }
+
                             environment {
                                 HOST = getK8sValue('pod', 'pfs-pod', '{{.status.hostIP}}')
                                 PORT = getK8sValue('service', 'pfs-service', "\'{{range .spec.ports}}{{if eq .name \"http\"}}{{.nodePort}}{{end}}{{end}}\'")
                                 TEST_ENV = "${TEST_VERSION}"
                             }
+                    
                             steps {
-                                gradleTask('testPackage')
+                                script {
+                                    try {
+                                        gradleTask('testPackage')
+                                    } catch (err) {
+                                        echo err
+                                    }
+                                }
                             }
                         }
                     }
@@ -166,9 +196,10 @@ pipeline {
                 stage('test-pfs-3.0.4') {
                     environment {
                         TEST_VERSION = '3.0.4'
-                        K8S_TEST_NAMESPACE = stringScrub("pfs-sdk-3-0-4-test-${BRANCH_NAME.replace('.', '-').take(15)}-${BUILD_NUMBER}")
+                        K8S_TEST_NAMESPACE = stringScrub("pfsrsdk-3-0-4-test-${BRANCH_NAME.replace('.', '-').take(15)}-${BUILD_NUMBER}")
+                        RELEASE_NAME = stringScrub("${RELEASE_NAME.take(32)}-3-0-4")
                     }
-
+                    
                     stages {
                         stage('install-pfs-env') {
                             steps {
@@ -180,18 +211,27 @@ pipeline {
                                         'namespace': K8S_TEST_NAMESPACE
                                       ]
                                     ])
-                                sleep 300
+                                sleep 120
                             }
                         }
 
                         stage('execute-pfs-sdk-tests') {
+                            options { retry(2) }
+
                             environment {
                                 HOST = getK8sValue('pod', 'pfs-pod', '{{.status.hostIP}}')
                                 PORT = getK8sValue('service', 'pfs-service', "\'{{range .spec.ports}}{{if eq .name \"http\"}}{{.nodePort}}{{end}}{{end}}\'")
                                 TEST_ENV = "${TEST_VERSION}"
                             }
+                    
                             steps {
-                                gradleTask('testPackage')
+                                script {
+                                    try {
+                                        gradleTask('testPackage')
+                                    } catch (err) {
+                                        echo err
+                                    }
+                                }
                             }
                         }
                     }

@@ -1,7 +1,5 @@
 ---
-title: "Build and Test Enviroment"
-author: "Craig Parman"
-date: "10/5/2016"
+title: "Package Build and Test Enviroment Information"
 output:
   html_document: default
   pdf_document: default
@@ -10,54 +8,46 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE)
 ```
+
 ## Introduction
 
 This document lists the R version and package vesions used in the development of
 the pfsrsdk package. It is built automatically and reflects the latest
 versions used. 
 
-## pfsrsdk Package Information
+## Package Information
 
-```{r}
-packageDescription("pfsrsdk")
+```{r comment=NA}
+pd <- utils::packageDescription("pfsrsdk")
+pd
 ```
 
-## R Environment Information
+## Build and Test Environment Information
 
 ```{r}
-library('knitr')
+s <- utils::sessionInfo()
+enviro <- as.data.frame(s$R.version)
 
-s<-sessionInfo()
-enviro<-as.data.frame(s$R.version)
-
-kable(enviro[,1:5], format = "markdown")
-kable(enviro[,6:10], format = "markdown")
-kable(enviro[,11:length(enviro)], format = "markdown")
+knitr::kable(enviro[,1:5], format = "markdown")
+knitr::kable(enviro[,6:10], format = "markdown")
+knitr::kable(enviro[,11:length(enviro)], format = "markdown")
 ```
 
-## Required Packages
-
-pfsrsdk uses `packrat` for package build and runtime dependency management
-(See `README.md` for more information).
+## Package Dependencies
 
 ```{r}
-library('knitr')
+imports <- strsplit(utils::packageDescription("pfsrsdk")$Imports, "[[:punct:][:space:]]+")[[1]]
+# TODO enable listing dependencies and their versions (RSDK-107)
+importFrame <- data.frame(Package = imports)
 
-d<-packageDescription("pfsrsdk")
-imports<-strsplit(d[["Imports"]], "[[:punct:][:space:]]+")[[1]]
-importFrame<-data.frame(package = imports)
-
-kable(importFrame, format = "markdown")
+knitr::kable(importFrame, format = "markdown", row.names = FALSE)
 ```
 
 ## Unit Test Results
 
 ```{r eval=FALSE}
-library('knitr')
-library('testthat')
+#TODO re-enable block as part of output from running tests in CI (RSDK-108) 
+log <- capture.output(tr <- testthat::test_dir("../tests/testthat"))
 
-#TODO re-enable block as part of output from running tests in CI 
-
-log<-capture.output(tr<-test_dir("../tests/testthat"))
-kable(as.data.frame(tr), longtable = TRUE, font_size = 7)
+knitr::kable(as.data.frame(tr), longtable = TRUE, font_size = 7)
 ```

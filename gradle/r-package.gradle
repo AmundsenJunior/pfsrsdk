@@ -77,8 +77,8 @@ class RScriptTestPackageTask extends com.umayrh.gradle.RScriptTask {
     String description = "Test the package, via testthat"
     String expression = "withr::with_options(list(testthat.output_file = \"${testReportFile}\"), {devtools::test(reporter = JunitReporter)})"
     
-    @OutputDirectory
-    File getTestDir() { return this.testReportFile; }
+    @OutputFile
+    File getTestFile() { return this.testReportFile; }
 }
 
 class RScriptPkgdownSiteTask extends com.umayrh.gradle.RScriptTask {
