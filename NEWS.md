@@ -1,16 +1,25 @@
 
 # pfsrsdk 1.0.1.9000
 
+## New functions and major changes
+
+## Minor improvements and fixes
+
 # pfsrsdk 1.0.1
 
-## Bug Fixes
-* Fixed issue where 401 error was thrown when using apiGet() and verbose set to true.
-* Fixed issue where the checking to see if pfs version has been tested with this package.
-* Fixed issue where odataClean() name added an underscore to the tenant alias name. (new parameter added for odataCleanname())
-* Added sinking to setup.R to clarify outputs
-* Added test for more than 100 results
-* Added XML2 as an import since we use the httr:content() with an xml mime type. httr only has these listed as suggest in the description.
->>>>>>> hotfix-1.0.1
+## Minor improvements and fixes
+
+* Fixed issue where 401 error was thrown when using `apiGET()` and verbose is
+  set to true.
+* Fixed issue with checking to see if a particular PFS version has been tested
+  with this package.
+* Fixed issue where `odataCleanName()` added an underscore to the tenant alias
+  name. (new parameter added for `odataCleanName()`)
+* Added sinking to `setup.R` to minimize test output.
+* Added tests to `test-httpFunctions.R` (GET, POST, PUT) for more than 100
+  results.
+* Added `xml2` as an import since we use the `httr::content()` with an XML MIME
+  type. `httr` only lists `xml2` as "Suggest" in its `DESCRIPTION`.
 
 # pfsrsdk 1.0.0
 

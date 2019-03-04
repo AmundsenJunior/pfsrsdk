@@ -1,5 +1,5 @@
 ---
-title: "Package Build and Test Enviroment Information"
+title: "Package Build, Test Enviroment, and Dependencies Information"
 output:
   html_document: default
   pdf_document: default
@@ -18,14 +18,14 @@ versions used.
 ## Package Information
 
 ```{r comment=NA}
-pd <- utils::packageDescription("pfsrsdk")
+pd <- packageDescription("pfsrsdk")
 pd
 ```
 
 ## Build and Test Environment Information
 
 ```{r}
-s <- utils::sessionInfo()
+s <- sessionInfo()
 enviro <- as.data.frame(s$R.version)
 
 knitr::kable(enviro[,1:5], format = "markdown")
@@ -36,9 +36,11 @@ knitr::kable(enviro[,11:length(enviro)], format = "markdown")
 ## Package Dependencies
 
 ```{r}
-imports <- strsplit(utils::packageDescription("pfsrsdk")$Imports, "[[:punct:][:space:]]+")[[1]]
-# TODO enable listing dependencies and their versions (RSDK-107)
-importFrame <- data.frame(Package = imports)
+imports <- stringi::stri_remove_empty(strsplit(packageDescription("pfsrsdk", fields="Imports"), "[[:punct:][:space:]]+")[[1]])
+versions <- sapply(imports, function(x) packageDescription(x, fields="Version"))
+licenses <- sapply(imports, function(x) packageDescription(x, fields="License"))
+urls <- sapply(imports, function(x) gsub("[,[:space:]]+", ", ", packageDescription(x, fields="URL")))
+importFrame <- data.frame(Package = imports, Version = versions, License = licenses, URLs = urls)
 
 knitr::kable(importFrame, format = "markdown", row.names = FALSE)
 ```
