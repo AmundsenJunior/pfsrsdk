@@ -59,6 +59,22 @@ or `required()` calls. It stores versioned TARs of those packages, retrieved
 from CRAN or other defined repositories in the `packrat/src/` directory, along
 with a `packrat.lock` file that specifies the packages and their versions.
 
+##### External Dependencies
+
+To improve the operational speed of Packrat tasks, especially in our CI 
+processes, some of these necessary development dependencies are not included in
+the Packrat library. They are referenced in the Packrat configuration file,
+`packrat/packrat.opts`, as `external.packages`. As a developer of the `pfsrsdk`
+package, please ensure that the following packages are installed in your system
+library:
+
+* `devtools`
+* `knitr`
+* `pkgdown`
+* `shiny`
+* `testthat`
+* `testthis`
+
 ##### `packrat::init()`
 
 These files are generated on a new project by calling:
