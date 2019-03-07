@@ -71,14 +71,15 @@ class RScriptInstallPackageTask extends com.umayrh.gradle.RScriptTask {
 class RScriptTestPackageTask extends com.umayrh.gradle.RScriptTask {
     File testReportDir = project.file("${project.ext.packageTestDir}")
     String testEnvVersion = System.getenv('TEST_ENV') ?: '2.7.1'
-    File testReportFile = project.file("${project.ext.packageTestDir}/${project.ext.packageTestFileName}-${testEnvVersion}.xml")
+    File testReportXmlFile = project.file("${project.ext.packageTestDir}/${project.ext.packageTestFileName}-${testEnvVersion}.xml")
+    File testReportRdsFile = project.file("${project.ext.packageTestDir}/${project.ext.packageTestFileName}-${testEnvVersion}.Rds")
     
     @Input
     String description = "Test the package, via testthat"
-    String expression = "withr::with_options(list(testthat.output_file = \"${testReportFile}\"), {devtools::test(reporter = JunitReporter)})"
+    String expression = "saveRDS(withr::with_options(list(testthat.output_file = \"${testReportXmlFile}\"), {devtools::test(reporter = JunitReporter)}), \"${testReportRdsFile}\")"
     
     @OutputFile
-    File getTestFile() { return this.testReportFile; }
+    File getTestXmlFile() { return this.testReportXmlFile; }
 }
 
 class RScriptPkgdownSiteTask extends com.umayrh.gradle.RScriptTask {

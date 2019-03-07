@@ -1,0 +1,30 @@
+---
+title: "Test Results"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE)
+```
+
+## Introduction
+
+This document lists the test results for `pfsrsdk` from automated testing on
+Jenkins.
+
+## Test Results
+
+```{r results}
+library(testthat)
+testResultsFiles <- list.files("../build/tests", ".Rds", full.names = TRUE)
+testResults <- data.frame()
+
+for (x in testResultsFiles) {
+  testResults <- rbind(testResults, as.data.frame(readRDS(x)))
+}
+
+tr <- subset(testResults[order(testResults$context),], select = -c(file))
+knitr::kable(tr, row.names = FALSE, longtable = TRUE, font_size = 7)
+```

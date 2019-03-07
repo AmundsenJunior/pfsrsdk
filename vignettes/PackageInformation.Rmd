@@ -1,5 +1,5 @@
 ---
-title: "Package Build, Test Enviroment, and Dependencies Information"
+title: "Package Build, Enviroment, and Dependencies Information"
 output:
   html_document: default
   pdf_document: default
@@ -22,15 +22,12 @@ pd <- packageDescription("pfsrsdk")
 pd
 ```
 
-## Build and Test Environment Information
+## Build Environment Information
 
 ```{r}
-s <- sessionInfo()
-enviro <- as.data.frame(s$R.version)
+enviro <- t(as.data.frame(sessionInfo()$R.version))
 
-knitr::kable(enviro[,1:5], format = "markdown")
-knitr::kable(enviro[,6:10], format = "markdown")
-knitr::kable(enviro[,11:length(enviro)], format = "markdown")
+knitr::kable(enviro, format = "markdown")
 ```
 
 ## Package Dependencies
@@ -43,13 +40,4 @@ urls <- sapply(imports, function(x) gsub("[,[:space:]]+", ", ", packageDescripti
 importFrame <- data.frame(Package = imports, Version = versions, License = licenses, URLs = urls)
 
 knitr::kable(importFrame, format = "markdown", row.names = FALSE)
-```
-
-## Unit Test Results
-
-```{r eval=FALSE}
-#TODO re-enable block as part of output from running tests in CI (RSDK-108) 
-log <- capture.output(tr <- testthat::test_dir("../tests/testthat"))
-
-knitr::kable(as.data.frame(tr), longtable = TRUE, font_size = 7)
 ```
