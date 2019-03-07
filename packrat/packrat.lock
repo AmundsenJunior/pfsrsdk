@@ -11,8 +11,8 @@ Hash: 948a547c484e5bea15eee76cc53cce3f
 
 Package: Rcpp
 Source: CRAN
-Version: 0.12.19
-Hash: fdff9c3aa69adac28cd5c45cd250c9da
+Version: 1.0.1
+Hash: 390ed5b5da840cec3e6f5c90c6ab23f7
 
 Package: XML
 Source: CRAN
@@ -58,8 +58,8 @@ Hash: 2ed8f98b8284ad733f3907fc6e2f1334
 
 Package: openssl
 Source: CRAN
-Version: 1.2.2
-Hash: 539a2d62e62212923ceabe379f20502a
+Version: 1.3
+Hash: 7235e0ada86fbb386b7e2e3046cda46e
 Requires: askpass
 
 Package: packrat
@@ -85,11 +85,11 @@ Requires: glue, magrittr, stringi
 
 Package: sys
 Source: CRAN
-Version: 3.0
-Hash: ff8284da58963ebfb5ce5f665570b283
+Version: 3.1
+Hash: dc2a997b1b9a2d3f9c234491153cb951
 
 Package: xml2
 Source: CRAN
 Version: 1.2.0
-Hash: b451df717c2155d06f8683bccdf66aea
+Hash: 6e643a368e9748966b96332eaa631411
 Requires: Rcpp

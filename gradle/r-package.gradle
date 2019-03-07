@@ -43,7 +43,7 @@ project.ext {
     packageFileName = "${project.ext.packageName}_${project.ext.packageVersion}.tar.gz"
     packageTestDir = "${project.buildDir}/tests"
     packageTestFileName = "${project.ext.packageName}-${project.ext.packageVersion}"
-    packageDocsName = "${project.ext.packageName}-${project.ext.packageVersion}-docs"
+    packageDocsName = "${project.ext.packageName}-docs"
 }
 
 class RScriptBuildPackageTask extends com.umayrh.gradle.RScriptTask {

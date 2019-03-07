@@ -1,4 +1,4 @@
-@Library('common-jenkins-declarative@2.x.x') _
+@Library('common-jenkins-declarative') _
 
 pipeline {
     agent {
@@ -100,11 +100,12 @@ pipeline {
             }
         }
 
-        stage('artifactory-publish') {
-            steps {
-                gradleTask('artifactoryPublish')
-            }
-        }
+        // TODO: RSDK-129 - Enable publishing when there is Jenkins access to Nexus
+        // stage('nexus-publish') {
+        //     steps {
+        //         gradleTask('publish')
+        //     }
+        // }
 
         stage('docker-publish') {
             steps {

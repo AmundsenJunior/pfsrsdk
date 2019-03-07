@@ -21,10 +21,13 @@ library(testthat)
 testResultsFiles <- list.files("../build/tests", ".Rds", full.names = TRUE)
 testResults <- data.frame()
 
-for (x in testResultsFiles) {
-  testResults <- rbind(testResults, as.data.frame(readRDS(x)))
+if(!length(testResultsFiles) == 0) {
+  for (x in testResultsFiles) {
+    testResults <- rbind(testResults, as.data.frame(readRDS(x)))
+  }
+  tr <- subset(testResults[order(testResults$context),], select = -c(file))
+  knitr::kable(tr, row.names = FALSE, longtable = TRUE, font_size = 7)
+} else {
+  print("Test results failed to output; therefore, this package cannot be validated.")
 }
-
-tr <- subset(testResults[order(testResults$context),], select = -c(file))
-knitr::kable(tr, row.names = FALSE, longtable = TRUE, font_size = 7)
 ```

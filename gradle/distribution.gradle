@@ -1,19 +1,26 @@
-apply plugin: 'distribution'
-apply plugin: 'maven-publish'
-apply plugin: 'com.jfrog.artifactory'
+buildscript {
+    apply from: "$rootProject.projectDir/gradle/buildscript.gradle", to: buildscript
+}
 
-artifactory {
-    contextUrl = "${artifactoryContextUrl}"
-    publish {
-        repository {
-            repoKey = 'Data-Science'
-            username = "${artifactoryUser}"
-            password = "${artifactoryPassword}"
-            maven = true
-        }
-        defaults {
-            publishBuildInfo = true
-            publishArtifacts = true
+apply plugin: 'distribution'
+apply plugin: 'io.github.http-builder-ng.http-plugin'
+
+import io.github.httpbuilderng.http.HttpTask
+
+File packageFile = buildPackage.outputs.getFiles().getSingleFile()
+
+task uploadPackage(type: HttpTask) {
+    dependsOn buildPackage
+    config {
+        request.uri = nexusContextUrl
+        request.auth.basic nexusUser, nexusPassword
+        request.contentType = 'application/octet-stream'
+    }
+    put {
+        request.uri.path = "/repository/datascience-r-hosted/src/contrib/${project.ext.packageFileName}"
+        request.body = packageFile
+        response.success {
+            println "Artifact ${project.ext.packageFileName} has been published to ${nexusContextUrl}."
         }
     }
 }
@@ -30,21 +37,26 @@ distributions {
     }
 }
 
-publishing {
-    publications {
-        docs(MavenPublication) {
-            groupId projectGroup
-            artifactId project.ext.packageDocsName
-            artifact docsDistZip
+File docsFile = docsDistZip.outputs.getFiles().getSingleFile()
+
+task uploadDocs(type: HttpTask) {
+    dependsOn docsDistZip
+    config {
+        request.uri = nexusContextUrl
+        request.auth.basic nexusUser, nexusPassword
+        request.contentType = 'application/octet-stream'
+    }
+    put {
+        request.uri.path = "/repository/datascience-docs-hosted/${project.ext.packageName}/${project.ext.packageVersion}/${docsFile.getName()}"
+        request.body = docsFile
+        response.success {
+            println "Artifact ${docsFile.getName()} has been published to ${nexusContextUrl}."
         }
     }
 }
 
-artifactoryPublish {
-    dependsOn 'docsDistZip'
-    publications('docs')
-    publishArtifacts = true
-    publishPom = false
-}
-
 tasks.docsDistZip.dependsOn 'pkgdownSite'
+
+task publish {
+    dependsOn 'uploadPackage', 'uploadDocs'
+}
