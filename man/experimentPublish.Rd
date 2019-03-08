@@ -12,12 +12,14 @@ experimentPublish(coreApi, experimentType, experimentBarcode,
 
 \item{experimentType}{experiment entity type}
 
-\item{experimentBarcode}{barcode of the experiment}
+\item{experimentBarcode}{barcode of the experiment (Experiments that require a signature cannot be published through the API).}
 
 \item{useVerbose}{Use verbose communication for debugging}
 }
 \value{
 RETURN returns a list $entity contains updated experiment information, $response contains the entire http response
+For PFS version 5.x.x the output is generate as list(entity = httr::content(response)$response$data, response = response)
+For PFS version 6.x.x the output is generate as list(entity = httr::content(response), response = response)
 }
 \description{
 \code{experimentPublish} - Publishes an experiment.
@@ -35,4 +37,6 @@ logOut(login$coreApi)
 }
 \author{
 Craig Parman ngsAnalytics, ngsanalytics.com
+
+Natasha Mora, natasha.mora@thermofisher.com
 }
