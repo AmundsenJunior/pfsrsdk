@@ -2,11 +2,22 @@
 #'
 #' \code{odataCleanName} Clean a name for ODATA.
 #' @param name  string to clean
+#' @param refType Reference to the type of object being passed. 
 #' @export
+#' @section Handling \code{refType} parameter
+#' As of now the \code{refType} parameter defaults to the Value of "odataObject"
+#' This will ensure that the leading underscode is placed in front of numbers
+#' at the beginning of the odata string to comply with Odata Standards. However,
+#' This function can be used for other objects as well to replace spaces and 
+#' hyphens with underscores. 
+#' 
 #' @return Returns name in ODATA compliant form
 #' @examples
 #' \dontrun{
 #' new_name <- odataCleanName("384 Well Plate")
+#' >_384_Well_Plate
+#' new_name <- odataCleanName("384 Well Plate","tenant")
+#' >384_Well_Plate
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Adam Wheeler adam.j.wheeler@accenture.com
@@ -15,14 +26,11 @@
 
 
 
-odataCleanName <- function(name) {
-  name <- gsub("(^[1-9])", "_\\1", name)
+odataCleanName <- function(name,refType = "odataObject") {
+  if (refType == "odataObject") name <- gsub("(^[1-9])", "_\\1", name)
 
-  name <- gsub(" ", "_", name)
-
-  name <- gsub("-", "_", name)
-
-  name
+  name <- gsub(" |-", "_", name)
+  
 }
 
 

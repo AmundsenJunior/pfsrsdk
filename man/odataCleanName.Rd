@@ -4,10 +4,12 @@
 \alias{odataCleanName}
 \title{odataCleanName - converts names to ODATA compliant version. Used to clean names in ODATA calls.}
 \usage{
-odataCleanName(name)
+odataCleanName(name, refType = "odataObject")
 }
 \arguments{
 \item{name}{string to clean}
+
+\item{refType}{Reference to the type of object being passed. Defaults to odataObject passing another value will prevent the leading underscores from being added to numbers}
 }
 \value{
 Returns name in ODATA compliant form
@@ -21,6 +23,9 @@ Returns name in ODATA compliant form
 \examples{
 \dontrun{
 new_name <- odataCleanName("384 Well Plate")
+>_384_Well_Plate
+new_name <- odataCleanName("384 Well Plate","tenent")
+>384_Well_Plate
 }
 }
 \author{

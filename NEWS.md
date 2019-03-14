@@ -1,3 +1,13 @@
+# pfsrsdk 1.0.1
+
+## Bug Fixes
+* Fixed issue where 401 error was thrown when using apiGet() and verbose set to true.
+* Fixed issue where the checking to see if pfs version has been tested with this package.
+* Fixed issue where odataClean() name added an underscore to the tenant alias name. (new parameter added for odataCleanname())
+* Added sinking to setup.R to clarify outputs
+* Added test for more than 100 results
+* Added XML2 as an import since we use the httr:content() with an xml mime type. httr only has these listed as suggest in the description.
+
 # pfsrsdk 1.0.0
 
 PFSRSDK 1.0.0 is a major release that completely refactors the `CoreAPIV2`

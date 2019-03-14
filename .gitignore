@@ -7,6 +7,9 @@ inst/doc
 dev/*
 beer/*
 
+#test report files
+tests/testthat/*.Rout
+
 Test%205.2.postman_environment.json
 old_testthat/*
 tests/testthat/test_environment/*
