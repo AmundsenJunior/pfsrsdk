@@ -35,9 +35,9 @@ buildUrl <-
     if (coreApi$tenant == "PLATFORM ADMIN") {
       odat <- "/odata/"
     } else if (!is.null(coreApi$tenant) && is.null(coreApi$alias)) {
-      odat <- paste0("/", odataCleanName(coreApi$tenant,"tenant"), "/odata/")
+      odat <- paste0("/", odataCleanName(coreApi$tenant, "tenant"), "/odata/")
     } else if (!is.null(coreApi$alias)) {
-      odat <- paste0("/", odataCleanName(coreApi$alias,"alias"), "/odata/")
+      odat <- paste0("/", odataCleanName(coreApi$alias, "alias"), "/odata/")
     } else {
       odat <- "/odata/"
     }

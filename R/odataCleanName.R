@@ -4,7 +4,7 @@
 #' @param name  string to clean
 #' @param refType Reference to the type of object being passed. 
 #' @export
-#' @section Handling \code{refType} parameter
+#' @section Handling \code{refType} parameter:
 #' As of now the \code{refType} parameter defaults to the Value of "odataObject"
 #' This will ensure that the leading underscode is placed in front of numbers
 #' at the beginning of the odata string to comply with Odata Standards. However,

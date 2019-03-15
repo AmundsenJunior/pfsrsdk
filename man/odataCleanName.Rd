@@ -9,7 +9,7 @@ odataCleanName(name, refType = "odataObject")
 \arguments{
 \item{name}{string to clean}
 
-\item{refType}{Reference to the type of object being passed. Defaults to odataObject passing another value will prevent the leading underscores from being added to numbers}
+\item{refType}{Reference to the type of object being passed.}
 }
 \value{
 Returns name in ODATA compliant form
@@ -20,11 +20,20 @@ Returns name in ODATA compliant form
 \details{
 \code{odataCleanName} Clean a name for ODATA.
 }
+\section{Handling \code{refType} parameter}{
+
+As of now the \code{refType} parameter defaults to the Value of "odataObject"
+This will ensure that the leading underscode is placed in front of numbers
+at the beginning of the odata string to comply with Odata Standards. However,
+This function can be used for other objects as well to replace spaces and 
+hyphens with underscores.
+}
+
 \examples{
 \dontrun{
 new_name <- odataCleanName("384 Well Plate")
 >_384_Well_Plate
-new_name <- odataCleanName("384 Well Plate","tenent")
+new_name <- odataCleanName("384 Well Plate","tenant")
 >384_Well_Plate
 }
 }
