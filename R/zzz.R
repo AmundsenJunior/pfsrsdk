@@ -2,7 +2,7 @@
   op <- options()
   op.pack <- list(
     # please keep this list in order. highest to lowest
-    #pfs.testedVersions = c("3.0.4", "3.0.3", "2.8.1", "2.7.1"),
+    # pfs.testedVersions = c("3.0.4", "3.0.3", "2.8.1", "2.7.1"),
     pfs.testedVersions = packageDescription(pkgname)$PfsCompatibility,
     pfs.untestedVersionMessage = "The version of PFS you are connecting to
                                   has not been explicitly tested with this 

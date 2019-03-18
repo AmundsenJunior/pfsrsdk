@@ -6,7 +6,7 @@
 #' @param entityType entity type to get
 #' @param barcode barcode of entity to get
 #' @param projectBarcodes one or more project barcodes to associate to the entity
-#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http 
+#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http
 #' @return returns a list $entity contains entity information, $response contains the entire http response
 #' @export
 #' @examples

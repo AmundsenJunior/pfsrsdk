@@ -3,7 +3,7 @@
 #' \code{updateMetadata} g Updates cached metadata so metadata is up to date.
 #'
 #' @param coreApi coreApi object with valid jsessionid
-#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http 
+#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http
 #' @return returns XML with all entitiy metadata
 #' @export
 #' @examples

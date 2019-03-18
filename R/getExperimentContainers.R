@@ -4,7 +4,7 @@
 #' @param coreApi coreApi object with valid jsessionid
 #' @param experimentType experiment entity type to get
 #' @param experimentBarcode barcode of experiment to query
-#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http 
+#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http
 #' @return returns a list $entity contains barcodes of the containers, $response contains the entire http response
 #' @export
 #' @examples

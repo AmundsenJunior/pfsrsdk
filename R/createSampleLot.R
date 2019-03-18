@@ -12,7 +12,7 @@
 #' \dontrun{
 #' api <- coreAPI("PATH TO JSON FILE")
 #' login <- authBasic(api)
-#' lot <- createSampleLot(login$coreApi, sampleType, sampleBarcode,)
+#' lot <- createSampleLot(login$coreApi, sampleType, sampleBarcode, )
 #' logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
