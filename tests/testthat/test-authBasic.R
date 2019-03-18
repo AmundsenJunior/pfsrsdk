@@ -13,7 +13,6 @@ test_that(paste("test login parameters for environment and updating metadata", e
 
 test_that(paste("test Updating Metadata of:", env$auth), {
   metadata <- updateMetadata(con$coreApi, useVerbose = TRUE)
-  print(httr::http_status(metadata$response))
   expect_match(httr::http_status(metadata$response)$category, "Success")
 })
 

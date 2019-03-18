@@ -12,6 +12,28 @@ test_that(paste0("apiGET will return an entity on: ", env$auth), {
   expect_equal(res$response$status_code, 200)
 })
 
+test_that(paste0("apiGET will return an entity with more than 100 results on: ", env$auth), {
+  header <- c("Accept" = "application/json")
+  # not verbose and query
+  res <- apiGET(con$coreApi, resource = data$sampleType, query = "?$count=true", headers = header, useVerbose = FALSE)
+  expect_equal(res$response$status_code, 200)
+  expect_gt(length(res$content), 100)
+  # verbose and query
+  res <- apiGET(con$coreApi, resource = data$sampleType, query = "?$count=true", headers = header, useVerbose = TRUE)
+  expect_equal(res$response$status_code, 200)
+  expect_gt(length(res$content), 100)
+  # verbose and no query
+  res <- apiGET(con$coreApi, resource = data$sampleType, query = "", headers = header, useVerbose = TRUE)
+  expect_equal(res$response$status_code, 200)
+  expect_gt(length(res$content), 100)
+  # not verbose and no query
+  res <- apiGET(con$coreApi, resource = data$sampleType, query = "", headers = header, useVerbose = FALSE)
+  expect_equal(res$response$status_code, 200)
+  expect_gt(length(res$content), 100)
+})
+
+
+
 test_that(paste0("apiPOST will create an entity on: ", env$auth), {
   header <- c("Content-Type" = "application/json", "If-Match" = "*")
   res <<- apiPOST(con$coreApi, resource = data$persistentEntityType, body = "{}", encode = "raw", headers = header, useVerbose = verbose)

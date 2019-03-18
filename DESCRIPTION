@@ -1,7 +1,7 @@
 Package: pfsrsdk
 Type: Package
 Title: Functions for interacting with Platform for Science APIs
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: as.person(c(
     "Adam Wheeler <adam.j.wheeler@accenture.com> [aut]",
     "Craig Parman <info@ngsanalytics.com> [aut]",
@@ -23,7 +23,8 @@ Imports:
   stringi,
   stringr,
   utils, 
-  XML
+  XML,
+  xml2
 Suggests:
 RoxygenNote: 6.1.1
 VignetteBuilder: knitr

@@ -123,7 +123,7 @@ authBasic <- function(coreApi, useVerbose = FALSE) {
     warning(paste("SemVer variable in JSON connection string should be set to", coreApi$semVer))
   }
 
-  if (!any(coreApi$semVer %in% getOption("pfs.testedVersions"))) {
+  if (!any(coreApi$semVer %in% eval(parse(text = getOption("pfs.testedVersions"))))) {
     warning(getOption("pfs.untestedVersionMessage"))
     options("pfs.tested" = FALSE)
   } else {

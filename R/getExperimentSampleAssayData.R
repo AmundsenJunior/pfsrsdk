@@ -5,7 +5,7 @@
 #' @param coreApi coreApi object with valid jsessionid
 #' @param experimentAssayType assay type to get
 #' @param experimentSampleBarcode experiment sample barcode of entity to get
-#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http 
+#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http
 #' @return returns a list $entity contains entity information, $response contains the entire http response
 #' @export
 #' @examples

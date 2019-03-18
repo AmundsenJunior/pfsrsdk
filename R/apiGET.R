@@ -32,7 +32,6 @@ apiGET <-
              special = NULL,
              useVerbose = FALSE) {
     # clean the resource name for ODATA
-
     resource <- odataCleanName(resource)
 
     sdk_url <-
@@ -107,18 +106,20 @@ apiGET <-
       more_content <- TRUE # flag for more chunks
       content <- httr::content(response)$value
 
-      # parallel this to get all the content at once.
+
       while (more_content) {
         # build url for next chunk
         sdk_url <- httr::content(response)$`@odata.nextLink`
         # get next data chunk
 
-        #
         if (useVerbose) {
           response <-
             httr::with_verbose(
-              httr::GET(sdk_url, httr::add_headers(headers)),
-              httr::set_cookies(cookie)
+              httr::GET(
+                sdk_url,
+                httr::add_headers(headers),
+                httr::set_cookies(cookie)
+              )
             )
         } else {
           response <- httr::GET(
