@@ -50,7 +50,7 @@ updateExperimentSampleData <-
 
 
 
-    body <- experimentAssayUpdateAttrList # needs to be unboxed
+    body <- jsonlite::unbox(experimentAssayUpdateAttrList)
 
     resource <- paste0(experimentAssayType, "_DATA")
     query <- paste0("('", experimentSampleBarcode, "')")

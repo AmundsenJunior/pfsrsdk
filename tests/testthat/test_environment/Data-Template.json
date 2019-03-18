@@ -33,6 +33,8 @@
   "persistentEntityBarcode": "ALC1",
   "experimentType": "",
   "experimentBarcode": "",
+  "experimentPublishBarcode": "",
+  "experimentPublishFailBarcode": "", 
   "experimentAssayType": "",
   "experimentAssayBarcode": "",
   "experimentAssayUpdateAttrList": [{}],

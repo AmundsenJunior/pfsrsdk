@@ -62,7 +62,7 @@ class RScriptInstallPackageTask extends com.umayrh.gradle.RScriptTask {
     
     @Input
     String description = "Install the package to local, via devtools"
-    String expression = "devtools::install(pkg = '${project.ext.packageFileDir}', build = FALSE)"
+    String expression = "devtools::install(pkg = '${project.ext.packageFileDir}', build = FALSE, upgrade = FALSE)"
     
     @InputFile
     File getBuildFile() { return this.buildFile; }

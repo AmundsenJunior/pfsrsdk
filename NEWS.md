@@ -1,3 +1,6 @@
+
+# pfsrsdk 1.0.1.9000
+
 # pfsrsdk 1.0.1
 
 ## Bug Fixes
@@ -7,6 +10,7 @@
 * Added sinking to setup.R to clarify outputs
 * Added test for more than 100 results
 * Added XML2 as an import since we use the httr:content() with an xml mime type. httr only has these listed as suggest in the description.
+>>>>>>> hotfix-1.0.1
 
 # pfsrsdk 1.0.0
 
