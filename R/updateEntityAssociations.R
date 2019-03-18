@@ -6,7 +6,7 @@
 #' @param entityType entity type to get
 #' @param barcode barcode of entity to get
 #' @param updateValues values to update as list of associations contex and entity type pair and barcode
-#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http 
+#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http
 #' @return returns a list $entity contains entity information, $response contains the entire http response
 #' @export
 #' @examples

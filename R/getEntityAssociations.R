@@ -7,7 +7,7 @@
 #' @param barcode barcode of entity to get
 #' @param associationContext association context
 #' @param fullMetadata - get full metadata
-#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http 
+#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http
 #' @return returns a list $entity contains entity associations, $response contains the entire http response
 #' @export
 #' @examples
