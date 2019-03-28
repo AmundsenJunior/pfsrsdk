@@ -49,6 +49,7 @@
   "persistentEntityBarcode": "ALC1",
   "experimentType": "BITTERNESS EXPERIMENT",
   "experimentBarcode": "BTXP1",
+  "experimentBarcodeUnpublishedExperiment": "BTXP5",
   "experimentPublishUnpublishBarcode": "BTXP7",
   "experimentAssayType": "BITTERNESS_ASSAY",
   "experimentAssayBarcode": "BTNA1",

@@ -12,7 +12,7 @@ createExperimentContainer(coreApi, experimentType, experimentBarcode,
 
 \item{experimentType}{experiment type to get as character string}
 
-\item{experimentBarcode}{experiment barcode}
+\item{experimentBarcode}{experiment barcode of an unpublished experiment}
 
 \item{containerBarcode}{barcode of container to add to experiment}
 
@@ -43,4 +43,6 @@ logOut(login$coreApi)
 }
 \author{
 Craig Parman ngsAnalytics, ngsanalytics.com
+
+Natasha Mora natasha.mora@thermofisher.com
 }

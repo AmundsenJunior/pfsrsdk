@@ -3,7 +3,7 @@
 #' \code{createExperimentContainer} Creates a new experiment container by adding an exiting container to an experiment.
 #' @param coreApi coreApi object with valid jsessionid
 #' @param experimentType experiment type to get as character string
-#' @param experimentBarcode experiment barcode
+#' @param experimentBarcode experiment barcode of an unpublished experiment
 #' @param containerBarcode barcode of container to add to experiment
 #' @param body values for sample attributes as a  list of key-values pairs (not user in this json version)
 #' @param useVerbose Use verbose communication for debugging
@@ -20,6 +20,7 @@
 #' logOut(login$coreApi)
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description \code{createExperimentContainer}Creates a new experiment container by adding an exiting container
 #' to an experiment.
 
