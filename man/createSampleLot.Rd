@@ -5,7 +5,7 @@
 \title{createSampleLot - Creates a lot of a sample.}
 \usage{
 createSampleLot(coreApi, sampleType, sampleBarcode, body = NULL,
-  useVerbose = FALSE)
+  fullMetadata = TRUE, useVerbose = FALSE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -15,6 +15,8 @@ createSampleLot(coreApi, sampleType, sampleBarcode, body = NULL,
 \item{sampleBarcode}{parent sample barcode}
 
 \item{body}{attributes as list of key-values pairs (optional)}
+
+\item{fullMetadata}{get full metadata, default is FALSE}
 
 \item{useVerbose}{Use verbose communication for debugging}
 }

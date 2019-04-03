@@ -5,7 +5,8 @@
 \title{createExperimentContainer- Creates a new experiment container by adding an exiting container to an experiment.}
 \usage{
 createExperimentContainer(coreApi, experimentType, experimentBarcode,
-  containerBarcode, body = NULL, useVerbose = FALSE)
+  containerBarcode, body = NULL, fullMetadata = FALSE,
+  useVerbose = FALSE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -18,17 +19,19 @@ createExperimentContainer(coreApi, experimentType, experimentBarcode,
 
 \item{body}{values for sample attributes as a  list of key-values pairs (not user in this json version)}
 
+\item{fullMetadata}{get full metadata, default is FALSE}
+
 \item{useVerbose}{Use verbose communication for debugging}
 }
 \value{
 RETURN returns a list $entity contains entity information, $response contains the entire http response
 }
 \description{
-\code{createExperimentContainer}Creates a new experiment container by adding an exiting container
+\code{createExperimentContainer}Creates a new experiment container by adding an existing container
 to an experiment.
 }
 \details{
-\code{createExperimentContainer} Creates a new experiment container by adding an exiting container to an experiment.
+\code{createExperimentContainer} Creates a new experiment container by adding an existing container to an experiment.
 }
 \examples{
 \dontrun{

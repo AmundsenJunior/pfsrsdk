@@ -4,7 +4,7 @@
 \alias{getEntityByBarcode}
 \title{getEntityByBarcode - Get an entity by barcode from the Core LIMS using the ODATA API.}
 \usage{
-getEntityByBarcode(coreApi, entityType, barcode, fullMetadata = TRUE,
+getEntityByBarcode(coreApi, entityType, barcode, fullMetadata = FALSE,
   useVerbose = FALSE)
 }
 \arguments{
@@ -14,7 +14,7 @@ getEntityByBarcode(coreApi, entityType, barcode, fullMetadata = TRUE,
 
 \item{barcode}{barcode of entity to get}
 
-\item{fullMetadata}{- get full metadata, default is TRUE}
+\item{fullMetadata}{- get full metadata, default is FALSE}
 
 \item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http}
 }
@@ -39,4 +39,6 @@ logOut(login$coreApi)
 Craig Parman info@ngsanalytics.com
 
 Adam Wheeler adam.wheeler@thermofisher.com
+
+Natasha Mora natasha.mora@thermofisher.com
 }

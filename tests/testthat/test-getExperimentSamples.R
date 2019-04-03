@@ -5,14 +5,17 @@
 context("Tests for getExperimentSamples")
 
 test_that(paste("test getExperimentSamples() on:", env$auth), {
-  result <- getExperimentSamples(con$coreApi, data$experimentType, data$experimentBarcode, useVerbose = verbose)
+  result <- getExperimentSamples(con$coreApi, data$experimentType, data$experimentBarcode, fullMetadata = TRUE, useVerbose = verbose)
 
   expect_equal(result$response$response$status_code, 200)
 
-  expansion <- switch(EXPR = substr(con$coreApi$semVer, 1, 1),
-    "2" = "REV_EXPERIMENT_EXPERIMENT_SAMPLE",
-    "3" = "EXPERIMENT_SAMPLES",
-    print("EXPERIMENT_SAMPLES")
+  case(
+    grepl("[0-2]+\\.[0-9]+\\.[0-9]+", con$coreApi$semVer) ~ {
+      expansion <- "REV_EXPERIMENT_EXPERIMENT_SAMPLE"
+    },
+    grepl("[3-9]+\\.[0-9]+\\.[0-9]+", con$coreApi$semVer) ~ {
+      expansion <- "EXPERIMENT_SAMPLES"
+    }
   )
 
   expect_gt(
@@ -24,4 +27,6 @@ test_that(paste("test getExperimentSamples() on:", env$auth), {
       )
     ), 0
   )
+
+  expect_true(!is.null(result$response$content[[expansion]][[1]]$`Id@odata.type`))
 })

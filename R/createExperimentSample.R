@@ -6,6 +6,7 @@
 #' @param experimentBarcode experiment barcode
 #' @param sampleLotBarcode barcode of sample to add to experiment
 #' @param body values for sample attributes as a  list of key-values pairs
+#' @param fullMetadata get full metadata, default is FALSE
 #' @param useVerbose Use verbose communication for debugging
 #' @export
 #' @return RETURN returns a list $entity contains entity information, $response contains the entire http response
@@ -23,7 +24,8 @@
 #' logOut(login$coreApi)
 #' }
 #' @author Craig Parman info@ngsanalytics.com
-#' @description \code{createExperimentSample} Creates a new experiment sample fomr a sample lot.
+#' @author Natasha Mora natasha.mora@thermofisher.com
+#' @description \code{createExperimentSample} Creates a new experiment sample from a sample lot.
 
 createExperimentSample <-
   function(coreApi,
@@ -31,6 +33,7 @@ createExperimentSample <-
              experimentBarcode,
              sampleLotBarcode,
              body = NULL,
+             fullMetadata = FALSE,
              useVerbose = FALSE) {
     # clean the names for ODATA
 
@@ -47,10 +50,11 @@ createExperimentSample <-
     fullBody <-
       jsonlite::toJSON(c(body, exptRef, entityRef), auto_unbox = TRUE)
 
-
-
-    headers <-
-      c("Content-Type" = "application/json;odata.metadata=full")
+    if (fullMetadata) {
+      headers <- c("Content-Type" = "application/json", "Accept" = "application/json;odata.metadata=full")
+    } else {
+      headers <- c("Content-Type" = "application/json", "Accept" = "application/json")
+    }
 
     response <-
       apiPOST(

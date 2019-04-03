@@ -4,7 +4,7 @@
 #' @param coreApi coreApi object with valid jsessionid
 #' @param containerBarcode Experiment container barcode
 #' @param containerType Experiment container entity type
-#' @param fullMetadata Boolean on whether to return full metadata
+#' @param fullMetadata - Get full metadata, default is FALSE
 #' @param useVerbose  Boolean on whether to use verbose communication for debugging
 #' @export
 #' @return RETURN returns a list $entity contains cell information, $response contains the entire http response
@@ -22,16 +22,19 @@ getExperimentContainerContents <-
   function(coreApi,
              containerBarcode,
              containerType = "EXPERIMENT_CONTAINER",
-             fullMetadata = TRUE,
+             fullMetadata = FALSE,
              useVerbose = FALSE) {
 
     # clean the name for ODATA
     resource <- odataCleanName(containerType)
 
-    expansion <- switch(EXPR = substr(coreApi$semVer, 1, 1),
-      "2" = "?$expand=REV_IMPL_CONTAINER_CELL($expand=CONTENT($expand=IMPL_SAMPLE_LOT))",
-      "3" = "?$expand=CELLS($expand=CELL_CONTENTS($expand=SAMPLE_LOT))",
-      print("?$expand=CELLS($expand=CELL_CONTENTS($expand=SAMPLE_LOT))")
+    case(
+      grepl("[0-2]+\\.[0-9]+\\.[0-9]+", coreApi$semVer) ~ {
+        expansion <- "?$expand=REV_IMPL_CONTAINER_CELL($expand=CONTENT($expand=IMPL_SAMPLE_LOT))"
+      },
+      grepl("[3-9]+\\.[0-9]+\\.[0-9]+", coreApi$semVer) ~ {
+        expansion <- "?$expand=CELLS($expand=CELL_CONTENTS($expand=SAMPLE_LOT))"
+      }
     )
 
     query <-

@@ -31,7 +31,7 @@ logOut <- function(coreApi, useVerbose = FALSE) {
     )
 
   headers <-
-    c("Content-Type" = "application/json;odata.metadata=full", accept = "application/json")
+    c("Content-Type" = "application/json", accept = "application/json")
 
   response <-
     apiPOST(

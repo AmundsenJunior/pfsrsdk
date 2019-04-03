@@ -5,12 +5,14 @@
 \title{getExperimentSamplesRawData - Gets raw data for an experiment container.}
 \usage{
 getExperimentSamplesRawData(coreApi, experimentContainerBarcode,
-  useVerbose = FALSE)
+  fullMetadata = FALSE, useVerbose = FALSE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
 
 \item{experimentContainerBarcode}{experiment sample container of entity to get}
+
+\item{fullMetadata}{- get full metadata, default is FALSE}
 
 \item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http call}
 }
@@ -19,7 +21,7 @@ returns a list $entity contains data frame with derived experiment sample barcod
         and assay raw data. $response contains the entire http response
 }
 \description{
-\code{ getExperimentSamplesRawData }   Gets raw data for a experiment container identified by barcode.
+\code{ getExperimentSamplesRawData }   Gets raw data for an experiment container identified by barcode.
 }
 \details{
 \code{getExperimentSamplesRawData }  Gets raw data for a experiment container identified by barcode.

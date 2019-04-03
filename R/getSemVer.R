@@ -17,7 +17,7 @@
 
 getSemVer <- function(coreApi) {
   resource <- odataCleanName("LIMS('LM1')/CORE_VERSION_NUMBER")
-  header <- c("Content-Type" = "application/json;odata.metadata=full", Accept = "application/json")
+  header <- c("Content-Type" = "application/json", Accept = "application/json")
   response <- apiGET(
     coreApi = coreApi,
     resource = resource,

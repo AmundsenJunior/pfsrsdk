@@ -8,6 +8,7 @@
   configuration values to `api_username` and `api_password` to ensure
   compatibility with the [prohibited environment variables](https://docs.rstudio.com/connect/admin/appendix-configuration.html#Applications.Settings)
   of RStudio-Connect.
+* Added parameter fullMetadata to getEntityLocation, getEntityProject, getExperimentSampleAssayData, getExperimentSamplesRawData. This changes the order of verbose parameter.
 
 ## New functions and major changes
 
@@ -17,6 +18,8 @@
   in the PFS OData API.
 * Removed `# Completed regression for 5.3.8 and 6.0.1` message from tests.  
 * Added author and updated author e-mails.
+* Replaced switch() with case().
+* Changed default fullMetadata value.
 
 # pfsrsdk 1.0.1
 

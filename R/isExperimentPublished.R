@@ -28,7 +28,7 @@ isExperimentPublished <-
     resource <-
       paste0(odataCleanName(experimentType), "('", experimentBarcode, "')", "/PUBLISHED")
 
-    headers <- c("Accept" = "application/json;odata.metadata=minimal")
+    headers <- c("Accept" = "application/json")
 
     response <-
       apiGET(

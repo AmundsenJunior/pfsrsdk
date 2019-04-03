@@ -5,6 +5,7 @@
 #' @param sampleType sample type to create the lot of
 #' @param sampleBarcode parent sample barcode
 #' @param body attributes as list of key-values pairs (optional)
+#' @param fullMetadata get full metadata, default is FALSE
 #' @param useVerbose Use verbose communication for debugging
 #' @export
 #' @return RETURN returns a list $entity contains entity information, $response contains the entire http response
@@ -29,6 +30,7 @@ createSampleLot <-
              sampleType,
              sampleBarcode,
              body = NULL,
+             fullMetadata = TRUE,
              useVerbose = FALSE) {
     # clean the name for ODATA
 
@@ -36,10 +38,13 @@ createSampleLot <-
 
     lotName <- paste0(sampleType, "_LOT")
 
-    dataBind <- switch(EXPR = substr(coreApi$semVer, 1, 1),
-      "2" = "IMPL_LOT_SAMPLE@odata.bind",
-      "3" = "SAMPLE@odata.bind",
-      print("SAMPLE@odata.bind")
+    case(
+      grepl("[0-2]+\\.[0-9]+\\.[0-9]+", coreApi$semVer) ~ {
+        dataBind <- "IMPL_LOT_SAMPLE@odata.bind"
+      },
+      grepl("[3-9]+\\.[0-9]+\\.[0-9]+", coreApi$semVer) ~ {
+        dataBind <- "SAMPLE@odata.bind"
+      }
     )
 
     switch(EXPR = coreApi$semVer,
@@ -54,8 +59,11 @@ createSampleLot <-
 
     fullBody <- jsonlite::toJSON(c(body, lotRef), auto_unbox = TRUE)
 
-    headers <-
-      c("Content-Type" = "application/json;odata.metadata=full", accept = "application/json")
+    if (fullMetadata) {
+      headers <- c("Content-Type" = "application/json", "Accept" = "application/json;odata.metadata=full")
+    } else {
+      headers <- c("Content-Type" = "application/json", "Accept" = "application/json")
+    }
 
     response <-
       apiPOST(

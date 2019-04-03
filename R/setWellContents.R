@@ -110,7 +110,7 @@ setWellContents <-
 
 
     header <-
-      c("Content-Type" = "application/json;metadata=minimal", Accept = "application/json")
+      c("Content-Type" = "application/json", Accept = "application/json")
 
     response <-
       apiPOST(

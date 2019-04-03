@@ -1,5 +1,6 @@
 #' @author Adam Wheeler adam.wheeler@thermofisher.com
 #' @author Scott Russell scott.russell@thermofisher.com
+#' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description Tests for entity creation.
 #'
 context("Tests for createEntity")
@@ -15,11 +16,12 @@ test_that(paste("test createEntity() for POCO with Boolean attributes on:", env$
     body[[paste0(name, "@odata.bind")]] <- data$testPocoCreateBoolAssocList[[name]]
   }
 
-  return <- createEntity(coreApi = con$coreApi, entityType = data$testPocoCreateBoolType, body = body, useVerbose = TRUE)
+  return <- createEntity(coreApi = con$coreApi, entityType = data$testPocoCreateBoolType, body = body, fullMetadata = TRUE, useVerbose = TRUE)
   expect_equal(httr::status_code(return$response), 201)
+  expect_true(!is.null(return$entity$`Id@odata.type`))
 
   barcode <- return$entity$Barcode
-  b <- getEntityByBarcode(con$coreApi, data$testPocoCreateBoolType, barcode, useVerbose = verbose)$entity
+  b <- getEntityByBarcode(con$coreApi, data$testPocoCreateBoolType, barcode, fullMetadata = FALSE, useVerbose = verbose)$entity
   expect_equal(b[[names(data$testPocoCreateBoolAttrList[1])]], data$testPocoCreateBoolAttrList[[1]], all = verbose)
 })
 
@@ -34,11 +36,12 @@ test_that(paste("test createEntity() for POCO with Decimal attributes on:", env$
     body[[paste0(name, "@odata.bind")]] <- data$testPocoCreateDecAssocList[[name]]
   }
 
-  return <- createEntity(coreApi = con$coreApi, entityType = data$testPocoCreateDecType, body = body, useVerbose = TRUE)
+  return <- createEntity(coreApi = con$coreApi, entityType = data$testPocoCreateDecType, body = body, fullMetadata = TRUE, useVerbose = TRUE)
   expect_equal(httr::status_code(return$response), 201)
+  expect_true(!is.null(return$entity$`Id@odata.type`))
 
   barcode <- return$entity$Barcode
-  b <- getEntityByBarcode(con$coreApi, data$testPocoCreateDecType, barcode, useVerbose = verbose)$entity
+  b <- getEntityByBarcode(con$coreApi, data$testPocoCreateDecType, barcode, fullMetadata = FALSE, useVerbose = verbose)$entity
   expect_equal(b[[names(data$testPocoCreateDecAttrList[1])]], data$testPocoCreateDecAttrList[[1]], all = verbose)
 })
 
@@ -53,11 +56,12 @@ test_that(paste("test createEntity() for POCO with Integer attributes on:", env$
     body[[paste0(name, "@odata.bind")]] <- data$testPocoCreateIntAssocList[[name]]
   }
 
-  return <- createEntity(coreApi = con$coreApi, entityType = data$testPocoCreateIntType, body = body, useVerbose = TRUE)
+  return <- createEntity(coreApi = con$coreApi, entityType = data$testPocoCreateIntType, body = body, fullMetadata = TRUE, useVerbose = TRUE)
   expect_equal(httr::status_code(return$response), 201)
+  expect_true(!is.null(return$entity$`Id@odata.type`))
 
   barcode <- return$entity$Barcode
-  b <- getEntityByBarcode(con$coreApi, data$testPocoCreateIntType, barcode, useVerbose = verbose)$entity
+  b <- getEntityByBarcode(con$coreApi, data$testPocoCreateIntType, barcode, fullMetadata = FALSE, useVerbose = verbose)$entity
   expect_equal(b[[names(data$testPocoCreateIntAttrList[1])]], data$testPocoCreateIntAttrList[[1]], all = verbose)
 })
 
@@ -72,10 +76,11 @@ test_that(paste("test createEntity() for POCO with String attributes on:", env$a
     body[[paste0(name, "@odata.bind")]] <- data$testPocoCreateStrAssocList[[name]]
   }
 
-  return <- createEntity(coreApi = con$coreApi, entityType = data$testPocoCreateStrType, body = body, useVerbose = TRUE)
+  return <- createEntity(coreApi = con$coreApi, entityType = data$testPocoCreateStrType, body = body, fullMetadata = TRUE, useVerbose = TRUE)
   expect_equal(httr::status_code(return$response), 201)
+  expect_true(!is.null(return$entity$`Id@odata.type`))
 
   barcode <- return$entity$Barcode
-  b <- getEntityByBarcode(con$coreApi, data$testPocoCreateStrType, barcode, useVerbose = verbose)$entity
+  b <- getEntityByBarcode(con$coreApi, data$testPocoCreateStrType, barcode, fullMetadata = FALSE, useVerbose = verbose)$entity
   expect_equal(b[[names(data$testPocoCreateStrAttrList[1])]], data$testPocoCreateStrAttrList[[1]], all = verbose)
 })
