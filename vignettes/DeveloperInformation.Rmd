@@ -1,0 +1,314 @@
+---
+title: "Developer Information"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE)
+```
+
+## Managing Package Dependencies
+
+### Development Dependencies
+
+When working on the package, development tasks - such as building, documenting,
+or testing - require other packages to execute. These packages are available in
+the `packrat` environment (see below). Any new development dependencies should
+be installed in the packrat environment and a new snapshot taken. Please update
+the below list with any additional development dependencies:
+
+* `devtools`
+* `knitr`
+* `lintr`
+* `pkgdown`
+* `rmarkdown`
+* `shiny`
+* `styler`
+* `testthat`
+* `testthis`
+
+### Packrat
+
+The [`packrat` package](https://github.com/rstudio/packrat) manages all R
+package dependencies that this project uses. `packrat` provides a local
+repository of packages, based upon a sweep of all `R/` code for any `library()`
+or `required()` calls. It stores versioned TARs of those packages, retrieved
+from CRAN or other defined repositories in the `packrat/src/` directory, along
+with a `packrat.lock` file that specifies the packages and their versions.
+
+#### External Dependencies
+
+To improve the operational speed of Packrat tasks, especially in our CI 
+processes, some of these necessary development dependencies are not included in
+the Packrat library. They are referenced in the Packrat configuration file,
+`packrat/packrat.opts`, as `external.packages`. As a developer of the `pfsrsdk`
+package, please ensure that the following packages are installed in your system
+library:
+
+* `devtools`
+* `knitr`
+* `pkgdown`
+* `shiny`
+* `testthat`
+* `testthis`
+
+#### `packrat::init()`
+
+These files are generated on a new project by calling:
+```r
+install.packages("packrat")
+packrat::init()
+```
+and are part of source control. Git ignores all installed instances of packages
+in the `packrat/lib*/` directories.
+
+#### `packrat::restore()`
+
+In a new clone of this project, initialize your environment into the `packrat` 
+repository by calling:
+```r
+packrat::restore()
+```
+This will put all calls to dependencies in your source files towards the
+`packrat` context.
+
+#### `packrat::snapshot()`
+
+If you are adding any new package dependencies to the project, you can install
+them with regular install commands (e.g. `install.packages()` or
+`devtools::install_github()`). To record this update to the package
+dependencies, call
+```r
+packrat::snapshot()
+```
+in order to have `packrat` update the `packrat.lock` file.
+
+### `Rprofile`
+
+Any R developer has an `.Rprofile` file, usually located in their home directory
+(e.g., `~/.Rprofile`). That file maintains its own list of CRAN and CRAN-like
+package repositories from which to source libraries. In addition to the main
+CRAN and CRAN Extra repositories, a private Nexus repository has been added,
+from which both internal and external packages can be pulled (`pfsrsdk` is one
+such internal package).
+
+To configure your environment to use the Nexus repository, create environment
+variables for `ARTIFACT_REGISTRY_USER` and `ARTIFACT_REGISTRY_PASSWORD` that
+the below example of your `~/.Rprofile` file can use to authenticate. Request
+credentials from the DSBU DevOps team.
+
+```
+local({
+  r <- getOption("repos")
+  r["Nexus"] <- paste0("https://", Sys.getenv("ARTIFACT_REGISTRY_USER"), ":", Sys.getenv("ARTIFACT_REGISTRY_PASSWORD"), "@nexus.managed.coredev.cloud/repository/datascience-r-group")
+  r["CRAN"] <- "https://cran.rstudio.com/"
+  r["CRANextra"] <- "http://www.stats.ox.ac.uk/pub/RWin"
+  options(repos = r)
+})
+```
+
+## Testing the Package
+
+### Test Configuration
+
+The `pfsrsdk` package tests are written to use a configurable set of values for
+evaluating the SDK calls against a user's development or automated test
+environment. This configuration is made in `tests/testthat/test_environment`,
+on a corresponding set of `Auth-X.Y.Z.json` and `Data-X.Y.Z.json` files. Setting
+values in the `Data-X.Y.Z.json` files that match data present in a user's
+development or test environment enable the tests to execute successfully,
+regardless of environment or available data.
+
+### Running Individual Tests
+
+The testing suite uses `setup.R` and `teardown.R` for pre- and post-test
+actions, so invoking such helpers is only available from the
+`testthat::test_dir()` or `testthat::test_package()` functions. To test an
+individual file, execute using a filter for that test file name:
+```r
+testthat::test_dir("tests/testthat", filter = "updateEntityLocation")
+```
+
+## Building the Package
+
+The [`devtools` package](https://github.com/r-lib/devtools) provides crucial
+package creation functionality, as it is used to build and install this package
+from source.
+
+### `devtools::build()`
+
+More useful for publishing, a built TAR of the package is generated with
+`devtools::build()`. By default, this is executed from the project root
+directory, and creates the file in the parent directory (i.e., the directory
+that contains the project). In practice, it is useful to generate the built
+package in a specified directory, such as:
+```r
+devtools::build(path = "someDir")
+```
+
+### `devtools::install()`
+
+When working with the package in a local environment, it is useful to make the
+package available as-is to other development projects. This is achieved by
+installing the package from source into your R environment.
+```r
+devtools::install()
+```
+
+## Documentation
+
+This package currently creates two forms of documentation:
+
+### `man/`
+
+We use a call to `devtools::document()` (which wraps the 
+[`roxygen2`package](https://github.com/klutometis/roxygen)) to generate the 
+`man/*.Rd` files. The `*.Rd` files are generated from the formatted comments,
+part of all `*.R` source code. These files are under source-control, so it
+should be a part of your pre-commit development workflow to run
+`devtools::document()` and commit any updates to the `man/` directory, with
+their corresponding `R/` changes.
+
+### `pkgdown`
+
+We also can generate a static HTML documentation site, using the
+[`pkgdown` package](https://github.com/r-lib/pkgdown). This package builds the
+HTML, CSS, and JS files from the various package documentation sources: `man/`,
+`vignettes/`, `DESCRIPTION`, `README.md`, and `NEWS.md`. The site is created by
+calling:
+```r
+install.packages("pkgdown")
+pkgdown::build_site()
+```
+This function generates a `docs/` directory, which can then be published and 
+hosted for end-users.
+
+## Code Style
+
+We maintain a consistent style of R code with the following two packages:
+
+### `lintr`
+
+Use the [`lintr` package](https://github.com/jimhester/lintr) to receive syntax 
+and static code analysis feedback on R code.
+
+Install the package and use on one file:
+```r
+install.packages("lintr")
+lintr::lint("R/authBasic.R")
+```
+This will bring up a list of linting messages in the RStudio "Markers" pane.
+
+You can also lint the whole package at once, and/or filter for higher priority
+`warning` messages:
+```r
+lintr::lint_package("R/")
+warnings()
+```
+
+### `styler`
+
+Use the [`styler` package](https://github.com/r-lib/styler) to auto-apply a 
+standard code style to R and Rmd code.
+
+Install the package and use on one file:
+```r
+install.packages("styler")
+styler::style_file("R/authBasic.R")
+```
+The output will show if your code style has been modified by the tool.
+
+You can also apply style to directories or the whole package:
+```r
+styler::style_dir("R/")
+styler::style_pkg()
+```
+
+## Continuous Integration
+
+Outside of local development, the package must be exercised as part of our SDLC
+process. As part of the integration with other software products, we extend upon
+those common tools used elsewhere to enable R package creation and validation
+as easily as possible.
+
+### Jenkins
+
+#### System Dependencies
+
+The CI process runs on Jenkins _agent_ Docker containers. These containers are
+Debian-based, and have a specific version of R installed (see the
+[`jenkins-agent`](https://bitbucket.org/corelims/jenkins-agent) repo for more
+details).
+
+Included in that Docker image are a number of system dependencies specifically
+needed to build and publish this package.
+
+R Package|Debian Dependency
+---|---
+`XML`|`libxml2-dev`
+`curl`|`libcurl4-gnutls-dev`
+`git2r`|`libgit2-dev`<br>`libssl-dev`
+`pkgdown`|`pandoc`
+
+### Gradle
+
+#### `gradle-plugin-r`
+
+Gradle is used to wrap a number of common R-package and software-development
+tasks in Groovy-defined tasks and plugins. For this project, we use and extend
+upon the [`gradle-plugin-r` project](https://github.com/umayrh/gradle-plugin-r)
+to execute some of the above-described R commands in a Gradle context. That
+context affords us other functionality, such as creating publishing artifacts.
+
+Between the plugin and the `gradle/r-package.gradle` file extensions on that
+plugin, we are able to execute the following R command with corresponding
+Gradle tasks:
+
+R Command|Gradle Task
+---|---
+`devtools::document()`|`./gradlew document`
+`packrat::clean()`|`./gradlew packratClean`
+`packrat::restore()`|`./gradlew packratRestore`
+`devtools::build(path = "build/package")`|`./gradlew buildPackage`
+`devtools::install(pkg = "build/package")`|`.gradlew installPackage`
+`devtools::test(reporter = JunitReporter)`|`./gradlew testPackage`
+`pkgdown::build_site(override = list(destination = "build/docs"))`|`./gradlew pkgdownSite`
+
+#### Artifact publishing
+
+Gradle has also been extended to parse the `DESCRIPTION` file for the package
+name ("Package") and the package version ("Version"). These values are then used
+to generate a ZIP file of the `pkgdown`-generated documentation static HTML
+site. This ZIP is generated by calling:
+```
+./gradlew docsDistZip
+```
+
+The documentation ZIP and the package TAR files are then published to the
+Digital Science Business Unit's [Nexus repository server](https://nexus.managed.coredev.cloud),
+via Gradle:
+```
+./gradlew publish
+```
+
+#### Docker
+
+Using the Gradle [`docker-plugin`](https://bitbucket.org/corelims/docker-plugin)
+we are also able to generate Docker images of the installed package with a basic
+Shiny app (from [inst/shiny](inst/shiny)) and of the `pkgdown` documentation
+site. These two images are built on top of the 
+[`rocker/tidyverse`](https://hub.docker.com/r/rocker/tidyverse/) and 
+[`nginx`](https://hub.docker.com/_/nginx/) public images, respectively. The
+images can be generated on a system with Docker installed by calling:
+```
+./gradlew buildPfsRSdkShinyImage
+./gradlew buildPfsRSdkDocsImage
+```
+
+Both of these images can be run as webapps:
+```
+docker run -d -p 8080:80 quay.coredev.cloud/core-informatics/pfsrsdk-docs:latest
+docker run -d -p 3838:3838 quay.coredev.cloud/core-informatics/pfsrsdk-shiny:latest
+```

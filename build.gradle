@@ -1,5 +1,5 @@
 /**
- * Thermo Fisher Scientific, Platform for Science, Build for R OData SDK package.
+ * Thermo Fisher Scientific, Platform for Science, Build for PFS R SDK package.
  */
 
 buildscript {

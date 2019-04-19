@@ -1,5 +1,5 @@
 ---
-title: "Package Build, Enviroment, and Dependencies Information"
+title: "Package Information"
 output:
   html_document: default
   pdf_document: default

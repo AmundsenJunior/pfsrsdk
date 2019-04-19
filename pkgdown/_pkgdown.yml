@@ -1,0 +1,49 @@
+template:
+  params:
+    bootswatch: united
+reference:
+  - title: Access Functions
+    contents:
+      - authBasic
+      - coreAPI
+      - logOut
+  - title: Experiment Functions
+    contents:
+      - starts_with("createExperiment")
+      - starts_with("experiment")
+      - starts_with("getExperiment")
+      - starts_with("isExperiment")
+      - starts_with("setExperiment")
+      - starts_with("updateExperiment")
+  - title: File Functions
+    contents:
+      - attachFile
+      - getAttachedAttributeFile
+  - title: HTTP Functions
+    contents:
+      - starts_with("api")
+  - title: POCO Functions
+    contents:
+      - createEntity
+      - starts_with("getEntity")
+      - starts_with("updateEntity")
+  - title: Sample & Container Functions
+    contents:
+      - createSampleLot
+      - getCellContents
+      - starts_with("getContainer")
+      - getWellContents
+      - setCellContents
+      - setWellContents
+  - title: Utility & Other Functions
+    contents:
+      - attributeCleanName
+      - buildUrl
+      - case
+      - getSemVer
+      - loadXmlConfigFile
+      - odataCleanName
+      - updateMetadata
+  - title: Deprecated Functions
+    contents:
+      - pfsrsdk-deprecated

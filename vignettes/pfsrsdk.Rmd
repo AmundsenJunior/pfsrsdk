@@ -1,7 +1,15 @@
-# pfsrsdk 
-<img src="man/figures/pfsrsdk.png" align="right" alt="" width="120" />
+---
+title: "Introduction to pfsrsdk"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to pfsrsdk}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
 
-*R package to interact with the Thermo Fisher Scientific Platform for Science APIs* 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE)
+```
 
 ## Installation
 

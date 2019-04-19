@@ -37,7 +37,6 @@ odataCleanName <- function(name,refType = "odataObject") {
 #' ODATAcleanName - converts names to ODATA compliant version. Used to clean names in ODATA calls.
 #'
 #' \code{ODATAcleanName} Clean a name for ODATA.
-#' @title ODATA clean Name
 #' @param name  string to clean
 #' @return Returns name in ODATA compliant form
 #' @examples

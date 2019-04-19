@@ -43,10 +43,6 @@ pipeline {
                         RELEASE_NAME = stringScrub("${RELEASE_NAME.take(32)}-2-7-1")
                     }
                     
-                    when {
-                        expression { BRANCH_NAME ==~ RELEASE_BRANCHES }
-                    }
-                    
                     steps {
                         testGradleHelmPfs('pfs-legacy', 'testPackage', [chartVersion:TEST_VERSION, templateValues:['namespace': K8S_TEST_NAMESPACE]])
                     }
@@ -71,10 +67,6 @@ pipeline {
                         RELEASE_NAME = stringScrub("${RELEASE_NAME.take(32)}-3-0-3")
                     }
                     
-                    when {
-                        expression { BRANCH_NAME ==~ RELEASE_BRANCHES }
-                    }
-
                     steps {
                         testGradleHelmPfs('pfs-legacy', 'testPackage', [chartVersion:TEST_VERSION, templateValues:['namespace': K8S_TEST_NAMESPACE]])
                     }
