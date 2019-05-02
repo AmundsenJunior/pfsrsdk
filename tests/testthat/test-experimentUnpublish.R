@@ -1,5 +1,6 @@
 #' @author Natasha Mora natasha.mora@thermofisher.com
 #' @author Scott Russell scott.russell@thermofisher.com
+#' @author Francisco Marin francisco.marin@thermofisher.com
 #' @description Tests for experiment Unpublish.
 #'
 context("Tests for experimentUnpublish")
@@ -23,7 +24,7 @@ test_that(paste("test experimentUnpublish() on:", env$auth), {
 
       expect_type(httr::content(result$response)$PUBLISHED, "logical")
       expect_false(httr::content(result$response)$PUBLISHED, FALSE)
-      expect_error(experimentUnpublish(con$coreApi, data$experimentType, data$experimentUnpublishFailBarcode, useVerbose = verbose))
+      expect_warning(experimentUnpublish(con$coreApi, data$experimentType, data$experimentUnpublishFailBarcode, useVerbose = verbose))
     }
   )
 })

@@ -20,7 +20,8 @@
 #' error <- httr::http_error(response$response)
 #' logOut(login$coreApi)
 #' }
-#' @author Craig Parman info@ngsanalytics.com
+#' @author Craig Parman ngsanalytics.com
+#' @author Francisco Marin francisco.marin@thermofisher.com
 #' @description \code{apiGET} - Do a get from the Core ODATA REST API.
 
 
@@ -69,17 +70,28 @@ apiGET <-
     }
 
     # check for general HTTP error in response
-
     if (httr::http_error(response)) {
-      stop({
-        print("API call failed")
-        print(httr::http_status(response))
-      },
-      call. = FALSE
-      )
+      warning("API call failed", call. = FALSE)
+      warning(httr::http_status(response), call. = FALSE)
+      responseData <- httr::content(response)
+      headers <- httr::headers(response)
+
+      if (grepl("application/json", headers[["Content-Type"]], fixed = TRUE) &&
+        !is.null(responseData$error)) {
+        statusCode <- httr::status_code(response)
+        warning(paste0(
+          "Status Code: ", statusCode,
+          ", Error: ", responseData$error$message
+        ),
+        call. = FALSE
+        )
+
+        if (!is.null(responseData$error$details)) {
+          warning(paste0("Additional Details: ", responseData$error$details$message))
+        }
+      }
     }
     # determine if this is a chunked response
-
 
     if (!is.null(httr::headers(response)$"transfer-encoding")) {
       chunked <-

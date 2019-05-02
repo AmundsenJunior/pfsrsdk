@@ -1,5 +1,6 @@
 #' @author Natasha Mora natasha.mora@thermofisher.com
 #' @author Scott Russell scott.russell@thermofisher.com
+#' @author Francisco Marin francisco.marin@thermofisher.com
 #' @description Tests for experiment publish.
 #'
 context("Tests for experimentPublish")
@@ -23,7 +24,7 @@ test_that(paste("test experimentPublish() on:", env$auth), {
 
       expect_type(httr::content(result$response)$PUBLISHED, "logical")
       expect_true(httr::content(result$response)$PUBLISHED, TRUE)
-      expect_error(experimentPublish(con$coreApi, data$experimentType, data$experimentPublishFailBarcode, useVerbose = verbose))
+      expect_warning(experimentPublish(con$coreApi, data$experimentType, data$experimentPublishFailBarcode, useVerbose = verbose))
     }
   )
 })
