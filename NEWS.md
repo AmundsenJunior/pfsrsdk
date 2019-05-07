@@ -1,6 +1,14 @@
 
 # pfsrsdk 1.0.1.9000
 
+## Breaking changes
+
+* Fixed defect in `coreAPI()` that was overwriting `coreAPI` configuration
+  values with environment variables. Renamed `username` and `password`
+  configuration values to `api_username` and `api_password` to ensure
+  compatibility with the [prohibited environment variables](https://docs.rstudio.com/connect/admin/appendix-configuration.html#Applications.Settings)
+  of RStudio-Connect.
+
 ## New functions and major changes
 
 ## Minor improvements and fixes

@@ -2,7 +2,7 @@
 % Please edit documentation in R/coreAPI.R
 \name{coreAPI}
 \alias{coreAPI}
-\title{coreAPI Creates a object of class coreAPI that contains user and connection information.}
+\title{coreAPI - Creates a object of class coreAPI that contains user and connection information.}
 \usage{
 coreAPI(CoreAccountInfo)
 }
@@ -13,7 +13,7 @@ coreAPI(CoreAccountInfo)
 Object of class coreAPI
 }
 \description{
-coreAPI Creates a object of class coreAPI that contains user and connection information.
+\code{coreAPI} Creates a object of class coreAPI that contains user and connection information.
 }
 \details{
 { Creates a object of class list that contains connection information.
@@ -66,7 +66,7 @@ The json must include the fields shown below.
       "enabled": true
     },
     {
-      "key": "username",
+      "key": "api_username",
       "value": "USER",
       "type": "text",
       "name": "nameadmin",
@@ -74,7 +74,7 @@ The json must include the fields shown below.
       "hovered": false
     },
     {
-      "key": "password",
+      "key": "api_password",
       "value": "PASSWORD",
       "type": "text",
       "name": "passwordadmin",

@@ -49,8 +49,10 @@ library:
 
 * `devtools`
 * `knitr`
+* `lintr`
 * `pkgdown`
 * `shiny`
+* `styler`
 * `testthat`
 * `testthis`
 

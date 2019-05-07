@@ -70,11 +70,6 @@ For \code{setExperimentSamplesAssayFileData}, use \code{\link{setExperimentSampl
 For \code{updateCellContents}, use \code{\link{setCellContents}}.
 }
 
-\examples{
-\dontrun{
-new_name <- ODATAcleanName("384 Well Plate")
-}
-}
 \seealso{
 \code{\link{pfsrsdk-deprecated}}
 }

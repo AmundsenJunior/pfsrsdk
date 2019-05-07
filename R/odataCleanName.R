@@ -15,9 +15,9 @@
 #' @examples
 #' \dontrun{
 #' new_name <- odataCleanName("384 Well Plate")
-#' >_384_Well_Plate
+#' # returns "_384_WELL_PLATE"
 #' new_name <- odataCleanName("384 Well Plate","tenant")
-#' >384_Well_Plate
+#' # returns "384_WELL_PLATE"
 #' }
 #' @author Craig Parman ngsAnalytics, ngsanalytics.com
 #' @author Adam Wheeler adam.j.wheeler@accenture.com
@@ -26,7 +26,7 @@
 
 
 
-odataCleanName <- function(name,refType = "odataObject") {
+odataCleanName <- function(name, refType = "odataObject") {
   if (refType == "odataObject") name <- gsub("(^[1-9])", "_\\1", name)
 
   name <- gsub(" |-", "_", name)

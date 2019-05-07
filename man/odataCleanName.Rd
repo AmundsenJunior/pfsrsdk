@@ -32,9 +32,9 @@ hyphens with underscores.
 \examples{
 \dontrun{
 new_name <- odataCleanName("384 Well Plate")
->_384_Well_Plate
+# returns "_384_WELL_PLATE"
 new_name <- odataCleanName("384 Well Plate","tenant")
->384_Well_Plate
+# returns "384_WELL_PLATE"
 }
 }
 \author{
