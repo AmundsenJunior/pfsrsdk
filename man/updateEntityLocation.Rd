@@ -10,11 +10,11 @@ updateEntityLocation(coreApi, entityType, barcode, locationBarcode,
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
 
-\item{entityType}{entity type to get}
+\item{entityType}{type of entity to update}
 
-\item{barcode}{barcode of entity to get}
+\item{barcode}{barcode of entity to update}
 
-\item{locationBarcode}{loaction barcode}
+\item{locationBarcode}{barcode of new location}
 
 \item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http}
 }
@@ -37,4 +37,6 @@ logOut(login$coreApi)
 Craig Parman ngsAnalytics, ngsanalytics.com
 
 Adam Wheeler adam.j.wheeler@accenture.com
+
+Scott Russell scott.russell@thermofisher.com
 }

@@ -13,6 +13,9 @@
 
 ## Minor improvements and fixes
 
+* Updated `updateEntityLocation()` to use the *InventoryMove* action available
+  in the PFS OData API.
+
 # pfsrsdk 1.0.1
 
 ## Minor improvements and fixes
