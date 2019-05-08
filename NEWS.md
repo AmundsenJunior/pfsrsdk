@@ -22,18 +22,18 @@
   configuration values to `api_username` and `api_password` to ensure
   compatibility with the [prohibited environment variables](https://docs.rstudio.com/connect/admin/appendix-configuration.html#Applications.Settings)
   of RStudio-Connect.
-* Added parameter fullMetadata to getEntityLocation, getEntityProject, getExperimentSampleAssayData, getExperimentSamplesRawData. This changes the order of verbose parameter.
+* Added parameter fullMetadata to getEntityLocation, getEntityProject, getExperimentSampleAssayData, getExperimentSamplesRawData. This changes the order of the useVerbose parameter.
 * Changed default fullMetadata value.
-* apiGET(), apiPOST(), apiPUT() and ()authBasic will not stop the execution of 
+* apiGET(), apiPOST(), apiPUT() and authBasic() will not stop the execution of 
   the R code during an error. Warnings will show information about the error and
   the functions will return objects with the error details.
-* Changed default fullMetadata value.
+* Added useRaw parameter to apiGet() to allow raw data export.
 
 ## New functions and minor changes
 
 * Updated license information.
 * Changes and enhancements to automated internal testing.
-* Updated publish functions to use the odata options available in PFS v6. 
+* Updated publish functions and `getAttachedAttributeFile()` to use the odata options available in PFS v6. 
 * Updated `createExperimentContainer()` to warn the user when accessing a published experiment.
 * Documentation updates.
 * Updated `updateEntityLocation()` to use the *InventoryMove* action available

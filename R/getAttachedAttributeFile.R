@@ -7,7 +7,7 @@
 #' @param barcode barcode of the entity
 #' @param attribute name of the attribute
 #' @param useVerbose TRUE or FALSE to indicate if verbose options should be used
-#' @return returns a list $entity contains file data, $response contains the entire http response
+#' @return returns a list $entity contains the binary file data, $response contains the entire http response
 #' @export
 #' @examples
 #' \dontrun{
@@ -19,8 +19,8 @@
 #' }
 #' @author Craig Parman info@ngsanalytics.com
 #' @author Adam Wheeler adam.wheeler@thermofisher.com
+#' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description \code{ getAttachedAttributeFile }  Gets file attached to an attribute on a entity.
-#' The $entity slot contains the binary file data.
 
 getAttachedAttributeFile <-
   function(coreApi,
@@ -33,6 +33,7 @@ getAttachedAttributeFile <-
     resource <- odataCleanName(entityType)
 
     attribute <- odataCleanName(attribute)
+
     # no lint start
     query <- paste0(
       "('",
@@ -43,54 +44,19 @@ getAttachedAttributeFile <-
     )
     # no lint end
 
-    header <- c(Accept = "application/json")
+    header <- c(Accept = "application/json;odata.metadata=full")
 
-
-    resource <- odataCleanName(resource)
-
-    sdk_url <-
-      buildUrl(
+    response <-
+      apiGET(
         coreApi,
         resource = resource,
         query = query,
-        special = NULL,
-        useVerbose = useVerbose
-      )
-    base_sdk_url <-
-      sdk_url # need if we need to build url for additional chunks
-
-    cookie <-
-      c(
-        JSESSIONID = coreApi$jsessionId,
-        AWSELB = coreApi$awselb
+        headers = header,
+        useVerbose = useVerbose,
+        useRaw = TRUE
       )
 
-    # Get first response
-
-    if (useVerbose) {
-      response <-
-        httr::with_verbose(httr::GET(
-          sdk_url,
-          httr::add_headers(header),
-          httr::set_cookies(cookie)
-        ))
-    } else {
-      response <- httr::GET(
-        sdk_url,
-        httr::add_headers(header),
-        httr::set_cookies(cookie)
-      )
-    }
-
-
-
-
-
-    bin <- httr::content(response, "raw")
-
-
-
-    list(entity = bin, response = response)
+    list(entity = response$content, response = response$response)
   }
 
 

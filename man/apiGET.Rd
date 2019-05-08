@@ -5,7 +5,7 @@
 \title{apiGET - Do a get from the Core ODATA REST API.}
 \usage{
 apiGET(coreApi, resource, query, headers = NULL, special = NULL,
-  useVerbose = FALSE)
+  useVerbose = FALSE, useRaw = FALSE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -41,7 +41,9 @@ logOut(login$coreApi)
 }
 }
 \author{
-Craig Parman ngsanalytics.com
+Craig Parman info@ngsanalytics.com
 
 Francisco Marin francisco.marin@thermofisher.com
+
+Natasha Mora natasha.mora@thermofisher.com
 }
