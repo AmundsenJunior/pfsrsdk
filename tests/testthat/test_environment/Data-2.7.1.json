@@ -53,8 +53,12 @@
   "experimentPublishUnpublishBarcode": "BTXP7",
   "experimentAssayType": "BITTERNESS_ASSAY",
   "experimentAssayBarcode": "BTNA1",
+  "experimentAssayUpdateAssayType": "CELPRO_ASSAY",
+  "experimentAssayUpdateSampleBarcode": "VS1",
   "experimentAssayUpdateAttrList": [{
-    "CI_BITTERNESS_IBU": 9.23
+    "CI_INIT_NUM_CELL": 2,
+    "CI_FIN_NUM_CELL": 130,
+    "CI_SEQUENCE_VARIATION": 11
   }],
   "experimentProtocolType": "BITTERNESS_PROTOCOL",
   "experimentProtocolBarcode": "BTNP1",

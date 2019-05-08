@@ -39,6 +39,8 @@
   "experimentUnpublishFailBarcode": "",
   "experimentAssayType": "",
   "experimentAssayBarcode": "",
+  "experimentAssayUpdateAssayType": "",
+  "experimentAssayUpdateSampleBarcode": "",
   "experimentAssayUpdateAttrList": [{}],
   "experimentProtocolType": "",
   "experimentProtocolBarcode": "",
