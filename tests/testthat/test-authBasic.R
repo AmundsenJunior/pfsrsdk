@@ -5,8 +5,6 @@
 #'
 context("Tests for authentication")
 
-# Completed regression for 5.3.8 and 6.0.1
-
 test_that(paste("test login parameters for environment and updating metadata", env$auth), {
   expect_that(is.null(con$coreApi$jsessionId), equals(FALSE))
 })

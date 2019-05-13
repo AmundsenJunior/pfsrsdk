@@ -3,8 +3,6 @@
 
 context("Tests for getWellContents")
 
-# Completed regression for 5.3.8 and 6.0.1
-
 test_that(paste("test getWellContents() on:", env$auth), {
   result <- getWellContents(con$coreApi, data$containerBarcode, data$containerWellNum, data$containerType, verbose)
 

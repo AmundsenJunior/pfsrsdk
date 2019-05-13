@@ -27,65 +27,39 @@ The json must include the fields shown below.
   "values": [
     {
       "key": "tenant",
-      "value": "FULLNAMEOFTENANT",
-      "type": "text",
-      "enabled": true
+      "value": "FULLNAMEOFTENANT"
     },
     {
       "key": "alias",
-      "value": "SHORTNAMEINURL",
-      "type": "text",
-      "enabled": true
+      "value": "SHORTNAMEINURL"
     },
     {
       "key": "scheme",
-      "value": "https",
-      "type": "text",
-      "name": "scheme",
-      "enabled": true,
-      "hovered": false
+      "value": "https"
     },
     {
       "key": "host",
-      "value": "HOSTNAME",
-      "type": "text",
-      "name": "host",
-      "enabled": true,
-      "hovered": false
+      "value": "HOSTNAME"
     },
     {
       "key": "port",
-      "value": "443",
-      "type": "text",
-      "enabled": true
+      "value": "443"
     },
     {
       "key": "context",
-      "value": "",
-      "type": "text",
-      "enabled": true
+      "value": ""
     },
     {
       "key": "api_username",
-      "value": "USER",
-      "type": "text",
-      "name": "nameadmin",
-      "enabled": true,
-      "hovered": false
+      "value": "USER"
     },
     {
       "key": "api_password",
-      "value": "PASSWORD",
-      "type": "text",
-      "name": "passwordadmin",
-      "enabled": true,
-      "hovered": false
+      "value": "PASSWORD"
     },
     {
       "key": "semver",
-      "value": "",
-      "type": "text",
-      "enabled": true
+      "value": ""
     }
     ]
 }

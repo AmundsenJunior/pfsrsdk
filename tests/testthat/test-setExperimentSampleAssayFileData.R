@@ -3,8 +3,6 @@
 
 context("Tests for setExperimentSampleAssayFileData")
 
-# Completed regression for 5.3.8 and 6.0.1
-
 filePath <- tempfile(fileext = ".csv")
 write.csv(x = runif(n = 1000), file = filePath)
 
