@@ -4,8 +4,6 @@
 
 context("Tests for updateEntityAttributes")
 
-# Completed regression for 5.3.8 and 6.0.1
-
 test_that(paste("test updateEntityAttributes() on: ", env$auth), {
   barcode <- getEntityByName(con$coreApi, data$testPocoUpdateType, data$testPocoUpdateName, FALSE, FALSE)$entity[[1]]$Barcode
 

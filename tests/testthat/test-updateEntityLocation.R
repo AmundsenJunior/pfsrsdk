@@ -3,8 +3,6 @@
 #' @description \code Tests for updateEntityLocation
 context("Tests for updateEntityLocation")
 
-# Completed regression for 5.3.8 and 6.0.1
-
 test_that(paste("test updateEntityLocation for:", env$auth), {
   barcode <- getEntityByName(con$coreApi, data$testPocoUpdateType, data$testPocoUpdateName, useVerbose = verbose)$entity[[1]]$Barcode
 

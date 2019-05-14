@@ -4,8 +4,6 @@
 
 context("Tests for getEntityAssociations")
 
-# Completed regression for 5.3.8 and 6.0.1
-
 test_that(paste("test getEntityAssociations() on:", env$auth), {
   assoc <- getEntityByName(con$coreApi, data$testPocoGetAssocType, data$testPocoGetAssocName, FALSE, FALSE)
   poco <- getEntityByName(con$coreApi, data$testPocoType, data$testPocoName, FALSE, FALSE)

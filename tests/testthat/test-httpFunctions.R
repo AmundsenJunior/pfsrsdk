@@ -4,8 +4,6 @@
 
 context("Tests for httpFunctions")
 
-# Completed regression for 5.3.8 and 6.0.1
-
 test_that(paste0("apiGET will return an entity on: ", env$auth), {
   header <- c("Accept" = "application/json")
   res <- apiGET(con$coreApi, resource = data$persistentEntityType, query = "", headers = header, useVerbose = verbose)

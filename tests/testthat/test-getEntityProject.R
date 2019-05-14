@@ -3,8 +3,6 @@
 #' @description \code Tests for getEntityProject
 context("Tests for getEntityProject")
 
-# Completed regression for 5.3.8 and 6.0.1
-
 test_that(paste("test getEntityProject for:", env$auth), {
   barcode <- getEntityByName(con$coreApi, data$testPocoType, data$testPocoName, useVerbose = verbose)$entity[[1]]$Barcode
   pro <- getEntityProject(con$coreApi, data$testPocoType, barcode, useVerbose = verbose)

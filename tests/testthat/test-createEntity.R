@@ -4,8 +4,6 @@
 #'
 context("Tests for createEntity")
 
-# Completed regression for 5.3.8 and 6.0.1
-
 test_that(paste("test createEntity() for POCO with Boolean attributes on:", env$auth), {
   out <- getEntityMetadata(con$coreApi, data$testPocoCreateBoolType, useVerbose = verbose)
 

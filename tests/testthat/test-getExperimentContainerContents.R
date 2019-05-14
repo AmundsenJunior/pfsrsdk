@@ -3,8 +3,6 @@
 
 context("Tests for getExperimentContainerContents")
 
-# Completed regression for 5.3.8 and 6.0.1
-
 test_that(paste("test getExperimentContainerContents() on:", env$auth), {
   result <- getExperimentContainerContents(con$coreApi, data$experimentContainerBarcode, data$experimentContainerType, useVerbose = verbose)
 
