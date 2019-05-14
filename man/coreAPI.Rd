@@ -74,11 +74,11 @@ api <- coreAPI("/home/environment.json")
 }
 }
 \author{
-Craig Parman ngsAnalytics, ngsanalytics.com
+Craig Parman info@ngsanalytics.com
 
 Scott Russell scott.russell@thermofisher.com
 
-Adam Wheeler, adam.j.wheeler@accenture.com
+Adam Wheeler adam.wheeler@thermofisher.com
 
 Natasha Mora natasha.mora@thermofisher.com
 }

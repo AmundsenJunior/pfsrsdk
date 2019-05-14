@@ -11,8 +11,8 @@
 #' new_name
 #' MY_COMMENTS
 #' }
-#' @author Craig Parman, ngsAnalytics, ngsanalytics.com
-#' @author Adam Wheeler ajwtech@gmail.com
+#' @author Craig Parman info@ngsanalytics.com
+#' @author Adam Wheeler adam.wheeler@thermofisher.com
 #' @description \code{attriureCleanName} - onverts names to uppercase and replaces spaces with underscores to
 #' reference attribute names.
 

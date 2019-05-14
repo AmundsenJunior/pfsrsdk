@@ -1,5 +1,6 @@
 #' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description \code Tests for getting PFS's Semantic Version.
+
 context("Tests for getSemVer")
 
 test_that(paste("test getSemVer on:", env$auth), {

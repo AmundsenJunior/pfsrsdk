@@ -1,4 +1,4 @@
-#' @author Adam Wheeler adam.j.wheeler@accenture.com
+#' @author Adam Wheeler adam.wheeler@thermofisher.com
 #' @author Scott Russell scott.russell@thermofisher.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description Tests for basic authentication.

@@ -22,9 +22,9 @@
 #' )
 #' logOut(login$coreApi)
 #' }
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
-#' @author Adam Wheeler, adam.j.wheeler@accenture.com
-#' @author Scott Russell, scott.russell@thermofisher.com
+#' @author Craig Parman info@ngsanalytics.com
+#' @author Adam Wheeler adam.wheeler@thermofisher.com
+#' @author Scott Russell scott.russell@thermofisher.com
 #' @description \code{attachFile} Attaches a file to entity identified by barcode.
 #' Note: This function uses the JSON API to post a file to an entity and
 #' Odata to post to an attribute.

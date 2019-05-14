@@ -20,7 +20,7 @@
 #' error <- httr::http_error(response$response)
 #' logOut(login$coreApi)
 #' }
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Craig Parman info@ngsanalytics.com
 #' @description \code{apiGET} - Do a get from the Core ODATA REST API.
 
 

@@ -14,7 +14,7 @@
 #' update <- isExperimentPublished(login$coreApi, experimentType, experimentBarcode, useVerbose = TRUE)
 #' logOut(login$coreApi)
 #' }
-#' @author Natasha Mora, natasha.mora@thermofisher.com
+#' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description \code{isExperimentPublished} - gets a boolean indicating if an experiment is published.
 
 

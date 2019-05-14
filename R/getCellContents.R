@@ -13,7 +13,7 @@
 #' cell <- getCellContents(login$coreApi, "1234233", fullMetadata = TRUE)
 #' logOut(login$coreApi)
 #' }
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Craig Parman info@ngsanalytics.com
 #' @description \code{getCellContents} -  Gets information about a single container cell contents.
 
 

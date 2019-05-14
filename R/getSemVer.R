@@ -10,7 +10,7 @@
 #' semver <- getSemVer(login$coreApi)
 #' logOut(login$coreApi)
 #' }
-#' @author Adam Wheeler, adam.j.wheeler@accenture.com
+#' @author Adam Wheeler adam.wheeler@thermofisher.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description \code{getSemVer} Retrieves the PFS SemVer and creates a warning with the right value if null.
 

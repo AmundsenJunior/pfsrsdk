@@ -15,7 +15,7 @@
 #' experiment <- getExperimentSampleAssayData(login$coreApi, "experimentAssayType", "experimentSampleBarcode")
 #' logOut(login$coreApi)
 #' }
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Craig Parman info@ngsanalytics.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description \code{ getExperimentSampleAssayData }  Gets experiment samples from experiment identified by experiment barcode.
 #' Does not retieve files attached as data. Use getExperimentSampleAssayFileData to retrieve assay data that is a file.

@@ -14,7 +14,7 @@
 #' cellIDs <- getContainerCellIds(login$coreApi, "TE1", containerType = "384 WELL PLATE")$entity
 #' logOut(login$coreApi)
 #' }
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Craig Parman info@ngsanalytics.com
 #' @author Scott Russell scott.russell@thermofisher.com
 #' @description \code{getContainerCellIds} -  Gets cell ids for a container
 

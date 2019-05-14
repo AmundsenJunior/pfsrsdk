@@ -28,5 +28,5 @@ logOut <- logOut(response$coreApi, useVerbose = TRUE)
 }
 }
 \author{
-Craig Parman ngsAnalytics, ngsanalytics.com
+Craig Parman info@ngsanalytics.com
 }

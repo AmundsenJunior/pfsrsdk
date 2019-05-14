@@ -35,7 +35,7 @@ logOut(login$coreApi)
 }
 }
 \author{
-Craig Parman ngsAnalytics, ngsanalytics.com
+Craig Parman info@ngsanalytics.com
 
-Adam Wheeler adam.j.wheeler@accenture.com
+Adam Wheeler adam.wheeler@thermofisher.com
 }

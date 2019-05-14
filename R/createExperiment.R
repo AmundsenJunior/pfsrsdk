@@ -23,7 +23,7 @@
 #' )
 #' logOut(login$coreApi)
 #' }
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Craig Parman info@ngsanalytics.com
 #' @description \code{createExperiment} Creates a new experiment.
 
 createExperiment <-

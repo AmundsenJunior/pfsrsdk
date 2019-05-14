@@ -27,7 +27,7 @@ MY_COMMENTS
 }
 }
 \author{
-Craig Parman, ngsAnalytics, ngsanalytics.com
+Craig Parman info@ngsanalytics.com
 
-Adam Wheeler ajwtech@gmail.com
+Adam Wheeler adam.wheeler@thermofisher.com
 }

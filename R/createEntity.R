@@ -17,7 +17,7 @@
 #' item <- createEntity(login$coreApi, "Entity_Type")
 #' logOut(login$coreApi)
 #' }
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Craig Parman info@ngsanalytics.com
 #' @description \code{createEntity} Creates a new entity instance. Required inputs are url, jsessionId and entityType.
 
 

@@ -16,7 +16,7 @@
 #' experimentsampleBarcodes <- response$entity
 #' logOut(login$coreApi)
 #' }
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Craig Parman info@ngsanalytics.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
 #' @author Scott Russell scott.russell@thermofisher.com
 #' @description \code{ getExperimentSamples}  Gets experiment sample barcodes from experiment identified by experiment barcode.

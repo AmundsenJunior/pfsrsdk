@@ -36,7 +36,7 @@ logOut(login$coreApi)
 }
 }
 \author{
-Craig Parman ngsAnalytics, ngsanalytics.com
+Craig Parman info@ngsanalytics.com
 
-Natasha Mora, natasha.mora@thermofisher.com
+Natasha Mora natasha.mora@thermofisher.com
 }
