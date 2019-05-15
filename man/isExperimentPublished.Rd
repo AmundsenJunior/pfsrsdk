@@ -34,5 +34,5 @@ logOut(login$coreApi)
 }
 }
 \author{
-Natasha Mora, natasha.mora@thermofisher.com
+Natasha Mora natasha.mora@thermofisher.com
 }

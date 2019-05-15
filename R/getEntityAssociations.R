@@ -17,8 +17,8 @@
 #' associations <- getEntityAssociations(login$coreAPI, "entityType", "barcode", "associationContext")
 #' logOut(login$coreAPI)
 #' }
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
-#' @author Adam Wheeler adam.j.wheeler@accenture.com
+#' @author Craig Parman info@ngsanalytics.com
+#' @author Adam Wheeler adam.wheeler@thermofisher.com
 #' @description \code{getEntityAssociations}  Get assoication for a entity
 
 

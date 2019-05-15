@@ -16,8 +16,8 @@
 #' update <- experimentPublish(login$coreApi, experimentType, experimentBarcode, useVerbose = TRUE)
 #' logOut(login$coreApi)
 #' }
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
-#' @author Natasha Mora, natasha.mora@thermofisher.com
+#' @author Craig Parman info@ngsanalytics.com
+#' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description \code{experimentPublish} - Publishes an experiment.
 
 

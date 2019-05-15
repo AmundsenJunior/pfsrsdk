@@ -15,7 +15,7 @@
 #' cell <- getContainerContents(login$coreApi, "VIA9", "VIAL")
 #' logOut(login$coreApi)
 #' }
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Craig Parman info@ngsanalytics.com
 #' @author Scott Russell scott.russell@thermofisher.com
 #' @description \code{getContainerContents} - Gets information about container cell contents.
 

@@ -17,8 +17,8 @@
 #' witeBin(response$entity, "filename.txt")
 #' logOut(login$coreApi)
 #' }
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
-#' @author Adam Wheeler adam.j.wheeler@accenture.com
+#' @author Craig Parman info@ngsanalytics.com
+#' @author Adam Wheeler adam.wheeler@thermofisher.com
 #' @description \code{ getAttachedAttributeFile }  Gets file attached to an attribute on a entity.
 #' The $entity slot contains the binary file data.
 

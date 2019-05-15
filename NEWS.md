@@ -15,6 +15,8 @@
 
 * Updated `updateEntityLocation()` to use the *InventoryMove* action available
   in the PFS OData API.
+* Removed `# Completed regression for 5.3.8 and 6.0.1` message from tests.  
+* Added author and updated author e-mails.
 
 # pfsrsdk 1.0.1
 
@@ -31,7 +33,6 @@
   results.
 * Added `xml2` as an import since we use the `httr::content()` with an XML MIME
   type. `httr` only lists `xml2` as "Suggest" in its `DESCRIPTION`.
-* Removed `# Completed regression for 5.3.8 and 6.0.1` message from tests.  
 
 # pfsrsdk 1.0.0
 

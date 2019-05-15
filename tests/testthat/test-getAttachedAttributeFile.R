@@ -1,4 +1,4 @@
-#' @author Adam Wheeler adam.j.wheeler@accenture.com
+#' @author Adam Wheeler adam.wheeler@thermofisher.com
 #' @description Tests for getAttachedAttributeFile
 #'
 context("Tests for getAttachedAttributeFile()")

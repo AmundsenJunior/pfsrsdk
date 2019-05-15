@@ -19,7 +19,7 @@
 #' error <- httr::http_error(response)
 #' logOut(login$coreApi)
 #' }
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Craig Parman info@ngsanalytics.com
 #' @description \code{apiPOST} - Base call to Core ODATA REST API.
 
 

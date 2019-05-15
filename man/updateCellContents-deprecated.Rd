@@ -56,7 +56,7 @@ logOut(login$coreApi)
 \code{\link{pfsrsdk-deprecated}}
 }
 \author{
-Craig Parman ngsAnalytics, ngsanalytics.com
+Craig Parman info@ngsanalytics.com
 
 Scott Russell scott.russell@thermofisher.com
 }

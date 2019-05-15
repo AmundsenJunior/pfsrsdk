@@ -16,9 +16,9 @@
 #' error <- httr::http_error(response$response)
 #' logOut(response$coreApi, useVerbose = TRUE)
 #' }
-#' @author Craig Parman ngsAnalytics, ngsanaltics.com
+#' @author Craig Parman info@ngsanalytics.com
 #' @author Scott Russell scott.russell@thermofisher.com
-#' @author Adam Wheeler, adam.j.wheeler@accenture.com
+#' @author Adam Wheeler adam.wheeler@thermofisher.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description \code{authBasic} Logs in and returns a fully populated coreApi object in $coreAPI.
 

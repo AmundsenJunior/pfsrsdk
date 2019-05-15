@@ -19,7 +19,7 @@
 #'    }
 #' )
 #' }
-#' @author Adam Wheeler, adam.j.wheeler@accenture.com
+#' @author Adam Wheeler adam.wheeler@thermofisher.com
 #' @description \code{case} Performs a vectorized IF
 
 case <- function(...) {

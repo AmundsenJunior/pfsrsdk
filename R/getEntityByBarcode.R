@@ -16,8 +16,8 @@
 #' item <- getEntityByBarcode(login$coreApi, "entityType", "barcode")
 #' logOut(login$coreApi)
 #' }
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
-#' @author Adam Wheeler adam.j.wheeler@accenture.com
+#' @author Craig Parman info@ngsanalytics.com
+#' @author Adam Wheeler adam.wheeler@thermofisher.com
 #' @description \code{getEntityByBarcode}  Get an entity by barcode from the Core LIMS using the ODATA API.
 
 

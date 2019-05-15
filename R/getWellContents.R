@@ -15,7 +15,7 @@
 #' well <- getWellContents(login$coreApi, "VIA9", "1", "VIAL")
 #' logOut(login$coreApi)
 #' }
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Craig Parman info@ngsanalytics.com
 #' @author Scott Russell scott.russell@thermofisher.com
 #' @description \code{getWellContents} - Gets content information of a single container well.
 

@@ -19,7 +19,7 @@
 #' rawdata <- response$entity
 #' logOut(login$coreApi)
 #' }
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Craig Parman info@ngsanalytics.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description \code{ getExperimentSamplesRawData }   Gets raw data for a experiment container identified by barcode.
 

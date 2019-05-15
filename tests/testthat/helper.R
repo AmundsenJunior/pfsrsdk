@@ -1,4 +1,4 @@
-#' @author Adam Wheeler adam.j.wheeler@accenture.com
+#' @author Adam Wheeler adam.wheeler@thermofisher.com
 #' @author Scott Russell scott.russell@thermofisher.com
 #' @description  This file is run before any tests are executed.
 #' It sets up the environment to run against specific PFS semantic versions.

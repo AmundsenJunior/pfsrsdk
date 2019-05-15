@@ -34,5 +34,5 @@ case(
 }
 }
 \author{
-Adam Wheeler, adam.j.wheeler@accenture.com
+Adam Wheeler adam.wheeler@thermofisher.com
 }

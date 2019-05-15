@@ -12,7 +12,7 @@
 #' response <- authBasic(api)
 #' logOut <- logOut(response$coreApi, useVerbose = TRUE)
 #' }
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Craig Parman info@ngsanalytics.com
 #' @description \code{logOut} logs out of the current session.
 
 

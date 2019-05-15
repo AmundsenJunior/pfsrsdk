@@ -1,5 +1,5 @@
-#' @author Adam Wheeler adam.j.wheeler@accenture.com
-#' @author Scott Russell @scott.russell@thermofisher.com
+#' @author Adam Wheeler adam.wheeler@thermofisher.com
+#' @author Scott Russell scott.russell@thermofisher.com
 #' @description \code Test for odataCleanName.
 
 context("Tests for odataCleanName")

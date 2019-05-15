@@ -30,7 +30,7 @@
 #' )
 #' logOut(login$coreApi)
 #' }
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Craig Parman info@ngsanalytics.com
 #' @author Scott Russell scott.russell@thermofisher.com
 #' @description \code{updateCellContents} - Updates amount and concentrations of existing cell.
 #' @name updateCellContents-deprecated

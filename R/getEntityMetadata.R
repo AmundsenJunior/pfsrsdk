@@ -15,7 +15,7 @@
 #' item <- getEntityMetadata(login$coreApi, "entityType")
 #' logOut(login$coreApi)
 #' }
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Craig Parman info@ngsanalytics.com
 #' @description \code{getEntityMetadata} Get an entity metadata by entityType. Returns a list with three data frames
 #' named attributes,associations, and template. Template can be used as the body to for createEntity functions.
 

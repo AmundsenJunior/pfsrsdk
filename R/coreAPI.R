@@ -59,9 +59,9 @@
 #'
 #'  The tenant value may be set to "" if the user only has access to one tenant.
 #' As an alternative the environment json object from Postman can be used directly.
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Craig Parman info@ngsanalytics.com
 #' @author Scott Russell scott.russell@thermofisher.com
-#' @author Adam Wheeler, adam.j.wheeler@accenture.com
+#' @author Adam Wheeler adam.wheeler@thermofisher.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
 coreAPI <- function(CoreAccountInfo) {
   accountinfo <- jsonlite::fromJSON(CoreAccountInfo)$values
