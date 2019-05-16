@@ -1,3 +1,14 @@
+[//]: # (Keep the following line at the top of this document)
+###### This project follows [semantic versioning](https://semver.org/)
+
+[//]: # (Use the commented section below for news on each release)
+[//]: # (# pfsrsdk x.x.x.9000)
+[//]: # ( )
+[//]: # (## Breaking changes)
+[//]: # ( )
+[//]: # (## New functions and minor changes)
+[//]: # ( )
+[//]: # (## Fixes)
 
 # pfsrsdk 1.0.1.9000
 
@@ -9,26 +20,31 @@
   compatibility with the [prohibited environment variables](https://docs.rstudio.com/connect/admin/appendix-configuration.html#Applications.Settings)
   of RStudio-Connect.
 * Added parameter fullMetadata to getEntityLocation, getEntityProject, getExperimentSampleAssayData, getExperimentSamplesRawData. This changes the order of verbose parameter.
-
-## New functions and major changes
+* Changed default fullMetadata value.
 * apiGET(), apiPOST(), apiPUT() and ()authBasic will not stop the execution of 
   the R code during an error. Warnings will show information about the error and
   the functions will return objects with the error details.
+* Changed default fullMetadata value.
 
-## Minor improvements and fixes
+## New functions and minor changes
 
+* Updated license information.
+* Changes and enhancements to automated internal testing.
+* Updated publish functions to use the odata options available in PFS v6. 
+* Updated `createExperimentContainer()` to warn the user when accessing a published experiment.
+* Documentation updates.
 * Updated `updateEntityLocation()` to use the *InventoryMove* action available
   in the PFS OData API.
 * Removed `# Completed regression for 5.3.8 and 6.0.1` message from tests.  
 * Added author and updated author e-mails.
 * Replaced switch() with case().
-* Changed default fullMetadata value.
 * Updated `packrat` dependencies with newer minor versions.
 * Enabled automated testing of `pfsrsdk` against PFS 5.3.10.
+* General code cleanup
 
 # pfsrsdk 1.0.1
 
-## Minor improvements and fixes
+## Fixes
 
 * Fixed issue where 401 error was thrown when using `apiGET()` and verbose is
   set to true.
@@ -64,8 +80,17 @@ functions and executed successfully against the listed PFS versions.
   * `password` (previously `pwd`)
   * `semver`, a new parameter for PFS semantic version that throws a warning if
     not configured
+* Deprecated `getAttachedFile` for `getAttachedAttributeFile`.
+* Deprecated `getExperimentSamplesIntermediateData` for
+  `getExperimentSampleIntermediateData`.
+* Deprecated `ODATAcleanName` for `odataCleanName`.
+* Deprecated `setExperimentSamplesAssayFileData` for
+  `setExperimentSampleAssayFileData`.
+* Deprecated `updateCellContents` for existing `setCellContents` function, as
+  the latter provides the same functionality via PFS OData that the former
+  executes in the PFS JSON API.
 
-## New functions and major changes
+## New functions and minor changes
 
 * Added `getSemVer` function to test the PFS semantic version being used and
   adapt commands when necessary.
@@ -77,19 +102,7 @@ functions and executed successfully against the listed PFS versions.
   any experiment container.
 * Added `case` utility function to provide vectorized IF operations.
 
-## Deprecated functions
-
-* Deprecated `getAttachedFile` for `getAttachedAttributeFile`.
-* Deprecated `getExperimentSamplesIntermediateData` for
-  `getExperimentSampleIntermediateData`.
-* Deprecated `ODATAcleanName` for `odataCleanName`.
-* Deprecated `setExperimentSamplesAssayFileData` for
-  `setExperimentSampleAssayFileData`.
-* Deprecated `updateCellContents` for existing `setCellContents` function, as
-  the latter provides the same functionality via PFS OData that the former
-  executes in the PFS JSON API.
-
-## Minor improvements and fixes
+## Fixes
 
 * Added `packrat` to package structure for dependency management.
 * Added Gradle to execute package build, test, documentation process.
