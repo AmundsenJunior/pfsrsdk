@@ -32,8 +32,8 @@ Hash: b201f64e6e1469e8a3571c746ffa9059
 
 Package: glue
 Source: CRAN
-Version: 1.3.0
-Hash: 1fbde6dec830370be696eee8ef31c9e4
+Version: 1.3.1
+Hash: 660bbbe3803c7cf7c9489a7d99a9c0ed
 
 Package: httr
 Source: CRAN
@@ -69,13 +69,13 @@ Hash: 498643e765d1442ba7b1160a1df3abf9
 
 Package: rlang
 Source: CRAN
-Version: 0.3.1
-Hash: 1176a91e0c23d4fc8f48bc5704a6f826
+Version: 0.3.4
+Hash: 6a5220d1a973463418286038095d8c0b
 
 Package: stringi
 Source: CRAN
-Version: 1.3.1
-Hash: 2618ed9608445399e7c431b0e80bfbfd
+Version: 1.4.3
+Hash: ed2a82fc7cc668c1345223d938cdfaf2
 
 Package: stringr
 Source: CRAN
@@ -85,8 +85,8 @@ Requires: glue, magrittr, stringi
 
 Package: sys
 Source: CRAN
-Version: 3.1
-Hash: dc2a997b1b9a2d3f9c234491153cb951
+Version: 3.2
+Hash: aaa3f56d4255306a32ea30df8ef63901
 
 Package: xml2
 Source: CRAN

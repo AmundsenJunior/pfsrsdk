@@ -60,6 +60,18 @@ pipeline {
                     }
                 }
 
+                stage('test-pfs-2.8.2') {
+                    environment {
+                        TEST_VERSION = '2.8.2'
+                        K8S_TEST_NAMESPACE = stringScrub("pfsrsdk-2-8-2-test-${BRANCH_NAME.replace('.', '-').take(15)}-${BUILD_NUMBER}")
+                        RELEASE_NAME = stringScrub("${RELEASE_NAME.take(32)}-2-8-2")
+                    }
+
+                    steps {
+                        testGradleHelmPfs('pfs-legacy', 'testPackage', [chartVersion:TEST_VERSION, templateValues:['namespace': K8S_TEST_NAMESPACE]])
+                    }
+                }
+
                 stage('test-pfs-3.0.3') {
                     environment {
                         TEST_VERSION = '3.0.3'

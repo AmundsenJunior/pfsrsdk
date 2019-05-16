@@ -23,6 +23,8 @@
 * Added author and updated author e-mails.
 * Replaced switch() with case().
 * Changed default fullMetadata value.
+* Updated `packrat` dependencies with newer minor versions.
+* Enabled automated testing of `pfsrsdk` against PFS 5.3.10.
 
 # pfsrsdk 1.0.1
 
