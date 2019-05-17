@@ -58,4 +58,6 @@ logOut(login$coreApi)
 Craig Parman info@ngsanalytics.com
 
 Adam Wheeler adam.wheeler@thermofisher.com
+
+Francisco Marin francisco.marin@thermofisher.com
 }
