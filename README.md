@@ -1,8 +1,8 @@
 # pfsrsdk 
 
-###### This project follows [semantic versioning](https://semver.org/)
-
 *R package to interact with the Thermo Fisher Scientific Platform for Science APIs* 
+
+###### This project follows [semantic versioning](https://semver.org/)
 
 ## Installation
 

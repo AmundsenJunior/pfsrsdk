@@ -44,6 +44,7 @@ project.ext {
     packageTestDir = "${project.buildDir}/tests"
     packageTestFileName = "${project.ext.packageName}-${project.ext.packageVersion}"
     packageDocsName = "${project.ext.packageName}-docs"
+    packageManualFileName = "${project.ext.packageName}_${project.ext.packageVersion}.pdf"
 }
 
 class RScriptBuildPackageTask extends com.umayrh.gradle.RScriptTask {
@@ -93,6 +94,17 @@ class RScriptPkgdownSiteTask extends com.umayrh.gradle.RScriptTask {
     File getDocsDir() { return this.docsDir; }
 }
 
+class RScriptPackageManualTask extends com.umayrh.gradle.RScriptTask {
+    File manualFile = project.file("${project.buildDir}/${project.ext.packageManualFileName}")
+    
+    @Input
+    String description = "Build the PDF manual of package documentation, via Rd2pdf"
+    String expression = "devtools::build_manual(path = '${project.buildDir}')"
+    
+    @OutputFile
+    File getPackageManualFile() { return this.manualFile; }
+}
+
 task buildPackage(type: RScriptBuildPackageTask, group: "R packaging")
 
 task installPackage(type: RScriptInstallPackageTask, group: "R packaging") {
@@ -103,6 +115,8 @@ task installPackage(type: RScriptInstallPackageTask, group: "R packaging") {
 task testPackage(type: RScriptTestPackageTask, group: "R packaging")
 
 task pkgdownSite(type: RScriptPkgdownSiteTask, group: "R packaging")
+
+task createManual(type: RScriptPackageManualTask, group: "R packaging")
 
 installDeps.enabled = false
 

@@ -1,7 +1,7 @@
 <!---
  (Keep the following line at the top of this document)
 --->
- This project follows [semantic versioning](https://semver.org/)
+*This project follows [semantic versioning](https://semver.org/)*
 <!---
 [//]: # (Use the commented section below for news on each release)
 [//]: # (# pfsrsdk x.x.x.9000)
@@ -12,14 +12,17 @@
 [//]: # ( )
 [//]: # (## Fixes)
 --->
-# pfsrsdk x.x.x.9000
+# pfsrsdk 2.0.0.9000
 
 ## Breaking changes
 
 ## New functions and minor changes
 
+* Added Gradle task to generate PDF manual of package documentation, via `Rd2pdf`.
+
 ## Fixes
 
+* Corrected `apiPUT()` to check all classes of `body` for `form_file` type.
 
 # pfsrsdk 2.0.0
 

@@ -2,7 +2,7 @@
 
 pipeline {
     agent {
-        node { label 'agent-debian' }
+        node { label 'agent-debian-ci' }
     }
 
     environment {
@@ -98,18 +98,16 @@ pipeline {
             }
         }
 
-        stage('build-docs') {
+        stage('docs-publish') {
             steps {
                 gradleTask('pkgdownSite')
+                gradleTask('createManual')
+                gradleTask('docsDistZip')
+                
+                // TODO: RSDK-129 - Enable publishing when there is Jenkins access to Nexus
+                // gradleTask('publish')
             }
         }
-
-        // TODO: RSDK-129 - Enable publishing when there is Jenkins access to Nexus
-        // stage('nexus-publish') {
-        //     steps {
-        //         gradleTask('publish')
-        //     }
-        // }
 
         stage('docker-publish') {
             steps {
@@ -122,6 +120,7 @@ pipeline {
         always {
             junit allowEmptyResults: true, testResults: 'build/tests/*.xml'
             archiveArtifacts artifacts: 'build/distributions/*.zip', allowEmptyArchive: true, onlyIfSuccessful: true
+            archiveArtifacts artifacts: 'build/*.pdf', allowEmptyArchive: true, onlyIfSuccessful: true
             sendNotification(DATA_SCIENCE)
             cleanWs deleteDirs: true, notFailBuild: true
         }
