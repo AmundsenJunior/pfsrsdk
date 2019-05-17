@@ -1,5 +1,6 @@
 # pfsrsdk 
-<img src="man/figures/pfsrsdk.png" align="right" alt="" width="120" />
+
+###### This project follows [semantic versioning](https://semver.org/)
 
 *R package to interact with the Thermo Fisher Scientific Platform for Science APIs* 
 
