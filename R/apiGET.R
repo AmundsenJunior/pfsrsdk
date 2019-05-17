@@ -95,7 +95,7 @@ apiGET <-
     }
 
     # determine if this should be raw data
-    if (isTRUE(useRaw)) {
+    if (useRaw) {
       content <- httr::content(response, "raw")
     } else {
       # determine if this is a chunked response
