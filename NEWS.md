@@ -1,6 +1,8 @@
-[//]: # (Keep the following line at the top of this document)
+<!---
+ (Keep the following line at the top of this document)
+--->
 ###### This project follows [semantic versioning](https://semver.org/)
-
+<!---
 [//]: # (Use the commented section below for news on each release)
 [//]: # (# pfsrsdk x.x.x.9000)
 [//]: # ( )
@@ -9,6 +11,7 @@
 [//]: # (## New functions and minor changes)
 [//]: # ( )
 [//]: # (## Fixes)
+--->
 
 # pfsrsdk 1.0.1.9000
 
