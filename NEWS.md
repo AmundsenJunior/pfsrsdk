@@ -27,7 +27,6 @@
 * apiGET(), apiPOST(), apiPUT() and authBasic() will not stop the execution of 
   the R code during an error. Warnings will show information about the error and
   the functions will return objects with the error details.
-* Added useRaw parameter to apiGet() to allow raw data export.
 
 ## New functions and minor changes
 
@@ -44,6 +43,7 @@
 * Updated `packrat` dependencies with newer minor versions.
 * Enabled automated testing of `pfsrsdk` against PFS 5.3.10.
 * General code cleanup
+* Added useRaw parameter to apiGet() to allow raw data export.
 
 # pfsrsdk 1.0.1
 
