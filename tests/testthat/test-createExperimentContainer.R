@@ -11,9 +11,12 @@ test_that(paste("test createExperimentContainer() on a single well container in:
     data$experimentBarcodeUnpublishedExperiment,
     data$singleWellContainerBarcode,
     body = NULL,
+    fullMetadata = TRUE,
     useVerbose = FALSE
   )
+
   expect_that(httr::http_status(ec$response)$category, equals("Success"))
+  expect_true(!is.null(ec$entity$`Id@odata.type`))
 })
 
 test_that(paste("test createExperimentContainer() on a multi well container in:", env$auth), {
@@ -24,8 +27,10 @@ test_that(paste("test createExperimentContainer() on a multi well container in:"
     data$experimentBarcodeUnpublishedExperiment,
     data$multiWellContainerBarcode,
     body = NULL,
+    fullMetadata = TRUE,
     useVerbose = FALSE
   )
 
   expect_that(httr::http_status(ec$response)$category, equals("Success"))
+  expect_true(!is.null(ec$entity$`Id@odata.type`))
 })

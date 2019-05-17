@@ -7,6 +7,7 @@
 #' @param locationId location ID for initial location as character string
 #' @param projectIds project comma separated list of project IDs as character string
 #' @param barcode User provided barcode as a character string
+#' @param fullMetadata get full metadata, default is FALSE
 #' @param useVerbose Use verbose communication for debugging
 #' @export
 #' @return RETURN returns a list $entity contains entity information, $response contains the entire http response
@@ -18,6 +19,7 @@
 #' logOut(login$coreApi)
 #' }
 #' @author Craig Parman info@ngsanalytics.com
+#' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description \code{createEntity} Creates a new entity instance. Required inputs are url, jsessionId and entityType.
 
 
@@ -28,14 +30,17 @@ createEntity <- function(coreApi,
                          locationId = NULL,
                          projectIds = NULL,
                          barcode = NULL,
+                         fullMetadata = FALSE,
                          useVerbose = FALSE) {
 
   # scrub unused fields from the body
   body <- body[!body %in% ""]
 
-
-  headers <-
-    c("Content-Type" = "application/json;odata.metadata=full", accept = "application/json")
+  if (fullMetadata) {
+    headers <- c("Content-Type" = "application/json", "Accept" = "application/json;odata.metadata=full")
+  } else {
+    headers <- c("Content-Type" = "application/json", "Accept" = "application/json")
+  }
 
   response <-
     apiPOST(

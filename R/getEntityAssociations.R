@@ -6,7 +6,7 @@
 #' @param entityType entity type to get
 #' @param barcode barcode of entity to get
 #' @param associationContext association context
-#' @param fullMetadata - get full metadata
+#' @param fullMetadata - get full metadata, default is FALSE
 #' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http
 #' @return returns a list $entity contains entity associations, $response contains the entire http response
 #' @export
@@ -19,6 +19,7 @@
 #' }
 #' @author Craig Parman info@ngsanalytics.com
 #' @author Adam Wheeler adam.wheeler@thermofisher.com
+#' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description \code{getEntityAssociations}  Get assoication for a entity
 
 
@@ -29,7 +30,7 @@ getEntityAssociations <-
              entityType,
              barcode,
              associationContext,
-             fullMetadata = TRUE,
+             fullMetadata = FALSE,
              useVerbose = FALSE) {
 
     # this is the context for the association not the URL context

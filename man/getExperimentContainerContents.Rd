@@ -5,7 +5,7 @@
 \title{getExperimentContainerContents -  Gets experiment container contents.}
 \usage{
 getExperimentContainerContents(coreApi, containerBarcode,
-  containerType = "EXPERIMENT_CONTAINER", fullMetadata = TRUE,
+  containerType = "EXPERIMENT_CONTAINER", fullMetadata = FALSE,
   useVerbose = FALSE)
 }
 \arguments{
@@ -15,7 +15,7 @@ getExperimentContainerContents(coreApi, containerBarcode,
 
 \item{containerType}{Experiment container entity type}
 
-\item{fullMetadata}{Boolean on whether to return full metadata}
+\item{fullMetadata}{- Get full metadata, default is FALSE}
 
 \item{useVerbose}{Boolean on whether to use verbose communication for debugging}
 }

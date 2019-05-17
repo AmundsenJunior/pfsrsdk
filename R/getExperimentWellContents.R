@@ -5,6 +5,7 @@
 #' @param experimentContainerBarcode experiment container barcode
 #' @param experimentContainerWellNum number location of experiment container's well
 #' @param experimentContainerType entity type of experiment container (default: "EXPERIMENT_CONTAINER")
+#' @param fullMetadata get full metadata, default is FALSE
 #' @param useVerbose  Use verbose communication for debugging (default: FALSE)
 #' @export
 #' @return RETURN returns a list $entity contains well information, $response contains the entire http response
@@ -16,6 +17,7 @@
 #' logOut(login$coreApi)
 #' }
 #' @author Scott Russell scott.russell@thermofisher.com
+#' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description \code{getExperimentWellContents} - Gets content information of a single container well in an experiment.
 
 getExperimentWellContents <-
@@ -23,6 +25,7 @@ getExperimentWellContents <-
              experimentContainerBarcode,
              experimentContainerWellNum,
              experimentContainerType = "EXPERIMENT_CONTAINER",
+             fullMetadata = FALSE,
              useVerbose = FALSE) {
     experimentContainerType <- odataCleanName(experimentContainerType)
     experimentContainerWellNum <- as.numeric(experimentContainerWellNum)
@@ -39,8 +42,11 @@ getExperimentWellContents <-
       }
     )
 
-    header <-
-      c("Content-Type" = "application/json;odata.metadata=minimal", Accept = "application/json")
+    if (fullMetadata) {
+      header <- c("Content-Type" = "application/json", "Accept" = "application/json;odata.metadata=full")
+    } else {
+      header <- c("Content-Type" = "application/json", "Accept" = "application/json")
+    }
 
     response <-
       apiGET(

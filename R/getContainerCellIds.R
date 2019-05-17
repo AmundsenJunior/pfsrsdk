@@ -44,7 +44,7 @@ getContainerCellIds <-
         expansion
       )
 
-    header <- c(Accept = "application/json;odata.metadata=minimal")
+    header <- c(Accept = "application/json")
 
     out <-
       apiGET(

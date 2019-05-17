@@ -37,7 +37,7 @@ getExperimentContainers <-
 
 
     header <-
-      c("Content-Type" = "application/json;odata.metadata=full", Accept = "application/json")
+      c("Content-Type" = "application/json", Accept = "application/json")
 
 
     response <-

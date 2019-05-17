@@ -5,7 +5,7 @@
 \title{getExperimentSampleAssayData - Gets assay data for an experiment sample.}
 \usage{
 getExperimentSampleAssayData(coreApi, experimentAssayType,
-  experimentSampleBarcode, useVerbose = FALSE)
+  experimentSampleBarcode, fullMetadata = FALSE, useVerbose = FALSE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -14,14 +14,15 @@ getExperimentSampleAssayData(coreApi, experimentAssayType,
 
 \item{experimentSampleBarcode}{experiment sample barcode of entity to get}
 
+\item{fullMetadata}{- get full metadata, default is FALSE}
+
 \item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http}
 }
 \value{
 returns a list $entity contains entity information, $response contains the entire http response
 }
 \description{
-\code{ getExperimentSampleAssayData }  Gets experiment samples from experiment identified by experiment barcode.
-Does not retieve files attached as data. Use getExperimentSampleAssayFileData to retrieve assay data that is a file.
+\code{ getExperimentSampleAssayData }  Gets assay data for a experiment sample identified by barcode.
 }
 \details{
 \code{getExperimentSampleAssayData }  Gets assay data for a experiment sample identified by barcode.

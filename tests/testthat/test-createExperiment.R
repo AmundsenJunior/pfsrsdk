@@ -11,8 +11,11 @@ test_that(paste("test createExperiment() on: ", env$auth), {
     data$experimentAssayBarcode,
     data$experimentProtocolType,
     data$experimentProtocolBarcode,
-    body = NULL, useVerbose = verbose
+    body = NULL,
+    fullMetadata = TRUE,
+    useVerbose = verbose
   )
 
   expect_that(httr::http_status(expt$response)$reason, equals("Created"))
+  expect_true(!is.null(expt$entity$`Id@odata.type`))
 })

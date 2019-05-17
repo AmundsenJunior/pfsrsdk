@@ -26,10 +26,10 @@ returns a list $entity contains data frame with derived experiment sample barcod
         and assay raw data. $response contains the entire http response
 }
 \description{
-\code{getExperimentSampleIntermediateData}   Gets raw data for a experiment sample identified by barcode.
+\code{getExperimentSampleIntermediateData}   Gets intermediate data for an experiment sample identified by barcode.
 }
 \details{
-\code{getExperimentSampleIntermediateData}  Gets intermediate data for a experiment sample identified by barcode.
+\code{getExperimentSampleIntermediateData}  Gets intermediate data for an experiment sample identified by barcode.
 }
 \examples{
 \dontrun{

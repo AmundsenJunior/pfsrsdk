@@ -6,7 +6,8 @@
 \usage{
 getExperimentWellContents(coreApi, experimentContainerBarcode,
   experimentContainerWellNum,
-  experimentContainerType = "EXPERIMENT_CONTAINER", useVerbose = FALSE)
+  experimentContainerType = "EXPERIMENT_CONTAINER",
+  fullMetadata = FALSE, useVerbose = FALSE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -16,6 +17,8 @@ getExperimentWellContents(coreApi, experimentContainerBarcode,
 \item{experimentContainerWellNum}{number location of experiment container's well}
 
 \item{experimentContainerType}{entity type of experiment container (default: "EXPERIMENT_CONTAINER")}
+
+\item{fullMetadata}{get full metadata, default is FALSE}
 
 \item{useVerbose}{Use verbose communication for debugging (default: FALSE)}
 }
@@ -38,4 +41,6 @@ logOut(login$coreApi)
 }
 \author{
 Scott Russell scott.russell@thermofisher.com
+
+Natasha Mora natasha.mora@thermofisher.com
 }

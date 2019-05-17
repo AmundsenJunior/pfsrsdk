@@ -4,6 +4,7 @@
 #'
 #' @param coreApi coreApi object with valid jsessionid
 #' @param experimentContainerBarcode experiment sample container of entity to get
+#' @param fullMetadata - get full metadata, default is FALSE
 #' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http call
 #' @return returns a list $entity contains data frame with derived experiment sample barcodes concentration,
 #'         and assay raw data. $response contains the entire http response
@@ -21,13 +22,14 @@
 #' }
 #' @author Craig Parman info@ngsanalytics.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
-#' @description \code{ getExperimentSamplesRawData }   Gets raw data for a experiment container identified by barcode.
+#' @description \code{ getExperimentSamplesRawData }   Gets raw data for an experiment container identified by barcode.
 
 
 
 getExperimentSamplesRawData <-
   function(coreApi,
              experimentContainerBarcode,
+             fullMetadata = FALSE,
              useVerbose = FALSE) {
     resource <- "RAW_DATA"
 
@@ -39,9 +41,11 @@ getExperimentSamplesRawData <-
     )
 
 
-    header <- c(Accept = "application/json")
-
-
+    if (fullMetadata) {
+      header <- c(Accept = "application/json;odata.metadata=full")
+    } else {
+      header <- c(Accept = "application/json;odata.metadata=minimal")
+    }
 
 
     response <-

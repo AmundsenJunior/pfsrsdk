@@ -1,5 +1,6 @@
 #' @author Adam Wheeler adam.wheeler@thermofisher.com
 #' @author Scott Russell scott.russell@thermofisher.com
+#' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description \code Tests for getEntityAssociations.
 
 context("Tests for getEntityAssociations")
@@ -12,4 +13,5 @@ test_that(paste("test getEntityAssociations() on:", env$auth), {
 
   expect_equal(as$response$status_code, 200)
   expect_match(as$entity[[1]]$Barcode, assoc$entity[[1]]$Barcode)
+  expect_true(!is.null(as$entity[[1]]$`Id@odata.type`))
 })

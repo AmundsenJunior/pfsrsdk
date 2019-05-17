@@ -66,7 +66,6 @@ setCellContents <-
         coreApi,
         entityType = sampleLotType,
         barcode = sampleLotBarcode,
-
         fullMetadata = FALSE,
         useVerbose = useVerbose
       )$entity$Id
@@ -105,7 +104,7 @@ setCellContents <-
 
 
     header <-
-      c("Content-Type" = "application/json;metadata=minimal", Accept = "application/json")
+      c("Content-Type" = "application/json", Accept = "application/json")
 
     response <-
       apiPOST(

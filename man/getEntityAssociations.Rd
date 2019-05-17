@@ -5,7 +5,7 @@
 \title{\code{getEntityAssociations} Get assoication for a context}
 \usage{
 getEntityAssociations(coreApi, entityType, barcode, associationContext,
-  fullMetadata = TRUE, useVerbose = FALSE)
+  fullMetadata = FALSE, useVerbose = FALSE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -16,7 +16,7 @@ getEntityAssociations(coreApi, entityType, barcode, associationContext,
 
 \item{associationContext}{association context}
 
-\item{fullMetadata}{- get full metadata}
+\item{fullMetadata}{- get full metadata, default is FALSE}
 
 \item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http}
 }
@@ -38,4 +38,6 @@ logOut(login$coreAPI)
 Craig Parman info@ngsanalytics.com
 
 Adam Wheeler adam.wheeler@thermofisher.com
+
+Natasha Mora natasha.mora@thermofisher.com
 }

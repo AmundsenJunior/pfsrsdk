@@ -5,7 +5,8 @@
 \title{createEntity - Create a new instance of a entity. Used for standard object or "Plan Old Core Objects" (POCOs)}
 \usage{
 createEntity(coreApi, entityType, body, locationId = NULL,
-  projectIds = NULL, barcode = NULL, useVerbose = FALSE)
+  projectIds = NULL, barcode = NULL, fullMetadata = FALSE,
+  useVerbose = FALSE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -19,6 +20,8 @@ createEntity(coreApi, entityType, body, locationId = NULL,
 \item{projectIds}{project comma separated list of project IDs as character string}
 
 \item{barcode}{User provided barcode as a character string}
+
+\item{fullMetadata}{get full metadata, default is FALSE}
 
 \item{useVerbose}{Use verbose communication for debugging}
 }
@@ -41,4 +44,6 @@ logOut(login$coreApi)
 }
 \author{
 Craig Parman info@ngsanalytics.com
+
+Natasha Mora natasha.mora@thermofisher.com
 }

@@ -5,7 +5,7 @@
 \title{getExperimentSamples - Gets experiment sample barcodes from experiment identified by barcode.}
 \usage{
 getExperimentSamples(coreApi, experimentType, barcode,
-  useVerbose = FALSE)
+  fullMetadata = TRUE, useVerbose = FALSE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -13,6 +13,8 @@ getExperimentSamples(coreApi, experimentType, barcode,
 \item{experimentType}{experiment entity type to get}
 
 \item{barcode}{barcode of entity to get}
+
+\item{fullMetadata}{get full metadata, default is FALSE}
 
 \item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http}
 }
