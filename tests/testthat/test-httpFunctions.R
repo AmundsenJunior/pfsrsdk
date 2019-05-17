@@ -1,5 +1,6 @@
 #' @author Adam Wheeler adam.wheeler@thermofisher.com
 #' @author Scott Russell scott.russell@thermofisher.com
+#' @author Francisco Marin francisco.marin@thermofisher.com
 #' @description test all the basic api functions.
 
 context("Tests for httpFunctions")
@@ -48,4 +49,50 @@ test_that(paste0("apiPUT will update an entity on: ", env$auth), {
   res <- apiPUT(con$coreApi, resource = data$persistentEntityType, query = paste0("('", content$Barcode, "')"), body, encode = "raw", headers = header, useVerbose = verbose, unbox = TRUE)
   expect_equal(res$all_headers[[1]]$status, 200)
   res <<- NULL
+})
+
+test_that(paste("test apiGET() on:", env$auth), {
+  expect_warning(
+    {
+      response <- apiGET(
+        coreApi = con$coreApi, resource = "NON_EXISTING_ENTITY('NEE1')",
+        query = "",
+        useVerbose = verbose
+      )
+      response$error$message
+    },
+    "Status Code: 404, Error: Cannot find EntitySet, Singleton, ActionImport or FunctionImport with name 'NON_EXISTING_ENTITY'."
+  )
+})
+
+test_that(paste("test apiPOST() on:", env$auth), {
+  expect_warning(
+    {
+      response <- apiPOST(
+        coreApi = con$coreApi, resource = "NON_EXISTING_ENTITY", body = list(), encode = "json",
+        headers = NULL,
+        special = NULL,
+        useVerbose = FALSE
+      )
+      response$error$message
+    },
+    "Status Code: 404, Error: Cannot find EntitySet, Singleton, ActionImport or FunctionImport with name 'NON_EXISTING_ENTITY'."
+  )
+})
+
+test_that(paste("test apiPUT() on:", env$auth), {
+  expect_warning(
+    {
+      response <- apiPUT(
+        coreApi = con$coreApi, resource = "NON_EXISTING_ENTITY('NEE1')", query = NULL, body = list(), encode = "json",
+        headers = NULL,
+        special = NULL,
+        useVerbose = FALSE,
+        unbox = TRUE,
+        valueFlag = FALSE
+      )
+      response$error$message
+    },
+    "Status Code: 404, Error: Cannot find EntitySet, Singleton, ActionImport or FunctionImport with name 'NON_EXISTING_ENTITY'."
+  )
 })

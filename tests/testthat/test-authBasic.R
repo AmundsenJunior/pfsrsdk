@@ -1,6 +1,7 @@
 #' @author Adam Wheeler adam.wheeler@thermofisher.com
 #' @author Scott Russell scott.russell@thermofisher.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
+#' @author Francisco Marin francisco.marin@thermofisher.com
 #' @description Tests for basic authentication.
 #'
 context("Tests for authentication")
@@ -24,5 +25,5 @@ test_that(paste("single account with bad password returns error on:", env$auth),
   api <- coreAPI(env$auth)
   bapi <- api
   bapi$password <- "badpassword"
-  expect_error(authBasic(bapi, useVerbose = verbose))
+  expect_warning(authBasic(bapi, useVerbose = verbose))
 })

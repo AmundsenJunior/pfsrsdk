@@ -10,6 +10,9 @@
   of RStudio-Connect.
 
 ## New functions and major changes
+* apiGET(), apiPOST(), apiPUT() and ()authBasic will not stop the execution of 
+  the R code during an error. Warnings will show information about the error and
+  the functions will return objects with the error details.
 
 ## Minor improvements and fixes
 

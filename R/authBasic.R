@@ -20,6 +20,7 @@
 #' @author Scott Russell scott.russell@thermofisher.com
 #' @author Adam Wheeler adam.wheeler@thermofisher.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
+#' @author Francisco Marin francisco.marin@thermofisher.com
 #' @description \code{authBasic} Logs in and returns a fully populated coreApi object in $coreAPI.
 
 
@@ -65,7 +66,13 @@ authBasic <- function(coreApi, useVerbose = FALSE) {
       special = "login"
     )
 
+  if (httr::http_error(response)) {
+    # The error details are in the response object. The apiPOST function will generate
+    # warnings with information of what was wrong.
+    warning("Please review details of the authentication error in the response.")
 
+    return(response)
+  }
 
   getSession <- function(response) {
     jsessionid <- httr::content(response)$response$data$jsessionid
@@ -84,16 +91,6 @@ authBasic <- function(coreApi, useVerbose = FALSE) {
       serviceRoot = serviceRoot
     )
   }
-
-  if (httr::http_error(response)) {
-    stop({
-      print("API call failed")
-      print(httr::http_status(response))
-    },
-    call. = FALSE
-    )
-  }
-
 
   session <-
     tryCatch(

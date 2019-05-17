@@ -76,7 +76,7 @@ class RScriptTestPackageTask extends com.umayrh.gradle.RScriptTask {
     
     @Input
     String description = "Test the package, via testthat"
-    String expression = "saveRDS(withr::with_options(list(testthat.output_file = \"${testReportXmlFile}\"), {devtools::test(reporter = JunitReporter)}), \"${testReportRdsFile}\")"
+    String expression = "saveRDS(withr::with_options(list(warn = 2, testthat.output_file = \"${testReportXmlFile}\"), {devtools::test(reporter = JunitReporter)}), \"${testReportRdsFile}\")"
     
     @OutputFile
     File getTestXmlFile() { return this.testReportXmlFile; }
