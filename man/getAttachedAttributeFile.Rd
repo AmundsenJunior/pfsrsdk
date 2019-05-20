@@ -19,11 +19,10 @@ getAttachedAttributeFile(coreApi, entityType, barcode, attribute,
 \item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used}
 }
 \value{
-returns a list $entity contains file data, $response contains the entire http response
+returns a list $entity contains the binary file data, $response contains the entire http response
 }
 \description{
 \code{ getAttachedAttributeFile }  Gets file attached to an attribute on a entity.
-The $entity slot contains the binary file data.
 }
 \details{
 \code{getAttachedAttributeFile}  Gets file attached to an attribute on a entity
@@ -41,4 +40,6 @@ logOut(login$coreApi)
 Craig Parman info@ngsanalytics.com
 
 Adam Wheeler adam.wheeler@thermofisher.com
+
+Natasha Mora natasha.mora@thermofisher.com
 }

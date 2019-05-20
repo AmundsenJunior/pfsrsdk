@@ -20,8 +20,9 @@
 #' error <- httr::http_error(response$response)
 #' logOut(login$coreApi)
 #' }
-#' @author Craig Parman ngsanalytics.com
+#' @author Craig Parman info@ngsanalytics.com
 #' @author Francisco Marin francisco.marin@thermofisher.com
+#' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description \code{apiGET} - Do a get from the Core ODATA REST API.
 
 
@@ -31,7 +32,8 @@ apiGET <-
              query,
              headers = NULL,
              special = NULL,
-             useVerbose = FALSE) {
+             useVerbose = FALSE,
+             useRaw = FALSE) {
     # clean the resource name for ODATA
     resource <- odataCleanName(resource)
 
@@ -91,66 +93,71 @@ apiGET <-
         }
       }
     }
-    # determine if this is a chunked response
 
-    if (!is.null(httr::headers(response)$"transfer-encoding")) {
-      chunked <-
-        (httr::headers(response)$"transfer-encoding" == "chunked")
+    # determine if this should be raw data
+    if (useRaw) {
+      content <- httr::content(response, "raw")
     } else {
-      chunked <- FALSE
-    }
-
-    chunked <-
-      !is.null(httr::content(response)$`@odata.nextLink`) ### added to account for chunked header when not really chunked
-
-    # two methods for chunked and not chunked
-    # it appears sometimes we get a content$value and sometimes we get just content
-
-    if (!chunked) {
-      # not chunked response
-      if (is.null(httr::content(response)[["value"]])) {
-        content <- httr::content(response)
+      # determine if this is a chunked response
+      if (!is.null(httr::headers(response)$"transfer-encoding")) {
+        chunked <-
+          (httr::headers(response)$"transfer-encoding" == "chunked")
       } else {
-        content <- httr::content(response)$value
+        chunked <- FALSE
       }
-    } else {
-      # chunked response
-      more_content <- TRUE # flag for more chunks
-      content <- httr::content(response)$value
 
+      chunked <-
+        !is.null(httr::content(response)$`@odata.nextLink`) ### added to account for chunked header when not really chunked
 
-      while (more_content) {
-        # build url for next chunk
-        sdk_url <- httr::content(response)$`@odata.nextLink`
-        # get next data chunk
+      # two methods for chunked and not chunked
+      # it appears sometimes we get a content$value and sometimes we get just content
 
-        if (useVerbose) {
-          response <-
-            httr::with_verbose(
-              httr::GET(
-                sdk_url,
-                httr::add_headers(headers),
-                httr::set_cookies(cookie)
-              )
-            )
+      if (!chunked) {
+        # not chunked response
+
+        if (is.null(httr::content(response)[["value"]])) {
+          content <- httr::content(response)
         } else {
-          response <- httr::GET(
-            sdk_url,
-            httr::add_headers(headers),
-            httr::set_cookies(cookie)
-          )
+          content <- httr::content(response)$value
         }
-        # add content
+      } else {
+        # chunked response
+        more_content <- TRUE # flag for more chunks
+        content <- httr::content(response)$value
 
-        content <- c(content, httr::content(response)$value)
 
-        # Is there more content ?
+        while (more_content) {
+          # build url for next chunk
+          sdk_url <- httr::content(response)$`@odata.nextLink`
+          # get next data chunk
 
-        more_content <-
-          !is.null(httr::content(response)$`@odata.nextLink`)
+          if (useVerbose) {
+            response <-
+              httr::with_verbose(
+                httr::GET(
+                  sdk_url,
+                  httr::add_headers(headers),
+                  httr::set_cookies(cookie)
+                )
+              )
+          } else {
+            response <- httr::GET(
+              sdk_url,
+              httr::add_headers(headers),
+              httr::set_cookies(cookie)
+            )
+          }
+          # add content
+
+          content <- c(content, httr::content(response)$value)
+
+          # Is there more content ?
+
+          more_content <-
+            !is.null(httr::content(response)$`@odata.nextLink`)
+        }
       }
     }
-
 
 
     out <- list(content = content, response = response)
