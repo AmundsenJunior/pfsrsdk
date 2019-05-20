@@ -13,7 +13,7 @@
 [//]: # (## Fixes)
 --->
 
-# pfsrsdk 1.0.1.9000
+# pfsrsdk 2.0.0
 
 ## Breaking changes
 
