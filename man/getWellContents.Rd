@@ -5,7 +5,8 @@
 \title{getWellContents -  Gets content information of a single container well.}
 \usage{
 getWellContents(coreApi, containerBarcode, containerWellNum,
-  containerType = "CONTAINER", useVerbose = FALSE)
+  containerType = "CONTAINER", fullMetadata = FALSE,
+  useVerbose = FALSE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -15,6 +16,8 @@ getWellContents(coreApi, containerBarcode, containerWellNum,
 \item{containerWellNum}{number location of container's well}
 
 \item{containerType}{entity type of container (default: "CONTAINER")}
+
+\item{fullMetadata}{get full metadata, default is FALSE}
 
 \item{useVerbose}{Use verbose communication for debugging (default: FALSE)}
 }
@@ -36,7 +39,9 @@ logOut(login$coreApi)
 }
 }
 \author{
-Craig Parman ngsAnalytics, ngsanalytics.com
+Craig Parman info@ngsanalytics.com
 
 Scott Russell scott.russell@thermofisher.com
+
+Natasha Mora natasha.mora@thermofisher.com
 }

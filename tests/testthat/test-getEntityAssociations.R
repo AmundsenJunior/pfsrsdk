@@ -1,10 +1,9 @@
-#' @author Adam Wheeler adam.j.wheeler@accenture.com
+#' @author Adam Wheeler adam.wheeler@thermofisher.com
 #' @author Scott Russell scott.russell@thermofisher.com
+#' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description \code Tests for getEntityAssociations.
 
 context("Tests for getEntityAssociations")
-
-# Completed regression for 5.3.8 and 6.0.1
 
 test_that(paste("test getEntityAssociations() on:", env$auth), {
   assoc <- getEntityByName(con$coreApi, data$testPocoGetAssocType, data$testPocoGetAssocName, FALSE, FALSE)
@@ -14,4 +13,5 @@ test_that(paste("test getEntityAssociations() on:", env$auth), {
 
   expect_equal(as$response$status_code, 200)
   expect_match(as$entity[[1]]$Barcode, assoc$entity[[1]]$Barcode)
+  expect_true(!is.null(as$entity[[1]]$`Id@odata.type`))
 })

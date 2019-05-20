@@ -5,7 +5,8 @@
 \title{createExperimentSample - Create a new experiment sample from a sample lot.}
 \usage{
 createExperimentSample(coreApi, experimentType, experimentBarcode,
-  sampleLotBarcode, body = NULL, useVerbose = FALSE)
+  sampleLotBarcode, body = NULL, fullMetadata = FALSE,
+  useVerbose = FALSE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -18,13 +19,15 @@ createExperimentSample(coreApi, experimentType, experimentBarcode,
 
 \item{body}{values for sample attributes as a  list of key-values pairs}
 
+\item{fullMetadata}{get full metadata, default is FALSE}
+
 \item{useVerbose}{Use verbose communication for debugging}
 }
 \value{
 RETURN returns a list $entity contains entity information, $response contains the entire http response
 }
 \description{
-\code{createExperimentSample} Creates a new experiment sample fomr a sample lot.
+\code{createExperimentSample} Creates a new experiment sample from a sample lot.
 }
 \details{
 \code{createExperimentSample} Creates a new instance of an entity.
@@ -44,5 +47,7 @@ logOut(login$coreApi)
 }
 }
 \author{
-Craig Parman ngsAnalytics, ngsanalytics.com
+Craig Parman info@ngsanalytics.com
+
+Natasha Mora natasha.mora@thermofisher.com
 }

@@ -23,7 +23,7 @@
 #' logOut(login$coreApi)
 #' response <- authBasic(coreApi)
 #' }
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Craig Parman info@ngsanalytics.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description \code{updateExperimentSampleRawData} Update experiment sample assay raw data.
 

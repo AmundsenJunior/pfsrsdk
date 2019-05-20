@@ -32,11 +32,13 @@ logOut(response$coreApi, useVerbose = TRUE)
 }
 }
 \author{
-Craig Parman ngsAnalytics, ngsanaltics.com
+Craig Parman info@ngsanalytics.com
 
 Scott Russell scott.russell@thermofisher.com
 
-Adam Wheeler, adam.j.wheeler@accenture.com
+Adam Wheeler adam.wheeler@thermofisher.com
 
 Natasha Mora natasha.mora@thermofisher.com
+
+Francisco Marin francisco.marin@thermofisher.com
 }

@@ -28,8 +28,9 @@
 #' content <- httr::content(response)
 #' logOut(login$coreApi)
 #' }
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
-#' @author Adam Wheeler, adam.j.wheeler@accenture.com
+#' @author Craig Parman info@ngsanalytics.com
+#' @author Adam Wheeler adam.wheeler@thermofisher.com
+#' @author Francisco Marin francisco.marin@thermofisher.com
 #' @description \code{apiPUT} - Base PUT call to Core ODATA REST API.
 
 apiPUT <-
@@ -96,15 +97,26 @@ apiPUT <-
 
 
     # check for general HTTP error in response
-
     if (httr::http_error(response)) {
-      stop({
-        print("API call failed")
-        print(httr::http_status(response))
-        print(httr::content(response, as = "text"))
-      },
-      call. = FALSE
-      )
+      warning("API call failed", call. = FALSE)
+      warning(httr::http_status(response), call. = FALSE)
+      responseData <- httr::content(response)
+      headers <- httr::headers(response)
+
+      if (grepl("application/json", headers[["Content-Type"]], fixed = TRUE) &&
+        !is.null(responseData$error)) {
+        statusCode <- httr::status_code(response)
+        warning(paste0(
+          "Status Code: ", statusCode,
+          ", Error: ", responseData$error$message
+        ),
+        call. = FALSE
+        )
+
+        if (!is.null(responseData$error$details)) {
+          warning(paste0("Additional Details: ", responseData$error$details$message))
+        }
+      }
     }
     return(response)
   }

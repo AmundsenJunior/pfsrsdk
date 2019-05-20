@@ -3,8 +3,6 @@
 
 context("Tests for getContainerCellIds")
 
-# Completed regression for 5.3.8 and 6.0.1
-
 test_that(paste("test getContainerCellIds() on:", env$auth), {
   result <- getContainerCellIds(con$coreApi, data$containerBarcode, containerType = data$containerType, useVerbose = verbose)
 

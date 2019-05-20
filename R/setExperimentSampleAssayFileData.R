@@ -24,7 +24,7 @@
 #' )
 #' logOut(login$coreApi)
 #' }
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Craig Parman info@ngsanalytics.com
 #' @author Scott Russell scott.russell@thermofisher.com
 #' @description \code{ setExperimentSampleAssayFileData } Puts file attached as assay data into an experiment sample.
 

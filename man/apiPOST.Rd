@@ -42,5 +42,7 @@ logOut(login$coreApi)
 }
 }
 \author{
-Craig Parman ngsAnalytics, ngsanalytics.com
+Craig Parman info@ngsanalytics.com
+
+Francisco Marin francisco.marin@thermofisher.com
 }

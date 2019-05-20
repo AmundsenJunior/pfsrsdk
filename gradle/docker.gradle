@@ -16,8 +16,8 @@ ext {
 }
 
 docker {
-    url = (project.hasProperty('dockerRestUrl') ? project.property('dockerRestUrl') : PropertyUtil.getPropertyOrEnvironmentValue('dockerRestUrl', 'DOCKER_HOST', ''))
-    certPath = new File(project.hasProperty('dockerCertPath') ? project.property('dockerCertPath') : PropertyUtil.getPropertyOrEnvironmentValue('dockerCertPath', 'DOCKER_CERT_PATH', ''))
+    url = (System.getenv('DOCKER_HOST') != null ? PropertyUtil.getPropertyOrEnvironmentValue('dockerRestUrl', 'DOCKER_HOST', '') : (project.hasProperty('dockerRestUrl') ? project.property('dockerRestUrl') : 'unix:///var/run/docker.sock'))
+    certPath = new File(System.getenv('DOCKER_CERT_PATH') != null ? PropertyUtil.getPropertyOrEnvironmentValue('dockerCertPath', 'DOCKER_CERT_PATH', '') : (project.hasProperty('dockerCertPath') ? project.property('dockerCertPath') : ''))
     logger.info 'docker.url: ' + url
     logger.info 'docker.certPath: ' + certPath
 

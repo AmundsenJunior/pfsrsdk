@@ -3,8 +3,6 @@
 
 context("Tests for setCellContents")
 
-# Completed regression for 5.3.8 and 6.0.1
-
 test_that(paste("test setCellContents() on:", env$auth), {
   result <- setCellContents(con$coreApi,
     data$nonExperimentContainerType,

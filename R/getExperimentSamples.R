@@ -5,6 +5,7 @@
 #' @param coreApi coreApi object with valid jsessionid
 #' @param experimentType experiment entity type to get
 #' @param barcode barcode of entity to get
+#' @param fullMetadata get full metadata, default is FALSE
 #' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http
 #' @return returns a list $entity contains entity information, $response contains the entire http response
 #' @export
@@ -16,35 +17,36 @@
 #' experimentsampleBarcodes <- response$entity
 #' logOut(login$coreApi)
 #' }
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Craig Parman info@ngsanalytics.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
 #' @author Scott Russell scott.russell@thermofisher.com
 #' @description \code{ getExperimentSamples}  Gets experiment sample barcodes from experiment identified by experiment barcode.
-
-
-
-
 
 getExperimentSamples <-
   function(coreApi,
              experimentType,
              barcode,
+             fullMetadata = TRUE,
              useVerbose = FALSE) {
 
     # clean the name for ODATA
     resource <-
       paste0(odataCleanName(experimentType), "('", barcode, "')")
 
-    query <- switch(EXPR = substr(coreApi$semVer, 1, 1),
-      "2" = "?$expand=REV_EXPERIMENT_EXPERIMENT_SAMPLE",
-      "3" = "?$expand=EXPERIMENT_SAMPLES",
-      print("?$expand=EXPERIMENT_SAMPLES")
+    case(
+      grepl("[0-2]+\\.[0-9]+\\.[0-9]+", coreApi$semVer) ~ {
+        query <- "?$expand=REV_EXPERIMENT_EXPERIMENT_SAMPLE"
+      },
+      grepl("[3-9]+\\.[0-9]+\\.[0-9]+", coreApi$semVer) ~ {
+        query <- "?$expand=EXPERIMENT_SAMPLES"
+      }
     )
 
-    header <-
-      c("Content-Type" = "application/json;odata.metadata=full", Accept = "application/json")
-
-
+    if (fullMetadata) {
+      header <- c("Content-Type" = "application/json", Accept = "application/json;odata.metadata=full")
+    } else {
+      header <- c("Content-Type" = "application/json", Accept = "application/json")
+    }
 
     response <-
       apiGET(
@@ -56,7 +58,6 @@ getExperimentSamples <-
       )
 
     ResponseContent <- httr::content(response$response, as = "parsed")
-
 
     list(entity = unlist((
       lapply(

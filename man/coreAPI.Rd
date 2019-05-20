@@ -2,7 +2,7 @@
 % Please edit documentation in R/coreAPI.R
 \name{coreAPI}
 \alias{coreAPI}
-\title{coreAPI Creates a object of class coreAPI that contains user and connection information.}
+\title{coreAPI - Creates a object of class coreAPI that contains user and connection information.}
 \usage{
 coreAPI(CoreAccountInfo)
 }
@@ -13,7 +13,7 @@ coreAPI(CoreAccountInfo)
 Object of class coreAPI
 }
 \description{
-coreAPI Creates a object of class coreAPI that contains user and connection information.
+\code{coreAPI} Creates a object of class coreAPI that contains user and connection information.
 }
 \details{
 { Creates a object of class list that contains connection information.
@@ -27,65 +27,39 @@ The json must include the fields shown below.
   "values": [
     {
       "key": "tenant",
-      "value": "FULLNAMEOFTENANT",
-      "type": "text",
-      "enabled": true
+      "value": "FULLNAMEOFTENANT"
     },
     {
       "key": "alias",
-      "value": "SHORTNAMEINURL",
-      "type": "text",
-      "enabled": true
+      "value": "SHORTNAMEINURL"
     },
     {
       "key": "scheme",
-      "value": "https",
-      "type": "text",
-      "name": "scheme",
-      "enabled": true,
-      "hovered": false
+      "value": "https"
     },
     {
       "key": "host",
-      "value": "HOSTNAME",
-      "type": "text",
-      "name": "host",
-      "enabled": true,
-      "hovered": false
+      "value": "HOSTNAME"
     },
     {
       "key": "port",
-      "value": "443",
-      "type": "text",
-      "enabled": true
+      "value": "443"
     },
     {
       "key": "context",
-      "value": "",
-      "type": "text",
-      "enabled": true
+      "value": ""
     },
     {
-      "key": "username",
-      "value": "USER",
-      "type": "text",
-      "name": "nameadmin",
-      "enabled": true,
-      "hovered": false
+      "key": "api_username",
+      "value": "USER"
     },
     {
-      "key": "password",
-      "value": "PASSWORD",
-      "type": "text",
-      "name": "passwordadmin",
-      "enabled": true,
-      "hovered": false
+      "key": "api_password",
+      "value": "PASSWORD"
     },
     {
       "key": "semver",
-      "value": "",
-      "type": "text",
-      "enabled": true
+      "value": ""
     }
     ]
 }
@@ -100,11 +74,11 @@ api <- coreAPI("/home/environment.json")
 }
 }
 \author{
-Craig Parman ngsAnalytics, ngsanalytics.com
+Craig Parman info@ngsanalytics.com
 
 Scott Russell scott.russell@thermofisher.com
 
-Adam Wheeler, adam.j.wheeler@accenture.com
+Adam Wheeler adam.wheeler@thermofisher.com
 
 Natasha Mora natasha.mora@thermofisher.com
 }

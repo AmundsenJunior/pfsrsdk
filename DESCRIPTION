@@ -1,17 +1,18 @@
 Package: pfsrsdk
 Type: Package
 Title: Functions for interacting with Platform for Science APIs
-Version: 1.0.1
+Version: 2.0.0
 Authors@R: as.person(c(
-    "Adam Wheeler <adam.j.wheeler@accenture.com> [aut]",
+    "Adam Wheeler <adam.wheeler@thermofisher.com> [aut]",
     "Craig Parman <info@ngsanalytics.com> [aut]",
     "Scott Russell <scott.russell@thermofisher.com> [aut]",
     "Natasha Mora <natasha.mora@thermofisher.com> [aut]",
+    "Francisco Marin <francisco.marin@thermofisher.com> [aut]", 
     "Thermo Fisher PFS Data Science & Engineering Team <datascience@thermofisher.com> [cre, cph]"
   ))
 Description: The package provides functions for interacting with the Thermo 
   Fisher Scientific Platform for Science (PFS) APIs.
-PfsCompatibility: c("3.0.4", "3.0.3", "2.8.1", "2.7.1")
+PfsCompatibility: c("3.0.4", "3.0.3", "2.8.2", "2.8.1", "2.7.1")
 License: AGPL (>=2)
 URL: https://bitbucket.org/corelims/pfsrsdk
 BugReports: https://corelims.atlassian.net/secure/RapidBoard.jspa?projectKey=RSDK

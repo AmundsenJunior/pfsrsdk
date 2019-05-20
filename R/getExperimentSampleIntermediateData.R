@@ -1,6 +1,6 @@
 #' getExperimentSampleIntermediateData - Gets intermediate data for an experiment sample.
 #'
-#' \code{getExperimentSampleIntermediateData}  Gets intermediate data for a experiment sample identified by barcode.
+#' \code{getExperimentSampleIntermediateData}  Gets intermediate data for an experiment sample identified by barcode.
 #'
 #' @param coreApi coreApi object with valid jsessionid
 #' @param experimentType experiment type for sample
@@ -25,9 +25,9 @@
 #' rawdata <- response$entity
 #' logOut(login$coreApi)
 #' }
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Craig Parman info@ngsanalytics.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
-#' @description \code{getExperimentSampleIntermediateData}   Gets raw data for a experiment sample identified by barcode.
+#' @description \code{getExperimentSampleIntermediateData}   Gets intermediate data for an experiment sample identified by barcode.
 
 
 
@@ -55,7 +55,7 @@ getExperimentSampleIntermediateData <-
     )
 
 
-    header <- c(Accept = "application/json; odata.metadata=minimal")
+    header <- c(Accept = "application/json")
 
 
     response <-

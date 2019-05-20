@@ -1,10 +1,8 @@
-#' @author Adam Wheeler adam.j.wheeler@accenture.com
+#' @author Adam Wheeler adam.wheeler@thermofisher.com
 #' @author Scott Russell scott.russell@thermofisher.com
 #' @description Tests for entity associations.
 
 context("Tests for updateEntityAssociations")
-
-# Completed regression for 5.3.8 and 6.0.1
 
 test_that(paste("test updateEntityAssociations() on:", env$auth), {
   assoc <- getEntityByName(con$coreApi, data$testPocoUpdateAssocType, data$testPocoUpdateAssocName, FALSE, FALSE)

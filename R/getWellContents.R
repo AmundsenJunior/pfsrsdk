@@ -5,6 +5,7 @@
 #' @param containerBarcode container barcode
 #' @param containerWellNum number location of container's well
 #' @param containerType entity type of container (default: "CONTAINER")
+#' @param fullMetadata get full metadata, default is FALSE
 #' @param useVerbose  Use verbose communication for debugging (default: FALSE)
 #' @export
 #' @return RETURN returns a list $entity contains well information, $response contains the entire http response
@@ -15,8 +16,9 @@
 #' well <- getWellContents(login$coreApi, "VIA9", "1", "VIAL")
 #' logOut(login$coreApi)
 #' }
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Craig Parman info@ngsanalytics.com
 #' @author Scott Russell scott.russell@thermofisher.com
+#' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description \code{getWellContents} - Gets content information of a single container well.
 
 getWellContents <-
@@ -24,6 +26,7 @@ getWellContents <-
              containerBarcode,
              containerWellNum,
              containerType = "CONTAINER",
+             fullMetadata = FALSE,
              useVerbose = FALSE) {
     containerType <- odataCleanName(containerType)
     containerWellNum <- as.numeric(containerWellNum)
@@ -40,8 +43,11 @@ getWellContents <-
       }
     )
 
-    header <-
-      c("Content-Type" = "application/json;odata.metadata=minimal", Accept = "application/json")
+    if (fullMetadata) {
+      header <- c("Content-Type" = "application/json", Accept = "application/json;odata.metadata=full")
+    } else {
+      header <- c("Content-Type" = "application/json", Accept = "application/json")
+    }
 
     response <-
       apiGET(

@@ -1,11 +1,9 @@
-#' @author Adam Wheeler adam.j.wheeler@accenture.com
+#' @author Adam Wheeler adam.wheeler@thermofisher.com
 #' @author Scott Russell scott.russell@thermofisher.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description \code{buildUrl} testing buildURL.
 
 context("Tests for buildURL")
-
-# Completed regression for 5.3.8 and 6.0.1
 
 if (con$coreApi$tenant == "PLATFORM ADMIN") {
   odat <- "/odata/"

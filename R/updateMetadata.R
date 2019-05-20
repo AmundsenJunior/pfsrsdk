@@ -13,7 +13,7 @@
 #' metadata <- updateMetadata(login$coreApi, useverbose = TRUE)
 #' logOut(login$coreApi)
 #' }
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Craig Parman info@ngsanalytics.com
 #' @description \code{updateMetadata}  Updates cached metadata so metadata is up to date.
 #' Must be run after any configuration changes.
 

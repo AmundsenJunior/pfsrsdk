@@ -5,18 +5,21 @@
 \title{createExperimentContainer- Creates a new experiment container by adding an exiting container to an experiment.}
 \usage{
 createExperimentContainer(coreApi, experimentType, experimentBarcode,
-  containerBarcode, body = NULL, useVerbose = FALSE)
+  containerBarcode, body = NULL, fullMetadata = FALSE,
+  useVerbose = FALSE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
 
 \item{experimentType}{experiment type to get as character string}
 
-\item{experimentBarcode}{experiment barcode}
+\item{experimentBarcode}{experiment barcode of an unpublished experiment}
 
 \item{containerBarcode}{barcode of container to add to experiment}
 
 \item{body}{values for sample attributes as a  list of key-values pairs (not user in this json version)}
+
+\item{fullMetadata}{get full metadata, default is FALSE}
 
 \item{useVerbose}{Use verbose communication for debugging}
 }
@@ -24,11 +27,11 @@ createExperimentContainer(coreApi, experimentType, experimentBarcode,
 RETURN returns a list $entity contains entity information, $response contains the entire http response
 }
 \description{
-\code{createExperimentContainer}Creates a new experiment container by adding an exiting container
+\code{createExperimentContainer}Creates a new experiment container by adding an existing container
 to an experiment.
 }
 \details{
-\code{createExperimentContainer} Creates a new experiment container by adding an exiting container to an experiment.
+\code{createExperimentContainer} Creates a new experiment container by adding an existing container to an experiment.
 }
 \examples{
 \dontrun{
@@ -42,5 +45,7 @@ logOut(login$coreApi)
 }
 }
 \author{
-Craig Parman ngsAnalytics, ngsanalytics.com
+Craig Parman info@ngsanalytics.com
+
+Natasha Mora natasha.mora@thermofisher.com
 }

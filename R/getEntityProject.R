@@ -5,6 +5,7 @@
 #' @param coreApi coreApi object with valid jsessionid
 #' @param entityType entity type to get
 #' @param barcode barcode of entity to get
+#' @param fullMetadata - get full metadata, default is FALSE
 #' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http
 #' @return returns a list $entity contains projects entity information, $response contains the entire http response
 #' @export
@@ -15,18 +16,27 @@
 #' item <- getEntityLocation(login$coreApi, "entityType", "barcode")
 #' logOut(login$coreApi)
 #' }
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
-#' @author Adam Wheeler adam.j.wheeler@accenture.com
+#' @author Craig Parman info@ngsanalytics.com
+#' @author Adam Wheeler adam.wheeler@thermofisher.com
+#' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description \code{getEntityProject}  Get project(s) for an entity by barcode from the Core LIMS using the ODATA API.
 
 
 
 
 getEntityProject <-
-  function(coreApi, entityType, barcode, useVerbose = FALSE) {
+  function(coreApi,
+             entityType,
+             barcode,
+             fullMetadata = FALSE,
+             useVerbose = FALSE) {
     query <- paste0("('", barcode, "')/PROJECT")
 
-    header <- c(Accept = "application/json;odata.metadata=minimal")
+    if (fullMetadata) {
+      header <- c(Accept = "application/json;odata.metadata=full")
+    } else {
+      header <- c(Accept = "application/json;odata.metadata=minimal")
+    }
 
     out <-
       apiGET(

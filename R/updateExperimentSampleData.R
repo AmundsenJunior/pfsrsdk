@@ -22,11 +22,9 @@
 #' logOut(login$coreApi)
 #' response <- authBasic(coreApi)
 #' }
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Craig Parman info@ngsanalytics.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description \code{updateExperimentSampleData} Update experiment sample assay data.
-
-
 
 updateExperimentSampleData <-
   function(coreApi,
@@ -35,26 +33,18 @@ updateExperimentSampleData <-
              experimentAssayUpdateAttrList,
              useVerbose = FALSE) {
     # Clean Names of assay
-
     experimentAssayType <- odataCleanName(experimentAssayType)
 
-
     # Clean Names of attributes
-
-
     for (i in 1:length(names(experimentAssayUpdateAttrList)))
     {
       names(experimentAssayUpdateAttrList)[i] <-
         attributeCleanName(names(experimentAssayUpdateAttrList)[i])
     }
-
-
-
-    body <- experimentAssayUpdateAttrList # needs to be unboxed
+    body <- jsonlite::unbox(experimentAssayUpdateAttrList)
 
     resource <- paste0(experimentAssayType, "_DATA")
     query <- paste0("('", experimentSampleBarcode, "')")
-
     header <- c("Content-Type" = "application/json", "If-Match" = "*")
 
     response <-
@@ -67,7 +57,6 @@ updateExperimentSampleData <-
         headers = header,
         useVerbose = useVerbose
       )
-
 
     list(entity = httr::content(response), response = response)
   }

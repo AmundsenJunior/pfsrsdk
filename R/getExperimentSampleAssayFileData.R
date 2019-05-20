@@ -17,7 +17,7 @@
 #' writeBin(response$entity, "myfile.png")
 #' logOut(login$coreApi)
 #' }
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Craig Parman info@ngsanalytics.com
 #' @description \code{ getExperimentSamplesAssayFileData }  Gets file attached as assay data.
 #' Use getExperimentSamplesAssayData for non-file data.
 

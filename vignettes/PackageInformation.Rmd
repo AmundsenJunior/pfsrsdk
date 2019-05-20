@@ -1,0 +1,43 @@
+---
+title: "Package Information"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE)
+```
+
+## Introduction
+
+This document lists the R version and package vesions used in the development of
+the pfsrsdk package. It is built automatically and reflects the latest
+versions used. 
+
+## Package Information
+
+```{r comment=NA}
+pd <- packageDescription("pfsrsdk")
+pd
+```
+
+## Build Environment Information
+
+```{r}
+enviro <- t(as.data.frame(sessionInfo()$R.version))
+
+knitr::kable(enviro, format = "markdown")
+```
+
+## Package Dependencies
+
+```{r}
+imports <- stringi::stri_remove_empty(strsplit(packageDescription("pfsrsdk", fields="Imports"), "[[:punct:][:space:]]+")[[1]])
+versions <- sapply(imports, function(x) packageDescription(x, fields="Version"))
+licenses <- sapply(imports, function(x) packageDescription(x, fields="License"))
+urls <- sapply(imports, function(x) gsub("[,[:space:]]+", ", ", packageDescription(x, fields="URL")))
+importFrame <- data.frame(Package = imports, Version = versions, License = licenses, URLs = urls)
+
+knitr::kable(importFrame, format = "markdown", row.names = FALSE)
+```

@@ -1,4 +1,6 @@
-#' coreAPI Creates a object of class coreAPI that contains user and connection information.
+#' coreAPI - Creates a object of class coreAPI that contains user and connection information.
+#'
+#' \code{coreAPI} Creates a object of class coreAPI that contains user and connection information.
 #' @param CoreAccountInfo file with tenant information in json format.
 #' @return Object of class coreAPI
 #' @export
@@ -17,65 +19,39 @@
 #'   "values": [
 #'     {
 #'       "key": "tenant",
-#'       "value": "FULLNAMEOFTENANT",
-#'       "type": "text",
-#'       "enabled": true
+#'       "value": "FULLNAMEOFTENANT"
 #'     },
 #'     {
 #'       "key": "alias",
-#'       "value": "SHORTNAMEINURL",
-#'       "type": "text",
-#'       "enabled": true
+#'       "value": "SHORTNAMEINURL"
 #'     },
 #'     {
 #'       "key": "scheme",
-#'       "value": "https",
-#'       "type": "text",
-#'       "name": "scheme",
-#'       "enabled": true,
-#'       "hovered": false
+#'       "value": "https"
 #'     },
 #'     {
 #'       "key": "host",
-#'       "value": "HOSTNAME",
-#'       "type": "text",
-#'       "name": "host",
-#'       "enabled": true,
-#'       "hovered": false
+#'       "value": "HOSTNAME"
 #'     },
 #'     {
 #'       "key": "port",
-#'       "value": "443",
-#'       "type": "text",
-#'       "enabled": true
+#'       "value": "443"
 #'     },
 #'     {
 #'       "key": "context",
-#'       "value": "",
-#'       "type": "text",
-#'       "enabled": true
+#'       "value": ""
 #'     },
 #'     {
-#'       "key": "username",
-#'       "value": "USER",
-#'       "type": "text",
-#'       "name": "nameadmin",
-#'       "enabled": true,
-#'       "hovered": false
+#'       "key": "api_username",
+#'       "value": "USER"
 #'     },
 #'     {
-#'       "key": "password",
-#'       "value": "PASSWORD",
-#'       "type": "text",
-#'       "name": "passwordadmin",
-#'       "enabled": true,
-#'       "hovered": false
+#'       "key": "api_password",
+#'       "value": "PASSWORD"
 #'     },
 #'     {
 #'       "key": "semver",
-#'       "value": "",
-#'       "type": "text",
-#'       "enabled": true
+#'       "value": ""
 #'     }
 #'     ]
 #' }
@@ -83,16 +59,16 @@
 #'
 #'  The tenant value may be set to "" if the user only has access to one tenant.
 #' As an alternative the environment json object from Postman can be used directly.
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Craig Parman info@ngsanalytics.com
 #' @author Scott Russell scott.russell@thermofisher.com
-#' @author Adam Wheeler, adam.j.wheeler@accenture.com
+#' @author Adam Wheeler adam.wheeler@thermofisher.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
 coreAPI <- function(CoreAccountInfo) {
   accountinfo <- jsonlite::fromJSON(CoreAccountInfo)$values
   structure(
     list(
-      username = getAccountInfoValue(accountinfo, "username"),
-      password = getAccountInfoValue(accountinfo, "password"),
+      username = getAccountInfoValue(accountinfo, "api_username"),
+      password = getAccountInfoValue(accountinfo, "api_password"),
       tenant = getAccountInfoValue(accountinfo, "tenant"),
       alias = getAccountInfoValue(accountinfo, "alias"),
       context = getAccountInfoValue(accountinfo, "context"),
@@ -109,16 +85,21 @@ coreAPI <- function(CoreAccountInfo) {
   )
 }
 
+#' getAccountInfoValue - read a configuration value from a data frame or environment variable
+#' @param accountinfo data frame of configuration values
+#' @param key name of data frame key that might match an environment variable
+#' @return value from the data frame or environment variable
+#' @author Scott Russell scott.russell@thermofisher.com
 getAccountInfoValue <- function(accountinfo, key) {
   value <- accountinfo$value[accountinfo$key == key]
 
   if (stringi::stri_isempty(value)) {
     value <- NULL
-  }
 
-  envVar <- stringr::str_to_upper(key)
-  if (!stringi::stri_isempty(Sys.getenv(envVar))) {
-    value <- Sys.getenv(envVar)
+    envVar <- stringr::str_to_upper(key)
+    if (!stringi::stri_isempty(Sys.getenv(envVar))) {
+      value <- Sys.getenv(envVar)
+    }
   }
 
   return(value)

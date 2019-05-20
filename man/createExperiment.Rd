@@ -5,7 +5,8 @@
 \title{createExperiment - Create a new instance of an experiment.}
 \usage{
 createExperiment(coreApi, experimentType, assayType, assayBarcode,
-  protocolType, protocolBarcode, body = NULL, useVerbose = FALSE)
+  protocolType, protocolBarcode, body = NULL, fullMetadata = FALSE,
+  useVerbose = FALSE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -21,6 +22,8 @@ createExperiment(coreApi, experimentType, assayType, assayBarcode,
 \item{protocolBarcode}{protocol barcode}
 
 \item{body}{values for experiment attributes and associations as a  list of key-values pairs}
+
+\item{fullMetadata}{get full metadata, default is FALSE}
 
 \item{useVerbose}{Use verbose communication for debugging}
 }
@@ -47,5 +50,7 @@ logOut(login$coreApi)
 }
 }
 \author{
-Craig Parman ngsAnalytics, ngsanalytics.com
+Craig Parman info@ngsanalytics.com
+
+Natasha Mora natasha.mora@thermofisher.com
 }

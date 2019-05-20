@@ -12,7 +12,7 @@
 #' response <- authBasic(api)
 #' logOut <- logOut(response$coreApi, useVerbose = TRUE)
 #' }
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Craig Parman info@ngsanalytics.com
 #' @description \code{logOut} logs out of the current session.
 
 
@@ -31,7 +31,7 @@ logOut <- function(coreApi, useVerbose = FALSE) {
     )
 
   headers <-
-    c("Content-Type" = "application/json;odata.metadata=full", accept = "application/json")
+    c("Content-Type" = "application/json", accept = "application/json")
 
   response <-
     apiPOST(

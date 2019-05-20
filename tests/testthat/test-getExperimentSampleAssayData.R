@@ -3,10 +3,8 @@
 
 context("Tests for getExperimentSampleAssayData")
 
-# Completed regression for 5.3.8 and 6.0.1
-
 test_that(paste("test getExperimentSampleAssayData() on:", env$auth), {
-  result <- getExperimentSampleAssayData(con$coreApi, data$experimentAssayType, data$experimentSampleBarcode, useVerbose = verbose)
+  result <- getExperimentSampleAssayData(con$coreApi, data$experimentAssayType, data$experimentSampleBarcode, fullMetadata = TRUE, useVerbose = verbose)
 
   expect_equal(result$response$status_code, 200)
 
@@ -15,4 +13,6 @@ test_that(paste("test getExperimentSampleAssayData() on:", env$auth), {
       result$entity[[1]]$Barcode
     ), 0
   )
+
+  expect_true(!is.null(result$entity[[1]]$`CI_BITTERNESS_IBU@odata.type`))
 })

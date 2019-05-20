@@ -35,4 +35,5 @@ dependencies {
     classpath 'org.jfrog.buildinfo:build-info-extractor-gradle:4.1.1'
     classpath 'gradle.plugin.com.umayrh:plugin:0.2.5'
     classpath 'org.yaml:snakeyaml:1.20'
+    classpath 'gradle.plugin.io.github.http-builder-ng:http-plugin:0.1.1'
 }

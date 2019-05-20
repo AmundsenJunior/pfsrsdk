@@ -10,7 +10,7 @@
 \alias{ODATAcleanName}
 \alias{setExperimentSamplesAssayFileData}
 \alias{updateCellContents}
-\title{ODATA clean Name}
+\title{ODATAcleanName - converts names to ODATA compliant version. Used to clean names in ODATA calls.}
 \usage{
 getAttachedFile(coreApi, entityType, barcode, attribute,
   useVerbose = FALSE)
@@ -43,8 +43,6 @@ The functions listed below are deprecated and will be defunct in
   available at \code{help("-deprecated")}.
 }
 \details{
-ODATAcleanName - converts names to ODATA compliant version. Used to clean names in ODATA calls.
-
 \code{ODATAcleanName} Clean a name for ODATA.
 }
 \section{\code{getAttachedFile}}{

@@ -1,4 +1,4 @@
-#' @author Adam Wheeler adam.j.wheeler@accenture.com
+#' @author Adam Wheeler adam.wheeler@thermofisher.com
 #' @author Scott Russell scott.russell@thermofisher.com
 #' @description Tests for Experiment creation.
 #'
@@ -11,8 +11,11 @@ test_that(paste("test createExperiment() on: ", env$auth), {
     data$experimentAssayBarcode,
     data$experimentProtocolType,
     data$experimentProtocolBarcode,
-    body = NULL, useVerbose = verbose
+    body = NULL,
+    fullMetadata = TRUE,
+    useVerbose = verbose
   )
 
   expect_that(httr::http_status(expt$response)$reason, equals("Created"))
+  expect_true(!is.null(expt$entity$`Id@odata.type`))
 })

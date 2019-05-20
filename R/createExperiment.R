@@ -8,6 +8,7 @@
 #' @param protocolType protocol type
 #' @param protocolBarcode protocol barcode
 #' @param body values for experiment attributes and associations as a  list of key-values pairs
+#' @param fullMetadata get full metadata, default is FALSE
 #' @param useVerbose Use verbose communication for debugging
 #' @export
 #' @return RETURN returns a list $entity contains entity information, $response contains the entire http response
@@ -23,7 +24,8 @@
 #' )
 #' logOut(login$coreApi)
 #' }
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Craig Parman info@ngsanalytics.com
+#' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description \code{createExperiment} Creates a new experiment.
 
 createExperiment <-
@@ -34,6 +36,7 @@ createExperiment <-
              protocolType,
              protocolBarcode,
              body = NULL,
+             fullMetadata = FALSE,
              useVerbose = FALSE) {
     # clean the names for ODATA
 
@@ -52,10 +55,11 @@ createExperiment <-
     fullBody <-
       jsonlite::toJSON(c(body, assayRef, protocolRef), auto_unbox = TRUE)
 
-
-
-
-    headers <- c("Content-Type" = "application/json")
+    if (fullMetadata) {
+      headers <- c("Content-Type" = "application/json", "Accept" = "application/json;odata.metadata=full")
+    } else {
+      headers <- c("Content-Type" = "application/json", "Accept" = "application/json")
+    }
 
     response <-
       apiPOST(

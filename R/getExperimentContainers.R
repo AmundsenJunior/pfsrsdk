@@ -14,7 +14,7 @@
 #' exptContainerBarcodes <- getExperimentContainers(login$coreApi, "experimentType", "experimentBarcode")
 #' logOut(login$coreApi)
 #' }
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Craig Parman info@ngsanalytics.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description \code{getExperimentContainers}  Gets experiment contaniers from experiment identified by experiment barcode.
 
@@ -37,7 +37,7 @@ getExperimentContainers <-
 
 
     header <-
-      c("Content-Type" = "application/json;odata.metadata=full", Accept = "application/json")
+      c("Content-Type" = "application/json", Accept = "application/json")
 
 
     response <-

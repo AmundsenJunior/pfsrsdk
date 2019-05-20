@@ -1,4 +1,4 @@
-@Library('common-jenkins-declarative@2.x.x') _
+@Library('common-jenkins-declarative') _
 
 pipeline {
     agent {
@@ -42,51 +42,9 @@ pipeline {
                         K8S_TEST_NAMESPACE = stringScrub("pfsrsdk-2-7-1-test-${BRANCH_NAME.replace('.', '-').take(15)}-${BUILD_NUMBER}")
                         RELEASE_NAME = stringScrub("${RELEASE_NAME.take(32)}-2-7-1")
                     }
-
-                    when {
-                        expression { BRANCH_NAME ==~ /(develop|master|release.+)/ }
-                    }
-
-                    stages {
-                        stage('install-pfs-env') {
-                            steps {
-                                createK8sNamespace()
-                                helmInstall('pfs-legacy',
-                                    [ chartVersion: TEST_VERSION,
-                                      timeout: 1200,
-                                      templateValues: [
-                                        'namespace': K8S_TEST_NAMESPACE 
-                                      ]
-                                    ])
-                                sleep 120
-                            }
-                        }
-
-                        stage('execute-pfs-sdk-tests') {
-                            options { retry(2) }
-
-                            environment {
-                                HOST = getK8sValue('pod', 'pfs-pod', '{{.status.hostIP}}')
-                                PORT = getK8sValue('service', 'pfs-service', "\'{{range .spec.ports}}{{if eq .name \"http\"}}{{.nodePort}}{{end}}{{end}}\'")
-                                TEST_ENV = "${TEST_VERSION}"
-                            }
-                            
-                            steps {
-                                script {
-                                    try {
-                                        gradleTask('testPackage')
-                                    } catch (err) {
-                                        echo err
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    post {
-                        always {
-                            deleteK8sNamespace()
-                        }
+                    
+                    steps {
+                        testGradleHelmPfs('pfs-legacy', 'testPackage', [chartVersion:TEST_VERSION, templateValues:['namespace': K8S_TEST_NAMESPACE]])
                     }
                 }
 
@@ -97,46 +55,20 @@ pipeline {
                         RELEASE_NAME = stringScrub("${RELEASE_NAME.take(32)}-2-8-1")
                     }
 
-                    stages {
-                        stage('install-pfs-env') {
-                            steps {
-                                createK8sNamespace()
-                                helmInstall('pfs-legacy',
-                                    [ chartVersion: TEST_VERSION,
-                                      timeout: 1200,
-                                      templateValues: [
-                                        'namespace': K8S_TEST_NAMESPACE 
-                                      ]
-                                    ])
-                                sleep 120
-                            }
-                        }
+                    steps {
+                        testGradleHelmPfs('pfs-legacy', 'testPackage', [chartVersion:TEST_VERSION, templateValues:['namespace': K8S_TEST_NAMESPACE]])
+                    }
+                }
 
-                        stage('execute-pfs-sdk-tests') {
-                            options { retry(2) }
-
-                            environment {
-                                HOST = getK8sValue('pod', 'pfs-pod', '{{.status.hostIP}}')
-                                PORT = getK8sValue('service', 'pfs-service', "\'{{range .spec.ports}}{{if eq .name \"http\"}}{{.nodePort}}{{end}}{{end}}\'")
-                                TEST_ENV = "${TEST_VERSION}"
-                            }
-
-                            steps {
-                                script {
-                                    try {
-                                        gradleTask('testPackage')
-                                    } catch (err) {
-                                        echo err
-                                    }
-                                }
-                            }
-                        }
+                stage('test-pfs-2.8.2') {
+                    environment {
+                        TEST_VERSION = '2.8.2'
+                        K8S_TEST_NAMESPACE = stringScrub("pfsrsdk-2-8-2-test-${BRANCH_NAME.replace('.', '-').take(15)}-${BUILD_NUMBER}")
+                        RELEASE_NAME = stringScrub("${RELEASE_NAME.take(32)}-2-8-2")
                     }
 
-                    post {
-                        always {
-                            deleteK8sNamespace()
-                        }
+                    steps {
+                        testGradleHelmPfs('pfs-legacy', 'testPackage', [chartVersion:TEST_VERSION, templateValues:['namespace': K8S_TEST_NAMESPACE]])
                     }
                 }
 
@@ -147,50 +79,8 @@ pipeline {
                         RELEASE_NAME = stringScrub("${RELEASE_NAME.take(32)}-3-0-3")
                     }
                     
-                    when {
-                        expression { BRANCH_NAME ==~ /(develop|master|release.+)/ }
-                    }
-
-                    stages {
-                        stage('install-pfs-env') {
-                            steps {
-                                createK8sNamespace()
-                                helmInstall('pfs-legacy',
-                                    [ chartVersion: TEST_VERSION,
-                                      timeout: 1200,
-                                      templateValues: [
-                                        'namespace': K8S_TEST_NAMESPACE
-                                      ]
-                                    ])
-                                sleep 120
-                            }
-                        }
-
-                        stage('execute-pfs-sdk-tests') {
-                            options { retry(2) }
-
-                            environment {
-                                HOST = getK8sValue('pod', 'pfs-pod', '{{.status.hostIP}}')
-                                PORT = getK8sValue('service', 'pfs-service', "\'{{range .spec.ports}}{{if eq .name \"http\"}}{{.nodePort}}{{end}}{{end}}\'")
-                                TEST_ENV = "${TEST_VERSION}"
-                            }
-                    
-                            steps {
-                                script {
-                                    try {
-                                        gradleTask('testPackage')
-                                    } catch (err) {
-                                        echo err
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    
-                    post {
-                        always {
-                            deleteK8sNamespace()
-                        }
+                    steps {
+                        testGradleHelmPfs('pfs-legacy', 'testPackage', [chartVersion:TEST_VERSION, templateValues:['namespace': K8S_TEST_NAMESPACE]])
                     }
                 }
                 
@@ -201,46 +91,8 @@ pipeline {
                         RELEASE_NAME = stringScrub("${RELEASE_NAME.take(32)}-3-0-4")
                     }
                     
-                    stages {
-                        stage('install-pfs-env') {
-                            steps {
-                                createK8sNamespace()
-                                helmInstall('pfs-legacy',
-                                    [ chartVersion: TEST_VERSION,
-                                      timeout: 1200,
-                                      templateValues: [
-                                        'namespace': K8S_TEST_NAMESPACE
-                                      ]
-                                    ])
-                                sleep 120
-                            }
-                        }
-
-                        stage('execute-pfs-sdk-tests') {
-                            options { retry(2) }
-
-                            environment {
-                                HOST = getK8sValue('pod', 'pfs-pod', '{{.status.hostIP}}')
-                                PORT = getK8sValue('service', 'pfs-service', "\'{{range .spec.ports}}{{if eq .name \"http\"}}{{.nodePort}}{{end}}{{end}}\'")
-                                TEST_ENV = "${TEST_VERSION}"
-                            }
-                    
-                            steps {
-                                script {
-                                    try {
-                                        gradleTask('testPackage')
-                                    } catch (err) {
-                                        echo err
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    
-                    post {
-                        always {
-                            deleteK8sNamespace()
-                        }
+                    steps {
+                        testGradleHelmPfs('pfs-legacy', 'testPackage', [chartVersion:TEST_VERSION, templateValues:['namespace': K8S_TEST_NAMESPACE]])
                     }
                 }
             }
@@ -252,11 +104,12 @@ pipeline {
             }
         }
 
-        stage('artifactory-publish') {
-            steps {
-                gradleTask('artifactoryPublish')
-            }
-        }
+        // TODO: RSDK-129 - Enable publishing when there is Jenkins access to Nexus
+        // stage('nexus-publish') {
+        //     steps {
+        //         gradleTask('publish')
+        //     }
+        // }
 
         stage('docker-publish') {
             steps {
@@ -268,7 +121,8 @@ pipeline {
     post {
         always {
             junit allowEmptyResults: true, testResults: 'build/tests/*.xml'
-            sendNotification('#data-science-team')
+            archiveArtifacts artifacts: 'build/distributions/*.zip', allowEmptyArchive: true, onlyIfSuccessful: true
+            sendNotification(DATA_SCIENCE)
             cleanWs deleteDirs: true, notFailBuild: true
         }
     }

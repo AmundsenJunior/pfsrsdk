@@ -4,7 +4,7 @@
 \alias{getEntityByName}
 \title{getEntityByName - Get an entity by name from the Core LIMS using the ODATA API.}
 \usage{
-getEntityByName(coreApi, entityType, name, fullMetadata = TRUE,
+getEntityByName(coreApi, entityType, name, fullMetadata = FALSE,
   useVerbose = FALSE)
 }
 \arguments{
@@ -14,7 +14,7 @@ getEntityByName(coreApi, entityType, name, fullMetadata = TRUE,
 
 \item{name}{name of entity to get}
 
-\item{fullMetadata}{- get full metadata}
+\item{fullMetadata}{- get full metadata, default is FALSE}
 
 \item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http}
 }
@@ -36,7 +36,9 @@ logOut(login$coreApi)
 }
 }
 \author{
-Craig Parman ngsAnalytics, ngsanalytics.com
+Craig Parman info@ngsanalytics.com
 
-Adam Wheeler adam.j.wheeler@accenture.com
+Adam Wheeler adam.wheeler@thermofisher.com
+
+Natasha Mora natasha.mora@thermofisher.com
 }

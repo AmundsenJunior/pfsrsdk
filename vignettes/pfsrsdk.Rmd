@@ -1,0 +1,38 @@
+---
+title: "Introduction to pfsrsdk"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to pfsrsdk}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE)
+```
+
+## Installation
+
+### From RStudio Server Pro
+
+If developing on a Thermo Fisher Scientific-hosted RStudio Server Pro
+environment, the administrators have made the `pfsrsdk` package available from
+the server's local CRAN repository.
+```r
+install.packages("pfsrsdk")
+library(pfsrsdk)
+```
+
+### From Bitbucket
+
+Install the package from Bitbucket with `devtools`:
+```r
+install.packages("devtools")
+devtools::install_bitbucket("corelims/pfsrsdk", auth_user="BITBUCKET_USER", password="BITBUCKET_PASSWORD")
+```
+
+### From Nexus Repository
+
+To be determined.
+
+## Usage
+
+See package documentation for usage. 

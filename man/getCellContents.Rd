@@ -4,12 +4,15 @@
 \alias{getCellContents}
 \title{getCellContents -  Gets information about a single container cell contents.}
 \usage{
-getCellContents(coreApi, containerCellId, useVerbose = FALSE)
+getCellContents(coreApi, containerCellId, fullMetadata = FALSE,
+  useVerbose = FALSE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
 
 \item{containerCellId}{container cell number as a string}
+
+\item{fullMetadata}{get full metadata, default is FALSE}
 
 \item{useVerbose}{Use verbose communication for debugging}
 }
@@ -31,5 +34,7 @@ logOut(login$coreApi)
 }
 }
 \author{
-Craig Parman ngsAnalytics, ngsanalytics.com
+Craig Parman info@ngsanalytics.com
+
+Natasha Mora natasha.mora@thermofisher.com
 }

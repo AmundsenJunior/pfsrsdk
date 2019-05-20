@@ -4,7 +4,7 @@
 #' @param coreApi coreApi object with valid jsessionid
 #' @param containerBarcode container barcode
 #' @param containerType container entity type
-#' @param fullMetadata return full metadata
+#' @param fullMetadata return full metadata, default is FALSE
 #' @param useVerbose  Use verbose communication for debugging
 #' @export
 #' @return RETURN returns a list $entity contains cell information, $response contains the entire http response
@@ -15,24 +15,28 @@
 #' cell <- getContainerContents(login$coreApi, "VIA9", "VIAL")
 #' logOut(login$coreApi)
 #' }
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Craig Parman info@ngsanalytics.com
 #' @author Scott Russell scott.russell@thermofisher.com
+#' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description \code{getContainerContents} - Gets information about container cell contents.
 
 getContainerContents <-
   function(coreApi,
              containerBarcode,
              containerType = "CONTAINER",
-             fullMetadata = TRUE,
+             fullMetadata = FALSE,
              useVerbose = FALSE) {
 
     # clean the name for ODATA
     resource <- odataCleanName(containerType)
 
-    expansion <- switch(EXPR = substr(coreApi$semVer, 1, 1),
-      "2" = "?$expand=REV_IMPL_CONTAINER_CELL($expand=CONTENT($expand=IMPL_SAMPLE_LOT))",
-      "3" = "?$expand=CELLS($expand=CELL_CONTENTS($expand=SAMPLE_LOT))",
-      print("?$expand=CELLS($expand=CELL_CONTENTS($expand=SAMPLE_LOT))")
+    case(
+      grepl("[0-2]+\\.[0-9]+\\.[0-9]+", coreApi$semVer) ~ {
+        expansion <- "?$expand=REV_IMPL_CONTAINER_CELL($expand=CONTENT($expand=IMPL_SAMPLE_LOT))"
+      },
+      grepl("[3-9]+\\.[0-9]+\\.[0-9]+", coreApi$semVer) ~ {
+        expansion <- "?$expand=CELLS($expand=CELL_CONTENTS($expand=SAMPLE_LOT))"
+      }
     )
 
     query <-

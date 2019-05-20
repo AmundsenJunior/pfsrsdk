@@ -15,7 +15,7 @@
 #' URL <- buildUrl(api, "Sample", "('PS1')")
 #' logOut(login$coreApi)
 #' }
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
+#' @author Craig Parman info@ngsanalytics.com
 #' @author Scott Russell scott.russell@thermofisher.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description \code{buildUrl} build URL for call to Core REST API.

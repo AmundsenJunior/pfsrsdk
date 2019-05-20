@@ -25,22 +25,22 @@ Returns name in ODATA compliant form
 As of now the \code{refType} parameter defaults to the Value of "odataObject"
 This will ensure that the leading underscode is placed in front of numbers
 at the beginning of the odata string to comply with Odata Standards. However,
-This function can be used for other objects as well to replace spaces and 
+This function can be used for other objects as well to replace spaces and
 hyphens with underscores.
 }
 
 \examples{
 \dontrun{
 new_name <- odataCleanName("384 Well Plate")
->_384_Well_Plate
-new_name <- odataCleanName("384 Well Plate","tenant")
->384_Well_Plate
+# returns "_384_WELL_PLATE"
+new_name <- odataCleanName("384 Well Plate", "tenant")
+# returns "384_WELL_PLATE"
 }
 }
 \author{
-Craig Parman ngsAnalytics, ngsanalytics.com
+Craig Parman info@ngsanalytics.com
 
-Adam Wheeler adam.j.wheeler@accenture.com
+Adam Wheeler adam.wheeler@thermofisher.com
 
 Scott Russell scott.russell@thermofisher.com
 }

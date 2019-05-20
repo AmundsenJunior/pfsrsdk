@@ -1,9 +1,7 @@
-#' @author Adam Wheeler adam.j.wheeler@accenture.com
+#' @author Adam Wheeler adam.wheeler@thermofisher.com
 #' @description \code Tests for getExperimentSamplesAssayFileData
 
 context("Tests for getExperimentSamplesAssayFileData")
-
-# Completed regression for 5.3.8 and 6.0.1
 
 test_that(paste("test getExperimentSamplesAssayFileData() on:", env$auth), {
   result <- getExperimentSamplesAssayFileData(con$coreApi,

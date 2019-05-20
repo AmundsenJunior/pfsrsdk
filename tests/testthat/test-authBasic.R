@@ -1,11 +1,10 @@
-#' @author Adam Wheeler adam.j.wheeler@accenture.com
+#' @author Adam Wheeler adam.wheeler@thermofisher.com
 #' @author Scott Russell scott.russell@thermofisher.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
+#' @author Francisco Marin francisco.marin@thermofisher.com
 #' @description Tests for basic authentication.
 #'
 context("Tests for authentication")
-
-# Completed regression for 5.3.8 and 6.0.1
 
 test_that(paste("test login parameters for environment and updating metadata", env$auth), {
   expect_that(is.null(con$coreApi$jsessionId), equals(FALSE))
@@ -26,5 +25,5 @@ test_that(paste("single account with bad password returns error on:", env$auth),
   api <- coreAPI(env$auth)
   bapi <- api
   bapi$password <- "badpassword"
-  expect_error(authBasic(bapi, useVerbose = verbose))
+  expect_warning(authBasic(bapi, useVerbose = verbose))
 })

@@ -1,9 +1,7 @@
-#' @author Adam Wheeler adam.j.wheeler@accenture.com
+#' @author Adam Wheeler adam.wheeler@thermofisher.com
 #' @author Scott Russell scott.russell@thermofisher.com
 #' @description \code Tests for getEntityMetadata().
 context("Tests for getEntityMetadata")
-
-# Completed regression for 5.3.8 and 6.0.1
 
 test_that(paste("test getEntityMetadata() on:", env$auth), {
   out <- getEntityMetadata(con$coreApi, data$testPocoType, useVerbose = verbose)

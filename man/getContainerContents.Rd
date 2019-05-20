@@ -5,7 +5,7 @@
 \title{getContainerContents -  Gets container contents.}
 \usage{
 getContainerContents(coreApi, containerBarcode,
-  containerType = "CONTAINER", fullMetadata = TRUE,
+  containerType = "CONTAINER", fullMetadata = FALSE,
   useVerbose = FALSE)
 }
 \arguments{
@@ -15,7 +15,7 @@ getContainerContents(coreApi, containerBarcode,
 
 \item{containerType}{container entity type}
 
-\item{fullMetadata}{return full metadata}
+\item{fullMetadata}{return full metadata, default is FALSE}
 
 \item{useVerbose}{Use verbose communication for debugging}
 }
@@ -37,7 +37,9 @@ logOut(login$coreApi)
 }
 }
 \author{
-Craig Parman ngsAnalytics, ngsanalytics.com
+Craig Parman info@ngsanalytics.com
 
 Scott Russell scott.russell@thermofisher.com
+
+Natasha Mora natasha.mora@thermofisher.com
 }
