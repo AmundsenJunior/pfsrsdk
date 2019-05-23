@@ -45,14 +45,11 @@ getExperimentContainerCellIds <-
         expansion
       )
 
-    header <- c(Accept = "application/json")
-
     out <-
       apiGET(
         coreApi,
         resource = resource,
         query = query,
-        headers = header,
         ...
       )
 

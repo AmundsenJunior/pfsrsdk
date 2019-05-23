@@ -45,8 +45,10 @@ updateEntityLocation <-
       )$entity$Id
 
     resource <- paste0(entityType, "('", barcode, "')/pfs.Entity.InventoryMove")
+
     body <- jsonlite::toJSON(list("locationId" = jsonlite::unbox(id)))
-    header <- c("Content-Type" = "application/json;odata.metadata=minimal")
+
+    header <- c("Content-Type" = "application/json")
 
     # update location
     response <-

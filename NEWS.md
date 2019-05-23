@@ -34,6 +34,8 @@
   `useVerbose` must now be named, not ordered, in SDK function calls.
 
 ## New functions and minor changes
+* Removed unnecessary headers from functions.
+* Enhanced testing for functions with fullMetadata parameter.
 
 * Added Gradle task to generate PDF manual of package documentation, via
   `Rd2pdf`.

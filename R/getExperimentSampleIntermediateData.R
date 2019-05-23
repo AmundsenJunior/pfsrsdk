@@ -55,14 +55,12 @@ getExperimentSampleIntermediateData <-
       "_DATA)"
     )
 
-    header <- c(Accept = "application/json")
-
     response <-
       apiGET(
         coreApi,
         resource = resource,
         query = query,
-        headers = header,
+
         ...
       )
 

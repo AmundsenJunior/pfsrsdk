@@ -30,19 +30,14 @@ logOut <- function(coreApi, ...) {
       responseOptions = list()
     )
 
-  headers <-
-    c("Content-Type" = "application/json", accept = "application/json")
-
   response <-
     apiPOST(
       coreApi = coreApi,
       body = request,
-      headers = headers,
       encode = "json",
       special = "login",
       ...
     )
-
 
   list(
     success = httr::http_status(response$response)$category,

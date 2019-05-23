@@ -62,7 +62,7 @@ createExperiment <-
     if (fullMetadata) {
       headers <- c("Content-Type" = "application/json", "Accept" = "application/json;odata.metadata=full")
     } else {
-      headers <- c("Content-Type" = "application/json", "Accept" = "application/json")
+      headers <- c("Content-Type" = "application/json")
     }
 
     response <-

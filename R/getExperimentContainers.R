@@ -35,22 +35,20 @@ getExperimentContainers <-
 
     resource <- odataCleanName(experimentType)
 
-    association <- switch(EXPR = substr(coreApi$semVer, 1, 1),
-      "2" = "REV_CONTAINER_EXPERIMENT_EXPERIMENT_CONTAINER",
-      print("EXPERIMENT_CONTAINERS")
+    case(
+      grepl("[0-2]+\\.[0-9]+\\.[0-9]+", coreApi$semVer) ~ {
+        association <- "REV_CONTAINER_EXPERIMENT_EXPERIMENT_CONTAINER"
+      },
+      grepl("[3-9]+\\.[0-9]+\\.[0-9]+", coreApi$semVer) ~ {
+        association <- "EXPERIMENT_CONTAINERS"
+      }
     )
-
-
-    header <-
-      c("Content-Type" = "application/json", Accept = "application/json")
-
 
     response <-
       apiGET(
         coreApi,
         resource = resource,
         query = paste0("('", experimentBarcode, "')/", association),
-        headers = header,
         ...
       )
 

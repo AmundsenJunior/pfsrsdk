@@ -48,7 +48,9 @@ updateExperimentSampleData <-
     body <- jsonlite::unbox(experimentAssayUpdateAttrList)
 
     resource <- paste0(experimentAssayType, "_DATA")
+
     query <- paste0("('", experimentSampleBarcode, "')")
+
     header <- c("Content-Type" = "application/json", "If-Match" = "*")
 
     response <-

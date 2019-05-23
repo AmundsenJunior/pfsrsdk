@@ -99,16 +99,12 @@ setWellContents <-
         "')/pfs.Container.SetCellContents"
       )
 
-    header <-
-      c("Content-Type" = "application/json", Accept = "application/json")
-
     response <-
       apiPOST(
         coreApi,
         resource = query,
         body = body,
         encode = "json",
-        headers = header,
         ...
       )
 

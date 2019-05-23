@@ -5,7 +5,7 @@
 context("Tests for getContainerContents")
 
 test_that(paste("test getContainerContents() on:", env$auth), {
-  result <- getContainerContents(con$coreApi, data$containerBarcode, data$containerType, fullMetadata = TRUE, useVerbose = verbose)
+  result <- getContainerContents(con$coreApi, data$containerBarcode, data$containerType, fullMetadata = FALSE, useVerbose = verbose)
 
   expect_equal(result$response$status_code, 200)
 
@@ -19,5 +19,10 @@ test_that(paste("test getContainerContents() on:", env$auth), {
   )
 
   expect_gt(length(result$entity[[expansion]][[1]]), 0)
+})
+
+test_that(paste("getContainerContents returns successful with fullMetadata on:", env$auth), {
+  result <- getContainerContents(con$coreApi, data$containerBarcode, data$containerType, fullMetadata = TRUE, useVerbose = verbose)
+
   expect_true(!is.null(result$entity$`Id@odata.type`))
 })

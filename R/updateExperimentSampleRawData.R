@@ -21,7 +21,7 @@
 #'   experimentContainerBarcode = "BTCR1", rawDataCellNum = 1,
 #'   rawDataValues = list(DATA_VALUE = 100, CI_ACCEPT = FALSE)
 #' )
-#'
+#' 
 #' updatedEntity <- response$entity
 #' logOut(login$coreApi)
 #' response <- authBasic(coreApi)
@@ -48,14 +48,11 @@ updateExperimentSampleRawData <-
       "'"
     )
 
-    header <- c(Accept = "application/json")
-
     experiment <-
       apiGET(
         coreApi,
         resource = resource,
         query = query,
-        headers = header,
         useVerbose = TRUE
       )
 
@@ -86,6 +83,7 @@ updateExperimentSampleRawData <-
         headers = header,
         ...
       )
+
 
     list(entity = response$content, response = response$response)
   }

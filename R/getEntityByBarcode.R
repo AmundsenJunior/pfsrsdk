@@ -38,7 +38,7 @@ getEntityByBarcode <-
     if (fullMetadata) {
       header <- c(Accept = "application/json;odata.metadata=full")
     } else {
-      header <- c(Accept = "application/json;odata.metadata=minimal")
+      header <- NULL
     }
 
     out <-
