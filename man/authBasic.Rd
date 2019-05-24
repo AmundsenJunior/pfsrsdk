@@ -13,8 +13,11 @@ tenant. tenant is required if user has access to multiple tenants.}
 \item{useVerbose}{- Use verbose settings for HTTP commands}
 }
 \value{
-returns a list with two oblects. coreApi which returns the passed coreApi object with  jsessionid,
-           awselb and employeeid populated, $response contains the entire http response
+List of length 2, containing \code{coreApi} and \code{response} objects:
+\itemize{
+ \item{\code{content}} is the passed \code{coreApi} object with \code{jsessionid}, \code{awselb} and \code{employeeid} populated.
+ \item{\code{response}} is the entire HTTP response.
+}
 }
 \description{
 \code{authBasic} Logs in and returns a fully populated coreApi object in $coreAPI.

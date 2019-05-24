@@ -13,8 +13,11 @@
 #' @param concentrationUnit concentration units
 #' @param useVerbose use verbose communications for debugging
 #' @export
-#' @return RETURN returns a list $entity contains updated container
-#'         information, $response contains the entire http response
+#' @return List of length 2, containing \code{content} and \code{response} objects:
+#' \itemize{
+#'  \item{\code{content}} is the HTTP response content of updated cell information.
+#'  \item{\code{response}} is the entire HTTP response.
+#' }
 #' @examples
 #' \dontrun{
 #' api <- coreAPI("PATH TO JSON FILE")
@@ -28,12 +31,8 @@
 #' }
 #' @author Craig Parman info@ngsanalytics.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
+#' @author Scott Russell scott.russell@thermofisher.com
 #' @description \code{setCellContents} - Puts a cell lot in a container cell.
-
-
-
-
-
 
 setCellContents <-
   function(coreApi,
@@ -48,9 +47,7 @@ setCellContents <-
              concentrationUnit,
              useVerbose = FALSE) {
     # clean the name for ODATA
-
     containerType <- odataCleanName(containerType)
-
 
     containerCellId <- as.numeric(containerCellId)
     amount <- as.numeric(amount)
@@ -72,15 +69,12 @@ setCellContents <-
 
     body <- list()
 
-
     cells <-
       list(c(
         list(
           cellId = jsonlite::unbox(containerCellId),
           amount = jsonlite::unbox(amount),
           amountUnit = jsonlite::unbox(amountUnit),
-
-
 
           contents = list(c(
             list(
@@ -92,7 +86,6 @@ setCellContents <-
         )
       ))
 
-
     body[["cells"]] <- cells
 
     query <-
@@ -101,7 +94,6 @@ setCellContents <-
         containerBarcode,
         "')/pfs.Container.SetCellContents"
       )
-
 
     header <-
       c("Content-Type" = "application/json", Accept = "application/json")
@@ -116,7 +108,5 @@ setCellContents <-
         useVerbose = useVerbose
       )
 
-
-
-    list(entity = httr::content(response), response = response)
+    list(entity = response$content, response = response$response)
   }

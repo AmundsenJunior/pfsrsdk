@@ -1,29 +1,35 @@
-#' apiGET - Do a get from the Core ODATA REST API.
+#' apiGET - Do a GET from the PFS API.
 #'
-#' \code{apiGET}  Base call to Core REST API.
+#' \code{apiGET} Do a GET from the PFS API.
 #' @param coreApi coreApi object with valid jsessionid
 #' @param resource entity type to get
 #' @param query query string
-#' @param headers  headers to be added to get
+#' @param headers  headers to be added to \code{httr::GET}.
 #' @param special passed to buildUrl for special sdk endpoints
-#' @param useVerbose Use verbose communication for debugging
+#' @param useVerbose Use verbose communication for debugging (default FALSE)
+#' @param useRaw Return raw response content (default FALSE)
+#' @param fullReturn Return the entire response object, or just the response content (default TRUE)
 #' @export
-#' @return Returns a list of length two. First the content, concatenated if a chunked response, and second the entire http response.
-#' If chuncked for the content for the last chunk only.last
-
+#' @return List of length 2, containing \code{content} and \code{response} objects:
+#' \itemize{
+#'  \item{\code{content}} is the HTTP response content (concatenated if a chunked response).
+#'  \item{\code{response}} is the entire HTTP response. If chuncked, \code{response} object contains
+#' the full HTTP response of the last HTTP GET call. NULL if \code{fullReturn} is FALSE.
+#' }
 #' @examples
 #' \dontrun{
 #' api <- coreAPI("PATH TO JSON FILE")
 #' login <- authBasic(api)
 #' response <- apiGET(login$coreApi, "json", resource, query)
 #' content <- response$content
-#' error <- httr::http_error(response$response)
+#' error <- response$error$message
 #' logOut(login$coreApi)
 #' }
 #' @author Craig Parman info@ngsanalytics.com
 #' @author Francisco Marin francisco.marin@thermofisher.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
-#' @description \code{apiGET} - Do a get from the Core ODATA REST API.
+#' @author Scott Russell scott.russell@thermofisher.com
+#' @description \code{apiGET} - Do a GET from the PFS API.
 
 
 apiGET <-
@@ -33,7 +39,8 @@ apiGET <-
              headers = NULL,
              special = NULL,
              useVerbose = FALSE,
-             useRaw = FALSE) {
+             useRaw = FALSE,
+             fullReturn = TRUE) {
     # clean the resource name for ODATA
     resource <- odataCleanName(resource)
 
@@ -147,20 +154,22 @@ apiGET <-
               httr::set_cookies(cookie)
             )
           }
-          # add content
 
+          # add content
           content <- c(content, httr::content(response)$value)
 
           # Is there more content ?
-
           more_content <-
             !is.null(httr::content(response)$`@odata.nextLink`)
         }
       }
     }
 
-
-    out <- list(content = content, response = response)
+    if (fullReturn) {
+      out <- list(content = content, response = response)
+    } else {
+      out <- list(content = content, response = NULL)
+    }
 
     return(out)
   }

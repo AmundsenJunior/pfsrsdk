@@ -11,8 +11,11 @@
 #' @param concentration (numeric)
 #' @param concentrationUnit concentration units
 #' @param useVerbose use verbose communications for debugging
-#' @return RETURN returns a list $entity contains updated container information,
-#'   $response contains the entire http response
+#' @return List of length 2, containing \code{content} and \code{response} objects:
+#' \itemize{
+#'  \item{\code{content}} is the HTTP response content of updated cell information.
+#'  \item{\code{response}} is the entire HTTP response.
+#' }
 #' @examples
 #' \dontrun{
 #' api <- coreAPI("PATH TO JSON FILE")
@@ -108,8 +111,5 @@ updateCellContents <-
         useVerbose = useVerbose
       )
 
-    list(
-      entity = httr::content(response)$response$data,
-      response = response
-    )
+    list(entity = response$content$response$data, response = response$response)
   }

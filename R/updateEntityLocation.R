@@ -7,7 +7,11 @@
 #' @param barcode barcode of entity to update
 #' @param locationBarcode barcode of new location
 #' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http
-#' @return returns a list $entity contains entity information, $response contains the entire http response
+#' @return List of length 2, containing \code{entity} and \code{response} objects:
+#' \itemize{
+#'  \item{\code{entity}} is the HTTP response content of updated entity location information.
+#'  \item{\code{response}} is the entire HTTP response.
+#' }
 #' @export
 #' @examples
 #' \dontrun{
@@ -19,6 +23,7 @@
 #' }
 #' @author Craig Parman info@ngsanalytics.com
 #' @author Adam Wheeler adam.wheeler@thermofisher.com
+#' @author Scott Russell scott.russell@thermofisher.com
 #' @author Scott Russell scott.russell@thermofisher.com
 #' @description \code{updateEntityLocation} - Update entity location
 
@@ -54,5 +59,5 @@ updateEntityLocation <-
         useVerbose = useVerbose
       )
 
-    list(entity = httr::content(response), response = response)
+    list(entity = response$content, response = response$response)
   }

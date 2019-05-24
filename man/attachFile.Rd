@@ -21,7 +21,13 @@ attachFile(coreApi, entityType, barcode, filePath,
 \item{useVerbose}{Use verbose communication for debugging}
 }
 \value{
-RETURN returns a list $entity contains entity information (if present), $response contains the entire http response
+List of length 2, containing \code{content} and \code{response} objects:
+\itemize{
+ \item{\code{content}} is the HTTP response content. If \code{targetAttributeName}
+ is not empty, \code{content} will return as NULL.
+ \item{\code{response}} is the entire HTTP response. If \code{fullReturn} is FALSE
+ will return as NULL.
+}
 }
 \description{
 \code{attachFile} Attaches a file to entity identified by barcode.

@@ -13,8 +13,11 @@
 #' @param concentrationUnit concentration units
 #' @param useVerbose use verbose communications for debugging
 #' @export
-#' @return RETURN returns a list $entity contains updated container
-#'         information, $response contains the entire http response
+#' @return List of length 2, containing \code{content} and \code{response} objects:
+#' \itemize{
+#'  \item{\code{content}} is the HTTP response content of updated well information.
+#'  \item{\code{response}} is the entire HTTP response.
+#' }
 #' @examples
 #' \dontrun{
 #' api <- coreAPI("PATH TO JSON FILE")
@@ -28,12 +31,8 @@
 #' }
 #' @author Craig Parman info@ngsanalytics.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
+#' @author Scott Russell scott.russell@thermofisher.com
 #' @description \code{setWellContents} - Puts a cell lot in a container well.
-
-
-
-
-
 
 setWellContents <-
   function(coreApi,
@@ -48,9 +47,7 @@ setWellContents <-
              concentrationUnit,
              useVerbose = FALSE) {
     # clean the name for ODATA
-
     containerType <- odataCleanName(containerType)
-
 
     containerWellNum <- as.numeric(containerWellNum)
     amount <- as.numeric(amount)
@@ -61,10 +58,8 @@ setWellContents <-
     }
 
     # first get the cellID for the well
-
     cellID <-
       getContainerCellIds(coreApi, containerBarcode, containerType, useVerbose = FALSE)$entity[containerWellNum]
-
 
     # get ID for lot number
     lotID <-
@@ -78,15 +73,12 @@ setWellContents <-
 
     body <- list()
 
-
     cells <-
       list(c(
         list(
           cellId = jsonlite::unbox(cellID),
           amount = jsonlite::unbox(amount),
           amountUnit = jsonlite::unbox(amountUnit),
-
-
 
           contents = list(c(
             list(
@@ -98,7 +90,6 @@ setWellContents <-
         )
       ))
 
-
     body[["cells"]] <- cells
 
     query <-
@@ -107,7 +98,6 @@ setWellContents <-
         containerBarcode,
         "')/pfs.Container.SetCellContents"
       )
-
 
     header <-
       c("Content-Type" = "application/json", Accept = "application/json")
@@ -122,7 +112,5 @@ setWellContents <-
         useVerbose = useVerbose
       )
 
-
-
-    list(entity = httr::content(response), response = response)
+    list(entity = response$content, response = response$response)
   }

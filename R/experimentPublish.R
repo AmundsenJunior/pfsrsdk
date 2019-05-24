@@ -6,9 +6,13 @@
 #' @param experimentBarcode barcode of the experiment (Experiments that require a signature cannot be published through the API).
 #' @param useVerbose Use verbose communication for debugging
 #' @export
-#' @return RETURN returns a list $entity contains updated experiment information, $response contains the entire http response
-#' For PFS version 5.x.x the output is generate as list(entity = httr::content(response)$response$data, response = response)
-#' For PFS version 6.x.x the output is generate as list(entity = httr::content(response), response = response)
+#' @return List of length 2, containing \code{entity} and \code{response} objects:
+#' \itemize{
+#'  \item{\code{entity}} is the HTTP response content.
+#'   For PFS version 5.x.x the \code{entity} value comes from \code{response$content$response$data}
+#'   For PFS version 6.x.x the \code{entity} value comes from \code{response$content}
+#'  \item{\code{response}} is the entire HTTP response.
+#' }
 #' @examples
 #' \dontrun{
 #' api <- coreAPI("PATH TO JSON FILE")
@@ -18,9 +22,8 @@
 #' }
 #' @author Craig Parman info@ngsanalytics.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
+#' @author Scott Russell scott.russell@thermofisher.com
 #' @description \code{experimentPublish} - Publishes an experiment.
-
-
 
 experimentPublish <-
   function(coreApi,
@@ -78,10 +81,7 @@ experimentPublish <-
             useVerbose = useVerbose
           )
 
-        list(
-          entity = httr::content(response)$response$data,
-          response = response
-        )
+        list(entity = response$content$response$data, response = response$response)
       },
       grepl("[3-9]+\\.[0-9]+\\.[0-9]+", coreApi$semVer) ~ {
         resource <-
@@ -106,10 +106,7 @@ experimentPublish <-
             useVerbose = useVerbose
           )
 
-        list(
-          entity = httr::content(response),
-          response = response
-        )
+        list(entity = response$content, response = response$response)
       }
     )
   }

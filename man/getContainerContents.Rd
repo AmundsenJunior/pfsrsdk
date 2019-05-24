@@ -20,7 +20,11 @@ getContainerContents(coreApi, containerBarcode,
 \item{useVerbose}{Use verbose communication for debugging}
 }
 \value{
-RETURN returns a list $entity contains cell information, $response contains the entire http response
+List of length 2, containing \code{entity} and \code{response} objects:
+\itemize{
+ \item{\code{entity}} is the HTTP response content of container information.
+ \item{\code{response}} is the entire HTTP response.
+}
 }
 \description{
 \code{getContainerContents} - Gets information about container cell contents.

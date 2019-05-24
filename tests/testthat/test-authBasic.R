@@ -4,9 +4,9 @@
 #' @author Francisco Marin francisco.marin@thermofisher.com
 #' @description Tests for basic authentication.
 #'
-context("Tests for authentication")
+context("Tests for authBasic")
 
-test_that(paste("test login parameters for environment and updating metadata", env$auth), {
+test_that(paste("test successful login with populated JSESSIONID on:", env$auth), {
   expect_that(is.null(con$coreApi$jsessionId), equals(FALSE))
 })
 

@@ -1,6 +1,6 @@
 #' setExperimentSampleAssayFileData - Puts file attached as assay data into an experiment sample.
 #'
-#' \code{setExperimentSampleAssayFileData } Puts file attached as assay data into an experiment sample.
+#' \code{setExperimentSampleAssayFileData} Puts file attached as assay data into an experiment sample.
 #'
 #' @param coreApi coreApi object with valid jsessionid
 #' @param assayType assay type that contains sample
@@ -8,8 +8,11 @@
 #' @param attributeName  Name of the attribute that containts the file data
 #' @param filePath path to file to upload
 #' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http calls
-#' @return returns a list $entity contains binary object that in the file, $response contains
-#' the entire http response
+#' @return List of length 2, containing \code{content} and \code{response} objects:
+#' \itemize{
+#'  \item{\code{content}} is the HTTP response content. If the HTTP response status code is 204, returns NULL.
+#'  \item{\code{response}} is the entire HTTP response.
+#' }
 #' @export
 #' @examples
 #' \dontrun{
@@ -26,7 +29,7 @@
 #' }
 #' @author Craig Parman info@ngsanalytics.com
 #' @author Scott Russell scott.russell@thermofisher.com
-#' @description \code{ setExperimentSampleAssayFileData } Puts file attached as assay data into an experiment sample.
+#' @description \code{setExperimentSampleAssayFileData} Puts file attached as assay data into an experiment sample.
 
 setExperimentSampleAssayFileData <-
   function(coreApi,
@@ -72,8 +75,8 @@ setExperimentSampleAssayFileData <-
       )
 
     list(
-      entity = if (response$status_code == 204) NULL else httr::content(response),
-      response = response
+      entity = if (response$response$status_code == 204) NULL else response$content,
+      response = response$response
     )
   }
 

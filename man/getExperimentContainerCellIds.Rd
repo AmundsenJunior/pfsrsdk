@@ -17,7 +17,11 @@ getExperimentContainerCellIds(coreApi, experimentContainerBarcode,
 \item{useVerbose}{Use verbose communication for debugging (default: FALSE)}
 }
 \value{
-RETURN returns $entity a array of cell IDs and  $response contains the entire http response
+List of length 2, containing \code{entity} and \code{response} objects:
+\itemize{
+ \item{\code{entity}} is a vector of cell IDs.
+ \item{\code{response}} is the entire HTTP response.
+}
 }
 \description{
 \code{getExperimentContainerCellIds} - Gets cell ids for a container in an experiment.

@@ -7,7 +7,11 @@
 #' @param experimentSampleBarcode experiment sample barcode of entity to get
 #' @param attributeName Name of the attibute that containts the file data
 #' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http
-#' @return returns a list $entity containsbinary object that in the file, $response contains the entire http response
+#' @return List of length 2, containing \code{entity} and \code{response} objects:
+#' \itemize{
+#'  \item{\code{entity}} is the binary-format HTTP response content.
+#'  \item{\code{response}} is the entire HTTP response.
+#' }
 #' @export
 #' @examples
 #' \dontrun{
@@ -21,7 +25,6 @@
 #' @description \code{ getExperimentSamplesAssayFileData }  Gets file attached as assay data.
 #' Use getExperimentSamplesAssayData for non-file data.
 
-
 getExperimentSamplesAssayFileData <-
   function(coreApi,
              assayType,
@@ -29,9 +32,6 @@ getExperimentSamplesAssayFileData <-
              attributeName,
              useVerbose = FALSE) {
     # clean the name for ODATA
-
-
-
     resource <- paste0(odataCleanName(assayType), "_DATA")
 
     # no lint start
@@ -46,10 +46,6 @@ getExperimentSamplesAssayFileData <-
 
 
     headers <- c(Accept = "image/png")
-
-
-
-
     resource <- odataCleanName(resource)
 
     sdk_url <-
@@ -61,14 +57,11 @@ getExperimentSamplesAssayFileData <-
         useVerbose = useVerbose
       )
 
-
     cookie <-
       c(
         JSESSIONID = coreApi$jsessionId,
         AWSELB = coreApi$awselb
       )
-
-
 
     if (useVerbose) {
       response <-
@@ -85,7 +78,6 @@ getExperimentSamplesAssayFileData <-
     }
 
     # check for general HTTP error in response
-
     if (httr::http_error(response)) {
       stop({
         print("API call failed")
@@ -97,10 +89,7 @@ getExperimentSamplesAssayFileData <-
 
     # not sure what is going to happen if file is returned chunked
 
-
     bin <- httr::content(response, "raw")
-
-
 
     list(entity = bin, response = response)
   }

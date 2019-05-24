@@ -7,7 +7,11 @@
 #' @param barcode barcode of entity to get
 #' @param fullMetadata get full metadata, default is FALSE
 #' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http
-#' @return returns a list $entity contains entity information, $response contains the entire http response
+#' @return List of length 2, containing \code{entity} and \code{response} objects:
+#' \itemize{
+#'  \item{\code{entity}} is the HTTP response content of samples information.
+#'  \item{\code{response}} is the entire HTTP response.
+#' }
 #' @export
 #' @examples
 #' \dontrun{

@@ -21,7 +21,11 @@ getEntityAssociations(coreApi, entityType, barcode, associationContext,
 \item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http}
 }
 \value{
-returns a list $entity contains entity associations, $response contains the entire http response
+List of length 2, containing \code{entity} and \code{response} objects:
+\itemize{
+ \item{\code{entity}} is the HTTP response content of entity associations.
+ \item{\code{response}} is the entire HTTP response.
+}
 }
 \description{
 \code{getEntityAssociations}  Get assoication for a entity

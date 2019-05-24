@@ -17,7 +17,11 @@ getCellContents(coreApi, containerCellId, fullMetadata = FALSE,
 \item{useVerbose}{Use verbose communication for debugging}
 }
 \value{
-RETURN returns a list $entity contains cell information, $response contains the entire http response
+List of length 2, containing \code{entity} and \code{response} objects:
+\itemize{
+ \item{\code{entity}} is the HTTP response content of cell information.
+ \item{\code{response}} is the entire HTTP response.
+}
 }
 \description{
 \code{getCellContents} -  Gets information about a single container cell contents.

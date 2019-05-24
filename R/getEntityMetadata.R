@@ -5,8 +5,12 @@
 #' @param coreApi coreApi object with valid jsessionid
 #' @param entityType entity type to get metadata for
 #' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http
-#' @return returns a list containing $attributes for attribute properties,
-#' and $association for association properties; $template contains a list that can be converted to JSON for object creation.
+#' #' @return List of length 3, containing \code{attributes}, \code{associations}, and \code{template} objects:
+#' \itemize{
+#'  \item{\code{attributes}} is a list of attribute properties.
+#'  \item{\code{response}} is a list of association properties.
+#'  \item{\code{template}} is a list convertable to JSON for object creation.
+#' }
 #' @export
 #' @examples
 #' \dontrun{
@@ -19,20 +23,14 @@
 #' @description \code{getEntityMetadata} Get an entity metadata by entityType. Returns a list with three data frames
 #' named attributes,associations, and template. Template can be used as the body to for createEntity functions.
 
-
-
-
 getEntityMetadata <- function(coreApi, entityType, useVerbose = FALSE) {
   # clean the name for ODATA
-
   entityType <- odataCleanName(entityType)
 
   ## get all metadata
-
   header <- c(Accept = "application/xml")
 
   # need special GET for XML with a basic authorization header
-
   m <-
     apiGET(
       coreApi,
@@ -41,7 +39,6 @@ getEntityMetadata <- function(coreApi, entityType, useVerbose = FALSE) {
       headers = header,
       useVerbose = useVerbose
     )
-
 
   doc <- XML::xmlTreeParse(m$response)
 
@@ -57,8 +54,6 @@ getEntityMetadata <- function(coreApi, entityType, useVerbose = FALSE) {
     schemachildren[[which(lapply(XML::xmlSApply(schemachildren, XML::xmlAttrs), function(x)
       x[["Name"]]) == entityType)]]
 
-
-
   if (is.null(entity)) {
     stop({
       print(paste("entity name", entityType, "not recognized"))
@@ -67,13 +62,7 @@ getEntityMetadata <- function(coreApi, entityType, useVerbose = FALSE) {
     )
   }
 
-
-
-
-
   # Get Attribues
-
-
   properties <- entity[names(entity) == "Property"]
 
   names <-
@@ -85,8 +74,6 @@ getEntityMetadata <- function(coreApi, entityType, useVerbose = FALSE) {
   defaults <-
     sapply(lapply(properties, XML::xmlAttrs), function(x)
       x["DefaultValue"])
-
-
 
   if (length(types) != 0) {
     attributes <-
@@ -100,14 +87,7 @@ getEntityMetadata <- function(coreApi, entityType, useVerbose = FALSE) {
     attributes <- list()
   }
 
-
-
-
-
   # Get Associations
-
-
-
   navigation <- entity[names(entity) == "NavigationProperty"]
 
   names <-
@@ -123,10 +103,6 @@ getEntityMetadata <- function(coreApi, entityType, useVerbose = FALSE) {
     sapply(lapply(navigation, XML::xmlAttrs), function(x)
       x["Partner"])
 
-
-
-
-
   if (length(types) != 0) {
     associations <-
       data.frame(
@@ -137,9 +113,7 @@ getEntityMetadata <- function(coreApi, entityType, useVerbose = FALSE) {
       )
 
     # remove associations with out partners, not sure what they are
-
     associations <- associations[!is.na(associations$partners), ]
-
 
     forward_associations <-
       associations[!startsWith(associations$names, "REV_"), ]
@@ -152,11 +126,7 @@ getEntityMetadata <- function(coreApi, entityType, useVerbose = FALSE) {
     associations <- list()
   }
 
-
-
-
   # Create list object that can be used for create
-
   if (!is.null(nrow(attributes))) {
     atttribute_values <- as.list(rep("", nrow(attributes)))
 
@@ -164,8 +134,6 @@ getEntityMetadata <- function(coreApi, entityType, useVerbose = FALSE) {
   } else {
     atttribute_values <- list()
   }
-
-
 
   template <- c(atttribute_values, association_values)
 

@@ -8,8 +8,11 @@
 #' @param rawDataValues assay attributes as a list of key-values pairs
 #' @param useVerbose Use verbose communication for debugging
 #' @export
-#' @return RETURN returns a list $entity contains entity information,
-#'        $response contains the entire http response
+#' @return List of length 2, containing \code{entity} and \code{response} objects:
+#' \itemize{
+#'  \item{\code{entity}} is the HTTP response content of updated sample raw data.
+#'  \item{\code{response}} is the entire HTTP response.
+#' }
 #' @examples
 #' \dontrun{
 #' api <- coreAPI("PATH TO JSON FILE")
@@ -18,16 +21,15 @@
 #'   experimentContainerBarcode = "BTCR1", rawDataCellNum = 1,
 #'   rawDataValues = list(DATA_VALUE = 100, CI_ACCEPT = FALSE)
 #' )
-#' 
+#'
 #' updatedEntity <- response$entity
 #' logOut(login$coreApi)
 #' response <- authBasic(coreApi)
 #' }
 #' @author Craig Parman info@ngsanalytics.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
+#' @author Scott Russell scott.russell@thermofisher.com
 #' @description \code{updateExperimentSampleRawData} Update experiment sample assay raw data.
-
-
 
 updateExperimentSampleRawData <-
   function(coreApi,
@@ -35,11 +37,8 @@ updateExperimentSampleRawData <-
              rawDataCellNum,
              rawDataValues,
              useVerbose = FALSE) {
-
     # get the current values
-
     resource <- "RAW_DATA"
-
 
     query <- paste0(
       "?$filter=CI_CELL%20eq%20",
@@ -49,11 +48,7 @@ updateExperimentSampleRawData <-
       "'"
     )
 
-
     header <- c(Accept = "application/json")
-
-
-
 
     response <-
       apiGET(
@@ -64,9 +59,7 @@ updateExperimentSampleRawData <-
         useVerbose = useVerbose
       )
 
-
     body <- response$content[[1]]
-
 
     for (i in 1:length(rawDataValues))
     {
@@ -79,11 +72,8 @@ updateExperimentSampleRawData <-
       ))
     }
 
-
-
     resource <- paste0("RAW_DATA")
     query <- paste0("(", body$Id, ")")
-
     header <- c("Content-Type" = "application/json", "If-Match" = "*")
 
     response <-
@@ -97,6 +87,5 @@ updateExperimentSampleRawData <-
         useVerbose = useVerbose
       )
 
-
-    list(entity = httr::content(response), response = response)
+    list(entity = response$content, response = response$response)
   }

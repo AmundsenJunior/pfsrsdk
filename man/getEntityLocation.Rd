@@ -19,7 +19,11 @@ getEntityLocation(coreApi, entityType, barcode, fullMetadata = FALSE,
 \item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http}
 }
 \value{
-returns a list $entity contains location entity information, $response contains the entire http response
+List of length 2, containing \code{entity} and \code{response} objects:
+\itemize{
+ \item{\code{entity}} is the HTTP response content of entity location information.
+ \item{\code{response}} is the entire HTTP response.
+}
 }
 \description{
 \code{getEntityLocation}  Get location for an entity by barcode from the Core LIMS using the ODATA API.

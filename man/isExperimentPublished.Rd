@@ -17,7 +17,11 @@ isExperimentPublished(coreApi, experimentType, experimentBarcode,
 \item{useVerbose}{Use verbose communication for debugging}
 }
 \value{
-RETURN returns a list $status contains the experiment published status, $response contains the entire http response
+List of length 2, containing \code{content} and \code{response} objects:
+\itemize{
+ \item{\code{content}} is the HTTP response content of experiment published status.
+ \item{\code{response}} is the entire HTTP response.
+}
 }
 \description{
 \code{isExperimentPublished} - gets a boolean indicating if an experiment is published.

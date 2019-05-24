@@ -45,7 +45,7 @@ logOut <- function(coreApi, useVerbose = FALSE) {
 
 
   list(
-    success = httr::http_status(response)$category,
-    response = response
+    success = httr::http_status(response$response)$category,
+    response = response$response
   )
 }

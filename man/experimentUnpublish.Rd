@@ -17,9 +17,13 @@ experimentUnpublish(coreApi, experimentType, experimentBarcode,
 \item{useVerbose}{Use verbose communication for debugging}
 }
 \value{
-RETURN returns a list $entity contains updated experiment information, $response contains the entire http response
-For PFS version 5.x.x the output is generate as list(entity = httr::content(response)$response$data, response = response)
-For PFS version 6.x.x the output is generate as list(entity = httr::content(response), response = response)
+List of length 2, containing \code{entity} and \code{response} objects:
+\itemize{
+ \item{\code{entity}} is the HTTP response content.
+  For PFS version 5.x.x the \code{entity} value comes from \code{response$content$response$data}
+  For PFS version 6.x.x the \code{entity} value comes from \code{response$content}
+ \item{\code{response}} is the entire HTTP response.
+}
 }
 \description{
 \code{experimentUnpublish} - Unpublishes an experiment.
@@ -39,4 +43,6 @@ logOut(login$coreApi)
 Craig Parman info@ngsanalytics.com
 
 Natasha Mora natasha.mora@thermofisher.com
+
+Scott Russell scott.russell@thermofisher.com
 }

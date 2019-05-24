@@ -7,7 +7,11 @@
 #' @param barcode barcode of entity to get
 #' @param projectBarcodes one or more project barcodes to associate to the entity
 #' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http
-#' @return returns a list $entity contains entity information, $response contains the entire http response
+#' @return List of length 2, containing \code{entity} and \code{response} objects:
+#' \itemize{
+#'  \item{\code{entity}} is the HTTP response content of updated entity project information.
+#'  \item{\code{response}} is the entire HTTP response.
+#' }
 #' @export
 #' @examples
 #' \dontrun{
@@ -19,10 +23,8 @@
 #' }
 #' @author Craig Parman info@ngsanalytics.com
 #' @author Adam Wheeler adam.wheeler@thermofisher.com
+#' @author Scott Russell scott.russell@thermofisher.com
 #' @description \code{updateEntityProject} - Update entity project associations.  Does not perserve current associations.
-
-
-
 
 updateEntityProject <-
   function(coreApi,
@@ -33,7 +35,6 @@ updateEntityProject <-
     query <- paste0("('", barcode, "')")
 
     # Get entityType
-
     entity <-
       getEntityByBarcode(coreApi,
         entityType,
@@ -41,7 +42,6 @@ updateEntityProject <-
         fullMetadata = FALSE,
         useVerbose = useVerbose
       )
-
 
     old_values <-
       lapply(entity$entity, function(x)
@@ -52,7 +52,6 @@ updateEntityProject <-
         })
 
     # no lint start
-
     for (i in 1:length(projectBarcodes))
     {
       projectBarcodes[i] <-
@@ -61,16 +60,11 @@ updateEntityProject <-
     # no lint end
     old_values[["PROJECT@odata.binding"]] <- projectBarcodes
 
-
     body <- old_values
-
     query <- paste0("('", barcode, "')")
-
     header <- c("Content-Type" = "application/json", "If-Match" = "*")
 
     # update record
-
-
     response <-
       apiPUT(
         coreApi,
@@ -83,7 +77,5 @@ updateEntityProject <-
         unbox = FALSE
       )
 
-
-
-    list(entity = httr::content(response), response = response)
+    list(entity = response$content, response = response$response)
   }

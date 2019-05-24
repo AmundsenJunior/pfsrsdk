@@ -6,8 +6,11 @@
 #' @param experimentContainerBarcode experiment sample container of entity to get
 #' @param fullMetadata - get full metadata, default is FALSE
 #' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http call
-#' @return returns a list $entity contains data frame with derived experiment sample barcodes concentration,
-#'         and assay raw data. $response contains the entire http response
+#' @return List of length 2, containing \code{entity} and \code{response} objects:
+#' \itemize{
+#'  \item{\code{entity}} is a data frame with derived experiment sample barcodes, concentration, and assay raw data.
+#'  \item{\code{response}} is the entire HTTP response.
+#' }
 #' @export
 #' @examples
 #' \dontrun{

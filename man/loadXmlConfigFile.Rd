@@ -14,7 +14,7 @@ loadXmlConfigFile(coreApi, xmlFilePath = NULL, appName = NULL)
 \item{appName}{name of PFS app to enable}
 }
 \value{
-RETURN returns the entire http response
+The entire HTTP response
 }
 \description{
 \code{xmlFilePath} Loads an XML config file.

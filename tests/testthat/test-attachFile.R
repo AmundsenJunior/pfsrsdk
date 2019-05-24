@@ -32,3 +32,8 @@ test_that(paste("test attachFile() CoreSDK call on:", env$auth), {
   expect_equivalent(attachedFile$response$status_code, 200, all = verbose)
   expect_true(attachedFile$entity$response$success)
 })
+
+teardown({
+  barcode <- NULL
+  unlink(filePath)
+})

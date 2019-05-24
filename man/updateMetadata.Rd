@@ -12,7 +12,11 @@ updateMetadata(coreApi, useVerbose = FALSE)
 \item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http}
 }
 \value{
-returns XML with all entitiy metadata
+List of length 2, containing \code{entity} and \code{response} objects:
+\itemize{
+ \item{\code{entity}} is the HTTP response content of XML-formatted OData metadata for all entities.
+ \item{\code{response}} is the entire HTTP response.
+}
 }
 \description{
 \code{updateMetadata}  Updates cached metadata so metadata is up to date.

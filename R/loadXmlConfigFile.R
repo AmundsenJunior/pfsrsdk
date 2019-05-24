@@ -4,7 +4,7 @@
 #' @param coreApi coreApi object with valid jsessionid
 #' @param xmlFilePath Path to XML file
 #' @param appName name of PFS app to enable
-#' @return RETURN returns the entire http response
+#' @return The entire HTTP response
 #' @examples
 #' \dontrun{
 #' api <- coreAPI("PATH TO JSON FILE")

@@ -23,7 +23,11 @@ getExperimentWellContents(coreApi, experimentContainerBarcode,
 \item{useVerbose}{Use verbose communication for debugging (default: FALSE)}
 }
 \value{
-RETURN returns a list $entity contains well information, $response contains the entire http response
+List of length 2, containing \code{entity} and \code{response} objects:
+\itemize{
+ \item{\code{entity}} is the HTTP response content of well information.
+ \item{\code{response}} is the entire HTTP response.
+}
 }
 \description{
 \code{getExperimentWellContents} - Gets content information of a single container well in an experiment.

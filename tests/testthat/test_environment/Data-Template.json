@@ -70,5 +70,8 @@
   "wellContentsAmount": "",
   "wellContentsAmountUnit": "",
   "wellContentsConcentration": "",
-  "wellContentsConcentrationUnit": ""
+  "wellContentsConcentrationUnit": "",
+  "nonExistingEntityType": "NON_EXISTING_ENTITY",
+  "nonExistingEntityBarcode": "NEE1",
+  "nonExistingEntityErrorMessage": "Status Code: 404, Error: Cannot find EntitySet, Singleton, ActionImport or FunctionImport with name 'NON_EXISTING_ENTITY'."
 }

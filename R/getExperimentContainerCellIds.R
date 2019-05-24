@@ -6,7 +6,11 @@
 #' @param experimentContainerType container entity type (default: EXPERIMENT_CONTAINER)
 #' @param useVerbose  Use verbose communication for debugging (default: FALSE)
 #' @export
-#' @return RETURN returns $entity a array of cell IDs and  $response contains the entire http response
+#' @return List of length 2, containing \code{entity} and \code{response} objects:
+#' \itemize{
+#'  \item{\code{entity}} is a vector of cell IDs.
+#'  \item{\code{response}} is the entire HTTP response.
+#' }
 #' @examples
 #' \dontrun{
 #' api <- coreAPI("PATH TO JSON FILE")

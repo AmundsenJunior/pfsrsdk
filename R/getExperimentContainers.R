@@ -5,7 +5,11 @@
 #' @param experimentType experiment entity type to get
 #' @param experimentBarcode barcode of experiment to query
 #' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http
-#' @return returns a list $entity contains barcodes of the containers, $response contains the entire http response
+#' @return List of length 2, containing \code{entity} and \code{response} objects:
+#' \itemize{
+#'  \item{\code{entity}} is a list of container barcodes.
+#'  \item{\code{response}} is the entire HTTP response.
+#' }
 #' @export
 #' @examples
 #' \dontrun{

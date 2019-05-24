@@ -21,14 +21,17 @@ setExperimentSampleAssayFileData(coreApi, assayType,
 \item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http calls}
 }
 \value{
-returns a list $entity contains binary object that in the file, $response contains
-the entire http response
+List of length 2, containing \code{content} and \code{response} objects:
+\itemize{
+ \item{\code{content}} is the HTTP response content. If the HTTP response status code is 204, returns NULL.
+ \item{\code{response}} is the entire HTTP response.
+}
 }
 \description{
-\code{ setExperimentSampleAssayFileData } Puts file attached as assay data into an experiment sample.
+\code{setExperimentSampleAssayFileData} Puts file attached as assay data into an experiment sample.
 }
 \details{
-\code{setExperimentSampleAssayFileData } Puts file attached as assay data into an experiment sample.
+\code{setExperimentSampleAssayFileData} Puts file attached as assay data into an experiment sample.
 }
 \examples{
 \dontrun{

@@ -9,7 +9,11 @@
 #' @param fullMetadata get full metadata, default is FALSE
 #' @param useVerbose Use verbose communication for debugging
 #' @export
-#' @return RETURN returns a list $entity contains entity information, $response contains the entire http response
+#' @return List of length 2, containing \code{entity} and \code{response} objects:
+#' \itemize{
+#'  \item{\code{entity}} is the HTTP response content.
+#'  \item{\code{response}} is the entire HTTP response.
+#' }
 #' @examples
 #' \dontrun{
 #' api <- coreAPI("PATH TO JSON FILE")
@@ -25,6 +29,7 @@
 #' }
 #' @author Craig Parman info@ngsanalytics.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
+#' @author Scott Russell scott.russell@thermofisher.com
 #' @description \code{createExperimentSample} Creates a new experiment sample from a sample lot.
 
 createExperimentSample <-
@@ -67,7 +72,5 @@ createExperimentSample <-
         useVerbose = useVerbose
       )
 
-
-
-    list(entity = httr::content(response), response = response)
+    list(entity = response$content, response = response$response)
   }

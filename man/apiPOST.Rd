@@ -2,10 +2,11 @@
 % Please edit documentation in R/apiPOST.R
 \name{apiPOST}
 \alias{apiPOST}
-\title{apiPOST - Do a POST to the Core ODATA REST API.}
+\title{apiPOST - Do a POST to the PFS API.}
 \usage{
 apiPOST(coreApi, resource = NULL, body = NULL, encode,
-  headers = NULL, special = NULL, useVerbose = FALSE)
+  headers = NULL, special = NULL, useVerbose = FALSE,
+  fullReturn = TRUE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -16,28 +17,34 @@ apiPOST(coreApi, resource = NULL, body = NULL, encode,
 
 \item{encode}{encode type must be "multipart", "form", "json", "raw"}
 
-\item{headers}{headers to be added to get.}
+\item{headers}{headers to be added to \code{httr::POST}.}
 
 \item{special}{passed to buildUrl for special sdk endpoints}
 
 \item{useVerbose}{Use verbose communication for debugging}
+
+\item{fullReturn}{Return the entire response object, or just the response content (default TRUE)}
 }
 \value{
-Returns the entire http response
+List of length 2, containing \code{content} and \code{response} objects:
+\itemize{
+ \item{\code{content}} is the HTTP response content.
+ \item{\code{response}} is the entire HTTP response. NULL if \code{fullReturn} is FALSE.
+}
 }
 \description{
-\code{apiPOST} - Base call to Core ODATA REST API.
+\code{apiPOST} - Do a POST to the PFS API.
 }
 \details{
-\code{apiPOST}  Do a POST to the Core ODATA REST API.
+\code{apiPOST}  Do a POST to the PFS API.
 }
 \examples{
 \dontrun{
 api <- coreAPI("PATH TO JSON FILE")
 login <- authBasic(api)
 response <- apiPOST(login$coreApi, "SAMPLE", body, "json", special = NULL, useVerbose = FALSE)
-message <- httr::content(response)
-error <- httr::http_error(response)
+content <- response$content
+error <- response$error$message
 logOut(login$coreApi)
 }
 }
@@ -45,4 +52,6 @@ logOut(login$coreApi)
 Craig Parman info@ngsanalytics.com
 
 Francisco Marin francisco.marin@thermofisher.com
+
+Scott Russell scott.russell@thermofisher.com
 }

@@ -4,7 +4,11 @@
 #'
 #' @param coreApi coreApi object with valid jsessionid
 #' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http
-#' @return returns XML with all entitiy metadata
+#' @return List of length 2, containing \code{entity} and \code{response} objects:
+#' \itemize{
+#'  \item{\code{entity}} is the HTTP response content of XML-formatted OData metadata for all entities.
+#'  \item{\code{response}} is the entire HTTP response.
+#' }
 #' @export
 #' @examples
 #' \dontrun{
@@ -16,8 +20,6 @@
 #' @author Craig Parman info@ngsanalytics.com
 #' @description \code{updateMetadata}  Updates cached metadata so metadata is up to date.
 #' Must be run after any configuration changes.
-
-
 
 updateMetadata <- function(coreApi, useVerbose = FALSE) {
   resource <- "$metadata"
@@ -33,8 +35,6 @@ updateMetadata <- function(coreApi, useVerbose = FALSE) {
       headers = header,
       useVerbose = useVerbose
     )
-
-
 
   list(entity = out$content, response = out$response)
 }

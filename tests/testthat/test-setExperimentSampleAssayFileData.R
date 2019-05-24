@@ -16,5 +16,9 @@ test_that(paste("test setExperimentSampleAssayFileData() on:", env$auth), {
   )
 
   expect_equal(result$response$status_code, 204)
-  expect_null(result$response$entity)
+  expect_null(result$entity)
+})
+
+teardown({
+  unlink(filePath)
 })

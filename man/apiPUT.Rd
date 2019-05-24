@@ -2,11 +2,11 @@
 % Please edit documentation in R/apiPUT.R
 \name{apiPUT}
 \alias{apiPUT}
-\title{apiPUT - Do a PUT to the Core ODATA REST API.}
+\title{apiPUT - Do a PUT to the PFS API.}
 \usage{
 apiPUT(coreApi, resource = NULL, query = NULL, body = NULL, encode,
   headers = NULL, special = NULL, useVerbose = FALSE, unbox = TRUE,
-  valueFlag = FALSE)
+  valueFlag = FALSE, fullReturn = TRUE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -23,20 +23,26 @@ apiPUT(coreApi, resource = NULL, query = NULL, body = NULL, encode,
 
 \item{special}{passed to buildUrl for special sdk endpoints}
 
-\item{useVerbose}{Use verbose communication for debugging}
+\item{useVerbose}{use verbose communication for debugging}
 
 \item{unbox}{use autounbox when doing lait yo json conversion}
 
 \item{valueFlag}{Tells the PUT if there needs to be a /$value added to the end.}
+
+\item{fullReturn}{Return the entire response object, or just the response content (default TRUE)}
 }
 \value{
-Returns the entire http response
+List of length 2, containing \code{content} and \code{response} objects:
+\itemize{
+ \item{\code{content}} is the HTTP response content.
+ \item{\code{response}} is the entire HTTP response. NULL if \code{fullReturn} is FALSE.
+}
 }
 \description{
-\code{apiPUT} - Base PUT call to Core ODATA REST API.
+\code{apiPUT} - Do a PUT to the PFS API.
 }
 \details{
-\code{apiPUT}  Do a PUT to the Core ODATA REST API.
+\code{apiPUT}  Do a PUT to the PFS API.
 }
 \examples{
 \dontrun{
@@ -50,7 +56,8 @@ response <- apiPUT(login$coreApi,
   useVerbose = FALSE,
   unbox = TRUE
 )
-content <- httr::content(response)
+content <- response$content
+error <- response$error$message
 logOut(login$coreApi)
 }
 }
@@ -60,4 +67,6 @@ Craig Parman info@ngsanalytics.com
 Adam Wheeler adam.wheeler@thermofisher.com
 
 Francisco Marin francisco.marin@thermofisher.com
+
+Scott Russell scott.russell@thermofisher.com
 }

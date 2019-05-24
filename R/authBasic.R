@@ -5,8 +5,11 @@
 #' @param coreApi object of class coreApi that contains username, password,  baseURL and
 #' tenant. tenant is required if user has access to multiple tenants.
 #' @param useVerbose - Use verbose settings for HTTP commands
-#' @return returns a list with two oblects. coreApi which returns the passed coreApi object with  jsessionid,
-#'            awselb and employeeid populated, $response contains the entire http response
+#' @return List of length 2, containing \code{coreApi} and \code{response} objects:
+#' \itemize{
+#'  \item{\code{content}} is the passed \code{coreApi} object with \code{jsessionid}, \code{awselb} and \code{employeeid} populated.
+#'  \item{\code{response}} is the entire HTTP response.
+#' }
 #' @export
 #' @examples
 #' \dontrun{
@@ -22,8 +25,6 @@
 #' @author Natasha Mora natasha.mora@thermofisher.com
 #' @author Francisco Marin francisco.marin@thermofisher.com
 #' @description \code{authBasic} Logs in and returns a fully populated coreApi object in $coreAPI.
-
-
 
 authBasic <- function(coreApi, useVerbose = FALSE) {
   if (is.null(coreApi$tenant)) {
@@ -56,7 +57,6 @@ authBasic <- function(coreApi, useVerbose = FALSE) {
       ))
   }
 
-
   response <-
     apiPOST(
       coreApi,
@@ -66,7 +66,7 @@ authBasic <- function(coreApi, useVerbose = FALSE) {
       special = "login"
     )
 
-  if (httr::http_error(response)) {
+  if (httr::http_error(response$response)) {
     # The error details are in the response object. The apiPOST function will generate
     # warnings with information of what was wrong.
     warning("Please review details of the authentication error in the response.")
@@ -75,14 +75,14 @@ authBasic <- function(coreApi, useVerbose = FALSE) {
   }
 
   getSession <- function(response) {
-    jsessionid <- httr::content(response)$response$data$jsessionid
+    jsessionid <- response$content$response$data$jsessionid
     awselb <-
-      httr::cookies(response)[which(httr::cookies(response)[, 6] == "AWSELB"), 7]
+      httr::cookies(response$response)[which(httr::cookies(response$response)[, 6] == "AWSELB"), 7]
     if (length(awselb) == 0) {
       awselb <- NULL
     }
-    employeeId <- httr::content(response)$response$data$employeeId
-    serviceRoot <- httr::content(response)$response$data$serviceRoot
+    employeeId <- response$content$response$data$employeeId
+    serviceRoot <- response$content$response$data$serviceRoot
 
     list(
       jsessionid = jsessionid,
@@ -99,8 +99,6 @@ authBasic <- function(coreApi, useVerbose = FALSE) {
         list("jsessionid" = NULL, "employeeId" = NULL, "serviceRoot" = NULL)
       }
     )
-
-
 
   if (!is.null(session$jsessionid)) {
     coreApi$jsessionId <- session$jsessionid
@@ -126,5 +124,6 @@ authBasic <- function(coreApi, useVerbose = FALSE) {
   } else {
     options("pfs.tested" = TRUE)
   }
-  list(coreApi = coreApi, response = response)
+
+  list(coreApi = coreApi, response = response$response)
 }

@@ -7,7 +7,11 @@
 #' @param barcode barcode of the entity
 #' @param attribute name of the attribute
 #' @param useVerbose TRUE or FALSE to indicate if verbose options should be used
-#' @return returns a list $entity contains the binary file data, $response contains the entire http response
+#' @return List of length 2, containing \code{entity} and \code{response} objects:
+#' \itemize{
+#'  \item{\code{entity}} is the binary-format HTTP response content.
+#'  \item{\code{response}} is the entire HTTP response.
+#' }
 #' @export
 #' @examples
 #' \dontrun{

@@ -1,18 +1,23 @@
-#' apiPUT - Do a PUT to the Core ODATA REST API.
+#' apiPUT - Do a PUT to the PFS API.
 #'
-#' \code{apiPUT}  Do a PUT to the Core ODATA REST API.
+#' \code{apiPUT}  Do a PUT to the PFS API.
 #' @param coreApi coreApi object with valid jsessionid
 #' @param resource entity type for PUT
 #' @param query query string
 #' @param body body for request
 #' @param encode encoding to use for request option are "multipart", "form", "json", "raw"
-#' @param headers  headers to be added to get.
-#' @param special  passed to buildUrl for special sdk endpoints
-#' @param useVerbose  Use verbose communication for debugging
-#' @param unbox use autounbox when doing lait yo json conversion
+#' @param headers headers to be added to \code{httr::PUT}.
+#' @param special passed to buildUrl for special sdk endpoints
+#' @param useVerbose use verbose communication for debugging
+#' @param unbox use autounbox when doing list-to-JSON conversion
 #' @param valueFlag Tells the PUT if there needs to be a /$value added to the end.
+#' @param fullReturn Return the entire response object, or just the response content (default TRUE)
 #' @export
-#' @return Returns the entire http response
+#' @return List of length 2, containing \code{content} and \code{response} objects:
+#' \itemize{
+#'  \item{\code{content}} is the HTTP response content.
+#'  \item{\code{response}} is the entire HTTP response. NULL if \code{fullReturn} is FALSE.
+#' }
 #' @examples
 #' \dontrun{
 #' api <- coreAPI("PATH TO JSON FILE")
@@ -25,13 +30,15 @@
 #'   useVerbose = FALSE,
 #'   unbox = TRUE
 #' )
-#' content <- httr::content(response)
+#' content <- response$content
+#' error <- response$error$message
 #' logOut(login$coreApi)
 #' }
 #' @author Craig Parman info@ngsanalytics.com
 #' @author Adam Wheeler adam.wheeler@thermofisher.com
 #' @author Francisco Marin francisco.marin@thermofisher.com
-#' @description \code{apiPUT} - Base PUT call to Core ODATA REST API.
+#' @author Scott Russell scott.russell@thermofisher.com
+#' @description \code{apiPUT} - Do a PUT to the PFS API.
 
 apiPUT <-
   function(coreApi,
@@ -43,7 +50,8 @@ apiPUT <-
              special = NULL,
              useVerbose = FALSE,
              unbox = TRUE,
-             valueFlag = FALSE) {
+             valueFlag = FALSE,
+             fullReturn = TRUE) {
     # clean the resource name for ODATA
     resource <- odataCleanName(resource)
 
@@ -95,7 +103,6 @@ apiPUT <-
         )
       )
 
-
     # check for general HTTP error in response
     if (httr::http_error(response)) {
       warning("API call failed", call. = FALSE)
@@ -118,5 +125,12 @@ apiPUT <-
         }
       }
     }
-    return(response)
+
+    if (fullReturn) {
+      out <- list(content = httr::content(response), response = response)
+    } else {
+      out <- list(content = httr::content(response), response = NULL)
+    }
+
+    return(out)
   }

@@ -1,30 +1,33 @@
-#' apiPOST - Do a POST to the Core ODATA REST API.
+#' apiPOST - Do a POST to the PFS API.
 #'
-#' \code{apiPOST}  Do a POST to the Core ODATA REST API.
+#' \code{apiPOST}  Do a POST to the PFS API.
 #' @param coreApi coreApi object with valid jsessionid
 #' @param resource entity type for POST
 #' @param body body for request
 #' @param encode encode type must be "multipart", "form", "json", "raw"
-#' @param headers  headers to be added to get.
+#' @param headers  headers to be added to \code{httr::POST}.
 #' @param special  passed to buildUrl for special sdk endpoints
 #' @param useVerbose  Use verbose communication for debugging
+#' @param fullReturn Return the entire response object, or just the response content (default TRUE)
 #' @export
-#' @return Returns the entire http response
+#' @return List of length 2, containing \code{content} and \code{response} objects:
+#' \itemize{
+#'  \item{\code{content}} is the HTTP response content.
+#'  \item{\code{response}} is the entire HTTP response. NULL if \code{fullReturn} is FALSE.
+#' }
 #' @examples
 #' \dontrun{
 #' api <- coreAPI("PATH TO JSON FILE")
 #' login <- authBasic(api)
 #' response <- apiPOST(login$coreApi, "SAMPLE", body, "json", special = NULL, useVerbose = FALSE)
-#' message <- httr::content(response)
-#' error <- httr::http_error(response)
+#' content <- response$content
+#' error <- response$error$message
 #' logOut(login$coreApi)
 #' }
 #' @author Craig Parman info@ngsanalytics.com
 #' @author Francisco Marin francisco.marin@thermofisher.com
-#' @description \code{apiPOST} - Base call to Core ODATA REST API.
-
-
-
+#' @author Scott Russell scott.russell@thermofisher.com
+#' @description \code{apiPOST} - Do a POST to the PFS API.
 
 apiPOST <-
   function(coreApi,
@@ -33,14 +36,12 @@ apiPOST <-
              encode,
              headers = NULL,
              special = NULL,
-             useVerbose = FALSE) {
+             useVerbose = FALSE,
+             fullReturn = TRUE) {
     # clean the resource name for ODATA
-
     resource <- odataCleanName(resource)
 
-
     # Check that encode parameter is proper
-
     if (!(encode %in% c("multipart", "form", "json", "raw"))) {
       stop({
         print("encode parameter not recognized")
@@ -49,8 +50,6 @@ apiPOST <-
       call. = FALSE
       )
     }
-
-
 
     sdk_url <-
       buildUrl(
@@ -85,7 +84,6 @@ apiPOST <-
       )
 
     # check for general HTTP error in response
-
     if (httr::http_error(response)) {
       warning("API call failed", call. = FALSE)
       warning(httr::http_status(response), call. = FALSE)
@@ -108,5 +106,11 @@ apiPOST <-
       }
     }
 
-    return(response)
+    if (fullReturn) {
+      out <- list(content = httr::content(response), response = response)
+    } else {
+      out <- list(content = httr::content(response), response = NULL)
+    }
+
+    return(out)
   }

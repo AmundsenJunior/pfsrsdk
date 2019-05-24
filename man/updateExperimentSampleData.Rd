@@ -20,8 +20,11 @@ updateExperimentSampleData(coreApi, experimentAssayType,
 \item{useVerbose}{Use verbose communication for debugging}
 }
 \value{
-RETURN returns a list $entity contains entity information,
-       $response contains the entire http response
+List of length 2, containing \code{entity} and \code{response} objects:
+\itemize{
+ \item{\code{entity}} is the HTTP response content.
+ \item{\code{response}} is the entire HTTP response.
+}
 }
 \description{
 \code{updateExperimentSampleData} Update experiment sample assay data.
@@ -46,4 +49,6 @@ response <- authBasic(coreApi)
 Craig Parman info@ngsanalytics.com
 
 Natasha Mora natasha.mora@thermofisher.com
+
+Scott Russell scott.russell@thermofisher.com
 }

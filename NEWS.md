@@ -16,9 +16,25 @@
 
 ## Breaking changes
 
+* Refactored the return objects of the basic API functions (`apiGET`, `apiPOST`,
+  `apiPUT`), as well as many of the SDK package functions. This was done to 
+  provide a standard return object across the SDK (where appropriate).
+  The API functions were updated to provide a return object of structure 
+  `list(content, response)`, where `content` had a value of
+  `httr::content(response)`.
+  For many of the SDK functions, a standard structure of
+  `list(entity, response)` was already in place, but the change here both
+  expanded the use of this return object to other functions and updated the 
+  values of both `entity` and `response`.
+  Refer to the package help for function-specific changes to the return objects.
+
 ## New functions and minor changes
 
-* Added Gradle task to generate PDF manual of package documentation, via `Rd2pdf`.
+* Added Gradle task to generate PDF manual of package documentation, via
+  `Rd2pdf`.
+* Added optional `fullReturn` parameter to API functions to provide option to
+  not receive full HTTP response data in return object.
+* Separated the set of API tests in `test-httpFunctions.R` to individual files.
 
 ## Fixes
 
@@ -33,7 +49,9 @@
   configuration values to `api_username` and `api_password` to ensure
   compatibility with the [prohibited environment variables](https://docs.rstudio.com/connect/admin/appendix-configuration.html#Applications.Settings)
   of RStudio-Connect.
-* Added parameter fullMetadata to getEntityLocation, getEntityProject, getExperimentSampleAssayData, getExperimentSamplesRawData. This changes the order of the useVerbose parameter.
+* Added parameter fullMetadata to getEntityLocation, getEntityProject,
+  getExperimentSampleAssayData, getExperimentSamplesRawData. This changes the
+  order of the useVerbose parameter.
 * Changed default fullMetadata value.
 * apiGET(), apiPOST(), apiPUT() and authBasic() will not stop the execution of 
   the R code during an error. Warnings will show information about the error and
@@ -43,8 +61,10 @@
 
 * Updated license information.
 * Changes and enhancements to automated internal testing.
-* Updated publish functions and `getAttachedAttributeFile()` to use the odata options available in PFS v6. 
-* Updated `createExperimentContainer()` to warn the user when accessing a published experiment.
+* Updated publish functions and `getAttachedAttributeFile()` to use the odata
+options available in PFS v6. 
+* Updated `createExperimentContainer()` to warn the user when accessing a
+published experiment.
 * Documentation updates.
 * Updated `updateEntityLocation()` to use the *InventoryMove* action available
   in the PFS OData API.

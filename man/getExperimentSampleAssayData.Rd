@@ -19,7 +19,11 @@ getExperimentSampleAssayData(coreApi, experimentAssayType,
 \item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http}
 }
 \value{
-returns a list $entity contains entity information, $response contains the entire http response
+List of length 2, containing \code{entity} and \code{response} objects:
+\itemize{
+ \item{\code{entity}} is the HTTP response content of entity information.
+ \item{\code{response}} is the entire HTTP response.
+}
 }
 \description{
 \code{ getExperimentSampleAssayData }  Gets assay data for a experiment sample identified by barcode.

@@ -11,11 +11,13 @@ getEntityMetadata(coreApi, entityType, useVerbose = FALSE)
 
 \item{entityType}{entity type to get metadata for}
 
-\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http}
-}
-\value{
-returns a list containing $attributes for attribute properties,
-and $association for association properties; $template contains a list that can be converted to JSON for object creation.
+\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http
+#' @return List of length 3, containing \code{attributes}, \code{associations}, and \code{template} objects:
+\itemize{
+ \item{\code{attributes}} is a list of attribute properties.
+ \item{\code{response}} is a list of association properties.
+ \item{\code{template}} is a list convertable to JSON for object creation.
+}}
 }
 \description{
 \code{getEntityMetadata} Get an entity metadata by entityType. Returns a list with three data frames

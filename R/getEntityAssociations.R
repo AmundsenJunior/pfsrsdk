@@ -8,7 +8,11 @@
 #' @param associationContext association context
 #' @param fullMetadata - get full metadata, default is FALSE
 #' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http
-#' @return returns a list $entity contains entity associations, $response contains the entire http response
+#' @return List of length 2, containing \code{entity} and \code{response} objects:
+#' \itemize{
+#'  \item{\code{entity}} is the HTTP response content of entity associations.
+#'  \item{\code{response}} is the entire HTTP response.
+#' }
 #' @export
 #' @examples
 #' \dontrun{
@@ -22,9 +26,6 @@
 #' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description \code{getEntityAssociations}  Get assoication for a entity
 
-
-
-
 getEntityAssociations <-
   function(coreApi,
              entityType,
@@ -37,14 +38,11 @@ getEntityAssociations <-
     associationContext <- odataCleanName(associationContext)
     query <- paste0("('", barcode, "')/", associationContext)
 
-
-
     if (fullMetadata) {
       header <- c(Accept = "application/json;odata.metadata=full")
     } else {
       header <- c(Accept = "application/json;odata.metadata=minimal")
     }
-
 
     out <-
       apiGET(
@@ -54,8 +52,6 @@ getEntityAssociations <-
         headers = header,
         useVerbose = useVerbose
       )
-
-
 
     list(entity = out$content, response = out$response)
   }

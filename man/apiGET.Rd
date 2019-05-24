@@ -2,10 +2,10 @@
 % Please edit documentation in R/apiGET.R
 \name{apiGET}
 \alias{apiGET}
-\title{apiGET - Do a get from the Core ODATA REST API.}
+\title{apiGET - Do a GET from the PFS API.}
 \usage{
 apiGET(coreApi, resource, query, headers = NULL, special = NULL,
-  useVerbose = FALSE, useRaw = FALSE)
+  useVerbose = FALSE, useRaw = FALSE, fullReturn = TRUE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -18,17 +18,25 @@ apiGET(coreApi, resource, query, headers = NULL, special = NULL,
 
 \item{special}{passed to buildUrl for special sdk endpoints}
 
-\item{useVerbose}{Use verbose communication for debugging}
+\item{useVerbose}{Use verbose communication for debugging (default FALSE)}
+
+\item{useRaw}{Return raw response content (default FALSE)}
+
+\item{fullReturn}{Return the entire response object, or just the response content (default TRUE)}
 }
 \value{
-Returns a list of length two. First the content, concatenated if a chunked response, and second the entire http response.
-If chuncked for the content for the last chunk only.last
+List of length 2, containing \code{content} and \code{response} objects:
+\itemize{
+ \item{\code{content}} is the HTTP response content (concatenated if a chunked response).
+ \item{\code{response}} is the entire HTTP response. If chuncked, \code{response} object contains
+the full HTTP response of the last HTTP GET call. NULL if \code{fullReturn} is FALSE.
+}
 }
 \description{
-\code{apiGET} - Do a get from the Core ODATA REST API.
+\code{apiGET} - Do a GET from the PFS API.
 }
 \details{
-\code{apiGET}  Base call to Core REST API.
+\code{apiGET} Do a GET from the PFS API.
 }
 \examples{
 \dontrun{
@@ -36,7 +44,7 @@ api <- coreAPI("PATH TO JSON FILE")
 login <- authBasic(api)
 response <- apiGET(login$coreApi, "json", resource, query)
 content <- response$content
-error <- httr::http_error(response$response)
+error <- response$error$message
 logOut(login$coreApi)
 }
 }
@@ -46,4 +54,6 @@ Craig Parman info@ngsanalytics.com
 Francisco Marin francisco.marin@thermofisher.com
 
 Natasha Mora natasha.mora@thermofisher.com
+
+Scott Russell scott.russell@thermofisher.com
 }

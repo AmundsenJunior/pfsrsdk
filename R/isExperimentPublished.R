@@ -6,7 +6,11 @@
 #' @param experimentBarcode barcode of the experiment.
 #' @param useVerbose Use verbose communication for debugging
 #' @export
-#' @return RETURN returns a list $status contains the experiment published status, $response contains the entire http response
+#' @return List of length 2, containing \code{content} and \code{response} objects:
+#' \itemize{
+#'  \item{\code{content}} is the HTTP response content of experiment published status.
+#'  \item{\code{response}} is the entire HTTP response.
+#' }
 #' @examples
 #' \dontrun{
 #' api <- coreAPI("PATH TO JSON FILE")
@@ -16,7 +20,6 @@
 #' }
 #' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description \code{isExperimentPublished} - gets a boolean indicating if an experiment is published.
-
 
 isExperimentPublished <-
   function(coreApi,

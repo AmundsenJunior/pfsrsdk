@@ -8,7 +8,13 @@
 #' @param targetAttributeName - if included the name if the attribute to attach the file to.  Must be in all caps.
 #' @param useVerbose Use verbose communication for debugging
 #' @export
-#' @return RETURN returns a list $entity contains entity information (if present), $response contains the entire http response
+#' @return List of length 2, containing \code{content} and \code{response} objects:
+#' \itemize{
+#'  \item{\code{content}} is the HTTP response content. If \code{targetAttributeName}
+#'  is not empty, \code{content} will return as NULL.
+#'  \item{\code{response}} is the entire HTTP response. If \code{fullReturn} is FALSE
+#'  will return as NULL.
+#' }
 #' @examples
 #' \dontrun{
 #' api <- coreAPI("PATH TO JSON FILE")
@@ -29,7 +35,6 @@
 #' Note: This function uses the JSON API to post a file to an entity and
 #' Odata to post to an attribute.
 
-
 attachFile <-
   function(coreApi, entityType,
              barcode,
@@ -47,7 +52,6 @@ attachFile <-
 
     if (targetAttributeName != "") {
       # Check if the metadata reports this as a stream
-
       met <- getEntityMetadata(coreApi, entityType)
       valueFlag <- ifelse(match(
         "Edm.Stream",
@@ -59,9 +63,11 @@ attachFile <-
       TRUE,
       FALSE
       )
+
       body <- httr::upload_file(filePath)
       query <- paste0("('", barcode, "')/", targetAttributeName)
       header <- c("If-Match" = "*")
+
       response <-
         apiPUT(
           coreApi,
@@ -122,7 +128,6 @@ attachFile <-
         )
 
       # check for general HTTP error in response
-
       if (httr::http_error(response)) {
         stop({
           print("json API file-attach call failed")
@@ -133,8 +138,15 @@ attachFile <-
       }
     }
 
-    list(
-      entity = if (response$status_code == 204) NULL else httr::content(response),
-      response = response
-    )
+    if (targetAttributeName != "") {
+      list(
+        entity = NULL,
+        response = response$response
+      )
+    } else {
+      list(
+        entity = httr::content(response),
+        response = response
+      )
+    }
   }

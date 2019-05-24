@@ -7,7 +7,11 @@
 #' @param fullMetadata return full metadata, default is FALSE
 #' @param useVerbose  Use verbose communication for debugging
 #' @export
-#' @return RETURN returns a list $entity contains cell information, $response contains the entire http response
+#' @return List of length 2, containing \code{entity} and \code{response} objects:
+#' \itemize{
+#'  \item{\code{entity}} is the HTTP response content of container information.
+#'  \item{\code{response}} is the entire HTTP response.
+#' }
 #' @examples
 #' \dontrun{
 #' api <- coreAPI("PATH TO JSON FILE")

@@ -32,8 +32,11 @@ setCellContents(coreApi, containerType, containerBarcode, containerCellId,
 \item{useVerbose}{use verbose communications for debugging}
 }
 \value{
-RETURN returns a list $entity contains updated container
-        information, $response contains the entire http response
+List of length 2, containing \code{content} and \code{response} objects:
+\itemize{
+ \item{\code{content}} is the HTTP response content of updated cell information.
+ \item{\code{response}} is the entire HTTP response.
+}
 }
 \description{
 \code{setCellContents} - Puts a cell lot in a container cell.
@@ -57,4 +60,6 @@ logOut(login$coreApi)
 Craig Parman info@ngsanalytics.com
 
 Natasha Mora natasha.mora@thermofisher.com
+
+Scott Russell scott.russell@thermofisher.com
 }
