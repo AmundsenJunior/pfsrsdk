@@ -5,7 +5,7 @@
 #' @param containerBarcode container barcode
 #' @param containerType container entity type
 #' @param fullMetadata return full metadata, default is FALSE
-#' @param useVerbose  Use verbose communication for debugging
+#' @param ... additional arguments passed to \code{apiGET}
 #' @export
 #' @return List of length 2, containing \code{entity} and \code{response} objects:
 #' \itemize{
@@ -29,7 +29,7 @@ getContainerContents <-
              containerBarcode,
              containerType = "CONTAINER",
              fullMetadata = FALSE,
-             useVerbose = FALSE) {
+             ...) {
 
     # clean the name for ODATA
     resource <- odataCleanName(containerType)
@@ -63,7 +63,7 @@ getContainerContents <-
         resource = resource,
         query = query,
         headers = header,
-        useVerbose = useVerbose
+        ...
       )
 
     list(entity = out$content, response = out$response)

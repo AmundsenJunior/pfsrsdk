@@ -5,8 +5,7 @@
 \title{createEntity - Create a new instance of a entity. Used for standard object or "Plan Old Core Objects" (POCOs)}
 \usage{
 createEntity(coreApi, entityType, body, locationId = NULL,
-  projectIds = NULL, barcode = NULL, fullMetadata = FALSE,
-  useVerbose = FALSE)
+  projectIds = NULL, barcode = NULL, fullMetadata = FALSE, ...)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -23,7 +22,7 @@ createEntity(coreApi, entityType, body, locationId = NULL,
 
 \item{fullMetadata}{get full metadata, default is FALSE}
 
-\item{useVerbose}{Use verbose communication for debugging}
+\item{...}{additional arguments passed to \code{apiPOST}}
 }
 \value{
 List of length 2, containing \code{entity} and \code{response} objects:

@@ -4,12 +4,12 @@
 \alias{logOut}
 \title{logOut -Log user out of the LIMS.}
 \usage{
-logOut(coreApi, useVerbose = FALSE)
+logOut(coreApi, ...)
 }
 \arguments{
 \item{coreApi}{coreApi object returned during log in}
 
-\item{useVerbose}{use verbose option for debuggin in http POST}
+\item{...}{additional arguments passed to \code{apiPOST}}
 }
 \value{
 returns list with $success = "Success" when sucessful, $response contains the entire http response

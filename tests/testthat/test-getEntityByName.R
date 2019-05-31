@@ -6,7 +6,7 @@
 context("Tests for getEntityByName")
 
 test_that(paste("test getEntityByName() on:", env$auth), {
-  ta1 <- getEntityByName(con$coreApi, data$persistentEntityType, data$persistentEntityName, TRUE, FALSE)
+  ta1 <- getEntityByName(con$coreApi, data$persistentEntityType, data$persistentEntityName, TRUE, useVerbose = verbose)
   name <- ta1$entity[[1]]$Name
 
   expect_match(name, data$persistentEntityName, all = verbose)

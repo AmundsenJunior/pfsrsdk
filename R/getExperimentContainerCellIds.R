@@ -4,7 +4,7 @@
 #' @param coreApi coreApi object with valid jsessionid
 #' @param experimentContainerBarcode container barcode
 #' @param experimentContainerType container entity type (default: EXPERIMENT_CONTAINER)
-#' @param useVerbose  Use verbose communication for debugging (default: FALSE)
+#' @param ... additional arguments passed to \code{apiGET}
 #' @export
 #' @return List of length 2, containing \code{entity} and \code{response} objects:
 #' \itemize{
@@ -25,7 +25,7 @@ getExperimentContainerCellIds <-
   function(coreApi,
              experimentContainerBarcode,
              experimentContainerType = "EXPERIMENT_CONTAINER",
-             useVerbose = FALSE) {
+             ...) {
     resource <- odataCleanName(experimentContainerType)
 
     case(
@@ -53,7 +53,7 @@ getExperimentContainerCellIds <-
         resource = resource,
         query = query,
         headers = header,
-        useVerbose = useVerbose
+        ...
       )
 
     cells <- unlist(lapply(out$content[[1]][[expansion]], function(x) x$Id))

@@ -5,7 +5,7 @@
 \title{getEntityLocation - Get location for an entity by barcode from the Core LIMS using the ODATA API.}
 \usage{
 getEntityLocation(coreApi, entityType, barcode, fullMetadata = FALSE,
-  useVerbose = FALSE)
+  ...)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -16,7 +16,7 @@ getEntityLocation(coreApi, entityType, barcode, fullMetadata = FALSE,
 
 \item{fullMetadata}{- get full metadata, default is FALSE}
 
-\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http}
+\item{...}{additional arguments passed to \code{apiGET}}
 }
 \value{
 List of length 2, containing \code{entity} and \code{response} objects:

@@ -4,8 +4,7 @@
 \alias{buildUrl}
 \title{buildUrl - build URL for call to Core ODATA API.}
 \usage{
-buildUrl(coreApi, resource = NULL, query = NULL, special = NULL,
-  useVerbose = FALSE)
+buildUrl(coreApi, resource = NULL, query = NULL, special = NULL)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -15,8 +14,6 @@ buildUrl(coreApi, resource = NULL, query = NULL, special = NULL,
 \item{query}{and additional property options (optional)}
 
 \item{special}{flag for special sdk endpoints}
-
-\item{useVerbose}{Use verbose communication for debugging}
 }
 \value{
 RETURN Core REST URL

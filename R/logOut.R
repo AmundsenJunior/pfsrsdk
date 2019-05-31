@@ -3,7 +3,7 @@
 #' \code{logOut} logs user out of the Core API
 #'
 #' @param coreApi coreApi object returned during log in
-#' @param useVerbose use verbose option for debuggin in http POST
+#' @param ... additional arguments passed to \code{apiPOST}
 #' @return returns list with $success = "Success" when sucessful, $response contains the entire http response
 #' @export
 #' @examples
@@ -19,7 +19,7 @@
 
 ### Log out
 
-logOut <- function(coreApi, useVerbose = FALSE) {
+logOut <- function(coreApi, ...) {
   request <-
     list(
       request = list(
@@ -40,7 +40,7 @@ logOut <- function(coreApi, useVerbose = FALSE) {
       headers = headers,
       encode = "json",
       special = "login",
-      useVerbose = useVerbose
+      ...
     )
 
 

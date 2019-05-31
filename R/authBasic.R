@@ -4,7 +4,7 @@
 #'
 #' @param coreApi object of class coreApi that contains username, password,  baseURL and
 #' tenant. tenant is required if user has access to multiple tenants.
-#' @param useVerbose - Use verbose settings for HTTP commands
+#' @param ... additional arguments passed to \code{apiPOST}
 #' @return List of length 2, containing \code{coreApi} and \code{response} objects:
 #' \itemize{
 #'  \item{\code{content}} is the passed \code{coreApi} object with \code{jsessionid}, \code{awselb} and \code{employeeid} populated.
@@ -26,7 +26,7 @@
 #' @author Francisco Marin francisco.marin@thermofisher.com
 #' @description \code{authBasic} Logs in and returns a fully populated coreApi object in $coreAPI.
 
-authBasic <- function(coreApi, useVerbose = FALSE) {
+authBasic <- function(coreApi, ...) {
   if (is.null(coreApi$tenant)) {
     request <-
       list(request = list(
@@ -62,8 +62,8 @@ authBasic <- function(coreApi, useVerbose = FALSE) {
       coreApi,
       body = request,
       encode = "json",
-      useVerbose = useVerbose,
-      special = "login"
+      special = "login",
+      ...
     )
 
   if (httr::http_error(response$response)) {

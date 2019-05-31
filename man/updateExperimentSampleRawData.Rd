@@ -5,7 +5,7 @@
 \title{updateExperimentSampleRawData - Update experiment sample raw data.}
 \usage{
 updateExperimentSampleRawData(coreApi, experimentContainerBarcode,
-  rawDataCellNum, rawDataValues, useVerbose = FALSE)
+  rawDataCellNum, rawDataValues, ...)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -16,12 +16,12 @@ updateExperimentSampleRawData(coreApi, experimentContainerBarcode,
 
 \item{rawDataValues}{assay attributes as a list of key-values pairs}
 
-\item{useVerbose}{Use verbose communication for debugging}
+\item{...}{additional arguments passed to \code{apiPUT}}
 }
 \value{
 List of length 2, containing \code{entity} and \code{response} objects:
 \itemize{
- \item{\code{entity}} is the HTTP response content.
+ \item{\code{entity}} is the HTTP response content of updated sample raw data.
  \item{\code{response}} is the entire HTTP response.
 }
 }

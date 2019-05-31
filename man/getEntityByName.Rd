@@ -4,8 +4,7 @@
 \alias{getEntityByName}
 \title{getEntityByName - Get an entity by name from the Core LIMS using the ODATA API.}
 \usage{
-getEntityByName(coreApi, entityType, name, fullMetadata = FALSE,
-  useVerbose = FALSE)
+getEntityByName(coreApi, entityType, name, fullMetadata = FALSE, ...)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -16,7 +15,7 @@ getEntityByName(coreApi, entityType, name, fullMetadata = FALSE,
 
 \item{fullMetadata}{- get full metadata, default is FALSE}
 
-\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http}
+\item{...}{additional arguments passed to \code{apiGET}}
 }
 \value{
 List of length 2, containing \code{entity} and \code{response} objects:

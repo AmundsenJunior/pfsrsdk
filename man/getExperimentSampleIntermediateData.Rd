@@ -5,8 +5,7 @@
 \title{getExperimentSampleIntermediateData - Gets intermediate data for an experiment sample.}
 \usage{
 getExperimentSampleIntermediateData(coreApi, experimentType,
-  experimentAssayType, intermediateDataName, experimentSampleBarcode,
-  useVerbose = FALSE)
+  experimentAssayType, intermediateDataName, experimentSampleBarcode, ...)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -19,7 +18,7 @@ getExperimentSampleIntermediateData(coreApi, experimentType,
 
 \item{experimentSampleBarcode}{experiment sample barcode of entity to get}
 
-\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http call}
+\item{...}{additional arguments passed to \code{apiGET}}
 }
 \value{
 List of length 2, containing \code{entity} and \code{response} objects:
@@ -53,4 +52,6 @@ logOut(login$coreApi)
 Craig Parman info@ngsanalytics.com
 
 Natasha Mora natasha.mora@thermofisher.com
+
+Scott Russell scott.russell@thermofisher.com
 }

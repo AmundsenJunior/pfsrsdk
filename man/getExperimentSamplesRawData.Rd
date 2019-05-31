@@ -5,7 +5,7 @@
 \title{getExperimentSamplesRawData - Gets raw data for an experiment container.}
 \usage{
 getExperimentSamplesRawData(coreApi, experimentContainerBarcode,
-  fullMetadata = FALSE, useVerbose = FALSE)
+  fullMetadata = FALSE, ...)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -14,7 +14,7 @@ getExperimentSamplesRawData(coreApi, experimentContainerBarcode,
 
 \item{fullMetadata}{- get full metadata, default is FALSE}
 
-\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http call}
+\item{...}{additional arguments passed to \code{apiGET}}
 }
 \value{
 List of length 2, containing \code{entity} and \code{response} objects:
@@ -45,4 +45,6 @@ logOut(login$coreApi)
 Craig Parman info@ngsanalytics.com
 
 Natasha Mora natasha.mora@thermofisher.com
+
+Scott Russell scott.russell@thermofisher.com
 }

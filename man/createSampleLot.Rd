@@ -5,7 +5,7 @@
 \title{createSampleLot - Creates a lot of a sample.}
 \usage{
 createSampleLot(coreApi, sampleType, sampleBarcode, body = NULL,
-  fullMetadata = TRUE, useVerbose = FALSE)
+  fullMetadata = TRUE, ...)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -18,7 +18,7 @@ createSampleLot(coreApi, sampleType, sampleBarcode, body = NULL,
 
 \item{fullMetadata}{get full metadata, default is FALSE}
 
-\item{useVerbose}{Use verbose communication for debugging}
+\item{...}{additional arguments passed to \code{apiPOST}}
 }
 \value{
 List of length 2, containing \code{entity} and \code{response} objects:

@@ -2,10 +2,10 @@
 % Please edit documentation in R/getEntityByBarcode.R
 \name{getEntityByBarcode}
 \alias{getEntityByBarcode}
-\title{getEntityByBarcode - Get an entity by barcode from the Core LIMS using the ODATA API.}
+\title{getEntityByBarcode - Get an entity by barcode from PFS using the OData API.}
 \usage{
 getEntityByBarcode(coreApi, entityType, barcode, fullMetadata = FALSE,
-  useVerbose = FALSE)
+  ...)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -16,20 +16,21 @@ getEntityByBarcode(coreApi, entityType, barcode, fullMetadata = FALSE,
 
 \item{fullMetadata}{- get full metadata, default is FALSE}
 
-\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http}
+\item{...}{additional arguments passed to \code{apiGET}}
 }
 \value{
 List of length 2, containing \code{entity} and \code{response} objects:
 \itemize{
  \item{\code{entity}} is the HTTP response content.
- \item{\code{response}} is the entire HTTP response.
+ \item{\code{response}} NULL by default (parameter \code{fullReturn} is TRUE).
+  If \code{fullReturn} is FALSE, returns the entire HTTP response.
 }
 }
 \description{
-\code{getEntityByBarcode}  Get an entity by barcode from the Core LIMS using the ODATA API.
+\code{getEntityByBarcode} Get an entity by barcode from PFS using the OData API.
 }
 \details{
-\code{getEntityByBarcode} get an entity from the LIMS by barcode
+\code{getEntityByBarcode} Get an entity by barcode from PFS using the OData API.
 }
 \examples{
 \dontrun{
@@ -45,4 +46,6 @@ Craig Parman info@ngsanalytics.com
 Adam Wheeler adam.wheeler@thermofisher.com
 
 Natasha Mora natasha.mora@thermofisher.com
+
+Scott Russell scott.russell@thermofisher.com
 }

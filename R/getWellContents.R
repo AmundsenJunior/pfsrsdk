@@ -6,7 +6,7 @@
 #' @param containerWellNum number location of container's well
 #' @param containerType entity type of container (default: "CONTAINER")
 #' @param fullMetadata get full metadata, default is FALSE
-#' @param useVerbose  Use verbose communication for debugging (default: FALSE)
+#' @param ... additional arguments passed to \code{apiGET}
 #' @export
 #' @return RETURN returns a list $entity contains well information, $response contains the entire http response
 #' @examples
@@ -27,12 +27,12 @@ getWellContents <-
              containerWellNum,
              containerType = "CONTAINER",
              fullMetadata = FALSE,
-             useVerbose = FALSE) {
+             ...) {
     containerType <- odataCleanName(containerType)
     containerWellNum <- as.numeric(containerWellNum)
     resource <- "CELL"
 
-    cellId <- getContainerCellIds(coreApi, containerBarcode, containerType, useVerbose)$entity[containerWellNum]
+    cellId <- getContainerCellIds(coreApi, containerBarcode, containerType, useVerbose = TRUE)$entity[containerWellNum]
 
     case(
       grepl("[0-2]+\\.[0-9]+\\.[0-9]+", coreApi$semVer) ~ {
@@ -55,7 +55,7 @@ getWellContents <-
         resource = resource,
         query = query,
         headers = header,
-        useVerbose = useVerbose
+        ...
       )
 
     response <-

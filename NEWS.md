@@ -27,6 +27,10 @@
   expanded the use of this return object to other functions and updated the 
   values of both `entity` and `response`.
   Refer to the package help for function-specific changes to the return objects.
+* Moved `useVerbose` parameter on most functions to a pass-through ellipsis
+  (...) parameter, as the paramter is only used by the underlying calls to the
+  API functions (`apiGET`, `apiPOST`, `apiPUT`). Passing an argument for
+  `useVerbose` must now be named, not ordered, in SDK function calls.
 
 ## New functions and minor changes
 

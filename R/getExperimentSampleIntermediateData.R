@@ -7,7 +7,7 @@
 #' @param experimentAssayType assay type for sample
 #' @param experimentSampleBarcode experiment sample barcode of entity to get
 #' @param intermediateDataName assay  intermediate data name to retrive as configured in the assay.
-#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http call
+#' @param ... additional arguments passed to \code{apiGET}
 #' @return List of length 2, containing \code{entity} and \code{response} objects:
 #' \itemize{
 #'  \item{\code{entity}} is a data frame with derived experiment sample barcodes, concentration, and assay intermediate data.
@@ -30,6 +30,7 @@
 #' }
 #' @author Craig Parman info@ngsanalytics.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
+#' @author Scott Russell scott.russell@thermofisher.com
 #' @description \code{getExperimentSampleIntermediateData}   Gets intermediate data for an experiment sample identified by barcode.
 
 getExperimentSampleIntermediateData <-
@@ -38,7 +39,7 @@ getExperimentSampleIntermediateData <-
              experimentAssayType,
              intermediateDataName,
              experimentSampleBarcode,
-             useVerbose = FALSE) {
+             ...) {
     # clean the name for ODATA
     experimentType <- odataCleanName(experimentType)
     experimentAssayType <- odataCleanName(experimentAssayType)
@@ -62,7 +63,7 @@ getExperimentSampleIntermediateData <-
         resource = resource,
         query = query,
         headers = header,
-        useVerbose = useVerbose
+        ...
       )
 
     derivedSamples <- response$content$DERIVED_FROM

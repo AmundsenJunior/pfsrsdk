@@ -6,7 +6,7 @@
 #' @param entityType entity type to get
 #' @param barcode barcode of entity to get
 #' @param projectBarcodes one or more project barcodes to associate to the entity
-#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http
+#' @param ... additional arguments passed to \code{apiPUT}
 #' @return List of length 2, containing \code{entity} and \code{response} objects:
 #' \itemize{
 #'  \item{\code{entity}} is the HTTP response content of updated entity project information.
@@ -31,7 +31,7 @@ updateEntityProject <-
              entityType,
              barcode,
              projectBarcodes,
-             useVerbose = FALSE) {
+             ...) {
     query <- paste0("('", barcode, "')")
 
     # Get entityType
@@ -40,7 +40,7 @@ updateEntityProject <-
         entityType,
         barcode,
         fullMetadata = FALSE,
-        useVerbose = useVerbose
+        useVerbose = TRUE
       )
 
     old_values <-
@@ -73,8 +73,8 @@ updateEntityProject <-
         body = body,
         encode = "raw",
         headers = header,
-        useVerbose = useVerbose,
-        unbox = FALSE
+        unbox = FALSE,
+        ...
       )
 
     list(entity = response$content, response = response$response)

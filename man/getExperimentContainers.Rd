@@ -4,8 +4,7 @@
 \alias{getExperimentContainers}
 \title{getExperimentContainers - Gets experiment containers from experiment identified by barcode.}
 \usage{
-getExperimentContainers(coreApi, experimentType, experimentBarcode,
-  useVerbose = FALSE)
+getExperimentContainers(coreApi, experimentType, experimentBarcode, ...)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -14,7 +13,7 @@ getExperimentContainers(coreApi, experimentType, experimentBarcode,
 
 \item{experimentBarcode}{barcode of experiment to query}
 
-\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http}
+\item{...}{additional arguments passed to \code{apiGET}}
 }
 \value{
 List of length 2, containing \code{entity} and \code{response} objects:
@@ -41,4 +40,6 @@ logOut(login$coreApi)
 Craig Parman info@ngsanalytics.com
 
 Natasha Mora natasha.mora@thermofisher.com
+
+Scott Russell scott.russell@thermofisher.com
 }

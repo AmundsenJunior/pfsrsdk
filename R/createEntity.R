@@ -8,7 +8,7 @@
 #' @param projectIds project comma separated list of project IDs as character string
 #' @param barcode User provided barcode as a character string
 #' @param fullMetadata get full metadata, default is FALSE
-#' @param useVerbose Use verbose communication for debugging
+#' @param ... additional arguments passed to \code{apiPOST}
 #' @export
 #' @return List of length 2, containing \code{entity} and \code{response} objects:
 #' \itemize{
@@ -34,7 +34,7 @@ createEntity <- function(coreApi,
                          projectIds = NULL,
                          barcode = NULL,
                          fullMetadata = FALSE,
-                         useVerbose = FALSE) {
+                         ...) {
 
   # scrub unused fields from the body
   body <- body[!body %in% ""]
@@ -53,7 +53,7 @@ createEntity <- function(coreApi,
       encode = "raw",
       headers = headers,
       special = NULL,
-      useVerbose = useVerbose
+      ...
     )
 
   list(entity = response$content, response = response$response)

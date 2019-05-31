@@ -6,7 +6,7 @@
 #' @param barcode User provided barcode as a character string
 #' @param filePath path to the file to attach
 #' @param targetAttributeName - if included the name if the attribute to attach the file to.  Must be in all caps.
-#' @param useVerbose Use verbose communication for debugging
+#' @param ... additional arguments passed to \code{apiPUT}
 #' @export
 #' @return List of length 2, containing \code{content} and \code{response} objects:
 #' \itemize{
@@ -40,7 +40,7 @@ attachFile <-
              barcode,
              filePath,
              targetAttributeName = "",
-             useVerbose = FALSE) {
+             ...) {
     if (!file.exists(filePath)) {
       stop({
         print("Unable to find file on local OS")
@@ -77,8 +77,8 @@ attachFile <-
           encode = "raw",
           headers = header,
           special = NULL,
-          useVerbose = useVerbose,
-          valueFlag = valueFlag
+          valueFlag = valueFlag,
+          ...
         )
     } else { # Use the JSON SDK to post a file to an entity.
       # TODO replace this section of code to use the ODATA functionality when available.

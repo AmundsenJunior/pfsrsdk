@@ -6,7 +6,7 @@
 #' @param entityType entity type to get
 #' @param barcode barcode of entity to get
 #' @param fullMetadata - get full metadata, default is FALSE
-#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http
+#' @param ... additional arguments passed to \code{apiGET}
 #' @return List of length 2, containing \code{entity} and \code{response} objects:
 #' \itemize{
 #'  \item{\code{entity}} is the HTTP response content of entity project information.
@@ -23,6 +23,7 @@
 #' @author Craig Parman info@ngsanalytics.com
 #' @author Adam Wheeler adam.wheeler@thermofisher.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
+#' @author Scott Russell scott.russell@thermofisher.com
 #' @description \code{getEntityProject}  Get project(s) for an entity by barcode from the Core LIMS using the ODATA API.
 
 getEntityProject <-
@@ -30,7 +31,7 @@ getEntityProject <-
              entityType,
              barcode,
              fullMetadata = FALSE,
-             useVerbose = FALSE) {
+             ...) {
     query <- paste0("('", barcode, "')/PROJECT")
 
     if (fullMetadata) {
@@ -45,7 +46,7 @@ getEntityProject <-
         resource = entityType,
         query = query,
         headers = header,
-        useVerbose = useVerbose
+        ...
       )
 
     list(entity = out$content, response = out$response)

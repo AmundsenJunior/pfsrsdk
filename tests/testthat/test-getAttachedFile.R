@@ -4,7 +4,7 @@
 #'
 context("Tests for attachFile()")
 
-barcode <- getEntityByName(con$coreApi, data$testPocoType, data$testPocoName, FALSE, FALSE)$entity[[1]]$Barcode
+barcode <- getEntityByName(con$coreApi, data$testPocoType, data$testPocoName, FALSE, useVerbose = FALSE)$entity[[1]]$Barcode
 filePath <- tempfile(fileext = ".csv")
 write.csv(x = runif(n = 1000), file = filePath)
 

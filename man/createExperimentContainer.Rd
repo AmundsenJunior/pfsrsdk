@@ -5,8 +5,7 @@
 \title{createExperimentContainer- Creates a new experiment container by adding an exiting container to an experiment.}
 \usage{
 createExperimentContainer(coreApi, experimentType, experimentBarcode,
-  containerBarcode, body = NULL, fullMetadata = FALSE,
-  useVerbose = FALSE)
+  containerBarcode, body = NULL, fullMetadata = FALSE, ...)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -21,7 +20,7 @@ createExperimentContainer(coreApi, experimentType, experimentBarcode,
 
 \item{fullMetadata}{get full metadata, default is FALSE}
 
-\item{useVerbose}{Use verbose communication for debugging}
+\item{...}{additional arguments passed to \code{apiPOST}}
 }
 \value{
 List of length 2, containing \code{entity} and \code{response} objects:

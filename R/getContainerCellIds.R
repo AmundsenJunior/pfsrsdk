@@ -4,7 +4,7 @@
 #' @param coreApi coreApi object with valid jsessionid
 #' @param containerBarcode container barcode
 #' @param containerType container entity type (default: CONTAINER)
-#' @param useVerbose  Use verbose communication for debugging (default: FALSE)
+#' @param ... additional arguments passed to \code{apiGET}
 #' @export
 #' @return List of length 2, containing \code{entity} and \code{response} objects:
 #' \itemize{
@@ -26,7 +26,7 @@ getContainerCellIds <-
   function(coreApi,
              containerBarcode,
              containerType = "CONTAINER",
-             useVerbose = FALSE) {
+             ...) {
 
     # clean the name for ODATA
     resource <- odataCleanName(containerType)
@@ -56,7 +56,7 @@ getContainerCellIds <-
         resource = resource,
         query = query,
         headers = header,
-        useVerbose = useVerbose
+        ...
       )
 
     cells <-

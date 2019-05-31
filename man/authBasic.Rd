@@ -4,13 +4,13 @@
 \alias{authBasic}
 \title{authBasic - Authenticates against the ODATA REST API using basic authentication.}
 \usage{
-authBasic(coreApi, useVerbose = FALSE)
+authBasic(coreApi, ...)
 }
 \arguments{
 \item{coreApi}{object of class coreApi that contains username, password,  baseURL and
 tenant. tenant is required if user has access to multiple tenants.}
 
-\item{useVerbose}{- Use verbose settings for HTTP commands}
+\item{...}{additional arguments passed to \code{apiPOST}}
 }
 \value{
 List of length 2, containing \code{coreApi} and \code{response} objects:

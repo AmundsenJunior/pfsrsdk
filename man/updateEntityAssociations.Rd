@@ -4,8 +4,7 @@
 \alias{updateEntityAssociations}
 \title{\code{updateEntityAssociations} Update entity assoications}
 \usage{
-updateEntityAssociations(coreApi, entityType, barcode, updateValues,
-  useVerbose = FALSE)
+updateEntityAssociations(coreApi, entityType, barcode, updateValues, ...)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -16,7 +15,7 @@ updateEntityAssociations(coreApi, entityType, barcode, updateValues,
 
 \item{updateValues}{values to update as list of associations contex and entity type pair and barcode}
 
-\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http}
+\item{...}{additional arguments passed to \code{apiPUT}}
 }
 \value{
 List of length 2, containing \code{entity} and \code{response} objects:

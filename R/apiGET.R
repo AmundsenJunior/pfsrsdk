@@ -49,8 +49,7 @@ apiGET <-
         coreApi,
         resource = resource,
         query = query,
-        special = special,
-        useVerbose = useVerbose
+        special = special
       )
     base_sdk_url <-
       sdk_url # need if we need to build url for additional chunks

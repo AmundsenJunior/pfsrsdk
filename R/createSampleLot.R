@@ -6,7 +6,7 @@
 #' @param sampleBarcode parent sample barcode
 #' @param body attributes as list of key-values pairs (optional)
 #' @param fullMetadata get full metadata, default is FALSE
-#' @param useVerbose Use verbose communication for debugging
+#' @param ... additional arguments passed to \code{apiPOST}
 #' @export
 #' @return List of length 2, containing \code{entity} and \code{response} objects:
 #' \itemize{
@@ -32,9 +32,8 @@ createSampleLot <-
              sampleBarcode,
              body = NULL,
              fullMetadata = TRUE,
-             useVerbose = FALSE) {
+             ...) {
     # clean the name for ODATA
-
     sampleType <- odataCleanName(sampleType)
 
     lotName <- paste0(sampleType, "_LOT")
@@ -68,7 +67,7 @@ createSampleLot <-
         encode = "json",
         headers = headers,
         special = NULL,
-        useVerbose = useVerbose
+        ...
       )
 
     list(entity = response$content, response = response$response)

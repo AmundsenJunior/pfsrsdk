@@ -6,8 +6,8 @@
 context("Tests for getEntityAssociations")
 
 test_that(paste("test getEntityAssociations() on:", env$auth), {
-  assoc <- getEntityByName(con$coreApi, data$testPocoGetAssocType, data$testPocoGetAssocName, FALSE, FALSE)
-  poco <- getEntityByName(con$coreApi, data$testPocoType, data$testPocoName, FALSE, FALSE)
+  assoc <- getEntityByName(con$coreApi, data$testPocoGetAssocType, data$testPocoGetAssocName, FALSE, useVerbose = FALSE)
+  poco <- getEntityByName(con$coreApi, data$testPocoType, data$testPocoName, FALSE, useVerbose = FALSE)
 
   as <- getEntityAssociations(con$coreApi, data$testPocoType, poco$entity[[1]]$Barcode, associationContext = data$testPocoGetAssocContext, fullMetadata = TRUE, useVerbose = verbose)
 

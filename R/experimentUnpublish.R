@@ -4,7 +4,7 @@
 #' @param coreApi coreApi object with valid jsessionid
 #' @param experimentType experiment entity type
 #' @param experimentBarcode barcode of the experiment (Experiments that require a signature cannot be published through the API).
-#' @param useVerbose Use verbose communication for debugging
+#' @param ... additional arguments passed to \code{apiPOST}
 #' @export
 #' @return List of length 2, containing \code{entity} and \code{response} objects:
 #' \itemize{
@@ -29,7 +29,7 @@ experimentUnpublish <-
   function(coreApi,
              experimentType,
              experimentBarcode,
-             useVerbose = FALSE) {
+             ...) {
     # build request
 
     case(
@@ -78,7 +78,7 @@ experimentUnpublish <-
             encode = encode,
             headers = headers,
             special = special,
-            useVerbose = useVerbose
+            ...
           )
 
         list(entity = response$content$response$data, response = response$response)
@@ -103,7 +103,7 @@ experimentUnpublish <-
             encode = encode,
             headers = headers,
             special = special,
-            useVerbose = useVerbose
+            ...
           )
 
         list(entity = response$content, response = response$response)

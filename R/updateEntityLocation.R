@@ -6,7 +6,7 @@
 #' @param entityType type of entity to update
 #' @param barcode barcode of entity to update
 #' @param locationBarcode barcode of new location
-#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http
+#' @param ... additional arguments passed to \code{apiPOST}
 #' @return List of length 2, containing \code{entity} and \code{response} objects:
 #' \itemize{
 #'  \item{\code{entity}} is the HTTP response content of updated entity location information.
@@ -32,7 +32,7 @@ updateEntityLocation <-
              entityType,
              barcode,
              locationBarcode,
-             useVerbose = FALSE) {
+             ...) {
 
     # get new location ID
     id <-
@@ -41,7 +41,7 @@ updateEntityLocation <-
         "LOCATION",
         locationBarcode,
         fullMetadata = FALSE,
-        useVerbose = useVerbose
+        useVerbose = TRUE
       )$entity$Id
 
     resource <- paste0(entityType, "('", barcode, "')/pfs.Entity.InventoryMove")
@@ -56,7 +56,7 @@ updateEntityLocation <-
         body = body,
         encode = "raw",
         headers = header,
-        useVerbose = useVerbose
+        ...
       )
 
     list(entity = response$content, response = response$response)

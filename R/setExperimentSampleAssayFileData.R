@@ -7,7 +7,7 @@
 #' @param experimentSampleBarcode experiment sample barcode of entity to get
 #' @param attributeName  Name of the attribute that containts the file data
 #' @param filePath path to file to upload
-#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http calls
+#' @param ... additional arguments passed to \code{apiPUT}
 #' @return List of length 2, containing \code{content} and \code{response} objects:
 #' \itemize{
 #'  \item{\code{content}} is the HTTP response content. If the HTTP response status code is 204, returns NULL.
@@ -37,7 +37,7 @@ setExperimentSampleAssayFileData <-
              experimentSampleBarcode,
              attributeName,
              filePath,
-             useVerbose = FALSE) {
+             ...) {
     if (!file.exists(filePath)) {
       stop({
         print("Unable to find file on local OS")
@@ -70,8 +70,8 @@ setExperimentSampleAssayFileData <-
         encode = "raw",
         headers = header,
         special = NULL,
-        useVerbose = useVerbose,
-        valueFlag = valueFlag
+        valueFlag = valueFlag,
+        ...
       )
 
     list(

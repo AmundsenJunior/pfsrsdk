@@ -9,7 +9,7 @@
 #' @param protocolBarcode protocol barcode
 #' @param body values for experiment attributes and associations as a  list of key-values pairs
 #' @param fullMetadata get full metadata, default is FALSE
-#' @param useVerbose Use verbose communication for debugging
+#' @param ... additional arguments passed to \code{apiPOST}
 #' @export
 #' @return List of length 2, containing \code{entity} and \code{response} objects:
 #' \itemize{
@@ -42,9 +42,8 @@ createExperiment <-
              protocolBarcode,
              body = NULL,
              fullMetadata = FALSE,
-             useVerbose = FALSE) {
+             ...) {
     # clean the names for ODATA
-
     experimentType <- odataCleanName(experimentType)
     assayType <- odataCleanName(assayType)
     protocolType <- odataCleanName(protocolType)
@@ -74,7 +73,7 @@ createExperiment <-
         encode = "json",
         headers = headers,
         special = NULL,
-        useVerbose = useVerbose
+        ...
       )
 
     list(entity = response$content, response = response$response)

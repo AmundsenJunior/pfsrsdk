@@ -7,7 +7,7 @@
 #' @param sampleLotBarcode barcode of sample to add to experiment
 #' @param body values for sample attributes as a  list of key-values pairs
 #' @param fullMetadata get full metadata, default is FALSE
-#' @param useVerbose Use verbose communication for debugging
+#' @param ... additional arguments passed to \code{apiPOST}
 #' @export
 #' @return List of length 2, containing \code{entity} and \code{response} objects:
 #' \itemize{
@@ -39,9 +39,8 @@ createExperimentSample <-
              sampleLotBarcode,
              body = NULL,
              fullMetadata = FALSE,
-             useVerbose = FALSE) {
+             ...) {
     # clean the names for ODATA
-
     experimentType <- odataCleanName(experimentType)
 
     experimentSampleType <- paste0(experimentType, "_SAMPLE")
@@ -69,7 +68,7 @@ createExperimentSample <-
         encode = "json",
         headers = headers,
         special = NULL,
-        useVerbose = useVerbose
+        ...
       )
 
     list(entity = response$content, response = response$response)

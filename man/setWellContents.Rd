@@ -6,7 +6,7 @@
 \usage{
 setWellContents(coreApi, containerType, containerBarcode, containerWellNum,
   sampleLotType, sampleLotBarcode, amount, amountUnit, concentration,
-  concentrationUnit, useVerbose = FALSE)
+  concentrationUnit, ...)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -29,7 +29,7 @@ setWellContents(coreApi, containerType, containerBarcode, containerWellNum,
 
 \item{concentrationUnit}{concentration units}
 
-\item{useVerbose}{use verbose communications for debugging}
+\item{...}{additional arguments passed to \code{apiPOST}}
 }
 \value{
 List of length 2, containing \code{content} and \code{response} objects:

@@ -6,7 +6,7 @@
 #' @param experimentAssayType entity type to get as character string
 #' @param experimentSampleBarcode User provided barcode as a character string
 #' @param experimentAssayUpdateAttrList assay attributes as a list of key-values pairs
-#' @param useVerbose Use verbose communication for debugging
+#' @param ... additional arguments passed to \code{apiPUT}
 #' @export
 #' @return List of length 2, containing \code{entity} and \code{response} objects:
 #' \itemize{
@@ -35,7 +35,7 @@ updateExperimentSampleData <-
              experimentAssayType,
              experimentSampleBarcode,
              experimentAssayUpdateAttrList,
-             useVerbose = FALSE) {
+             ...) {
     # Clean Names of assay
     experimentAssayType <- odataCleanName(experimentAssayType)
 
@@ -59,7 +59,7 @@ updateExperimentSampleData <-
         body = body,
         encode = "raw",
         headers = header,
-        useVerbose = useVerbose
+        ...
       )
 
     list(entity = response$content, response = response$response)

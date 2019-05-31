@@ -4,14 +4,14 @@
 \alias{getEntityMetadata}
 \title{getEntityMetadata - Get entity metadata.}
 \usage{
-getEntityMetadata(coreApi, entityType, useVerbose = FALSE)
+getEntityMetadata(coreApi, entityType, ...)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
 
 \item{entityType}{entity type to get metadata for}
 
-\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http
+\item{...}{additional arguments passed to \code{apiGET}
 #' @return List of length 3, containing \code{attributes}, \code{associations}, and \code{template} objects:
 \itemize{
  \item{\code{attributes}} is a list of attribute properties.
@@ -36,4 +36,6 @@ logOut(login$coreApi)
 }
 \author{
 Craig Parman info@ngsanalytics.com
+
+Scott Russell scott.russell@thermofisher.com
 }

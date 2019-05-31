@@ -6,7 +6,7 @@
 #' @param entityType entity type to get
 #' @param name name of entity to get
 #' @param fullMetadata - get full metadata, default is FALSE
-#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http
+#' @param ... additional arguments passed to \code{apiGET}
 #' @return List of length 2, containing \code{entity} and \code{response} objects:
 #' \itemize{
 #'  \item{\code{entity}} is the HTTP response content.
@@ -30,7 +30,7 @@ getEntityByName <-
              entityType,
              name,
              fullMetadata = FALSE,
-             useVerbose = FALSE) {
+             ...) {
     query <- utils::URLencode(paste0("?$filter=Name eq '", name, "'"))
 
     if (fullMetadata) {
@@ -45,7 +45,7 @@ getEntityByName <-
         resource = entityType,
         query = query,
         headers = header,
-        useVerbose = useVerbose
+        ...
       )
 
     list(entity = out$content, response = out$response)

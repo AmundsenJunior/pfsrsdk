@@ -7,7 +7,7 @@
 #' @param containerBarcode barcode of container to add to experiment
 #' @param body values for sample attributes as a  list of key-values pairs (not user in this json version)
 #' @param fullMetadata get full metadata, default is FALSE
-#' @param useVerbose Use verbose communication for debugging
+#' @param ... additional arguments passed to \code{apiPOST}
 #' @export
 #' @return List of length 2, containing \code{entity} and \code{response} objects:
 #' \itemize{
@@ -37,7 +37,7 @@ createExperimentContainer <-
              containerBarcode,
              body = NULL,
              fullMetadata = FALSE,
-             useVerbose = FALSE) {
+             ...) {
     experimentType <- odataCleanName(experimentType)
 
     if (fullMetadata) {
@@ -73,7 +73,7 @@ createExperimentContainer <-
         encode = "raw",
         headers = headers,
         special = NULL,
-        useVerbose = useVerbose
+        ...
       )
 
     list(entity = response$content, response = response$response)

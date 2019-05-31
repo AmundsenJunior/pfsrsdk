@@ -4,8 +4,7 @@
 \alias{getAttachedAttributeFile}
 \title{getAttachedAttributeFile - Gets file attached to an attribute on a entity}
 \usage{
-getAttachedAttributeFile(coreApi, entityType, barcode, attribute,
-  useVerbose = FALSE)
+getAttachedAttributeFile(coreApi, entityType, barcode, attribute, ...)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -16,7 +15,7 @@ getAttachedAttributeFile(coreApi, entityType, barcode, attribute,
 
 \item{attribute}{name of the attribute}
 
-\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used}
+\item{...}{additional arguments passed to \code{apiGET}}
 }
 \value{
 List of length 2, containing \code{entity} and \code{response} objects:
@@ -46,4 +45,6 @@ Craig Parman info@ngsanalytics.com
 Adam Wheeler adam.wheeler@thermofisher.com
 
 Natasha Mora natasha.mora@thermofisher.com
+
+Scott Russell scott.russell@thermofisher.com
 }

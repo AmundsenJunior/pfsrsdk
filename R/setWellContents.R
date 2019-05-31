@@ -11,7 +11,7 @@
 #' @param amountUnit units
 #' @param concentration (numeric)
 #' @param concentrationUnit concentration units
-#' @param useVerbose use verbose communications for debugging
+#' @param ... additional arguments passed to \code{apiPOST}
 #' @export
 #' @return List of length 2, containing \code{content} and \code{response} objects:
 #' \itemize{
@@ -45,7 +45,7 @@ setWellContents <-
              amountUnit,
              concentration,
              concentrationUnit,
-             useVerbose = FALSE) {
+             ...) {
     # clean the name for ODATA
     containerType <- odataCleanName(containerType)
 
@@ -68,7 +68,7 @@ setWellContents <-
         entityType = sampleLotType,
         barcode = sampleLotBarcode,
         fullMetadata = FALSE,
-        useVerbose = useVerbose
+        useVerbose = TRUE
       )$entity$Id
 
     body <- list()
@@ -109,7 +109,7 @@ setWellContents <-
         body = body,
         encode = "json",
         headers = header,
-        useVerbose = useVerbose
+        ...
       )
 
     list(entity = response$content, response = response$response)

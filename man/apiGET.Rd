@@ -14,7 +14,7 @@ apiGET(coreApi, resource, query, headers = NULL, special = NULL,
 
 \item{query}{query string}
 
-\item{headers}{headers to be added to get}
+\item{headers}{headers to be added to \code{httr::GET}.}
 
 \item{special}{passed to buildUrl for special sdk endpoints}
 

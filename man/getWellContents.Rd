@@ -5,8 +5,7 @@
 \title{getWellContents -  Gets content information of a single container well.}
 \usage{
 getWellContents(coreApi, containerBarcode, containerWellNum,
-  containerType = "CONTAINER", fullMetadata = FALSE,
-  useVerbose = FALSE)
+  containerType = "CONTAINER", fullMetadata = FALSE, ...)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -19,7 +18,7 @@ getWellContents(coreApi, containerBarcode, containerWellNum,
 
 \item{fullMetadata}{get full metadata, default is FALSE}
 
-\item{useVerbose}{Use verbose communication for debugging (default: FALSE)}
+\item{...}{additional arguments passed to \code{apiGET}}
 }
 \value{
 RETURN returns a list $entity contains well information, $response contains the entire http response

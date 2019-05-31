@@ -4,8 +4,7 @@
 \alias{experimentPublish}
 \title{experimentPublish Publishes an experiment.}
 \usage{
-experimentPublish(coreApi, experimentType, experimentBarcode,
-  useVerbose = FALSE)
+experimentPublish(coreApi, experimentType, experimentBarcode, ...)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -14,7 +13,7 @@ experimentPublish(coreApi, experimentType, experimentBarcode,
 
 \item{experimentBarcode}{barcode of the experiment (Experiments that require a signature cannot be published through the API).}
 
-\item{useVerbose}{Use verbose communication for debugging}
+\item{...}{additional arguments passed to \code{apiPOST}}
 }
 \value{
 List of length 2, containing \code{entity} and \code{response} objects:

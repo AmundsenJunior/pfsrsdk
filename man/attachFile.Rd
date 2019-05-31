@@ -5,7 +5,7 @@
 \title{attachFile - Attaches a file to an entity or file attribute.}
 \usage{
 attachFile(coreApi, entityType, barcode, filePath,
-  targetAttributeName = "", useVerbose = FALSE)
+  targetAttributeName = "", ...)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -18,7 +18,7 @@ attachFile(coreApi, entityType, barcode, filePath,
 
 \item{targetAttributeName}{- if included the name if the attribute to attach the file to.  Must be in all caps.}
 
-\item{useVerbose}{Use verbose communication for debugging}
+\item{...}{additional arguments passed to \code{apiPUT}}
 }
 \value{
 List of length 2, containing \code{content} and \code{response} objects:

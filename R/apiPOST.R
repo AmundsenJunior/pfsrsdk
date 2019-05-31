@@ -55,8 +55,7 @@ apiPOST <-
       buildUrl(
         coreApi,
         resource = resource,
-        special = special,
-        useVerbose = useVerbose
+        special = special
       )
 
     cookie <-

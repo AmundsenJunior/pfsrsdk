@@ -4,7 +4,7 @@
 #' @param coreApi coreApi object with valid jsessionid
 #' @param containerCellId container cell number as a string
 #' @param fullMetadata get full metadata, default is FALSE
-#' @param useVerbose  Use verbose communication for debugging
+#' @param ... additional arguments passed to \code{apiGET}
 #' @export
 #' @return List of length 2, containing \code{entity} and \code{response} objects:
 #' \itemize{
@@ -20,13 +20,14 @@
 #' }
 #' @author Craig Parman info@ngsanalytics.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
+#' @author Scott Russell scott.russell@thermofisher.com
 #' @description \code{getCellContents} -  Gets information about a single container cell contents.
 
 getCellContents <-
   function(coreApi,
              containerCellId,
              fullMetadata = FALSE,
-             useVerbose = FALSE) {
+             ...) {
 
     # make sure containerCellNum is numeric
     containerCellId <- as.numeric(containerCellId)
@@ -62,7 +63,7 @@ getCellContents <-
         resource = resource,
         query = query,
         headers = header,
-        useVerbose = useVerbose
+        ...
       )
 
     response <-

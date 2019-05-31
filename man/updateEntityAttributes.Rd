@@ -4,8 +4,7 @@
 \alias{updateEntityAttributes}
 \title{\code{updateEntityAttributes} Update entity assoications.}
 \usage{
-updateEntityAttributes(coreApi, entityType, barcode, updateValues,
-  useVerbose = FALSE)
+updateEntityAttributes(coreApi, entityType, barcode, updateValues, ...)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -16,12 +15,12 @@ updateEntityAttributes(coreApi, entityType, barcode, updateValues,
 
 \item{updateValues}{vaules to update as list of value pairs}
 
-\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http}
+\item{...}{additional arguments passed to \code{apiPUT}}
 }
 \value{
 List of length 2, containing \code{entity} and \code{response} objects:
 \itemize{
- \item{\code{entity}} is the HTTP response content.
+ \item{\code{entity}} is the HTTP response content of updated entity information.
  \item{\code{response}} is the entire HTTP response.
 }
 }

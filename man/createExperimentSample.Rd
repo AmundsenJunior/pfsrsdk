@@ -5,8 +5,7 @@
 \title{createExperimentSample - Create a new experiment sample from a sample lot.}
 \usage{
 createExperimentSample(coreApi, experimentType, experimentBarcode,
-  sampleLotBarcode, body = NULL, fullMetadata = FALSE,
-  useVerbose = FALSE)
+  sampleLotBarcode, body = NULL, fullMetadata = FALSE, ...)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -21,7 +20,7 @@ createExperimentSample(coreApi, experimentType, experimentBarcode,
 
 \item{fullMetadata}{get full metadata, default is FALSE}
 
-\item{useVerbose}{Use verbose communication for debugging}
+\item{...}{additional arguments passed to \code{apiPOST}}
 }
 \value{
 List of length 2, containing \code{entity} and \code{response} objects:

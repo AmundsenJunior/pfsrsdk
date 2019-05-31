@@ -5,7 +5,7 @@
 \title{getExperimentSampleAssayData - Gets assay data for an experiment sample.}
 \usage{
 getExperimentSampleAssayData(coreApi, experimentAssayType,
-  experimentSampleBarcode, fullMetadata = FALSE, useVerbose = FALSE)
+  experimentSampleBarcode, fullMetadata = FALSE, ...)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -16,7 +16,7 @@ getExperimentSampleAssayData(coreApi, experimentAssayType,
 
 \item{fullMetadata}{- get full metadata, default is FALSE}
 
-\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http}
+\item{...}{additional arguments passed to \code{apiGET}}
 }
 \value{
 List of length 2, containing \code{entity} and \code{response} objects:
@@ -43,4 +43,6 @@ logOut(login$coreApi)
 Craig Parman info@ngsanalytics.com
 
 Natasha Mora natasha.mora@thermofisher.com
+
+Scott Russell scott.russell@thermofisher.com
 }

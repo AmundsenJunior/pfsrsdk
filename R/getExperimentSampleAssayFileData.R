@@ -22,6 +22,7 @@
 #' logOut(login$coreApi)
 #' }
 #' @author Craig Parman info@ngsanalytics.com
+#' @author Scott Russell scott.russell@thermofisher.com
 #' @description \code{ getExperimentSamplesAssayFileData }  Gets file attached as assay data.
 #' Use getExperimentSamplesAssayData for non-file data.
 
@@ -53,8 +54,7 @@ getExperimentSamplesAssayFileData <-
         coreApi,
         resource = resource,
         query = query,
-        special = NULL,
-        useVerbose = useVerbose
+        special = NULL
       )
 
     cookie <-

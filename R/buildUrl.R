@@ -5,7 +5,6 @@
 #' @param resource resource path (required except for special requests)
 #' @param query and additional property options (optional)
 #' @param special flag for special sdk endpoints
-#' @param useVerbose Use verbose communication for debugging
 #' @export
 #' @return RETURN Core REST URL
 #' @examples
@@ -20,16 +19,11 @@
 #' @author Natasha Mora natasha.mora@thermofisher.com
 #' @description \code{buildUrl} build URL for call to Core REST API.
 
-
-
-
-
 buildUrl <-
   function(coreApi,
              resource = NULL,
              query = NULL,
-             special = NULL,
-             useVerbose = FALSE) {
+             special = NULL) {
     # nolint start
     # Concat tenant and odata
     if (coreApi$tenant == "PLATFORM ADMIN") {
@@ -48,7 +42,6 @@ buildUrl <-
     } else {
       ctx <- ""
     }
-
 
     if (is.null(special)) {
       sdk_url <-

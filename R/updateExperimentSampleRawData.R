@@ -6,7 +6,7 @@
 #' @param experimentContainerBarcode User provided barcode as a character string
 #' @param rawDataCellNum cell (well) number of container
 #' @param rawDataValues assay attributes as a list of key-values pairs
-#' @param useVerbose Use verbose communication for debugging
+#' @param ... additional arguments passed to \code{apiPUT}
 #' @export
 #' @return List of length 2, containing \code{entity} and \code{response} objects:
 #' \itemize{
@@ -36,7 +36,7 @@ updateExperimentSampleRawData <-
              experimentContainerBarcode,
              rawDataCellNum,
              rawDataValues,
-             useVerbose = FALSE) {
+             ...) {
     # get the current values
     resource <- "RAW_DATA"
 
@@ -50,16 +50,16 @@ updateExperimentSampleRawData <-
 
     header <- c(Accept = "application/json")
 
-    response <-
+    experiment <-
       apiGET(
         coreApi,
         resource = resource,
         query = query,
         headers = header,
-        useVerbose = useVerbose
+        useVerbose = TRUE
       )
 
-    body <- response$content[[1]]
+    body <- experiment$content[[1]]
 
     for (i in 1:length(rawDataValues))
     {
@@ -84,7 +84,7 @@ updateExperimentSampleRawData <-
         body = body,
         encode = "raw",
         headers = header,
-        useVerbose = useVerbose
+        ...
       )
 
     list(entity = response$content, response = response$response)

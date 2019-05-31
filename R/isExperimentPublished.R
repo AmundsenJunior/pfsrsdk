@@ -4,7 +4,7 @@
 #' @param coreApi coreApi object with valid jsessionid
 #' @param experimentType experiment entity type
 #' @param experimentBarcode barcode of the experiment.
-#' @param useVerbose Use verbose communication for debugging
+#' @param ... additional arguments passed to \code{apiGET}
 #' @export
 #' @return List of length 2, containing \code{content} and \code{response} objects:
 #' \itemize{
@@ -19,15 +19,15 @@
 #' logOut(login$coreApi)
 #' }
 #' @author Natasha Mora natasha.mora@thermofisher.com
+#' @author Scott Russell scott.russell@thermofisher.com
 #' @description \code{isExperimentPublished} - gets a boolean indicating if an experiment is published.
 
 isExperimentPublished <-
   function(coreApi,
              experimentType,
              experimentBarcode,
-             useVerbose = FALSE) {
+             ...) {
     # build request
-
     resource <-
       paste0(odataCleanName(experimentType), "('", experimentBarcode, "')", "/PUBLISHED")
 
@@ -39,7 +39,7 @@ isExperimentPublished <-
         resource = resource,
         query = NULL,
         headers = headers,
-        useVerbose = useVerbose
+        ...
       )
 
     list(

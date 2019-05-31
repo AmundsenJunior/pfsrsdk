@@ -4,8 +4,7 @@
 \alias{updateEntityProject}
 \title{\code{updateEntityProject}- Update entity project association}
 \usage{
-updateEntityProject(coreApi, entityType, barcode, projectBarcodes,
-  useVerbose = FALSE)
+updateEntityProject(coreApi, entityType, barcode, projectBarcodes, ...)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -16,12 +15,12 @@ updateEntityProject(coreApi, entityType, barcode, projectBarcodes,
 
 \item{projectBarcodes}{one or more project barcodes to associate to the entity}
 
-\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http}
+\item{...}{additional arguments passed to \code{apiPUT}}
 }
 \value{
 List of length 2, containing \code{entity} and \code{response} objects:
 \itemize{
- \item{\code{entity}} is the HTTP response content.
+ \item{\code{entity}} is the HTTP response content of updated entity project information.
  \item{\code{response}} is the entire HTTP response.
 }
 }

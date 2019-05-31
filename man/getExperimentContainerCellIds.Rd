@@ -5,7 +5,7 @@
 \title{getExperimentContainerCellIds - Gets cell ids for a container in an experiment.}
 \usage{
 getExperimentContainerCellIds(coreApi, experimentContainerBarcode,
-  experimentContainerType = "EXPERIMENT_CONTAINER", useVerbose = FALSE)
+  experimentContainerType = "EXPERIMENT_CONTAINER", ...)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -14,7 +14,7 @@ getExperimentContainerCellIds(coreApi, experimentContainerBarcode,
 
 \item{experimentContainerType}{container entity type (default: EXPERIMENT_CONTAINER)}
 
-\item{useVerbose}{Use verbose communication for debugging (default: FALSE)}
+\item{...}{additional arguments passed to \code{apiGET}}
 }
 \value{
 List of length 2, containing \code{entity} and \code{response} objects:

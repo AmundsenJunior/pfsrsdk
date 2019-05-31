@@ -4,8 +4,7 @@
 \alias{getCellContents}
 \title{getCellContents -  Gets information about a single container cell contents.}
 \usage{
-getCellContents(coreApi, containerCellId, fullMetadata = FALSE,
-  useVerbose = FALSE)
+getCellContents(coreApi, containerCellId, fullMetadata = FALSE, ...)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -14,7 +13,7 @@ getCellContents(coreApi, containerCellId, fullMetadata = FALSE,
 
 \item{fullMetadata}{get full metadata, default is FALSE}
 
-\item{useVerbose}{Use verbose communication for debugging}
+\item{...}{additional arguments passed to \code{apiGET}}
 }
 \value{
 List of length 2, containing \code{entity} and \code{response} objects:
@@ -41,4 +40,6 @@ logOut(login$coreApi)
 Craig Parman info@ngsanalytics.com
 
 Natasha Mora natasha.mora@thermofisher.com
+
+Scott Russell scott.russell@thermofisher.com
 }

@@ -4,7 +4,7 @@
 #' @param coreApi coreApi object with valid jsessionid
 #' @param experimentType experiment entity type to get
 #' @param experimentBarcode barcode of experiment to query
-#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http
+#' @param ... additional arguments passed to \code{apiGET}
 #' @return List of length 2, containing \code{entity} and \code{response} objects:
 #' \itemize{
 #'  \item{\code{entity}} is a list of container barcodes.
@@ -20,6 +20,7 @@
 #' }
 #' @author Craig Parman info@ngsanalytics.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
+#' @author Scott Russell scott.russell@thermofisher.com
 #' @description \code{getExperimentContainers}  Gets experiment contaniers from experiment identified by experiment barcode.
 
 
@@ -29,7 +30,7 @@ getExperimentContainers <-
   function(coreApi,
              experimentType,
              experimentBarcode,
-             useVerbose = FALSE) {
+             ...) {
     # clean the name for ODATA
 
     resource <- odataCleanName(experimentType)
@@ -50,7 +51,7 @@ getExperimentContainers <-
         resource = resource,
         query = paste0("('", experimentBarcode, "')/", association),
         headers = header,
-        useVerbose = useVerbose
+        ...
       )
 
 

@@ -4,8 +4,7 @@
 \alias{isExperimentPublished}
 \title{isExperimentPublished gets a boolean indicating if an experiment is published.}
 \usage{
-isExperimentPublished(coreApi, experimentType, experimentBarcode,
-  useVerbose = FALSE)
+isExperimentPublished(coreApi, experimentType, experimentBarcode, ...)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -14,7 +13,7 @@ isExperimentPublished(coreApi, experimentType, experimentBarcode,
 
 \item{experimentBarcode}{barcode of the experiment.}
 
-\item{useVerbose}{Use verbose communication for debugging}
+\item{...}{additional arguments passed to \code{apiGET}}
 }
 \value{
 List of length 2, containing \code{content} and \code{response} objects:
@@ -39,4 +38,6 @@ logOut(login$coreApi)
 }
 \author{
 Natasha Mora natasha.mora@thermofisher.com
+
+Scott Russell scott.russell@thermofisher.com
 }

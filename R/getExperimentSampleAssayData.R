@@ -6,7 +6,7 @@
 #' @param experimentAssayType assay type to get
 #' @param experimentSampleBarcode experiment sample barcode of entity to get
 #' @param fullMetadata - get full metadata, default is FALSE
-#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http
+#' @param ... additional arguments passed to \code{apiGET}
 #' @return List of length 2, containing \code{entity} and \code{response} objects:
 #' \itemize{
 #'  \item{\code{entity}} is the HTTP response content of entity information.
@@ -22,6 +22,7 @@
 #' }
 #' @author Craig Parman info@ngsanalytics.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
+#' @author Scott Russell scott.russell@thermofisher.com
 #' @description \code{ getExperimentSampleAssayData }  Gets assay data for a experiment sample identified by barcode.
 
 getExperimentSampleAssayData <-
@@ -29,7 +30,7 @@ getExperimentSampleAssayData <-
              experimentAssayType,
              experimentSampleBarcode,
              fullMetadata = FALSE,
-             useVerbose = FALSE) {
+             ...) {
     # clean the name for ODATA
 
     resource <- odataCleanName("EXPERIMENT_SAMPLE")
@@ -56,7 +57,7 @@ getExperimentSampleAssayData <-
         resource = resource,
         query = query,
         headers = header,
-        useVerbose = useVerbose
+        ...
       )
 
     list(entity = response$content, response = response$response)

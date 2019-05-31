@@ -4,7 +4,7 @@
 context("Tests for getExperimentContainerCellIds")
 
 test_that(paste("test getExperimentContainerCellIds() on:", env$auth), {
-  result <- getExperimentContainerCellIds(con$coreApi, data$experimentContainerBarcode, data$experimentContainerType, verbose)
+  result <- getExperimentContainerCellIds(con$coreApi, data$experimentContainerBarcode, data$experimentContainerType, useVerbose = verbose)
 
   expect_equal(result$response$status_code, 200)
 

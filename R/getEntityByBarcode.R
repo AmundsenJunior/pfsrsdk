@@ -1,16 +1,17 @@
-#' getEntityByBarcode - Get an entity by barcode from the Core LIMS using the ODATA API.
+#' getEntityByBarcode - Get an entity by barcode from PFS using the OData API.
 #'
-#' \code{getEntityByBarcode} get an entity from the LIMS by barcode
+#' \code{getEntityByBarcode} Get an entity by barcode from PFS using the OData API.
 #'
 #' @param coreApi coreApi object with valid jsessionid
 #' @param entityType entity type to get
 #' @param barcode barcode of entity to get
 #' @param fullMetadata - get full metadata, default is FALSE
-#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http
+#' @param ... additional arguments passed to \code{apiGET}
 #' @return List of length 2, containing \code{entity} and \code{response} objects:
 #' \itemize{
 #'  \item{\code{entity}} is the HTTP response content.
-#'  \item{\code{response}} is the entire HTTP response.
+#'  \item{\code{response}} NULL by default (parameter \code{fullReturn} is TRUE).
+#'   If \code{fullReturn} is FALSE, returns the entire HTTP response.
 #' }
 #' @export
 #' @examples
@@ -23,14 +24,15 @@
 #' @author Craig Parman info@ngsanalytics.com
 #' @author Adam Wheeler adam.wheeler@thermofisher.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
-#' @description \code{getEntityByBarcode}  Get an entity by barcode from the Core LIMS using the ODATA API.
+#' @author Scott Russell scott.russell@thermofisher.com
+#' @description \code{getEntityByBarcode} Get an entity by barcode from PFS using the OData API.
 
 getEntityByBarcode <-
   function(coreApi,
              entityType,
              barcode,
              fullMetadata = FALSE,
-             useVerbose = FALSE) {
+             ...) {
     query <- paste0("('", barcode, "')")
 
     if (fullMetadata) {
@@ -45,7 +47,7 @@ getEntityByBarcode <-
         resource = entityType,
         query = query,
         headers = header,
-        useVerbose = useVerbose
+        ...
       )
 
     list(entity = out$content, response = out$response)

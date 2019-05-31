@@ -5,17 +5,35 @@
 
 context("Tests for getEntityByBarcode")
 
-test_that(paste("test getEntityByBarcode() on: ", env$auth), {
+test_that(paste("getEntityByBarcode returns successful without fullMetadata on:", env$auth), {
   b <- getEntityByBarcode(con$coreApi, data$persistentEntityType, data$persistentEntityBarcode,
     fullMetadata = FALSE,
     useVerbose = verbose
   )$entity
 
   expect_match(b$Barcode, data$persistentEntityBarcode, all = verbose)
+})
 
-  b2 <- getEntityByBarcode(con$coreApi, data$persistentEntityType, data$persistentEntityBarcode,
+test_that(paste("getEntityByBarcode returns successful with fullMetadata on:", env$auth), {
+  b <- getEntityByBarcode(con$coreApi, data$persistentEntityType, data$persistentEntityBarcode,
     fullMetadata = TRUE,
     useVerbose = verbose
   )
-  expect_true(!is.null(b2$entity$`Id@odata.type`))
+  expect_true(!is.null(b$entity$`Id@odata.type`))
+})
+
+test_that(paste("getEntityByBarcode receives warning when requesting non-existent entity on:", env$auth), {
+  expect_warning(
+    {
+      b <- getEntityByBarcode(con$coreApi,
+        data$nonExistingEntityType,
+        data$nonExistingEntityBarcode,
+        fullMetadata = FALSE,
+        useVerbose = verbose,
+        fullReturn = FALSE
+      )
+      b$error$message
+    },
+    data$nonExistingEntityErrorMessage
+  )
 })

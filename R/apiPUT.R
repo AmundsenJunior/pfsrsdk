@@ -71,8 +71,7 @@ apiPUT <-
         coreApi,
         resource = resource,
         query = query,
-        special = special,
-        useVerbose = useVerbose
+        special = special
         # nolint
       ), ifelse(valueFlag, "/$value", "")
     )

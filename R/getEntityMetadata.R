@@ -4,7 +4,7 @@
 #'
 #' @param coreApi coreApi object with valid jsessionid
 #' @param entityType entity type to get metadata for
-#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used in http
+#' @param ... additional arguments passed to \code{apiGET}
 #' #' @return List of length 3, containing \code{attributes}, \code{associations}, and \code{template} objects:
 #' \itemize{
 #'  \item{\code{attributes}} is a list of attribute properties.
@@ -20,10 +20,11 @@
 #' logOut(login$coreApi)
 #' }
 #' @author Craig Parman info@ngsanalytics.com
+#' @author Scott Russell scott.russell@thermofisher.com
 #' @description \code{getEntityMetadata} Get an entity metadata by entityType. Returns a list with three data frames
 #' named attributes,associations, and template. Template can be used as the body to for createEntity functions.
 
-getEntityMetadata <- function(coreApi, entityType, useVerbose = FALSE) {
+getEntityMetadata <- function(coreApi, entityType, ...) {
   # clean the name for ODATA
   entityType <- odataCleanName(entityType)
 
@@ -37,7 +38,7 @@ getEntityMetadata <- function(coreApi, entityType, useVerbose = FALSE) {
       resource = NULL,
       query = "$metadata",
       headers = header,
-      useVerbose = useVerbose
+      ...
     )
 
   doc <- XML::xmlTreeParse(m$response)

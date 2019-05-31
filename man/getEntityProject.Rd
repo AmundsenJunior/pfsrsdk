@@ -4,8 +4,7 @@
 \alias{getEntityProject}
 \title{getEntityProject - Get project(s) for an entity by barcode from the Core LIMS using the ODATA API.}
 \usage{
-getEntityProject(coreApi, entityType, barcode, fullMetadata = FALSE,
-  useVerbose = FALSE)
+getEntityProject(coreApi, entityType, barcode, fullMetadata = FALSE, ...)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -16,7 +15,7 @@ getEntityProject(coreApi, entityType, barcode, fullMetadata = FALSE,
 
 \item{fullMetadata}{- get full metadata, default is FALSE}
 
-\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http}
+\item{...}{additional arguments passed to \code{apiGET}}
 }
 \value{
 List of length 2, containing \code{entity} and \code{response} objects:
@@ -45,4 +44,6 @@ Craig Parman info@ngsanalytics.com
 Adam Wheeler adam.wheeler@thermofisher.com
 
 Natasha Mora natasha.mora@thermofisher.com
+
+Scott Russell scott.russell@thermofisher.com
 }

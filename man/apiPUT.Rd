@@ -19,13 +19,13 @@ apiPUT(coreApi, resource = NULL, query = NULL, body = NULL, encode,
 
 \item{encode}{encoding to use for request option are "multipart", "form", "json", "raw"}
 
-\item{headers}{headers to be added to get.}
+\item{headers}{headers to be added to \code{httr::PUT}.}
 
 \item{special}{passed to buildUrl for special sdk endpoints}
 
 \item{useVerbose}{use verbose communication for debugging}
 
-\item{unbox}{use autounbox when doing lait yo json conversion}
+\item{unbox}{use autounbox when doing list-to-JSON conversion}
 
 \item{valueFlag}{Tells the PUT if there needs to be a /$value added to the end.}
 

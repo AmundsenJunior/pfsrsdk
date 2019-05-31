@@ -6,7 +6,7 @@
 #' @param experimentContainerWellNum number location of experiment container's well
 #' @param experimentContainerType entity type of experiment container (default: "EXPERIMENT_CONTAINER")
 #' @param fullMetadata get full metadata, default is FALSE
-#' @param useVerbose  Use verbose communication for debugging (default: FALSE)
+#' @param ... additional arguments passed to \code{apiGET}
 #' @export
 #' @return List of length 2, containing \code{entity} and \code{response} objects:
 #' \itemize{
@@ -30,12 +30,12 @@ getExperimentWellContents <-
              experimentContainerWellNum,
              experimentContainerType = "EXPERIMENT_CONTAINER",
              fullMetadata = FALSE,
-             useVerbose = FALSE) {
+             ...) {
     experimentContainerType <- odataCleanName(experimentContainerType)
     experimentContainerWellNum <- as.numeric(experimentContainerWellNum)
     resource <- "CELL"
 
-    cellId <- getExperimentContainerCellIds(coreApi, experimentContainerBarcode, experimentContainerType, useVerbose)$entity[experimentContainerWellNum]
+    cellId <- getExperimentContainerCellIds(coreApi, experimentContainerBarcode, experimentContainerType, useVerbose = TRUE)$entity[experimentContainerWellNum]
 
     case(
       grepl("[0-2]+\\.[0-9]+\\.[0-9]+", coreApi$semVer) ~ {
@@ -58,7 +58,7 @@ getExperimentWellContents <-
         resource = resource,
         query = query,
         headers = header,
-        useVerbose = useVerbose
+        ...
       )
 
     response <-

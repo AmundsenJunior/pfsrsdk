@@ -6,7 +6,7 @@
 #' @param entityType entity type where sample is attached
 #' @param barcode barcode of the entity
 #' @param attribute name of the attribute
-#' @param useVerbose TRUE or FALSE to indicate if verbose options should be used
+#' @param ... additional arguments passed to \code{apiGET}
 #' @return List of length 2, containing \code{entity} and \code{response} objects:
 #' \itemize{
 #'  \item{\code{entity}} is the binary-format HTTP response content.
@@ -24,6 +24,7 @@
 #' @author Craig Parman info@ngsanalytics.com
 #' @author Adam Wheeler adam.wheeler@thermofisher.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
+#' @author Scott Russell scott.russell@thermofisher.com
 #' @description \code{ getAttachedAttributeFile }  Gets file attached to an attribute on a entity.
 
 getAttachedAttributeFile <-
@@ -31,7 +32,7 @@ getAttachedAttributeFile <-
              entityType,
              barcode,
              attribute,
-             useVerbose = FALSE) {
+             ...) {
     # clean the name for ODATA
 
     resource <- odataCleanName(entityType)
@@ -56,8 +57,8 @@ getAttachedAttributeFile <-
         resource = resource,
         query = query,
         headers = header,
-        useVerbose = useVerbose,
-        useRaw = TRUE
+        useRaw = TRUE,
+        ...
       )
 
     list(entity = response$content, response = response$response)

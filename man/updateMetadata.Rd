@@ -4,12 +4,12 @@
 \alias{updateMetadata}
 \title{\code{updateMetadata} g Updates cached metadata so metadata is up to date.}
 \usage{
-updateMetadata(coreApi, useVerbose = FALSE)
+updateMetadata(coreApi, ...)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
 
-\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http}
+\item{...}{additional arguments passed to \code{apiGET}}
 }
 \value{
 List of length 2, containing \code{entity} and \code{response} objects:
@@ -32,4 +32,6 @@ logOut(login$coreApi)
 }
 \author{
 Craig Parman info@ngsanalytics.com
+
+Scott Russell scott.russell@thermofisher.com
 }

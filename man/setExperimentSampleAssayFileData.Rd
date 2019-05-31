@@ -5,7 +5,7 @@
 \title{setExperimentSampleAssayFileData - Puts file attached as assay data into an experiment sample.}
 \usage{
 setExperimentSampleAssayFileData(coreApi, assayType,
-  experimentSampleBarcode, attributeName, filePath, useVerbose = FALSE)
+  experimentSampleBarcode, attributeName, filePath, ...)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -18,7 +18,7 @@ setExperimentSampleAssayFileData(coreApi, assayType,
 
 \item{filePath}{path to file to upload}
 
-\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http calls}
+\item{...}{additional arguments passed to \code{apiPUT}}
 }
 \value{
 List of length 2, containing \code{content} and \code{response} objects:

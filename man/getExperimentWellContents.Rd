@@ -7,7 +7,7 @@
 getExperimentWellContents(coreApi, experimentContainerBarcode,
   experimentContainerWellNum,
   experimentContainerType = "EXPERIMENT_CONTAINER",
-  fullMetadata = FALSE, useVerbose = FALSE)
+  fullMetadata = FALSE, ...)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -20,7 +20,7 @@ getExperimentWellContents(coreApi, experimentContainerBarcode,
 
 \item{fullMetadata}{get full metadata, default is FALSE}
 
-\item{useVerbose}{Use verbose communication for debugging (default: FALSE)}
+\item{...}{additional arguments passed to \code{apiGET}}
 }
 \value{
 List of length 2, containing \code{entity} and \code{response} objects:

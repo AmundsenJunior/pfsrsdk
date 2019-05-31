@@ -5,7 +5,7 @@
 context("Tests for getWellContents")
 
 test_that(paste("test getWellContents() on:", env$auth), {
-  result <- getWellContents(con$coreApi, data$containerBarcode, data$containerWellNum, data$containerType, fullMetadata = TRUE, verbose)
+  result <- getWellContents(con$coreApi, data$containerBarcode, data$containerWellNum, data$containerType, fullMetadata = TRUE, useVerbose = verbose)
 
   expect_equal(result$response$status_code, 200)
   expect_true(!is.null(result$entity$`Id@odata.type`))

@@ -5,8 +5,7 @@
 \title{getContainerContents -  Gets container contents.}
 \usage{
 getContainerContents(coreApi, containerBarcode,
-  containerType = "CONTAINER", fullMetadata = FALSE,
-  useVerbose = FALSE)
+  containerType = "CONTAINER", fullMetadata = FALSE, ...)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -17,7 +16,7 @@ getContainerContents(coreApi, containerBarcode,
 
 \item{fullMetadata}{return full metadata, default is FALSE}
 
-\item{useVerbose}{Use verbose communication for debugging}
+\item{...}{additional arguments passed to \code{apiGET}}
 }
 \value{
 List of length 2, containing \code{entity} and \code{response} objects:
