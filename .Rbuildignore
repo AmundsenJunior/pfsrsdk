@@ -9,3 +9,4 @@
 ^build/
 Jenkinsfile.decl
 ^docs/
+^pkgdown/

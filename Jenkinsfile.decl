@@ -36,6 +36,12 @@ pipeline {
         
         stage('test-package') {
             stages {
+                stage('unit-tests') {
+                    steps {
+                        gradleTask('testPackage')
+                    }
+                }
+                
                 stage('test-pfs-2.7.1') {
                     environment {
                         TEST_VERSION = '2.7.1'
@@ -44,7 +50,7 @@ pipeline {
                     }
                     
                     steps {
-                        testGradleHelmPfs('pfs-legacy', 'testPackage', [chartVersion:TEST_VERSION, templateValues:['namespace': K8S_TEST_NAMESPACE]])
+                        testGradleHelmPfs('pfs-legacy', 'acceptanceTestPackage', [chartVersion:TEST_VERSION, templateValues:['namespace': K8S_TEST_NAMESPACE]])
                     }
                 }
 
@@ -56,7 +62,7 @@ pipeline {
                     }
 
                     steps {
-                        testGradleHelmPfs('pfs-legacy', 'testPackage', [chartVersion:TEST_VERSION, templateValues:['namespace': K8S_TEST_NAMESPACE]])
+                        testGradleHelmPfs('pfs-legacy', 'acceptanceTestPackage', [chartVersion:TEST_VERSION, templateValues:['namespace': K8S_TEST_NAMESPACE]])
                     }
                 }
 
@@ -68,7 +74,7 @@ pipeline {
                     }
 
                     steps {
-                        testGradleHelmPfs('pfs-legacy', 'testPackage', [chartVersion:TEST_VERSION, templateValues:['namespace': K8S_TEST_NAMESPACE]])
+                        testGradleHelmPfs('pfs-legacy', 'acceptanceTestPackage', [chartVersion:TEST_VERSION, templateValues:['namespace': K8S_TEST_NAMESPACE]])
                     }
                 }
 
@@ -80,7 +86,7 @@ pipeline {
                     }
                     
                     steps {
-                        testGradleHelmPfs('pfs-legacy', 'testPackage', [chartVersion:TEST_VERSION, templateValues:['namespace': K8S_TEST_NAMESPACE]])
+                        testGradleHelmPfs('pfs-legacy', 'acceptanceTestPackage', [chartVersion:TEST_VERSION, templateValues:['namespace': K8S_TEST_NAMESPACE]])
                     }
                 }
                 
@@ -92,7 +98,7 @@ pipeline {
                     }
                     
                     steps {
-                        testGradleHelmPfs('pfs-legacy', 'testPackage', [chartVersion:TEST_VERSION, templateValues:['namespace': K8S_TEST_NAMESPACE]])
+                        testGradleHelmPfs('pfs-legacy', 'acceptanceTestPackage', [chartVersion:TEST_VERSION, templateValues:['namespace': K8S_TEST_NAMESPACE]])
                     }
                 }
             }
@@ -118,7 +124,7 @@ pipeline {
 
     post {
         always {
-            junit allowEmptyResults: true, testResults: 'build/tests/*.xml'
+            junit allowEmptyResults: true, testResults: 'build/tests/**/*.xml'
             archiveArtifacts artifacts: 'build/distributions/*.zip', allowEmptyArchive: true, onlyIfSuccessful: true
             archiveArtifacts artifacts: 'build/*.pdf', allowEmptyArchive: true, onlyIfSuccessful: true
             sendNotification(DATA_SCIENCE)

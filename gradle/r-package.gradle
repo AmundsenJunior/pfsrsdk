@@ -71,13 +71,26 @@ class RScriptInstallPackageTask extends com.umayrh.gradle.RScriptTask {
 
 class RScriptTestPackageTask extends com.umayrh.gradle.RScriptTask {
     File testReportDir = project.file("${project.ext.packageTestDir}")
+    File testReportXmlFile = project.file("${project.ext.packageTestDir}/${project.ext.packageTestFileName}.xml")
+    File testReportRdsFile = project.file("${project.ext.packageTestDir}/${project.ext.packageTestFileName}.Rds")
+    
+    @Input
+    String description = "Test the package, via testthat"
+    String expression = "saveRDS(withr::with_options(list(warn = 2, testthat.output_file = \"${testReportXmlFile}\"), {devtools::test(reporter = JunitReporter)}), \"${testReportRdsFile}\")"
+    
+    @OutputFile
+    File getTestXmlFile() { return this.testReportXmlFile; }
+}
+
+class RScriptAcceptanceTestPackageTask extends com.umayrh.gradle.RScriptTask {
+    File testReportDir = project.file("${project.ext.packageTestDir}")
     String testEnvVersion = System.getenv('TEST_ENV') ?: '2.7.1'
     File testReportXmlFile = project.file("${project.ext.packageTestDir}/${project.ext.packageTestFileName}-${testEnvVersion}.xml")
     File testReportRdsFile = project.file("${project.ext.packageTestDir}/${project.ext.packageTestFileName}-${testEnvVersion}.Rds")
     
     @Input
-    String description = "Test the package, via testthat"
-    String expression = "saveRDS(withr::with_options(list(warn = 2, testthat.output_file = \"${testReportXmlFile}\"), {devtools::test(reporter = JunitReporter)}), \"${testReportRdsFile}\")"
+    String description = "Acceptance test the package, via testthat"
+    String expression = "devtools::load_all();saveRDS(withr::with_options(list(warn = 2, testthat.output_file = \"${testReportXmlFile}\"), {testthat::test_dir(path = \"tests/testthat/acceptance_tests\", reporter = JunitReporter)}), \"${testReportRdsFile}\")"
     
     @OutputFile
     File getTestXmlFile() { return this.testReportXmlFile; }
@@ -113,6 +126,8 @@ task installPackage(type: RScriptInstallPackageTask, group: "R packaging") {
 }
 
 task testPackage(type: RScriptTestPackageTask, group: "R packaging")
+
+task acceptanceTestPackage(type: RScriptAcceptanceTestPackageTask, group: "R packaging")
 
 task pkgdownSite(type: RScriptPkgdownSiteTask, group: "R packaging")
 

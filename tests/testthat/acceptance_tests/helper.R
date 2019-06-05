@@ -1,6 +1,6 @@
 #' @author Adam Wheeler adam.wheeler@thermofisher.com
 #' @author Scott Russell scott.russell@thermofisher.com
-#' @description  This file is run before any tests are executed.
+#' @description  This file is run before any acceptance tests are executed.
 #' It sets up the environment to run against specific PFS semantic versions.
 
 verbose <- FALSE
@@ -8,7 +8,7 @@ verbose <- FALSE
 # setup to test against multiple environments
 # name files Auth-[semver].json example Auth-2.7.1.json for this to pick them up.
 versionsRegex <- "[0-9]+\\.[0-9]+\\.[0-9]+"
-environments <- list.files("test_environment", paste0("^(Auth-)", versionsRegex, "\\.json$"), full.names = TRUE)
+environments <- list.files("../test_environment", paste0("^(Auth-)", versionsRegex, "\\.json$"), full.names = TRUE)
 envVersions <- lapply(environments, function(x) {
   stringr::str_extract(x, versionsRegex)
 })
@@ -29,5 +29,5 @@ if (length(envVersions) > 1 & interactive()) {
   selection <- ifelse((nchar(option) > 0), envVersions[[as.numeric(option)]], selection)
 }
 
-env$auth <- paste0("test_environment/Auth-", selection, ".json")
-env$data <- paste0("test_environment/Data-", selection, ".json")
+env$auth <- paste0("../test_environment/Auth-", selection, ".json")
+env$data <- paste0("../test_environment/Data-", selection, ".json")

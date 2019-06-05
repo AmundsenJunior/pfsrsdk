@@ -39,6 +39,7 @@
 * Added optional `fullReturn` parameter to API functions to provide option to
   not receive full HTTP response data in return object.
 * Separated the set of API tests in `test-httpFunctions.R` to individual files.
+* Separated acceptance tests from unit tests in the `tests/testthat` directory.
 
 ## Fixes
 

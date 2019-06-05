@@ -1,8 +1,9 @@
 ---
 title: "Test Results"
-output:
-  html_document: default
-  pdf_document: default
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Test Results}
+  %\VignetteEngine{knitr::rmarkdown}
 ---
 
 ```{r setup, include=FALSE}

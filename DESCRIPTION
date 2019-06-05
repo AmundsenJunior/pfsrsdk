@@ -27,6 +27,8 @@ Imports:
   XML,
   xml2
 Suggests:
+  knitr,
+  testthat
 RoxygenNote: 6.1.1
 VignetteBuilder: knitr
 Encoding: UTF-8

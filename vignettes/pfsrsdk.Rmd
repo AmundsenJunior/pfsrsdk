@@ -3,6 +3,7 @@ title: "Introduction to pfsrsdk"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Introduction to pfsrsdk}
+  %\VignetteEngine{knitr::rmarkdown}
 ---
 
 ```{r setup, include=FALSE}

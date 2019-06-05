@@ -1,8 +1,9 @@
 ---
 title: "Developer Information"
-output:
-  html_document: default
-  pdf_document: default
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Developer Information}
+  %\VignetteEngine{knitr::rmarkdown}
 ---
 
 ```{r setup, include=FALSE}
@@ -113,24 +114,32 @@ local({
 
 ## Testing the Package
 
-### Test Configuration
+### Unit Tests
 
-The `pfsrsdk` package tests are written to use a configurable set of values for
-evaluating the SDK calls against a user's development or automated test
-environment. This configuration is made in `tests/testthat/test_environment`,
-on a corresponding set of `Auth-X.Y.Z.json` and `Data-X.Y.Z.json` files. Setting
-values in the `Data-X.Y.Z.json` files that match data present in a user's
-development or test environment enable the tests to execute successfully,
-regardless of environment or available data.
+The `pfsrsdk` package has sets of unit and acceptance tests. The unit tests,
+located in `tests/testthat`, can be executed any time, via `devtools::test()` or
+`R CMD check`.
 
-### Running Individual Tests
+### Acceptance Tests
+
+The acceptance tests (tests that evaluate compatibility with the
+requirements and dependencies of the package) are located in
+`tests/testthat/acceptance_tests`. These tests are written to use a configurable
+set of values for evaluating the SDK calls against a user's development or
+automated test environment. This configuration is made in
+`tests/testthat/test_environment`, on a corresponding set of `Auth-X.Y.Z.json`
+and `Data-X.Y.Z.json` files. Setting values in the `Data-X.Y.Z.json` files that
+match data present in a user's development or test environment enable the tests
+to execute successfully, regardless of environment or available data.
+
+#### Running Individual Acceptance Tests
 
 The testing suite uses `setup.R` and `teardown.R` for pre- and post-test
 actions, so invoking such helpers is only available from the
 `testthat::test_dir()` or `testthat::test_package()` functions. To test an
 individual file, execute using a filter for that test file name:
 ```r
-testthat::test_dir("tests/testthat", filter = "updateEntityLocation")
+testthat::test_dir("tests/testthat/acceptance_tests", filter = "updateEntityLocation")
 ```
 
 ## Building the Package
@@ -276,6 +285,7 @@ R Command|Gradle Task
 `devtools::build(path = "build/package")`|`./gradlew buildPackage`
 `devtools::install(pkg = "build/package")`|`.gradlew installPackage`
 `devtools::test(reporter = JunitReporter)`|`./gradlew testPackage`
+`testthat::test_dir("tests/testthat/acceptance_tests")`|`./gradlew acceptanceTestPackage`
 `pkgdown::build_site(override = list(destination = "build/docs"))`|`./gradlew pkgdownSite`
 
 #### Artifact publishing

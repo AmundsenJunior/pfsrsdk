@@ -8,7 +8,7 @@ dev/*
 beer/*
 
 #test report files
-tests/testthat/*.Rout
+tests/testthat/**/*.Rout
 
 Test%205.2.postman_environment.json
 old_testthat/*
