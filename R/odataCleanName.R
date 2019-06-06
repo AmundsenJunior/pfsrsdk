@@ -31,36 +31,3 @@ odataCleanName <- function(name, refType = "odataObject") {
 
   name <- gsub(" |-", "_", name)
 }
-
-
-#' ODATAcleanName - converts names to ODATA compliant version. Used to clean names in ODATA calls.
-#'
-#' \code{ODATAcleanName} Clean a name for ODATA.
-#' @param name  string to clean
-#' @return Returns name in ODATA compliant form
-#' @examples
-#' \dontrun{
-#' new_name <- ODATAcleanName("384 Well Plate")
-#' }
-#' @author Craig Parman ngsAnalytics, ngsanalytics.com
-#' @author Adam Wheeler adam.j.wheeler@accenture.com
-#' @description \code{ODATAcleanName} - converts names to ODATA compliant version. Used to clean names in ODATA calls.
-#'
-#' @name pfsrsdk-deprecated
-#' @seealso \code{\link{pfsrsdk-deprecated}}
-#' @keywords internal
-NULL
-
-#' @rdname pfsrsdk-deprecated
-#' @section \code{ODATAcleanName}:
-#' For \code{ODATAcleanName}, use \code{\link{odataCleanName}}.
-#'
-#' @export
-ODATAcleanName <- function(name) {
-  .Deprecated(new = "odataCleanName")
-
-  name <- gsub("(^[1-9])", "_\\1", name)
-  name <- gsub(" ", "_", name)
-
-  name
-}

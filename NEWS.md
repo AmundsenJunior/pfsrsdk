@@ -12,6 +12,7 @@
 [//]: # ( )
 [//]: # (## Fixes)
 --->
+
 # pfsrsdk 2.0.0.9000
 
 ## Breaking changes
@@ -21,11 +22,11 @@
   provide a standard return object across the SDK (where appropriate).
   The API functions were updated to provide a return object of structure 
   `list(content, response)`, where `content` had a value of
-  `httr::content(response)`.
+  `httr::content(response)`.  
   For many of the SDK functions, a standard structure of
   `list(entity, response)` was already in place, but the change here both
   expanded the use of this return object to other functions and updated the 
-  values of both `entity` and `response`.
+  values of both `entity` and `response`.  
   Refer to the package help for function-specific changes to the return objects.
 * Moved `useVerbose` parameter on most functions to a pass-through ellipsis
   (...) parameter, as the paramter is only used by the underlying calls to the
@@ -40,6 +41,12 @@
   not receive full HTTP response data in return object.
 * Separated the set of API tests in `test-httpFunctions.R` to individual files.
 * Separated acceptance tests from unit tests in the `tests/testthat` directory.
+* Removed functions that were deprecated in pfsrsdk 1.0.0:
+  * `getAttachedFile()`
+  * `getExperimentSamplesIntermediateData()`
+  * `ODATAcleanName()`
+  * `setExperimentSamplesAssayFileData()`
+  * `updateCellContents()`
 
 ## Fixes
 
