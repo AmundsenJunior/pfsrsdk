@@ -24,12 +24,14 @@
 #' @author Scott Russell scott.russell@thermofisher.com
 #' @description \code{odataCleanName} - converts names to ODATA compliant version. Used to clean names in ODATA calls.
 
-
-
 odataCleanName <- function(name, refType = "odataObject") {
   if (refType == "odataObject") name <- gsub("(^[1-9])", "_\\1", name)
 
-  name <- gsub(" |-", "_", name)
+  if (refType == "tenant") {
+    name <- gsub(" ", "_", name)
+  } else {
+    name <- gsub(" |-", "_", name)
+  }
 }
 
 

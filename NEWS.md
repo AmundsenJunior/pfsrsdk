@@ -13,6 +13,12 @@
 [//]: # (## Fixes)
 --->
 
+# pfsrsdk 2.0.1
+
+## Fixes
+
+* Corrected `odataCleanName()` to properly handle `refTypes` of value "tenant".
+
 # pfsrsdk 2.0.0
 
 ## Breaking changes
