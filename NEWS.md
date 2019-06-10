@@ -13,7 +13,7 @@
 [//]: # (## Fixes)
 --->
 
-# pfsrsdk 2.0.0.9000
+# pfsrsdk 2.0.1.9000
 
 ## Breaking changes
 
@@ -51,6 +51,12 @@
 ## Fixes
 
 * Corrected `apiPUT()` to check all classes of `body` for `form_file` type.
+
+# pfsrsdk 2.0.1
+
+## Fixes
+
+* Corrected `odataCleanName()` to properly handle `refTypes` of value "tenant".
 
 # pfsrsdk 2.0.0
 
