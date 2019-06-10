@@ -47,12 +47,6 @@ createSampleLot <-
       }
     )
 
-    switch(EXPR = coreApi$semVer,
-      "2.7.1" = NULL,
-      "3.0.3" = NULL,
-      print(warning("This PFS version has not been tested. Please contact support if any errors arise."))
-    )
-
     lotRef <- list(dataBind = paste0("/", sampleType, "('", sampleBarcode, "')"))
 
     names(lotRef) <- dataBind

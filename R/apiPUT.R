@@ -76,7 +76,7 @@ apiPUT <-
       )
 
     # check to see if the put request is for a file
-    if (class(body) != "form_file") {
+    if (!"form_file" %in% class(body)) {
       body <- jsonlite::toJSON(body, auto_unbox = unbox, null = "null")
     }
 
