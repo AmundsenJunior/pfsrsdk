@@ -27,6 +27,8 @@
   "testPocoUpdateLoc": "",
   "testPocoUpdateProj": "",
   "testPocoUpdateAttrList": [{}],
+  "testPocoAttrList": [],
+  "testPocoNonExistingAttr": [],
   "testPocoNonexistentType": "",
   "persistentEntityType": "ACCESS_LEVEL",
   "persistentEntityName": "ADMIN ACCESS",
