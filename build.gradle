@@ -20,6 +20,18 @@ apply from: "$rootProject.projectDir/gradle/distribution.gradle"
 apply from: "$rootProject.projectDir/gradle/docker.gradle"
 
 repositories {
+    def file = new File('gradle.properties')
+    if (!file.exists())
+    {
+        file = new File('../gradle.properties')
+    }
+    Properties props = new Properties()
+    props.load(file.newDataInputStream())
+
+    String artifactoryUser = System.getenv('ARTIFACT_REGISTRY_USER') ?: props.getProperty('artifactoryUser') 
+    String artifactoryPassword = System.getenv('ARTIFACT_REGISTRY_PASSWORD') ?: props.getProperty('artifactoryPassword') 
+    String artifactoryContextUrl = System.getenv('ARTIFACT_REGISTRY') ?: props.getProperty('artifactoryContextUrl') 
+
     maven {
         url "${artifactoryContextUrl}/repo"
         credentials {

@@ -16,11 +16,11 @@ class DescriptionYaml {
     
     DescriptionYaml(File descriptionFile) {
         this.descriptionYaml = parser.load(descriptionFile.text)
-        this.packageVersion = this.readDescriptionValue('Version')
-        this.packageName = this.readDescriptionValue('Package')
+        this.packageVersion = this.getDescriptionValue('Version')
+        this.packageName = this.getDescriptionValue('Package')
     }
     
-    private String readDescriptionValue(String key) {
+    public String getDescriptionValue(String key) {
         return descriptionYaml.get(key)
     }
     

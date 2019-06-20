@@ -1,5 +1,4 @@
 repositories {
-
     def file = new File('gradle.properties')
     if (!file.exists())
     {
@@ -8,9 +7,9 @@ repositories {
     Properties props = new Properties()
     props.load(file.newDataInputStream())
 
-    String artifactoryUser = props.getProperty('artifactoryUser')
-    String artifactoryPassword = props.getProperty('artifactoryPassword')
-    String artifactoryContextUrl = props.getProperty('artifactoryContextUrl')
+    String artifactoryUser = System.getenv('ARTIFACT_REGISTRY_USER') ?: props.getProperty('artifactoryUser') 
+    String artifactoryPassword = System.getenv('ARTIFACT_REGISTRY_PASSWORD') ?: props.getProperty('artifactoryPassword') 
+    String artifactoryContextUrl = System.getenv('ARTIFACT_REGISTRY') ?: props.getProperty('artifactoryContextUrl') 
 
     maven {
         url "$artifactoryContextUrl/repo"

@@ -36,7 +36,6 @@
 ## New functions and minor changes
 * Removed unnecessary headers from functions.
 * Enhanced testing for functions with fullMetadata parameter.
-
 * Added Gradle task to generate PDF manual of package documentation, via
   `Rd2pdf`.
 * Added optional `fullReturn` parameter to API functions to provide option to
@@ -49,13 +48,18 @@
   * `ODATAcleanName()`
   * `setExperimentSamplesAssayFileData()`
   * `updateCellContents()`
-* Added function `getEntityAttributeMetadata()` to get attribute metadata for a specified entity type. Aplicable for PFS v6 and greater.
-* Added function `getAttributesColumnHeaders()` to get the attribute column headers for all or specified attributes of an entityType. Aplicable for PFS v6 and greater.
-* Added "semantic version" to warning, error and test's messages to avoid confusions.
+* Added function `getEntityAttributeMetadata()` to get attribute metadata for a
+  specified entity type. Aplicable for PFS v6 and greater.
+* Added function `getAttributesColumnHeaders()` to get the attribute column
+  headers for all or specified attributes of an entityType. Aplicable for PFS v6
+  and greater.
+* Added "semantic version" to warning, error and test messages to avoid
+  confusion.
 
 ## Fixes
 
 * Corrected `apiPUT()` to check all classes of `body` for `form_file` type.
+* Removed credentials from Gradle and automated testing process.
 
 # pfsrsdk 2.0.1
 
