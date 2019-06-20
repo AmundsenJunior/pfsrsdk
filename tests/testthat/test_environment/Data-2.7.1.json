@@ -43,6 +43,13 @@
     "CI_TARGET_ABV": 4.8,
     "CI_TARGET_SED_G_L": 0.73
   }],
+  "testPocoAttrList": [
+    "CI_TARGET_ABV",
+    "CI_TARGET_SED_G_L"
+  ],
+  "testPocoNonExistingAttr": [
+    "NON_Existing_ATTR"
+  ],
   "testPocoNonexistentType": "WATER",
   "persistentEntityType": "ACCESS_LEVEL",
   "persistentEntityName": "ADMIN ACCESS",

@@ -49,6 +49,9 @@
   * `ODATAcleanName()`
   * `setExperimentSamplesAssayFileData()`
   * `updateCellContents()`
+* Added function `getEntityAttributeMetadata()` to get attribute metadata for a specified entity type. Aplicable for PFS v6 and greater.
+* Added function `getAttributesColumnHeaders()` to get the attribute column headers for all or specified attributes of an entityType. Aplicable for PFS v6 and greater.
+  
 
 ## Fixes
 
