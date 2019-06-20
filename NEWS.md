@@ -55,6 +55,8 @@
   and greater.
 * Added "semantic version" to warning, error and test messages to avoid
   confusion.
+* Enabled automated testing to ensure package compatibility with PFS 6.0.3.1 and
+  PFS 5.3.11.
 
 ## Fixes
 

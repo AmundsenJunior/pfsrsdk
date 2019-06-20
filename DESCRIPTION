@@ -13,7 +13,7 @@ Authors@R: as.person(c(
   ))
 Description: The package provides functions for interacting with the Thermo 
   Fisher Scientific Platform for Science (PFS) APIs.
-PfsCompatibility: c("3.0.4", "3.0.3", "2.8.2", "2.8.1", "2.7.1")
+PfsCompatibility: c("3.1.1", "3.0.4", "3.0.3", "2.8.3", "2.8.2", "2.8.1", "2.7.1")
 License: AGPL (>=2)
 URL: https://bitbucket.org/corelims/pfsrsdk
 BugReports: https://corelims.atlassian.net/secure/RapidBoard.jspa?projectKey=RSDK
