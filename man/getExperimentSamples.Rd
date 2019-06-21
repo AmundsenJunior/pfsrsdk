@@ -5,7 +5,7 @@
 \title{getExperimentSamples - Gets experiment sample barcodes from experiment identified by barcode.}
 \usage{
 getExperimentSamples(coreApi, experimentType, barcode,
-  fullMetadata = TRUE, ...)
+  fullMetadata = FALSE, ...)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}

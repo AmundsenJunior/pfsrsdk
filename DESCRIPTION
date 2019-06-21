@@ -8,7 +8,8 @@ Authors@R: as.person(c(
     "Craig Parman <info@ngsanalytics.com> [aut]",
     "Scott Russell <scott.russell@thermofisher.com> [aut]",
     "Natasha Mora <natasha.mora@thermofisher.com> [aut]",
-    "Francisco Marin <francisco.marin@thermofisher.com> [aut]", 
+    "Francisco Marin <francisco.marin@thermofisher.com> [aut]",
+    "Edgardo Gutierrez <edgardo.gutierrez@thermofisher.com> [aut]",
     "Thermo Fisher PFS Data Science & Engineering Team <datascience@thermofisher.com> [cre, cph]"
   ))
 Description: The package provides functions for interacting with the Thermo 

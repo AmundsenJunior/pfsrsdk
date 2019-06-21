@@ -30,7 +30,7 @@ getExperimentSamples <-
   function(coreApi,
              experimentType,
              barcode,
-             fullMetadata = TRUE,
+             fullMetadata = FALSE,
              ...) {
 
     # clean the name for ODATA
