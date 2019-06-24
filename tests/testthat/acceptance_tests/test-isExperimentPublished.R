@@ -3,7 +3,7 @@
 
 context("Tests for isExperimentPublished")
 
-test_that(paste("test isExperimentPublished() on:", env$auth), {
+test_that(paste("test isExperimentPublished() on semantic version:", con$coreApi$semVer), {
   result <- isExperimentPublished(con$coreApi, data$experimentType, data$experimentBarcode, useVerbose = verbose)
 
   expect_type(result$status, "logical")

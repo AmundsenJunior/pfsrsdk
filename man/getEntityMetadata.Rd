@@ -20,8 +20,8 @@ getEntityMetadata(coreApi, entityType, ...)
 }}
 }
 \description{
-\code{getEntityMetadata} Get an entity metadata by entityType. Returns a list with three data frames
-named attributes,associations, and template. Template can be used as the body to for createEntity functions.
+\code{getEntityMetadata} Get entity metadata by entityType. Returns a list with three data frames
+named attributes, associations, and template. Template can be used as the body for createEntity functions.
 }
 \details{
 \code{getEntityMetadata}  Get entity metadata.

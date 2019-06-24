@@ -5,7 +5,7 @@ context("Tests for getAttributesColumnHeaders")
 
 case(
   grepl("[0-2]+\\.[0-9]+\\.[0-9]+", con$coreApi$semVer) ~ {
-    test_that(paste("test getAttributesColumnHeaders() on:", env$auth), {
+    test_that(paste("test getAttributesColumnHeaders() on semantic version:", con$coreApi$semVer), {
       expect_warning(
         result <- getAttributesColumnHeaders(con$coreApi,
           attributeList = NULL,
@@ -13,12 +13,12 @@ case(
           fullMetadata = FALSE,
           useVerbose = verbose
         ),
-        paste("getAttributesColumnHeaders OData action not available in", con$coreApi$semVer)
+        paste("getAttributesColumnHeaders OData action not available in semantic version", con$coreApi$semVer)
       )
     })
   },
   grepl("[3-9]+\\.[0-9]+\\.[0-9]+", con$coreApi$semVer) ~ {
-    test_that(paste("test getAttributesColumnHeaders() to retrieve all column headers for entity type attributes on:", env$auth), {
+    test_that(paste("test getAttributesColumnHeaders() to retrieve all column headers for entity type attributes on semantic version:", con$coreApi$semVer), {
       result <- getAttributesColumnHeaders(con$coreApi,
         attributeList = NULL,
         data$testPocoGetAssocType,
@@ -30,7 +30,7 @@ case(
       expect_equal(result$response$status_code, 200)
     })
 
-    test_that(paste("test getAttributesColumnHeaders() for specified attributes on:", env$auth), {
+    test_that(paste("test getAttributesColumnHeaders() for specified attributes on semantic version:", con$coreApi$semVer), {
       result <- getAttributesColumnHeaders(con$coreApi,
         data$testPocoAttrList,
         data$testPocoGetAssocType,
@@ -41,7 +41,7 @@ case(
       expect_true(data$testPocoAttrList[[1]] %in% toupper(result$entity), TRUE)
     })
 
-    test_that(paste("test getAttributesColumnHeaders() for invalid attributes on:", env$auth), {
+    test_that(paste("test getAttributesColumnHeaders() for invalid attributes on semantic version:", con$coreApi$semVer), {
       expect_warning(
         result <- getAttributesColumnHeaders(con$coreApi,
           attributeList = "",
@@ -53,7 +53,7 @@ case(
       )
     })
 
-    test_that(paste("test getAttributesColumnHeaders() with non-existing attribute on:", env$auth), {
+    test_that(paste("test getAttributesColumnHeaders() with non-existing attribute on semantic version:", con$coreApi$semVer), {
       result <- getAttributesColumnHeaders(con$coreApi,
         data$testPocoNonExistingAttr,
         data$testPocoGetAssocType,

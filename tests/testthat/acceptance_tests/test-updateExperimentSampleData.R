@@ -4,7 +4,7 @@
 
 context("Tests for updateExperimentSampleData")
 
-test_that(paste("test updateExperimentSampleData() on: ", env$auth), {
+test_that(paste("test updateExperimentSampleData() on semantic version:", con$coreApi$semVer), {
   result <- updateExperimentSampleData(
     con$coreApi,
     data$experimentAssayUpdateAssayType,

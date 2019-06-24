@@ -30,7 +30,7 @@ getAttributesColumnHeaders <-
     case(
       grepl("[0-2]+\\.[0-9]+\\.[0-9]+", coreApi$semVer) ~ {
         warning(
-          paste("getAttributesColumnHeaders OData action not available in", coreApi$semVer),
+          paste("getAttributesColumnHeaders OData action not available in semantic version", coreApi$semVer),
           call. = FALSE
         )
       },

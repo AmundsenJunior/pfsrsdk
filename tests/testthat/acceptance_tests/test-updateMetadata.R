@@ -4,7 +4,7 @@
 
 context("Tests for updateMetadata")
 
-test_that(paste("test updateMetadata() on: ", env$auth), {
+test_that(paste("test updateMetadata() on semantic version:", con$coreApi$semVer), {
   meta <- updateMetadata(con$coreApi, useVerbose = verbose)
   expect_equivalent(meta$response$status_code, 200, all = verbose)
 })

@@ -4,7 +4,7 @@
 
 context("Tests for updateEntityAssociations")
 
-test_that(paste("test updateEntityAssociations() on:", env$auth), {
+test_that(paste("test updateEntityAssociations() on semantic version:", con$coreApi$semVer), {
   assoc <- getEntityByName(con$coreApi, data$testPocoUpdateAssocType, data$testPocoUpdateAssocName, FALSE, useVerbose = FALSE)
   poco <- getEntityByName(con$coreApi, data$testPocoUpdateType, data$testPocoUpdateName, FALSE, useVerbose = FALSE)
 

@@ -5,7 +5,7 @@
 
 context("Tests for getAttachedAttributeFile()")
 
-test_that(paste("test getAttachedAttributeFile() OData call on:", env$auth), {
+test_that(paste("test getAttachedAttributeFile() OData call on semantic version:", con$coreApi$semVer), {
   barcode <- getEntityByName(con$coreApi, data$testPocoType, data$testPocoName, FALSE, useVerbose = FALSE)$entity[[1]]$Barcode
 
   t <- getAttachedAttributeFile(con$coreApi, data$testPocoType, barcode, data$testPocoFileAttrName, useVerbose = TRUE)

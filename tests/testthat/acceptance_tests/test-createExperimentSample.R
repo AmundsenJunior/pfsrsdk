@@ -4,7 +4,7 @@
 
 context("Tests for createExperimentSample")
 
-test_that(paste("test createExperimentSample() on: ", env$auth), {
+test_that(paste("test createExperimentSample() on semantic version:", con$coreApi$semVer), {
   samp <- createExperimentSample(
     con$coreApi,
     data$experimentType,
@@ -17,7 +17,7 @@ test_that(paste("test createExperimentSample() on: ", env$auth), {
   expect_that(httr::http_status(samp$response)$reason, equals("Created"))
 })
 
-test_that(paste("createExperimentSample returns successful with fullMetadata on:", env$auth), {
+test_that(paste("createExperimentSample returns successful with fullMetadata on semantic version:", con$coreApi$semVer), {
   samp <- createExperimentSample(
     con$coreApi,
     data$experimentType,

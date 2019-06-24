@@ -3,7 +3,7 @@
 #' @description \code Tests for updateEntityLocation
 context("Tests for updateEntityLocation")
 
-test_that(paste("test updateEntityLocation for:", env$auth), {
+test_that(paste("test updateEntityLocation for semantic version:", con$coreApi$semVer), {
   barcode <- getEntityByName(con$coreApi, data$testPocoUpdateType, data$testPocoUpdateName, fullMetadata = FALSE, useVerbose = verbose)$entity[[1]]$Barcode
 
   updateLoc <- updateEntityLocation(con$coreApi, data$testPocoUpdateType, barcode, data$testPocoUpdateLoc, useVerbose = verbose)

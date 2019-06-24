@@ -6,7 +6,7 @@ context("Tests for setExperimentSampleAssayFileData")
 filePath <- tempfile(fileext = ".csv")
 write.csv(x = runif(n = 1000), file = filePath)
 
-test_that(paste("test setExperimentSampleAssayFileData() on:", env$auth), {
+test_that(paste("test setExperimentSampleAssayFileData() on semantic version:", con$coreApi$semVer), {
   result <- setExperimentSampleAssayFileData(con$coreApi,
     data$experimentFileAssayType,
     data$experimentSampleBarcodeWithFileAttr,

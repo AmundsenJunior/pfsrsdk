@@ -3,7 +3,7 @@
 
 context("Tests for getExperimentContainers")
 
-test_that(paste("test getExperimentContainers() on:", env$auth), {
+test_that(paste("test getExperimentContainers() on semantic version:", con$coreApi$semVer), {
   result <- getExperimentContainers(con$coreApi, data$experimentType, data$experimentBarcode, useVerbose = verbose)
 
   expect_equal(result$response$status_code, 200)

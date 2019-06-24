@@ -3,7 +3,7 @@
 
 context("Tests for createSampleLot")
 
-test_that(paste("test createSampleLot() on:", env$auth), {
+test_that(paste("test createSampleLot() on semantic version:", con$coreApi$semVer), {
   result <- createSampleLot(con$coreApi,
     data$sampleType,
     data$sampleBarcode,
@@ -15,7 +15,7 @@ test_that(paste("test createSampleLot() on:", env$auth), {
   expect_gt(httr::content(result$response)$CI_LOT_NUM, 0)
 })
 
-test_that(paste("createSampleLot returns successful with fullMetadata on:", env$auth), {
+test_that(paste("createSampleLot returns successful with fullMetadata on semantic version:", con$coreApi$semVer), {
   result <- createSampleLot(con$coreApi,
     data$sampleType,
     data$sampleBarcode,

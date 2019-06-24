@@ -4,7 +4,7 @@
 
 context("Tests for getEntityProject")
 
-test_that(paste("test getEntityProject for:", env$auth), {
+test_that(paste("test getEntityProject for semantic version:", con$coreApi$semVer), {
   barcode <- getEntityByName(con$coreApi, data$testPocoType, data$testPocoName, fullMetadata = FALSE, useVerbose = verbose)$entity[[1]]$Barcode
   pro <- getEntityProject(con$coreApi, data$testPocoType, barcode, fullMetadata = FALSE, useVerbose = verbose)
 
@@ -12,7 +12,7 @@ test_that(paste("test getEntityProject for:", env$auth), {
   expect_match(pro$entity[[1]]$Barcode, data$testPocoProj)
 })
 
-test_that(paste("getEntityProject returns successful with fullMetadata on:", env$auth), {
+test_that(paste("getEntityProject returns successful with fullMetadata on semantic version:", con$coreApi$semVer), {
   barcode <- getEntityByName(con$coreApi, data$testPocoType, data$testPocoName, fullMetadata = FALSE, useVerbose = verbose)$entity[[1]]$Barcode
   pro <- getEntityProject(con$coreApi, data$testPocoType, barcode, fullMetadata = TRUE, useVerbose = verbose)
 

@@ -15,7 +15,7 @@ if (con$coreApi$tenant == "PLATFORM ADMIN") {
   odat <- "/odata/"
 }
 
-test_that(paste("Test that buildURL responds correctly when passed a resource and query on:", env$auth), {
+test_that(paste("Test that buildURL responds correctly when passed a resource and query on semantic version:", con$coreApi$semVer), {
   resource <- "res"
   query <- "?test query"
   builtURL <- buildUrl(con$coreApi, resource = resource, query = query)
@@ -23,15 +23,15 @@ test_that(paste("Test that buildURL responds correctly when passed a resource an
   expect_match(builtURL, pattern)
 })
 
-test_that(paste("Test that the build url handles the login special url on:", env$auth), {
+test_that(paste("Test that the build url handles the login special url on semantic version:", con$coreApi$semVer), {
   expect_equivalent(con$response$status_code, 200)
 })
 
-test_that(paste("Test that the build url handles the file special url on:", env$auth), {
+test_that(paste("Test that the build url handles the file special url on semantic version:", con$coreApi$semVer), {
   skip("Not tested here until the remediation of the file upload has been completed. See RSDK-80")
 })
 
-test_that(paste("Test that the build url handles the json special url on:", env$auth), {
+test_that(paste("Test that the build url handles the json special url on semantic version:", con$coreApi$semVer), {
   builtURL <- buildUrl(con$coreApi, special = "json")
   pattern <- paste0("^", con$coreApi$scheme, "\\W{3}", con$coreApi$host, ".\\d+.?\\w*.sdk")
   expect_match(builtURL, pattern)

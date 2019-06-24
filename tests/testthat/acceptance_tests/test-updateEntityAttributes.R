@@ -4,7 +4,7 @@
 
 context("Tests for updateEntityAttributes")
 
-test_that(paste("test updateEntityAttributes() on: ", env$auth), {
+test_that(paste("test updateEntityAttributes() on semantic version:", con$coreApi$semVer), {
   barcode <- getEntityByName(con$coreApi, data$testPocoUpdateType, data$testPocoUpdateName, FALSE, useVerbose = FALSE)$entity[[1]]$Barcode
 
   ue <- updateEntityAttributes(con$coreApi, data$testPocoUpdateType, barcode, data$testPocoUpdateAttrList, useVerbose = verbose)

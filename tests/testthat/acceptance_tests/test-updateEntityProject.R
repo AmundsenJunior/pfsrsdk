@@ -3,7 +3,7 @@
 #' @description \code Tests for updateEntityProject
 context("Tests for updateEntityProject")
 
-test_that(paste("test updateEntityProject for: ", env$auth), {
+test_that(paste("test updateEntityProject for semantic version:", con$coreApi$semVer), {
   barcode <- getEntityByName(con$coreApi, data$testPocoUpdateType, data$testPocoUpdateName, fullMetadata = FALSE, useVerbose = verbose)$entity[[1]]$Barcode
 
   updateProj <- updateEntityProject(con$coreApi, data$testPocoUpdateType, barcode, data$testPocoUpdateProj, useVerbose = verbose)

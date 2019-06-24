@@ -5,7 +5,7 @@
 #'
 context("Tests for experimentPublish")
 
-test_that(paste("test experimentPublish() on:", env$auth), {
+test_that(paste("test experimentPublish() on semantic version:", con$coreApi$semVer), {
   case(
     grepl("[0-2]+\\.[0-9]+\\.[0-9]+", con$coreApi$semVer) ~ {
       result <- experimentPublish(con$coreApi, data$experimentType, data$experimentPublishUnpublishBarcode, useVerbose = verbose)

@@ -7,7 +7,7 @@ context("Tests for apiPOST")
 
 header <- c("Content-Type" = "application/json", "If-Match" = "*")
 
-test_that(paste0("apiPOST will create an entity on: ", env$auth), {
+test_that(paste0("apiPOST will create an entity on semantic version: ", con$coreApi$semVer), {
   res <- apiPOST(
     coreApi = con$coreApi,
     resource = data$persistentEntityType,
@@ -19,7 +19,7 @@ test_that(paste0("apiPOST will create an entity on: ", env$auth), {
   expect_equal(res$response$status_code, 201)
 })
 
-test_that(paste("apiPOST returns an error message on non-existing entity on:", env$auth), {
+test_that(paste("apiPOST returns an error message on non-existing entity on semantic version:", con$coreApi$semVer), {
   expect_warning(
     {
       response <- apiPOST(
@@ -34,7 +34,7 @@ test_that(paste("apiPOST returns an error message on non-existing entity on:", e
   )
 })
 
-test_that(paste0("apiPOST return object contains only content on:", env$auth), {
+test_that(paste0("apiPOST return object contains only content on semantic version:", con$coreApi$semVer), {
   res <- apiPOST(
     coreApi = con$coreApi,
     resource = data$persistentEntityType,
@@ -47,7 +47,7 @@ test_that(paste0("apiPOST return object contains only content on:", env$auth), {
   expect_null(res$response)
 })
 
-test_that(paste("apiPOST returns error when fullReturn is FALSE on:", env$auth), {
+test_that(paste("apiPOST returns error when fullReturn is FALSE on semantic version:", con$coreApi$semVer), {
   expect_warning(
     {
       response <- apiPOST(
