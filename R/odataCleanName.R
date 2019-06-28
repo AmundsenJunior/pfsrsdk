@@ -8,10 +8,10 @@
 #' \code{refType} accepts two values, the default "odataObject" and "tenant".
 #' "odataObject" ensures that a leading underscore is placed in front of numbers
 #' at the beginning of the string to comply with OData Standards. This function
-#' can be used for other objects as well to replace spaces and hyphens with 
+#' can be used for other objects as well to replace spaces and hyphens with
 #' underscores. When \code{refType} is set to "tenant", underscores are
 #' substituted for spaces, but leaves hyphens intact.
-#' 
+#'
 #' @return Returns name in ODATA compliant form
 #' @examples
 #' \dontrun{

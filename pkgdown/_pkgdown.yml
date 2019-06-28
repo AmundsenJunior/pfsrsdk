@@ -44,6 +44,8 @@ reference:
       - loadXmlConfigFile
       - odataCleanName
       - updateMetadata
+      - getAttributesColumnHeaders
+      - getEntityAttributeMetadata
   - title: Deprecated Functions
     contents:
       - pfsrsdk-deprecated
