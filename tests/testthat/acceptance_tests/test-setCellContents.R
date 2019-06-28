@@ -3,7 +3,7 @@
 
 context("Tests for setCellContents")
 
-test_that(paste("test setCellContents() on:", env$auth), {
+test_that(paste("test setCellContents() on semantic version:", con$coreApi$semVer), {
   result <- setCellContents(con$coreApi,
     data$nonExperimentContainerType,
     data$nonExperimentContainerBarcode,

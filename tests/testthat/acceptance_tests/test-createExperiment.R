@@ -4,7 +4,7 @@
 
 context("Tests for createExperiment")
 
-test_that(paste("test createExperiment() on: ", env$auth), {
+test_that(paste("test createExperiment() on semantic version:", con$coreApi$semVer), {
   expt <- createExperiment(con$coreApi,
     data$experimentType,
     data$experimentAssayType,
@@ -20,7 +20,7 @@ test_that(paste("test createExperiment() on: ", env$auth), {
 })
 
 
-test_that(paste("createExperiment returns successful with fullMetadata on:", env$auth), {
+test_that(paste("createExperiment returns successful with fullMetadata on semantic version:", con$coreApi$semVer), {
   expt <- createExperiment(con$coreApi,
     data$experimentType,
     data$experimentAssayType,

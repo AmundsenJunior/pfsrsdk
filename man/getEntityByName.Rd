@@ -25,10 +25,10 @@ List of length 2, containing \code{entity} and \code{response} objects:
 }
 }
 \description{
-\code{getEntityByName}  Get an entity by barcode from the Core LIMS using the ODATA API.
+\code{getEntityByName}  Get an entity by name from the Core LIMS using the ODATA API.
 }
 \details{
-\code{getEntityByName} get an entity from the LIMS by barcode
+\code{getEntityByName} get an entity by name from the Core LIMS using the ODATA API.
 }
 \examples{
 \dontrun{

@@ -5,19 +5,19 @@ context("Tests for getEntityAttributeMetadata")
 
 case(
   grepl("[0-2]+\\.[0-9]+\\.[0-9]+", con$coreApi$semVer) ~ {
-    test_that(paste("test getEntityAttributeMetadata() on:", env$auth), {
+    test_that(paste("test getEntityAttributeMetadata() on semantic version:", con$coreApi$semVer), {
       expect_warning(
         result <- getEntityAttributeMetadata(con$coreApi,
           data$testPocoGetAssocType,
           fullMetadata = FALSE,
           useVerbose = verbose
         ),
-        paste("getEntityAttributeMetadata OData action not available in", con$coreApi$semVer)
+        paste("getEntityAttributeMetadata OData action not available in semantic version", con$coreApi$semVer)
       )
     })
   },
   grepl("[3-9]+\\.[0-9]+\\.[0-9]+", con$coreApi$semVer) ~ {
-    test_that(paste("test getEntityAttributeMetadata() on:", env$auth), {
+    test_that(paste("test getEntityAttributeMetadata() on semantic version:", con$coreApi$semVer), {
       result <- getEntityAttributeMetadata(con$coreApi,
         data$testPocoGetAssocType,
         fullMetadata = FALSE,
@@ -37,7 +37,7 @@ case(
       )
     })
 
-    test_that(paste("getEntityAttributeMetadata returns successful with fullMetadata on:", env$auth), {
+    test_that(paste("getEntityAttributeMetadata returns successful with fullMetadata on semantic version:", con$coreApi$semVer), {
       result <- getEntityAttributeMetadata(con$coreApi,
         data$testPocoGetAssocType,
         fullMetadata = TRUE,

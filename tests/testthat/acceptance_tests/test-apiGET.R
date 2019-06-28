@@ -8,12 +8,12 @@ context("Tests for apiGET")
 header <- c("Accept" = "application/json")
 query <- "?count=true"
 
-test_that(paste("apiGET will return an entity on:", env$auth), {
+test_that(paste("apiGET will return an entity on semantic version:", con$coreApi$semVer), {
   res <- apiGET(con$coreApi, resource = data$persistentEntityType, query = "", headers = header, useVerbose = verbose)
   expect_equal(res$response$status_code, 200)
 })
 
-test_that(paste("apiGET will return an entity with more than 100 results on:", env$auth), {
+test_that(paste("apiGET will return an entity with more than 100 results on semantic version:", con$coreApi$semVer), {
   # not verbose and query
   res <- apiGET(con$coreApi, resource = data$sampleType, query = query, headers = header, useVerbose = FALSE)
   expect_equal(res$response$status_code, 200)
@@ -32,7 +32,7 @@ test_that(paste("apiGET will return an entity with more than 100 results on:", e
   expect_gt(length(res$content), 100)
 })
 
-test_that(paste("apiGET returns an error message on non-existing entity on:", env$auth), {
+test_that(paste("apiGET returns an error message on non-existing entity on semantic version:", con$coreApi$semVer), {
   expect_warning(
     {
       response <- apiGET(
@@ -47,12 +47,12 @@ test_that(paste("apiGET returns an error message on non-existing entity on:", en
   )
 })
 
-test_that(paste("apiGET return object contains only content on:", env$auth), {
+test_that(paste("apiGET return object contains only content on semantic version:", con$coreApi$semVer), {
   res <- apiGET(con$coreApi, resource = data$persistentEntityType, query = "", headers = header, useVerbose = verbose, fullReturn = FALSE)
   expect_null(res$response)
 })
 
-test_that(paste("apiGET returns error when fullReturn is FALSE on:", env$auth), {
+test_that(paste("apiGET returns error when fullReturn is FALSE on semantic version:", con$coreApi$semVer), {
   expect_warning(
     {
       response <- apiGET(

@@ -5,7 +5,7 @@
 
 context("Tests for getEntityByBarcode")
 
-test_that(paste("getEntityByBarcode returns successful without fullMetadata on:", env$auth), {
+test_that(paste("getEntityByBarcode returns successful without fullMetadata on semantic version:", con$coreApi$semVer), {
   b <- getEntityByBarcode(con$coreApi, data$persistentEntityType, data$persistentEntityBarcode,
     fullMetadata = FALSE,
     useVerbose = verbose
@@ -14,7 +14,7 @@ test_that(paste("getEntityByBarcode returns successful without fullMetadata on:"
   expect_match(b$Barcode, data$persistentEntityBarcode, all = verbose)
 })
 
-test_that(paste("getEntityByBarcode returns successful with fullMetadata on:", env$auth), {
+test_that(paste("getEntityByBarcode returns successful with fullMetadata on semantic version:", con$coreApi$semVer), {
   b <- getEntityByBarcode(con$coreApi, data$persistentEntityType, data$persistentEntityBarcode,
     fullMetadata = TRUE,
     useVerbose = verbose
@@ -22,7 +22,7 @@ test_that(paste("getEntityByBarcode returns successful with fullMetadata on:", e
   expect_true(!is.null(b$entity$`Id@odata.type`))
 })
 
-test_that(paste("getEntityByBarcode receives warning when requesting non-existent entity on:", env$auth), {
+test_that(paste("getEntityByBarcode receives warning when requesting non-existent entity on semantic version:", con$coreApi$semVer), {
   expect_warning(
     {
       b <- getEntityByBarcode(con$coreApi,

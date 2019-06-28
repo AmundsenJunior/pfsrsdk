@@ -8,7 +8,7 @@ context("Tests for apiPUT")
 entity <- apiGET(con$coreApi, resource = paste0(data$persistentEntityType, "('", data$persistentEntityBarcode, "')"), query = "", headers = c("Accept" = "application/json"), useVerbose = verbose)
 header <- c("Content-Type" = "application/json", "If-Match" = "*")
 
-test_that(paste0("apiPUT will update an entity on: ", env$auth), {
+test_that(paste("apiPUT will update an entity on semantic version:", con$coreApi$semVer), {
   content <- entity$content
   content["Name"] <- data$persistentEntityName
   body <- content[-1]
@@ -26,7 +26,7 @@ test_that(paste0("apiPUT will update an entity on: ", env$auth), {
   res <- NULL
 })
 
-test_that(paste("apiPUT returns an error message on non-existing entity on:", env$auth), {
+test_that(paste("apiPUT returns an error message on non-existing entity on semantic version:", con$coreApi$semVer), {
   expect_warning(
     {
       response <- apiPUT(
@@ -47,7 +47,7 @@ test_that(paste("apiPUT returns an error message on non-existing entity on:", en
   )
 })
 
-test_that(paste("apiPUT return object contains only content on:", env$auth), {
+test_that(paste("apiPUT return object contains only content on semantic version:", con$coreApi$semVer), {
   content <- entity$content
   content["Name"] <- data$persistentEntityName
   body <- content[-1]
@@ -66,7 +66,7 @@ test_that(paste("apiPUT return object contains only content on:", env$auth), {
   res <- NULL
 })
 
-test_that(paste("apiPUT returns error when fullReturn is FALSE on:", env$auth), {
+test_that(paste("apiPUT returns error when fullReturn is FALSE on semantic version:", con$coreApi$semVer), {
   expect_warning(
     {
       response <- apiPUT(

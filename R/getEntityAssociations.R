@@ -1,6 +1,6 @@
-# ` getEntityAssociations - Get associations for a entity
+# ` getEntityAssociations - Get associations for an entity
 #'
-#' \code{getEntityAssociations} Get assoication for a context
+#' \code{getEntityAssociations} Get associations for an entity
 #'
 #' @param coreApi coreApi object with valid jsessionid
 #' @param entityType entity type to get
@@ -10,7 +10,7 @@
 #' @param ... additional arguments passed to \code{apiGET}
 #' @return List of length 2, containing \code{entity} and \code{response} objects:
 #' \itemize{
-#'  \item{\code{entity}} is the HTTP response content of entity associations.
+#'  \item{\code{entity}} is the HTTP response content of entity associations
 #'  \item{\code{response}} is the entire HTTP response.
 #' }
 #' @export
@@ -25,7 +25,7 @@
 #' @author Adam Wheeler adam.wheeler@thermofisher.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
 #' @author Scott Russell scott.russell@thermofisher.com
-#' @description \code{getEntityAssociations}  Get assoication for a entity
+#' @description \code{getEntityAssociations}  Get associations for an entity
 
 getEntityAssociations <-
   function(coreApi,

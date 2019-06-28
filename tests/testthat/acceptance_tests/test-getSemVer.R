@@ -3,7 +3,7 @@
 
 context("Tests for getSemVer")
 
-test_that(paste("test getSemVer on:", env$auth), {
+test_that(paste("test getSemVer on semantic version:", con$coreApi$semVer), {
   # Tests if getSemVer is able to retrieve the PFS SemVer
   result <- getSemVer(con$coreApi)
   expect_match(result, "[0-9]+\\.[0-9]+\\.[0-9]+")

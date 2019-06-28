@@ -3,6 +3,7 @@ Type: Package
 Title: Functions for interacting with Platform for Science APIs
 Version: 2.0.1.9000
 Authors@R: as.person(c(
+    "Marc Siladi <marc.siladi@thermofisher.com> [pdr]",
     "Adam Wheeler <adam.wheeler@thermofisher.com> [aut]",
     "Craig Parman <info@ngsanalytics.com> [aut]",
     "Scott Russell <scott.russell@thermofisher.com> [aut]",

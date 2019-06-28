@@ -21,8 +21,8 @@
 #' }
 #' @author Craig Parman info@ngsanalytics.com
 #' @author Scott Russell scott.russell@thermofisher.com
-#' @description \code{getEntityMetadata} Get an entity metadata by entityType. Returns a list with three data frames
-#' named attributes,associations, and template. Template can be used as the body to for createEntity functions.
+#' @description \code{getEntityMetadata} Get entity metadata by entityType. Returns a list with three data frames
+#' named attributes, associations, and template. Template can be used as the body for createEntity functions.
 
 getEntityMetadata <- function(coreApi, entityType, ...) {
   # clean the name for ODATA

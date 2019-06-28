@@ -5,7 +5,7 @@
 
 context("Tests for createEntity")
 
-test_that(paste("test createEntity() for POCO with Boolean attributes on:", env$auth), {
+test_that(paste("test createEntity() for POCO with Boolean attributes on semantic version:", con$coreApi$semVer), {
   out <- getEntityMetadata(con$coreApi, data$testPocoCreateBoolType, useVerbose = verbose)
 
   body <- out$template
@@ -24,7 +24,7 @@ test_that(paste("test createEntity() for POCO with Boolean attributes on:", env$
   expect_equal(b[[names(data$testPocoCreateBoolAttrList[1])]], data$testPocoCreateBoolAttrList[[1]], all = verbose)
 })
 
-test_that(paste("test createEntity() for POCO with Decimal attributes on:", env$auth), {
+test_that(paste("test createEntity() for POCO with Decimal attributes on semantic version:", con$coreApi$semVer), {
   out <- getEntityMetadata(con$coreApi, data$testPocoCreateDecType, useVerbose = verbose)
 
   body <- out$template
@@ -43,7 +43,7 @@ test_that(paste("test createEntity() for POCO with Decimal attributes on:", env$
   expect_equal(b[[names(data$testPocoCreateDecAttrList[1])]], data$testPocoCreateDecAttrList[[1]], all = verbose)
 })
 
-test_that(paste("test createEntity() for POCO with Integer attributes on:", env$auth), {
+test_that(paste("test createEntity() for POCO with Integer attributes on semantic version:", con$coreApi$semVer), {
   out <- getEntityMetadata(con$coreApi, data$testPocoCreateIntType, useVerbose = verbose)
 
   body <- out$template
@@ -62,7 +62,7 @@ test_that(paste("test createEntity() for POCO with Integer attributes on:", env$
   expect_equal(b[[names(data$testPocoCreateIntAttrList[1])]], data$testPocoCreateIntAttrList[[1]], all = verbose)
 })
 
-test_that(paste("test createEntity() for POCO with String attributes on:", env$auth), {
+test_that(paste("test createEntity() for POCO with String attributes on semantic version:", con$coreApi$semVer), {
   out <- getEntityMetadata(con$coreApi, data$testPocoCreateStrType, useVerbose = verbose)
 
   body <- out$template
@@ -81,7 +81,7 @@ test_that(paste("test createEntity() for POCO with String attributes on:", env$a
   expect_equal(b[[names(data$testPocoCreateStrAttrList[1])]], data$testPocoCreateStrAttrList[[1]], all = verbose)
 })
 
-test_that(paste("test createEntity() returns successful with fullMetadata on:", env$auth), {
+test_that(paste("test createEntity() returns successful with fullMetadata on semantic version:", con$coreApi$semVer), {
   out <- getEntityMetadata(con$coreApi, data$testPocoCreateBoolType, useVerbose = verbose)
 
   body <- out$template

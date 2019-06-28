@@ -3,6 +3,6 @@
 
 context("Tests for logOut")
 
-test_that(paste("test logOut() on:", env$auth), {
+test_that(paste("test logOut() on semantic version:", con$coreApi$semVer), {
   expect_equivalent(logOut(con$coreApi)$success, "Success")
 })

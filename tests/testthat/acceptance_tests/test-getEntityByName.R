@@ -5,7 +5,7 @@
 
 context("Tests for getEntityByName")
 
-test_that(paste("test getEntityByName() on:", env$auth), {
+test_that(paste("test getEntityByName() on semantic version:", con$coreApi$semVer), {
   ta1 <- getEntityByName(con$coreApi, data$persistentEntityType, data$persistentEntityName, FALSE, useVerbose = verbose)
 
   name <- ta1$entity[[1]]$Name
@@ -13,7 +13,7 @@ test_that(paste("test getEntityByName() on:", env$auth), {
   expect_match(name, data$persistentEntityName, all = verbose)
 })
 
-test_that(paste("getEntityByName returns successful with fullMetadata on:", env$auth), {
+test_that(paste("getEntityByName returns successful with fullMetadata on semantic version:", con$coreApi$semVer), {
   ta <- getEntityByName(con$coreApi, data$persistentEntityType, data$persistentEntityName, TRUE, useVerbose = FALSE)
 
   expect_true(!is.null(ta$entity[[1]]$`Id@odata.type`))

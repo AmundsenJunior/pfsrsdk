@@ -3,7 +3,7 @@
 
 context("Tests for getExperimentSampleIntermediateData")
 
-test_that(paste("test getExperimentSampleIntermediateData() on:", env$auth), {
+test_that(paste("test getExperimentSampleIntermediateData() on semantic version:", con$coreApi$semVer), {
   result <- getExperimentSampleIntermediateData(con$coreApi, data$experimentType, data$experimentAssayType, data$intermediateDataName, data$experimentSampleBarcode, useVerbose = verbose)
 
   expect_equal(result$response$status_code, 200)

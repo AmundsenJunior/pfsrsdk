@@ -1,6 +1,6 @@
 #' getEntityByName - Get an entity by name from the Core LIMS using the ODATA API.
 #'
-#' \code{getEntityByName} get an entity from the LIMS by barcode
+#' \code{getEntityByName} get an entity by name from the Core LIMS using the ODATA API.
 #'
 #' @param coreApi coreApi object with valid jsessionid
 #' @param entityType entity type to get
@@ -23,7 +23,7 @@
 #' @author Craig Parman info@ngsanalytics.com
 #' @author Adam Wheeler adam.wheeler@thermofisher.com
 #' @author Natasha Mora natasha.mora@thermofisher.com
-#' @description \code{getEntityByName}  Get an entity by barcode from the Core LIMS using the ODATA API.
+#' @description \code{getEntityByName}  Get an entity by name from the Core LIMS using the ODATA API.
 
 getEntityByName <-
   function(coreApi,

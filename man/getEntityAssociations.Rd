@@ -2,7 +2,7 @@
 % Please edit documentation in R/getEntityAssociations.R
 \name{getEntityAssociations}
 \alias{getEntityAssociations}
-\title{\code{getEntityAssociations} Get assoication for a context}
+\title{\code{getEntityAssociations} Get associations for an entity}
 \usage{
 getEntityAssociations(coreApi, entityType, barcode, associationContext,
   fullMetadata = FALSE, ...)
@@ -23,12 +23,12 @@ getEntityAssociations(coreApi, entityType, barcode, associationContext,
 \value{
 List of length 2, containing \code{entity} and \code{response} objects:
 \itemize{
- \item{\code{entity}} is the HTTP response content of entity associations.
+ \item{\code{entity}} is the HTTP response content of entity associations
  \item{\code{response}} is the entire HTTP response.
 }
 }
 \description{
-\code{getEntityAssociations}  Get assoication for a entity
+\code{getEntityAssociations}  Get associations for an entity
 }
 \examples{
 \dontrun{

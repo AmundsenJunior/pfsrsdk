@@ -5,7 +5,7 @@
 
 context("Tests for createExperimentContainer")
 
-test_that(paste("test createExperimentContainer() on a single well container in:", env$auth), {
+test_that(paste("test createExperimentContainer() on a single well container in semantic version:", con$coreApi$semVer), {
   ec <- createExperimentContainer(con$coreApi,
     data$experimentType,
     data$experimentBarcodeUnpublishedExperiment,
@@ -18,7 +18,7 @@ test_that(paste("test createExperimentContainer() on a single well container in:
   expect_that(httr::http_status(ec$response)$category, equals("Success"))
 })
 
-test_that(paste("test createExperimentContainer() on a multi well container in:", env$auth), {
+test_that(paste("test createExperimentContainer() on a multi well container in semantic version:", con$coreApi$semVer), {
   # add multi well container
 
   ec <- createExperimentContainer(con$coreApi,
@@ -33,7 +33,7 @@ test_that(paste("test createExperimentContainer() on a multi well container in:"
   expect_that(httr::http_status(ec$response)$category, equals("Success"))
 })
 
-test_that(paste("createExperimentContainer returns successful with fullMetadata on:", env$auth), {
+test_that(paste("createExperimentContainer returns successful with fullMetadata on semantic version:", con$coreApi$semVer), {
   ec <- createExperimentContainer(con$coreApi,
     data$experimentType,
     data$experimentBarcodeUnpublishedExperiment,

@@ -3,7 +3,7 @@
 
 context("Tests for getExperimentSamplesAssayFileData")
 
-test_that(paste("test getExperimentSamplesAssayFileData() on:", env$auth), {
+test_that(paste("test getExperimentSamplesAssayFileData() on semantic version:", con$coreApi$semVer), {
   result <- getExperimentSamplesAssayFileData(con$coreApi,
     data$experimentFileAssayType,
     data$experimentSampleBarcodeWithFileAttr,

@@ -4,7 +4,7 @@
 
 context("Tests for getExperimentSamples")
 
-test_that(paste("test getExperimentSamples() on:", env$auth), {
+test_that(paste("test getExperimentSamples() on semantic version:", con$coreApi$semVer), {
   result <- getExperimentSamples(con$coreApi, data$experimentType, data$experimentBarcode, fullMetadata = FALSE, useVerbose = verbose)
 
   expect_equal(result$response$response$status_code, 200)
@@ -29,7 +29,7 @@ test_that(paste("test getExperimentSamples() on:", env$auth), {
   )
 })
 
-test_that(paste("getExperimentSamples returns successful with fullMetadata on:", env$auth), {
+test_that(paste("getExperimentSamples returns successful with fullMetadata on semantic version:", con$coreApi$semVer), {
   result <- getExperimentSamples(con$coreApi, data$experimentType, data$experimentBarcode, fullMetadata = TRUE, useVerbose = verbose)
 
   case(

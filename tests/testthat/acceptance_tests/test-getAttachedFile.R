@@ -8,7 +8,7 @@ barcode <- getEntityByName(con$coreApi, data$testPocoType, data$testPocoName, FA
 filePath <- tempfile(fileext = ".csv")
 write.csv(x = runif(n = 1000), file = filePath)
 
-test_that(paste("test attachFile() OData call on:", env$auth), {
+test_that(paste("test attachFile() OData call on semantic version:", con$coreApi$semVer), {
   attachedFile <- attachFile(
     coreApi = con$coreApi,
     entityType = data$testPocoType,
@@ -21,7 +21,7 @@ test_that(paste("test attachFile() OData call on:", env$auth), {
   expect_null(attachedFile$response$entity)
 })
 
-test_that(paste("test attachFile() CoreSDK call on:", env$auth), {
+test_that(paste("test attachFile() CoreSDK call on semantic version:", con$coreApi$semVer), {
   attachedFile <- attachFile(
     coreApi = con$coreApi,
     entityType = data$testPocoType,
