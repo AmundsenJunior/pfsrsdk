@@ -46,6 +46,7 @@ reference:
       - updateMetadata
       - getAttributesColumnHeaders
       - getEntityAttributeMetadata
+      - getUserProjects
   - title: Deprecated Functions
     contents:
       - pfsrsdk-deprecated

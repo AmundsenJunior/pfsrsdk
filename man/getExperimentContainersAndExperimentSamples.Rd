@@ -39,7 +39,7 @@ login <- authBasic(api)
 experimentSampleLotNames <- getExperimentContainersAndExperimentSamples(login$coreApi, "experimentType", "EXP123", FALSE)
 logOut(login$coreApi)
 }
-Specific data can be extracted, one example is to extract the conatainer barcodes:
+Specific data can be extracted, one example is to extract the container barcodes:
 \dontrun{
 containerBarcode <- sapply(
     result$entity[[contExpansion]], 

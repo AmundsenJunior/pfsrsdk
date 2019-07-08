@@ -57,6 +57,8 @@
   and/or experiment samples for a particular experiment.
 * Added function `getExperimentContainersAndExperimentSamples()` to get the
   experiment container, container type and experiment samples of an experiment.
+* Added function `getUserProjects()` to get metadata of projects accessible to
+  the current user.
 * Added "semantic version" to warning, error and test messages to avoid
   confusion.
 * Enabled automated testing to ensure package compatibility with PFS 6.0.3.1 and
