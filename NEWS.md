@@ -63,6 +63,9 @@
   PFS 5.3.11.
 * Adjusted `Jenkinsfile.decl` to run acceptance tests in parallel, drastically
   reducing pipeline execution time.
+* Corrected `vignettes/TestResults.Rmd` to produce properly-formatted table of
+  test results when built as part of `pkgdown::build_site()` execution on
+  Jenkins.
 
 ## Fixes
 
