@@ -51,14 +51,18 @@
 * Added function `getEntityAttributeMetadata()` to get attribute metadata for a
   specified entity type. Applicable for PFS v6 and greater.
 * Added function `getAttributesColumnHeaders()` to get the attribute column
-  headers for all or specified attributes of an entityType. Applicable for PFS v6
-  and greater.
-* Added function `getExperimentSamplesWithSampleLots()` to get the sample lots and/or experiment samples for a particular experiment.
-* Added function `getExperimentContainersAndExperimentSamples()` to get the experiment container, container type and experiment samples of an experiment.
+  headers for all or specified attributes of an entityType. Applicable for PFS
+  v6 and greater.
+* Added function `getExperimentSamplesWithSampleLots()` to get the sample lots
+  and/or experiment samples for a particular experiment.
+* Added function `getExperimentContainersAndExperimentSamples()` to get the
+  experiment container, container type and experiment samples of an experiment.
 * Added "semantic version" to warning, error and test messages to avoid
   confusion.
 * Enabled automated testing to ensure package compatibility with PFS 6.0.3.1 and
   PFS 5.3.11.
+* Adjusted `Jenkinsfile.decl` to run acceptance tests in parallel, drastically
+  reducing pipeline execution time.
 
 ## Fixes
 
