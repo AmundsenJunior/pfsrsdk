@@ -1,7 +1,7 @@
 Package: pfsrsdk
 Type: Package
 Title: Functions for interacting with Platform for Science APIs
-Version: 2.0.1.9000
+Version: 3.0.0
 Authors@R: as.person(c(
     "Marc Siladi <marc.siladi@thermofisher.com> [pdr]",
     "Adam Wheeler <adam.wheeler@thermofisher.com> [aut]",
@@ -10,7 +10,7 @@ Authors@R: as.person(c(
     "Natasha Mora <natasha.mora@thermofisher.com> [aut]",
     "Francisco Marin <francisco.marin@thermofisher.com> [aut]",
     "Edgardo Gutierrez <edgardo.gutierrez@thermofisher.com> [aut]",
-    "Thermo Fisher PFS Data Science & Engineering Team <datascience@thermofisher.com> [cre, cph]"
+    "Thermo Fisher DSBU Data Science & Engineering Team <datascience@thermofisher.com> [cre, cph]"
   ))
 Description: The package provides functions for interacting with the Thermo 
   Fisher Scientific Platform for Science (PFS) APIs.

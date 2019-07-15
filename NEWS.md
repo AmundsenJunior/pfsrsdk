@@ -6,6 +6,8 @@
 [//]: # (Use the commented section below for news on each release)
 [//]: # (# pfsrsdk x.x.x.9000)
 [//]: # ( )
+[//]: # (## Known issues)
+[//]: # ( )
 [//]: # (## Breaking changes)
 [//]: # ( )
 [//]: # (## New functions and minor changes)
@@ -13,7 +15,18 @@
 [//]: # (## Fixes)
 --->
 
-# pfsrsdk 2.0.1.9000
+# pfsrsdk 3.0.0
+
+## Known issues
+
+* For some experiment-related `pfsrsdk` functions and entities related to PFS
+  experiments, there is an issue with OData where modifications (create and
+  update functions) are executed successfully when the PFS experiments are
+  published. The following functions have been tested to show this behavior:
+  * `createExperimentSample`, in PFS 5.3.x and 6.0.x
+  * `updateExperimentSampleRawData`, in PFS 5.3.x and 6.0.x
+  * `updateEntityAttributes`, in PFS 5.3.x and 6.0.x
+  * `updateEntityProject`, in PFS 6.0.x
 
 ## Breaking changes
 
@@ -29,25 +42,14 @@
   values of both `entity` and `response`.  
   Refer to the package help for function-specific changes to the return objects.
 * Moved `useVerbose` parameter on most functions to a pass-through ellipsis
-  (...) parameter, as the paramter is only used by the underlying calls to the
+  (...) parameter, as the parameter is only used by the underlying calls to the
   API functions (`apiGET`, `apiPOST`, `apiPUT`). Passing an argument for
   `useVerbose` must now be named, not ordered, in SDK function calls.
 
 ## New functions and minor changes
-* Removed unnecessary headers from functions.
-* Enhanced testing for functions with fullMetadata parameter.
-* Added Gradle task to generate PDF manual of package documentation, via
-  `Rd2pdf`.
+
 * Added optional `fullReturn` parameter to API functions to provide option to
   not receive full HTTP response data in return object.
-* Separated the set of API tests in `test-httpFunctions.R` to individual files.
-* Separated acceptance tests from unit tests in the `tests/testthat` directory.
-* Removed functions that were deprecated in pfsrsdk 1.0.0:
-  * `getAttachedFile()`
-  * `getExperimentSamplesIntermediateData()`
-  * `ODATAcleanName()`
-  * `setExperimentSamplesAssayFileData()`
-  * `updateCellContents()`
 * Added function `getEntityAttributeMetadata()` to get attribute metadata for a
   specified entity type. Applicable for PFS v6 and greater.
 * Added function `getAttributesColumnHeaders()` to get the attribute column
@@ -61,10 +63,22 @@
   the current user.
 * Added "semantic version" to warning, error and test messages to avoid
   confusion.
+* Removed unnecessary headers from functions.
+* Removed functions that were deprecated in pfsrsdk 1.0.0:
+  * `getAttachedFile()`
+  * `getExperimentSamplesIntermediateData()`
+  * `ODATAcleanName()`
+  * `setExperimentSamplesAssayFileData()`
+  * `updateCellContents()`
+* Separated the set of API tests in `test-httpFunctions.R` to individual files.
+* Separated acceptance tests from unit tests in the `tests/testthat` directory.
+* Enhanced testing for functions with fullMetadata parameter.
 * Enabled automated testing to ensure package compatibility with PFS 6.0.3.1 and
   PFS 5.3.11.
 * Adjusted `Jenkinsfile.decl` to run acceptance tests in parallel, drastically
   reducing pipeline execution time.
+* Added Gradle task to generate PDF manual of package documentation, via
+  `Rd2pdf`.
 * Corrected `vignettes/TestResults.Rmd` to produce properly-formatted table of
   test results when built as part of `pkgdown::build_site()` execution on
   Jenkins.

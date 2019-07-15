@@ -1,0 +1,40 @@
+{
+  "values": [
+    {
+      "key": "tenant",
+      "value": "PLATFORM ADMIN"
+    },    
+    {
+      "key": "alias",
+      "value": ""
+    },
+    {
+      "key": "scheme",
+      "value": "http"
+    },
+    {
+      "key": "host",
+      "value": ""
+    },
+    {
+      "key": "port",
+      "value": ""
+    },
+    {
+      "key": "context",
+      "value": "pfs"
+    },
+    {
+      "key": "api_username",
+      "value": ""
+    },
+    {
+      "key": "api_password",
+      "value": ""
+    },
+    {
+      "key": "semver",
+      "value": "3.0.4"
+    }
+  ]
+}
